@@ -15,5 +15,5 @@ Contents:
    
   
 
-   JAVA_Developer_Guide_for_Asset_Issuing
+   JAVA_Developer_Guide_for_Token_Issuing
    
