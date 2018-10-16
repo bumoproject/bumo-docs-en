@@ -98,7 +98,7 @@ The returned value is as follows:
 Activating the Asset Issuer Account
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The non-activated account needs to be activited by and activited account. Please skip this section if your issuer account is already activated.
+The non-activated account needs to be activated by an activited account. Please skip this section if your issuer account is already activated.
 
 .. note:: |
        You can activate the account by transfering 50.03 BU to the issuer account from the BuPocket(the Wallet). The BU can be used for the transaction fee of issuing assets.
@@ -208,7 +208,7 @@ Transactions are serialized for network transmission.
 
 
 
-The specific code for serializing transactions is as follows:The specific code for serializing transactions is as follows:
+The specific code for serializing transactions is as follows:
 
 ::
 
