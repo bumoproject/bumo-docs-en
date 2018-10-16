@@ -14,11 +14,6 @@ Contents:
    
    
   
-   BUMO_Go_SDK_Guide
-   BUMO_Keypair_Guide
-   BUMO_Java_SDK_Guide
-   API_Guide_for_Exchanges
-   Installation_Guide_for_BUMO
-   Syntax_in_Smart_Contract
+
    JAVA_Developer_Guide_for_Asset_Issuing
    
