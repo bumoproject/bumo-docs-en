@@ -1,26 +1,26 @@
-JAVA Developer Guide for Asset Issuing
+JAVA Developer Guide for Token Issuing
 =======================================
 
 Scenario Description
 --------------------
 
-The asset issuer issues an asset of 1000000000 on BuChain, the asset code is GLA and the asset name is Global. 
+The token issuer issues 1000000000 tokens on BuChain, the token code is GLA and the token name is Global. 
 The specific information is as follows:
 
 +-------------------------+----------+------------------+------------------------+
 | Field Name              | Required | Example          | Description            |
 +=========================+==========+==================+========================+
-| name                    | yes      | Global           | Asset name             |
+| name                    | yes      | Global           | Token name             |
 +-------------------------+----------+------------------+------------------------+
-| code                    | yes      | GLA              | Asset code             |
+| code                    | yes      | GLA              | Token code             |
 +-------------------------+----------+------------------+------------------------+
-| totalSupply             | yes      | 1000000000       | Total supply of asset  |
+| totalSupply             | yes      | 1000000000       | Total supply of tokens |
 +-------------------------+----------+------------------+------------------------+
-| decimals                | yes      | 8                | Asset decimal          |
+| decimals                | yes      | 8                | Token decimal          |
 +-------------------------+----------+------------------+------------------------+
-| description             | no       |                  | Asset description      |
+| description             | no       |                  | Token description      |
 +-------------------------+----------+------------------+------------------------+
-| icon                    | no       |                  | Asset ICON             |
+| icon                    | no       |                  | Token ICON             |
 +-------------------------+----------+------------------+------------------------+   
 | version                 | yes      | 1.0              | The version number of  |     
 |                         |          |                  | the protocol           |
@@ -31,7 +31,7 @@ The specific information is as follows:
 
        - decimals: the number of decimal places which is in the range of 0~8, and 0 means no decimal place.
 
-       - totalSupply: the total supply of the asset which is in the range of 0~2^63-1, and 0 means no limitation for the tokens.
+       - totalSupply: the total supply of the tokens which are in the range of 0~2^63-1, and 0 means no limitation for the tokens.
       
        - icon:  Base64 bit encoding, and the size of the icon file is less than 32k.
 
@@ -40,10 +40,10 @@ The specific information is as follows:
 
 
 
-Development Process for Asset Issuing
+Development Process for Token Issuing
 --------------------------------------
 
-In this document we use the Java language as an example to create an asset issuer and issue an asset of 1000000000.
+In this document we use the Java language as an example to create an token issuer and issue 1000000000 tokens.
 
 Creating an SDK Instance
 ~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -67,10 +67,10 @@ The environment description is as follows:
 | Test network            | seed1.bumotest.io  | 26002            | http://explorer.bumotest.io  |
 +-------------------------+--------------------+------------------+------------------------------+   
 
-Creating an Account for the Asset Issuer 
+Creating an Account for the Token Issuer 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The specific code for creating an account for the asset issuer is as follows:
+The specific code for creating an account for the token issuer is as follows:
 
 ::
 
@@ -95,13 +95,13 @@ The returned value is as follows:
        The account created above is not activited.
 
 
-Activating the Asset Issuer Account
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Activating the Account of Token Issuer 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The non-activated account needs to be activated by an activited account. Please skip this section if your issuer account is already activated.
 
 .. note:: |
-       You can activate the account by transfering 50.03 BU to the issuer account from the BuPocket(the Wallet). The BU can be used for the transaction fee of issuing assets.
+       You can activate the account by transfering 50.03 BU to the issuer account from the BuPocket(the Wallet). The BU can be used for the transaction fee of issuing tokens.
 
 
 Getting the Nonce Value 
@@ -137,13 +137,13 @@ The returned value is as follows:
 
  nonce: 28
 
-Grouping Oprations for Asset Issuing
+Grouping Oprations for Token Issuing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A transaction can consist of multiple operations, each pointing to a specific transaction content.
-Two operations are needed to issue an asset: AssetIssueOperation, and AccountSetMetadataOperation.
+Two operations are needed to issue tokens: AssetIssueOperation, and AccountSetMetadataOperation.
 
-The specific code for grouping operations for asset issuing is as follows:
+The specific code for grouping operations for token issuing is as follows:
 
 ::
 
@@ -158,16 +158,16 @@ The specific code for grouping operations for asset issuing is as follows:
     String version = "1.0";
     // The apt token icon
     String icon = "";
-    // The token total supply number
+    // The total supply number of tokens
     Long totalSupply = 1000000000L;
-    // The token now supply number
+    // The present supply number of tokens
     Long nowSupply = 1000000000L;
     // The token description
     String description = "GLA TOKEN";
     // The token decimals
     Integer decimals = 0;
 
-    // Build asset issuance operation
+    // Build token issuance operation
     AssetIssueOperation assetIssueOperation = new AssetIssueOperation();
     assetIssueOperation.setSourceAddress(issuerAddress);
     assetIssueOperation.setCode(code);
@@ -202,7 +202,7 @@ Transactions are serialized for network transmission.
 
 
 .. note:: |
-       - feeLimit: the maximum fee the transaction initiator will pay for the transaction, and please fill in 50.03 BU when the operation is issuing an asset.
+       - feeLimit: the maximum fee the transaction initiator will pay for the transaction, and please fill in 50.03 BU when the operation is issuing tokens.
 
        - nonce: the nonce value of this transaction initiator,  which can be obtained by adding 1 to the current nonce value.
 
@@ -223,7 +223,7 @@ The specific code for serializing transactions is as follows:
     Long feeLimit = ToBaseUnit.BU2MO("50.03");
     // Call the interface for getting the nonce value, and the nonce value is increased by 1.
  long nonce = getAccountNonce() + 1;
- // Call the interface for grouping oprations for asset issuing.
+ // Call the interface for grouping oprations for token issuing.
  BaseOperation[] operations = buildOperations ();
 
  // Build transaction Blob
