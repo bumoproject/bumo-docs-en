@@ -45,8 +45,8 @@ Development Process for Asset Issuing
 
 In this document we use the Java language as an example to create an asset issuer and issue an asset of 1000000000.
 
-Creating SDK Instance
-~~~~~~~~~~~~~~~~~~~~~~
+Creating an SDK Instance
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 We create an instance with the following code and set its url (the IP and Port of the node).
 
@@ -59,16 +59,16 @@ In BuChain, the generation time for each block is 10 seconds, and only one confi
 
 The environment description is as follows:
 
-+-------------------------+--------------------+------------------+----------------------------------+
-| 网络环境                | IP                 | Port             | 区块链浏览器                     |
-+=========================+====================+==================+==================================+
-| 主网                    | seed1.bumo.io      | 16002            | https://explorer.bumo.io         |
-+-------------------------+--------------------+------------------+----------------------------------+
-| 测试                    | seed1.bumotest.io  | 26002            | http://explorer.bumotest.io      |
-+-------------------------+--------------------+------------------+----------------------------------+
++-------------------------+--------------------+------------------+------------------------------+
+| Network Environment     | IP                 | Port             | Blockchain Browser           |
++=========================+====================+==================+==============================+
+| Main network            | seed1.bumo.io      | 16002            | https://explorer.bumo.io     |
++-------------------------+--------------------+------------------+------------------------------+
+| Test network            | seed1.bumotest.io  | 26002            | http://explorer.bumotest.io  |
++-------------------------+--------------------+------------------+------------------------------+   
 
-Creating Asset Issuer Account
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Creating an Account for the Asset Issuer 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The specific code for creating an account for the asset issuer is as follows:
 
@@ -202,9 +202,9 @@ Transactions are serialized for network transmission.
 
 
 .. note:: |
-       - feeLimit: the maximum fee the transaction initiator will pay for the transaction, and please fill 50.03 BU when the operation is issuing asset.
+       - feeLimit: the maximum fee the transaction initiator will pay for the transaction, and please fill in 50.03 BU when the operation is issuing an asset.
 
-       - nonce: tne nonce value of this transaction initiator,  which can be obtained by adding 1 to the current nonce value.
+       - nonce: the nonce value of this transaction initiator,  which can be obtained by adding 1 to the current nonce value.
 
 
 
@@ -226,7 +226,7 @@ The specific code for serializing transactions is as follows:
  // Call the interface for grouping oprations for asset issuing.
  BaseOperation[] operations = buildOperations ();
 
- // Build transaction  Blob
+ // Build transaction Blob
  TransactionBuildBlobRequest transactionBuildBlobRequest = new TransactionBuildBlobRequest();
  transactionBuildBlobRequest.setSourceAddress(senderAddresss);
  transactionBuildBlobRequest.setNonce(nonce);
@@ -262,7 +262,7 @@ The returned value is as follows:
 Signing Transactions
 ~~~~~~~~~~~~~~~~~~~~
 
-All transactions need to be signed to be valid. Signature data and public key are gererated from the transaction by signing to it.
+All transactions need to be signed to be valid. The signing result includes the signature data and the public key.
 
 The specific code for signing transactions is as follows:
 
@@ -337,8 +337,8 @@ Checking the Result of the Transaction Execution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note:: |
-       The result returned by sending transactions represents whether the transaction is submitted successfully, 
-       and to check whether the transaction is executed successfully you have to perform one of the two operations: 
+       The returned result of transactions sent represents whether the transaction is submitted successfully.
+       To check whether the transaction is executed successfully, you have to perform one of the two operations:
 
 
 Querying from the Blockchain Browser
