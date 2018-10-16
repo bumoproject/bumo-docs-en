@@ -1,4 +1,4 @@
-BUMO_Java_SDK_Guide
+BUMO Java SDK Guide
 ===================
 
 Overview
