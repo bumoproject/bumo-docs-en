@@ -80,7 +80,7 @@ The specific code for creating an account for the asset issuer is as follows:
         return null;
     }
     return response.getResult();
-}
+ }
 
 The returned value is as follows:
 
@@ -114,7 +114,7 @@ The code used to get the nonce value is as follows:
 ::
 
  public long getAccountNonce() {
-long nonce = 0;
+ long nonce = 0;
 
     // Init request
     String accountAddress = "buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
@@ -129,7 +129,7 @@ long nonce = 0;
         System.out.println("error: " + response.getErrorDesc());
     }
    return nonce;
- }
+  }
 
 The returned value is as follows:
 
@@ -137,9 +137,7 @@ The returned value is as follows:
 
  nonce: 28
 
- 
- 
- Grouping Oprations for Asset Issuing
+Grouping Oprations for Asset Issuing
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A transaction can consist of multiple operations, each pointing to a specific transaction content.
@@ -325,7 +323,7 @@ The specific code for sending transactions is as follows:
         System.out.println("error: " + transactionSubmitResponse.getErrorDesc());
   }
  return  hash ;
-}
+ }
 
 
 The returned value is as follows:
@@ -346,7 +344,7 @@ Checking the Result of the Transaction Execution
 Querying from the Blockchain Browser
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-You can query the result from the BUMO Blockchain browser by the hash value you obtained above. The address of the main network is  `https://explorer.bumo.io`_  and the address of the test network is  `http://explorer.bumotest.io`_：
+You can query the result from the BUMO Blockchain browser by the hash value you obtained above. The address of the main network is `<https://explorer.bumo.io>`_ and the address of the test network is  `<http://explorer.bumotest.io>`_：
 
 |BUBrowser|
 
