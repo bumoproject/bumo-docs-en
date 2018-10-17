@@ -45,6 +45,10 @@ Development Process for Token Issuing
 
 In this document we use the Java language as an example to create an token issuer and issue 1000000000 tokens.
 
+.. note:: |
+       Please replace the [AccountAddressOfTokenIssuer] in the examples with the account address of the token to be issued by the token issuer.
+       And replace the [AccountPrivateKeyOfTokenIssuer] in the examples with the account private key of the token to be issued by the token issuer.
+
 Creating an SDK Instance
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -87,9 +91,9 @@ The returned value is as follows:
 ::
 
  AccountCreateResult
-     address:  buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw
-     privateKey:  privbvTuL1k8z27i9eyBrFDUvAVVCSxKeLtzjMMZEqimFwbNchnejS81
-     publicKey: b00179b4adb1d3188aa1b98d6977a837bd4afdbb4813ac65472074fe3a491979bf256ba63895
+     address:  buQYszjqVYdhcPT56GZcKHVh4i7xtx6amr2g
+     privateKey:  privbUAYxPLLyaxvU3EMkSTfuEDTWxAYvyCasUcCgUxDihtNXQL4oHJx
+     publicKey: b001724ed9475ca4c8893329924c7dceae66c61d8577ab2c2c3b29376e143137c20a4bbed176
 
 .. note:: |
        The account created above is not activited.
@@ -101,7 +105,8 @@ Activating the Account of Token Issuer
 The non-activated account needs to be activated by an activited account. Please skip this section if your issuer account is already activated.
 
 .. note:: |
-       You can activate the account by transfering 50.03 BU to the issuer account from the BuPocket(the Wallet). The BU can be used for the transaction fee of issuing tokens.
+       -Main network: you can activate the account by transfering 50.03 BU to the issuer account from the BuPocket(the Wallet). The BU can be used for the transaction fee of issuing tokens.
+       -Test network: the token issuer can send an request to gavin@bumo.io, and the content of the request is the account address of the token.
 
 
 Getting the Nonce Value 
@@ -117,7 +122,7 @@ The code used to get the nonce value is as follows:
  long nonce = 0;
 
     // Init request
-    String accountAddress = "buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
+    String accountAddress = [AccountAddressOfTokenIssuer];
     AccountGetNonceRequest request = new AccountGetNonceRequest();
     request.setAddress(accountAddress);
 
@@ -149,7 +154,7 @@ The specific code for grouping operations for token issuing is as follows:
 
     public BaseOperation[] buildOperations() {
     // The account address to issue apt1.0 token
-    String issuerAddress = "buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
+    String issuerAddress = [AccountAddressOfTokenIssuer];
     // The token name
     String name = "Global";
     // The token code
@@ -208,15 +213,18 @@ Transactions are serialized for network transmission.
 
 
 
-The specific code for serializing transactions is as follows:
+The specific code for serializing transactions is as follows. 
+In the example, **nonce** is the series number of account obtained by calling getAccountNonce, 
+and **operations** is the operations for issuing tokens obtained by calling buildOperations.
+
 
 ::
 
- public String seralizeTransaction() {
+ public String seralizeTransaction(Long nonce,  BaseOperation[] operations) {
  String transactionBlob = null;
 
  // The account address to issue atp1.0 token
- String senderAddresss = "buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
+ String senderAddresss =[AccountAddressOfTokenIssuer];
     // The gasPrice is fixed at 1000L, the unit is MO
     Long gasPrice = 1000L;
     // Set up the maximum cost 50.03BU
@@ -251,12 +259,13 @@ The returned value is as follows:
 ::
 
  transactionBlob: 
-  0A2462755173757248314D34726A4C6B666A7A6B7852394B584A366A537532723978424E4577101C18C0F1CED
-  11220E8073A350802122462755173757248314D34726A4C6B666A7A6B7852394B584A366A537532723978424E
-  45772A0B0A03474C41108094EBDC033AB6010804122462755173757248314D34726A4C6B666A7A6B7852394B5
-  84A366A537532723978424E45773A8B010A1261737365745F70726F70657274795F474C4112757B22636F6465
-  223A22474C41222C22746F74616C537570706C79223A313030303030303030302C22646563696D616C73223A3
-  02C226E616D65223A22474C41222C2269636F6E223A22222C226465736372697074696F6E223A22474C412054
+ 0A2462755173757248314D34726A4C6B666A7A6B7852394B584A366A537532723978424E45771 
+ 01C18C0F1CED11220E8073A350802122462755173757248314D34726A4C6B666A7A6B7852394B 
+ 584A366A537532723978424E45772A0B0A03474C41108094EBDC033AB60108041224627551737 
+ 57248314D34726A4C6B666A7A6B7852394B584A366A537532723978424E45773A8B010A126173 
+ 7365745F70726F70657274795F474C4112757B22636F6465223A22474C41222C22746F74616C5 
+ 37570706C79223A313030303030303030302C22646563696D616C73223A302C226E616D65223A 
+ 22474C41222C2269636F6E223A22222C226465736372697074696F6E223A22474C412054 
   
   
 Signing Transactions
@@ -264,14 +273,16 @@ Signing Transactions
 
 All transactions need to be signed to be valid. The signing result includes the signature data and the public key.
 
-The specific code for signing transactions is as follows:
+The specific code for signing transactions is as follows.
+In the example, transactionBlob is the string of the seralized transactions obtained by calling seralizeTransaction.
+
 
 ::
 
- public Signature[] signTransaction() {
+ public Signature[] signTransaction(String transactionBlob) {
     Signature[] signatures = null;
     // The account private key to issue atp1.0 token
-  String senderPrivateKey = " privbvTuL1k8z27i9eyBrFDUvAVVCSxKeLtzjMMZEqimFwbNchnejS81";
+  String senderPrivateKey =[AccountPrivateKeyOfTokenIssuer];
  //Call the interface for serializing transactions
  String transactionBlob = seralizeTransaction();
 
@@ -292,7 +303,8 @@ The specific code for signing transactions is as follows:
 The returned value is as follows:
 ::
 
- signData: 6CEA42B11253BD49E7F1A0A90EB16448C6BC35E8684588DAB8C5D77B5E771BD5C7E1718942B32F9BDE14551866C00FEBA832D92F88755226434413F98E5A990C; 
+ signData: 6CEA42B11253BD49E7F1A0A90EB16448C6BC35E8684588DAB8C5D77B5E771BD5C7E1718942B32 
+ F9BDE14551866C00FEBA832D92F88755226434413F98E5A990C; 
  publicKey: b00179b4adb1d3188aa1b98d6977a837bd4afdbb4813ac65472074fe3a491979bf256ba63895
 
 
@@ -302,10 +314,13 @@ Sending Transactions
 Sending transactions refers to sending the serialized transactions and the signatures to BuChain.
 
 
-The specific code for sending transactions is as follows:
+The specific code for sending transactions is as follows.
+In the example, **transactionBlob** is the string of the seralized transactions obtained by calling seralizeTransaction,
+and **signatures** is the signature data obtained by calling signTransaction.
+
 ::
 
- public String submitTransaction() {
+ public String submitTransaction(String transactionBlo, Signature[] signatures) {
  String  hash = null;
  // Call the interface for serializing transactions
  String transactionBlob = seralizeTransaction();
@@ -356,11 +371,13 @@ The result returned is as follows:
 Querying by Calling the Interface
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The specific code to call the interface is as follows:
+The specific code to call the interface is as follows.
+In the example, txHash is the hash value of transactions which is the unique identification obtained by calling submitTransaction.
+
 
 ::
 
- public boolean checkTransactionStatus() {
+ public boolean checkTransactionStatus(String txHash) {
     Boolean transactionStatus = false;
     // Call the interface for sending transactions
  String txHash = submitTransaction();
