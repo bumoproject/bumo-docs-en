@@ -106,6 +106,7 @@ The non-activated account needs to be activated by an activited account. Please 
 
 .. note:: |
        -Main network: you can activate the account by transfering 50.03 BU to the issuer account from the BuPocket(the Wallet). The BU can be used for the transaction fee of issuing tokens.  
+       
        -Test network: the token issuer can activate the account by sending an request to gavin@bumo.io, and the content of the request is the account address of the token.
 
 
@@ -229,7 +230,8 @@ and **operations** is the operations for issuing tokens obtained by calling buil
     Long gasPrice = 1000L;
     // Set up the maximum cost 50.03BU
     Long feeLimit = ToBaseUnit.BU2MO("50.03");
- 
+   // Nonce should add 1
+   nonce += 1;
 
  // Build transaction Blob
  TransactionBuildBlobRequest transactionBuildBlobRequest = new TransactionBuildBlobRequest();
