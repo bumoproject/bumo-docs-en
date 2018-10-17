@@ -229,10 +229,7 @@ and **operations** is the operations for issuing tokens obtained by calling buil
     Long gasPrice = 1000L;
     // Set up the maximum cost 50.03BU
     Long feeLimit = ToBaseUnit.BU2MO("50.03");
-    // Call the interface for getting the nonce value, and the nonce value is increased by 1.
- long nonce = getAccountNonce() + 1;
- // Call the interface for grouping oprations for token issuing.
- BaseOperation[] operations = buildOperations ();
+ 
 
  // Build transaction Blob
  TransactionBuildBlobRequest transactionBuildBlobRequest = new TransactionBuildBlobRequest();
@@ -283,8 +280,7 @@ In the example, **transactionBlob** is the string of the seralized transactions 
     Signature[] signatures = null;
     // The account private key to issue atp1.0 token
   String senderPrivateKey =[AccountPrivateKeyOfTokenIssuer];
- //Call the interface for serializing transactions
- String transactionBlob = seralizeTransaction();
+
 
  // Sign transaction BLob
  TransactionSignRequest transactionSignRequest = new TransactionSignRequest();
@@ -322,10 +318,7 @@ and **signatures** is the signature data obtained by calling signTransaction.
 
  public String submitTransaction(String transactionBlob, Signature[] signatures) {
  String  hash = null;
- // Call the interface for serializing transactions
- String transactionBlob = seralizeTransaction();
- // Call the interface for signing transactions
- Signature[] signatures = signTransaction();
+
 
  // Submit transaction
  TransactionSubmitRequest transactionSubmitRequest = new TransactionSubmitRequest();
