@@ -105,8 +105,8 @@ Activating the Account of Token Issuer
 The non-activated account needs to be activated by an activited account. Please skip this section if your issuer account is already activated.
 
 .. note:: |
-       -Main network: you can activate the account by transfering 50.03 BU to the issuer account from the BuPocket(the Wallet). The BU can be used for the transaction fee of issuing tokens.
-       -Test network: the token issuer can send an request to gavin@bumo.io, and the content of the request is the account address of the token.
+       -Main network: you can activate the account by transfering 50.03 BU to the issuer account from the BuPocket(the Wallet). The BU can be used for the transaction fee of issuing tokens.  
+       -Test network: the token issuer can activate the account by sending an request to gavin@bumo.io, and the content of the request is the account address of the token.
 
 
 Getting the Nonce Value 
@@ -274,7 +274,7 @@ Signing Transactions
 All transactions need to be signed to be valid. The signing result includes the signature data and the public key.
 
 The specific code for signing transactions is as follows.
-In the example, transactionBlob is the string of the seralized transactions obtained by calling seralizeTransaction.
+In the example, **transactionBlob** is the string of the seralized transactions obtained by calling seralizeTransaction.
 
 
 ::
@@ -320,7 +320,7 @@ and **signatures** is the signature data obtained by calling signTransaction.
 
 ::
 
- public String submitTransaction(String transactionBlo, Signature[] signatures) {
+ public String submitTransaction(String transactionBlob, Signature[] signatures) {
  String  hash = null;
  // Call the interface for serializing transactions
  String transactionBlob = seralizeTransaction();
@@ -372,7 +372,7 @@ Querying by Calling the Interface
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The specific code to call the interface is as follows.
-In the example, txHash is the hash value of transactions which is the unique identification obtained by calling submitTransaction.
+In the example, **txHash** is the hash value of transactions which is the unique identification obtained by calling submitTransaction.
 
 
 ::
