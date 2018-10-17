@@ -372,8 +372,7 @@ In the example, **txHash** is the hash value of transactions which is the unique
 
  public boolean checkTransactionStatus(String txHash) {
     Boolean transactionStatus = false;
-    // Call the interface for sending transactions
- String txHash = submitTransaction();
+
  // Wait for 10 seconds for the execution of the transaction
  try {
     Thread.sleep(10000);
