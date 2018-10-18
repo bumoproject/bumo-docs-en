@@ -33,7 +33,7 @@ The specific information is as follows:
 
        - totalSupply: the total supply of the tokens which are in the range of 0~2^63-1, and 0 means no limitation for the tokens.
       
-       - icon:  Base64 bit encoding, and the size of the icon file is less than 32k.
+       - icon:  Base64 bit encoding, and the size of the icon file is less than 32k，200*200 pixels is recommended.
 
        - version: the version number of the protocol, and its present value is 1.0.
         
