@@ -686,9 +686,9 @@ link:
 
 http://seed1.bumo.io:16002/getLedger?with_fee=true
 
-.. |image0| image:: ../image/download_bumo_back2.png
-.. |image1| image:: ../image/compile_finished.png
-.. |image2| image:: ../image/compile_installed.png
-.. |image3| image:: ../image/clear_database.png
-.. |image4| image:: ../image/2.jpg
+.. |image0| image:: ../bumo-docs-en/image/download_bumo_back2.png
+.. |image1| image:: ../bumo-docs-en/image/compile_finished.png
+.. |image2| image:: ../bumo-docs-en/image/compile_installed.png
+.. |image3| image:: ../bumo-docs-en/image/clear_database.png
+.. |image4| image:: ../bumo-docs-en/image/2.jpg
 
