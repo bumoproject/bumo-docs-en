@@ -1134,4 +1134,5 @@ Response message:
 .. note:: “success_count”:1 represents that the submission succeeded.
 
 .. |image0| image:: ../image/schematic.png
+.. |image0| image:: ../docs/image/schematic.png
 
