@@ -1249,7 +1249,7 @@ If you installed the BUMO node with the installation package, you can uninstall 
 
 .. note:: Now the BUMO node is uninstalled.
 
-.. |image0| image:: ../image/flow_diagram.png
+.. |image0| image::  /image/flow_diagram.png
 .. |image1| image:: ../image/download_bumo_back2.png
 .. |image2| image:: ../image/compile_finished.png
 .. |image3| image:: ../image/compile_installed.png
