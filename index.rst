@@ -21,7 +21,7 @@ Welcome to Bumo's documentation!
 .. toctree::
    :maxdepth: 2
   
-  docs/introduction
+  docs/introductionEN
    
 .. toctree::
    :maxdepth: 2
