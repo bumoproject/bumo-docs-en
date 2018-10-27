@@ -6,5 +6,5 @@ SDK
  
 
 
-   Bumo_GO_SDK_Guide
+   Bumo_Go_SDK_Guide
    BUMO_Java_SDK_Guide
