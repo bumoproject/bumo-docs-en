@@ -6,8 +6,7 @@
    :alt: ethereum-logo
    :align: center
    
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-   
+Thanks for your visit and attention to BUMO Documentation Center. We hope that the contents of the documentation we provide can help you. BUMO Document Center is under continuous construction, welcome to contact us if you have any questions or feedbacks, our emais address is zhaobaoping@bubi.cn.
    
    
    
