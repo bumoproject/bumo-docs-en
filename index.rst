@@ -6,7 +6,7 @@
    :alt: ethereum-logo
    :align: center
    
-Thanks for your visit and attention to BUMO Documentation Center. We hope that the contents of the documentation we provide can help you. BUMO Documentation Center is under continuous construction, welcome to contact us if you have any questions or feedbacks, our email address is zhaobaoping@bubi.cn.
+Thanks for your visit and attention to BUMO Documentation Center. We hope that the contents of the documentation we provide can help you. BUMO Documentation Center is under continuous construction, welcome to contact us if you have any questions or feedbacks.
    
    
    
