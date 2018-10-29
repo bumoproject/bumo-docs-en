@@ -7,4 +7,4 @@ Underlying Technologies
 
 
 
-  AlgorithmEN
+  algorithmEN
