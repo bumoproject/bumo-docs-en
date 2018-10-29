@@ -51,6 +51,11 @@ Welcome to Bumo's documentation!
    
    docs/JAVA_Developer_Guide_for_Token_Issuing
    
+   
+.. toctree::
+   :maxdepth: 2
+   
+   docs/Syntax_in_Smart_Contract 
   
       
    
@@ -64,10 +69,7 @@ Welcome to Bumo's documentation!
    
    docs/terminologies/terminologyEN
    
-.. toctree::
-   :maxdepth: 2
-   
-   docs/Syntax_in_Smart_Contract
+
    
    
    
