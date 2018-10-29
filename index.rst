@@ -38,10 +38,7 @@ Welcome to Bumo's documentation!
    
    docs/ BUMO_Keypair_Guide
    
-.. toctree::
-   :maxdepth: 2
-   
-   docs/BUMO_Java_SDK_Guide
+
    
 .. toctree::
    :maxdepth: 2
@@ -52,13 +49,9 @@ Welcome to Bumo's documentation!
 .. toctree::
    :maxdepth: 2
    
-   JAVA_Developer_Guide_for_Token_Issuing
+   docs/JAVA_Developer_Guide_for_Token_Issuing
    
   
-.. toctree::
-   :maxdepth: 2  
-  
-  API_Guide_for_Exchanges
       
    
 .. toctree::
@@ -70,6 +63,12 @@ Welcome to Bumo's documentation!
    :maxdepth: 2
    
    docs/terminologies/terminologyEN
+   
+.. toctree::
+   :maxdepth: 2
+   
+   docs/Syntax_in_Smart_Contract
+   
    
    
 .. toctree::
