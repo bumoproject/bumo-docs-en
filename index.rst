@@ -1,5 +1,5 @@
 
-..  image:: image/logo-1.png
+..  image:: image/logo1.png
 ..   :height: 500px
 ..   :width: 394 px
    :scale: 50 %
