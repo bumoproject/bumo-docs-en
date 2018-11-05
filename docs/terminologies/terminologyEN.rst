@@ -1,4 +1,4 @@
-Terms
+Terminology
 ===============
 
 **Account Nonce Value**
