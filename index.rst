@@ -1,9 +1,9 @@
 
-..  image:: image/logo1.png
-..   :height: 240px
-..   :width: 340 px
-   :scale: 100 %
-   :alt: ethereum-logo
+..  image:: image/logo.png
+..   :height: 500px
+..   :width: 394 px
+   :scale: 50 %
+   :alt: BUMO-logo
    :align: center
    
 Thanks for your visit and attention to BUMO Documentation Center. We hope that the contents of the documentation we provide can help you. BUMO Documentation Center is under continuous construction, welcome to contact us if you have any questions or feedbacks.
