@@ -1,5 +1,5 @@
-Bumo Go SDK Guide
-=================
+BUMO GO SDK Guide
+==================
 
 Overview
 ---------
