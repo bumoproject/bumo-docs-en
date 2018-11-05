@@ -1,8 +1,8 @@
 
 ..  image:: image/logo1.png
-..   :height: 500px
-..   :width: 394 px
-   :scale: 50 %
+..   :height: 240px
+..   :width: 340 px
+   :scale: 100 %
    :alt: ethereum-logo
    :align: center
    
