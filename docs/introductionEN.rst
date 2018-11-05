@@ -15,5 +15,5 @@ Rights of data belong to users themselves. All nodes are involved in the mainten
 **Trusted Value Transfer System:**Digital trust is the linkage of virtual world and the real one. 
 Ubiquitous trust system will be established. Online value flows will become ubiquitous as well.
 
-**Public-Sharing DApp Ecosytem:**Digital Identity, Tokenization Protocol, Value Transfer, Decentralized Transactions, In-DApp exchange, etc. 
+**Public-Sharing DApp Ecosystem:**Digital Identity, Tokenization Protocol, Value Transfer, Decentralized Transactions, In-DApp exchange, etc. 
 Distributed applications will also be ubiquitous.
