@@ -110,8 +110,7 @@ response data of the ``Account.GetInfo()`` is ``AccountGetInfoResponse`` :
    Result  AccountGetInfoResult
  }
 
-.. note:: |
-       - ErrorCode:  error code. 0 means no error, greater than 0 means there is an error
+.. note:: - ErrorCode:  error code. 0 means no error, greater than 0 means there is an error
 
        - ErrorDesc: error description. null means no error, otherwise there is an error
 
@@ -274,8 +273,7 @@ The building transaction blob interface is for generating transaction blob strin
  //Call the BuildBlob interface
  resDataBlob := testSdk.Transaction.BuildBlob(reqDataBlob)
 
-.. note:: |
-  The unit of gasPrice and feeLimit is MO，and 1 BU =10^8 MO.
+.. note:: The unit of gasPrice and feeLimit is MO，and 1 BU =10^8 MO.
 
 4. Signing Transactions
 ^^^^^^^^^^^^^^^^^^^^^^^^
