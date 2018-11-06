@@ -26,8 +26,7 @@ The specific information is as follows:
 |                         |          |                  | the protocol           |
 +-------------------------+----------+------------------+------------------------+
 
-.. note:: |
-       - code: capitalized spell is recommended.
+.. note:: - code: capitalized spell is recommended.
 
        - decimals: the number of decimal places which is in the range of 0~8, and 0 means no decimal place.
 
@@ -45,8 +44,7 @@ Development Process for Token Issuing
 
 In this document we use the Java language as an example to create an token issuer and issue 1000000000 tokens.
 
-.. note:: |
-       Please replace the [AccountAddressOfTokenIssuer] in the examples with the account address of the token to be issued by the token issuer.
+.. note:: Please replace the [AccountAddressOfTokenIssuer] in the examples with the account address of the token to be issued by the token issuer.
        And replace the [AccountPrivateKeyOfTokenIssuer] in the examples with the account private key of the token to be issued by the token issuer.
 
 Creating an SDK Instance
@@ -95,8 +93,7 @@ The returned value is as follows:
      privateKey:  privbUAYxPLLyaxvU3EMkSTfuEDTWxAYvyCasUcCgUxDihtNXQL4oHJx
      publicKey: b001724ed9475ca4c8893329924c7dceae66c61d8577ab2c2c3b29376e143137c20a4bbed176
 
-.. note:: |
-       The account created above is not activited.
+.. note:: The account created above is not activited.
 
 
 Activating the Account of Token Issuer 
@@ -105,8 +102,7 @@ Activating the Account of Token Issuer
 The non-activated account needs to be activated by an activited account. Please skip this section if your issuer account is already activated.
 
 
-.. note:: |
-       - Main network: you can activate the account by transfering 50.03 BU to the issuer account from the BuPocket(the Wallet). The BU can be used for the transaction fee of issuing tokens.
+.. note:: - Main network: you can activate the account by transfering 50.03 BU to the issuer account from the BuPocket(the Wallet). The BU can be used for the transaction fee of issuing tokens.
 
        - Test network: the token issuer can activate the account by sending an request to gavin@bumo.io, and the content of the request is the account address of the token.
 
@@ -209,8 +205,7 @@ Serializing Transactions
 Transactions are serialized for network transmission.
 
 
-.. note:: |
-       - feeLimit: the maximum fee the transaction initiator will pay for the transaction, and please fill in 50.03 BU when the operation is issuing tokens.
+.. note:: - feeLimit: the maximum fee the transaction initiator will pay for the transaction, and please fill in 50.03 BU when the operation is issuing tokens.
 
        - nonce: the nonce value of this transaction initiator,  which can be obtained by adding 1 to the current nonce value.
 
@@ -348,8 +343,7 @@ The returned value is as follows:
 Checking the Result of the Transaction Execution
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-.. note:: |
-       The returned result of transactions sent represents whether the transaction is submitted successfully.
+.. note:: The returned result of transactions sent represents whether the transaction is submitted successfully.
        To check whether the transaction is executed successfully, you have to perform one of the two operations:
 
 
