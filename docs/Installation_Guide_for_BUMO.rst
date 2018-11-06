@@ -35,8 +35,7 @@ The following installation example is based on Ubuntu 14.04.
 
 Two installation methods are supported on Linux systems: `Installing by Compilation`_ and `Installing with a Package`_.
 
-.. note:: |
-   - The root directory in the root account is used as the installation directory in this installation document. You can choose your own installation directory
+.. note:: - The root directory in the root account is used as the installation directory in this installation document. You can choose your own installation directory
    - Before installing the BUMO node, you must make sure that the device's network connection is normal
 
 
@@ -188,8 +187,7 @@ The BUMO node can be installed after the compilation is finished. You must compl
 |image3|
 
 
-.. note:: | 
-   - By default, the service is installed in the /usr/local/buchain/ directory.
+.. note:: - By default, the service is installed in the /usr/local/buchain/ directory.
    - After the installation is finished, you can start the bumo service with the ``service bumo start`` command without additional configuration.
    - After installing the BUMO node, the directory structure in the buchain/ directory is as follows:
    
@@ -234,9 +232,7 @@ You must complete the following steps to obtain the installation package of BUMO
 
   wget https://github.com/bumoproject/bumo/releases/download/1.0.0.7/buchain-1.0.0.7-linux-x64.tar.gz
 
-.. note:: |
-
-   - If you don't have ``wget`` installed, you can use the ``apt-get install wget`` command to install ``wget``.
+.. note:: - If you don't have ``wget`` installed, you can use the ``apt-get install wget`` command to install ``wget``.
    - You can find the version you need from the https://github.com/bumoproject/bumo/releases link and then right-click the version to copy the download link.
    - In this example the file is downloaded to the root directory.
 
@@ -423,8 +419,7 @@ After installing the BUMO node, you must select the configuration file of the ru
 
   mv bumo-testnet.json bumo.json
 
-.. note:: |
-   - In this example, the test network environment is selected as the running environment. You can also select other files as your running environment according to your needs.
+.. note:: - In this example, the test network environment is selected as the running environment. You can also select other files as your running environment according to your needs.
    - After renaming the file, the bumo service can be started by the ``service start bumo`` command.
    - After installing the BUMO node, you can view the directory structure of the installation file in the buchain/ directory.
 
@@ -602,8 +597,7 @@ The BUMO node can be installed after the compilation is finished. You must compl
   sudo make install
 
 
-.. note:: | 
-   - By default, the service is installed in the /usr/local/buchain/ directory.
+.. note:: - By default, the service is installed in the /usr/local/buchain/ directory.
    - After installing the BUMO node, the directory structure in the buchain/ directory is as follows:
 
 +-----------------------------------+-----------------------------------+
@@ -642,9 +636,7 @@ Obtaining the Installation Package and Extracting It in MacOS
 
   sudo wget https://github.com/bumoproject/bumo/releases/download/1.0.0.7/buchain-1.0.0.7-macOS-x64.tar.gz
 
-.. note:: |
-
-   - If you don't have ``wget`` installed, you can use the ``apt-get install wget`` command to install ``wget``.
+.. note:: - If you don't have ``wget`` installed, you can use the ``apt-get install wget`` command to install ``wget``.
    - You can find the version you need from the https://github.com/bumoproject/bumo/releases link and then right-click the version to copy the download link.
    - In this example the file is downloaded to the root directory.
 
@@ -719,8 +711,7 @@ After installing the BUMO node, you must select the configuration file of the ru
 
   mv bumo-testnet.json bumo.json
 
-.. note:: |
-   - In this example, the test network environment is selected as the running environment. You can also select other files as your running environment according to your needs.
+.. note:: - In this example, the test network environment is selected as the running environment. You can also select other files as your running environment according to your needs.
    - After renaming the file, the bumo service can be started by the ``service start bumo`` command.
    - After installing the BUMO node, you can view the directory structure of the installation file in the buchain/ directory.
 
@@ -1011,8 +1002,7 @@ The genesis configuration on the same blockchain must be consistent.
    "validators": ["buQBwe7LZYCYHfxiEGb1RE9XC9kN2qrGXWCY", "buQqkp5SDcsxpwWXQ2QFQbvHKnZ199HY3dHm"] //All verification node addresses need to be configured. If there are two verification nodes, configure two addresses.
    }
 
-.. note:: |
-   - Before running, please make sure that the initial data of each node is consistent, otherwise you will not be able to reach consensus to generate the block.
+.. note:: - Before running, please make sure that the initial data of each node is consistent, otherwise you will not be able to reach consensus to generate the block.
    - ``account``, ``validation_address`` can be obtained by the bumo program command line tool ``./bumo --create-account``. Please save the account information properly and you will not be able to retrieve it if it is lost.
 
 Maintenance Service
@@ -1129,8 +1119,7 @@ You must complete the following steps to create a hard fork.
 
 |image7|
 
-.. note:: |
-   - After executing the above command, the new blockchain network has only one verification node.
+.. note:: - After executing the above command, the new blockchain network has only one verification node.
    - After executing the hard fork command, the following hash value is displayed:
 
 ::
@@ -1192,8 +1181,7 @@ Before changing the running environment, you must make sure that the BUMO servic
   
   mv bumo-mainnet.json bumo.json
 
-.. note:: | 
-   - In this example, the main network environment is set to the running environment.
+.. note:: - In this example, the main network environment is set to the running environment.
    - After changing the running environment, you must clear the database to restart the bumo service.
 
 Uninstalling the BUMO Node
