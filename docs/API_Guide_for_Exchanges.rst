@@ -147,8 +147,7 @@ below shows that the installation is successful.
 
 |image2|
 
-.. note:: |
-       - By default the service is installed in the /usr/local/buchain/ directory.
+.. note:: - By default the service is installed in the /usr/local/buchain/ directory.
        - After the installation is complete, you can start the bumo service with the ``service bumo start`` command without additional configuration.
        - After installing the BUMO node, the directory structure in the buchain/ directory is as follows:
 
@@ -205,8 +204,7 @@ example:
 
    mv bumo-mainnet.json bumo.json
 
-.. note:: |
-       - In this example, the main network environment is set to the running environment.
+.. note:: - In this example, the main network environment is set to the running environment.
        - After changing the operating environment, you need to clear the database to restart the bumo service.
 
 DevOps Services
@@ -355,8 +353,7 @@ Check the validity of the account address by the code shown below.
            }
        }
 
-.. note:: |
-       - If the return value is true, the account address is legal.
+.. note:: - If the return value is true, the account address is legal.
        - If the return value is false, the account address is illegal.
 
 Asset Transactions
@@ -396,8 +393,7 @@ View the block status by the code shown below.
            System.out.println(response.getResult().getSynchronous());
        }
 
-.. note:: |
-       - If the return value is true, the block is normal.
+.. note:: - If the return value is true, the block is normal.
        - If the return value is false, the block is abnormal.
 
 **Parsing Transactions in the Block**
@@ -491,8 +487,7 @@ The response message is shown below:
    |__type        Operation type: 7 stands for built-in token transfer
    |__source_address  Source account address
 
-.. note:: |
-       - For how to use Bumo-sdk-java, visit the following link:
+.. note:: - For how to use Bumo-sdk-java, visit the following link:
         https://github.com/bumoproject/bumo-sdk-java/tree/release2.0.0
        - For the example of API guide for the exchange, visit the following link:
         https://github.com/bumoproject/bumo-sdk-java/blob/release2.0.0/examples/src/main/java/io/bumo/sdk/example/ExchangeDemo.java
@@ -533,8 +528,7 @@ bumo-sdk-java as follows:
 
        }
 
-.. note:: |
-       - Record the hash value of the BU withdrawal operation to view the final result of the BU withdrawal operation
+.. note:: - Record the hash value of the BU withdrawal operation to view the final result of the BU withdrawal operation
        - The current (2018-04-23) lowest value of gasPrice is 1000MO
        - It is recommended to fill in 1000000 MO for feeLimit, which equals to 0.01BU
 
