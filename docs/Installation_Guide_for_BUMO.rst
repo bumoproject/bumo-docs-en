@@ -1206,7 +1206,7 @@ If you installed the BUMO node by compilation, you can uninstall the BUMO node b
   
   make uninstall
 
-.. note:: Now the BUMO node is uninstalled.
+Now the BUMO node is uninstalled.
 
 
  
@@ -1235,7 +1235,7 @@ If you installed the BUMO node with the installation package, you can uninstall 
 
   sudo rm -rf /etc/init.d/bumod
 
-.. note:: Now the BUMO node is uninstalled.
+Now the BUMO node is uninstalled.
 
 .. |image0| image:: ../docs/image/flow_diagram.png
 .. |image1| image:: ../docs/image/download_bumo_back2.png
