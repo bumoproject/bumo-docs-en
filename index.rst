@@ -35,7 +35,7 @@ Welcome to Bumo's documentation!
 .. toctree::
    :maxdepth: 2
    
-   docs/ BUMO_Keypair_Guide
+   docs/BUMO_Keypair_Guide
    
 .. toctree::
    :maxdepth: 2
