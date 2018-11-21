@@ -37,6 +37,11 @@ Welcome to Bumo's documentation!
    
    docs/ BUMO_Keypair_Guide
    
+.. toctree::
+   :maxdepth: 2
+   
+   docs/protocol standard/index
+   
 
    
 .. toctree::
