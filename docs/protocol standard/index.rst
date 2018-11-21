@@ -1,4 +1,4 @@
-BUMO Protocol Standard
+BUMO Protocols
 =======================
 
 
