@@ -98,14 +98,14 @@ key, as shown below:
 
    [17,236,24,183,207,250,207,180,108,87,224,39,189,99,246,85,138,120,236,78,228,233,41,192,124,109,156,104,235,66,194,24]
 
-2. Add a 3-byte prefix in the raw private key, and then add a 1-byte
-version number to get a new byte array, as shown below:
+2. Add a 3-byte **prefix** and a 1-byte **version** number before the raw private key, and then add a 1-byte
+**Fill** after the raw private key to get a new byte array, as shown below:
 
 ::
 
-   [218,55,159,1,17,236,24,183,207,250,207,180,108,87,224,39,189,99,246,85,138,120,236,78,228,233,41,192,124,109,156,104,235,66,194,24]
+   [218,55,159,1,17,236,24,183,207,250,207,180,108,87,224,39,189,99,246,85,138,120,236,78,228,233,41,192,124,109,156,104,235,66,194,24,0]
 
-.. note:: For the Prefix, Version and Checksum, please refer to Table 1.
+.. note:: For the **Prefix**, **Version**, **Checksum** and **Fill**, please refer to Table 1.
 
 3. Perform ``SHA256`` calculations twice on the byte array obtained in Step
 2. Take the first 4 bytes of the operation result as the byte array of
@@ -143,12 +143,14 @@ Table 1
 +------------+--------------------------------------------------+--------+
 | Version    | 0x01                                             | 1 byte |
 +------------+--------------------------------------------------+--------+
+| Fill       | 0x00                                             | 1 byte |
++------------+--------------------------------------------------+--------+
 | Checksum   | After performing ``SHA256`` calculation twice on | 4 bytes|
 |            | the byte array obtained in Step 2,take the first |        |
 |            | 4 bytes of the operation result                  |        |
 +------------+--------------------------------------------------+--------+
 
-This table illustrates the Prefix, Version and Checksum used in
+This table illustrates the **Prefix**, **Version**, **Fill** and **Checksum** used in
 generating the private key.
 
 Generating Public Keys
@@ -319,7 +321,7 @@ Signing Transactions
 
 Sign the pending transaction (the byte array obtained by the inverse
 hexadecimal encoding of the transaction_blob) with the ``ED25519`` algorithm
-and the private key, and perform hexadecimal conversion to get
+and the private key to get
 sign_data, the signature string.
 
 The following example shows how to sign the transaction_blob with
@@ -329,7 +331,7 @@ The private key:
 
 ::
 
-   b00115764cd017e0da753271fa26cd529451a21b8253d001f0d43612e19ec632570a74ab166b
+   privbsGZFUoRv8aXZbSGd3bwzZWFn3L5QKq74RXAQYcmfXhhZ54CLr9z
 
 The transaction_blob:
 
@@ -337,7 +339,8 @@ The transaction_blob:
 
    0A24627551566B5555424B70444B526D48595777314D553855376E676F5165686E6F31363569109F0818C0843D20E80732146275696C642073696D706C65206163636F756E743A5F08011224627551566B5555424B70444B526D48595777314D553855376E676F5165686E6F3136356922350A246275516E6936794752574D4D454376585850673854334B35615A557551456351523670691A0608011A02080128C7A3889BAB20
 
-After signing the transaction_blob with the signature interface of
+After signing the pending transaction (the byte array obtained by the inverse
+hexadecimal encoding of the transaction_blob) with the signature interface of
 ``ED25519`` and performing hexadecimal conversion, the resulting sign_data
 is:
 
@@ -1133,5 +1136,6 @@ Response message:
 ..
 .. note:: “success_count”:1 represents that the submission succeeded.
 
-.. |image0| image:: /docs/image/schematic_updated.png
+
+.. |image0| image:: /image/schematic_updated.png
 
