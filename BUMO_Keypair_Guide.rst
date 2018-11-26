@@ -120,7 +120,7 @@ in order, resulting in a new byte array, as shown below:
 
 ::
 
-   [218,55,159,1,17,236,24,183,207,250,207,180,108,87,224,39,189,99,246,85,138,120,236,78,228,233,41,192,124,109,156,104,235,66,194,24,0,30,19,80,117]
+   [218,55,159,1,17,236,24,183,207,250,207,180,108,87,224,39,189,99,246,85,138,120,236,78,228,233,41,192,124,109,156,104,235,66,194,24,30,19,80,117]
 
 5. Encode the byte array generated in Step 4 with Base58, and get the
 string starting with priv, namely the private key, as shown below:
@@ -246,7 +246,7 @@ below:
 
    [21,118,76,208,23,224,218,117,50,113,250,38,205,82,148,81,162,27,130,83,208,1,240,212,54,18,225,158,198,50,87,10]
 
-2. Perform ``SHA256`` calculation once on the raw public key and take the
+2. Perform ``SHA256`` calculation twice on the raw public key and take the
 last 20 bytes of the operation result as the byte array, as shown below:
 
 ::
