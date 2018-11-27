@@ -868,8 +868,8 @@ Transaction Execution Failure
 
 Multiple transactions can be executed in a contract. As long as one transaction fails, an exception is thrown, causing the entire transaction to fail.
 
-Example
------
+Examples
+--------
 
 
 This section introduces three Java-based smart contract development scenarios, where scenario 1 and scenario 2 are associated. The scenarios are based on the smart contract code that follows the CTP 1.0 protocol.
