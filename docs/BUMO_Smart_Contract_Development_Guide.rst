@@ -2424,13 +2424,13 @@ Return value:
 
 
 
-.. |warnings| image:: docs/image/warnings.png
-.. |nowarnings| image:: docs/image/nowarnings.png
-.. |compressedString| image:: docs/image/compressedString.png
-.. |BUExplorer1| image:: docs/image/BUExplorer1.png
-.. |BUExplorer2| image:: docs/image/BUExplorer2.png
-.. |BUResult1| image:: docs/image/BUResult1.png
-.. |BUResult2| image:: docs/image/BUResult2.png
+.. |warnings| image:: image/warnings.png
+.. |nowarnings| image:: image/nowarnings.png
+.. |compressedString| image:: image/compressedString.png
+.. |BUExplorer1| image:: image/BUExplorer1.png
+.. |BUExplorer2| image:: image/BUExplorer2.png
+.. |BUResult1| image:: image/BUResult1.png
+.. |BUResult2| image:: image/BUResult2.png
 
 
 
