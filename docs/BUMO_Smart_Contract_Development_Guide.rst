@@ -599,6 +599,7 @@ tlog
 
 
 The ``tlog`` function is used to output the transaction log. Calling this function will generate a transaction written on the block.
+
 **Function Call**
 
 ::
@@ -1193,7 +1194,7 @@ Based on CTP 1.0, an asset issuer issues smart contract tokens, the total amount
 
 Please refer to the demo: `CreateContractDemo.java <https://github.com/bumoproject/bumo-sdk-java/blob/develop/examples/src/main/java/io/bumo/sdk/example/CreateContractDemo.java>`_.
 
-The specific execution process of this scenario includes `Validating Code Validity`_, `Compressing Text`_, :ref:`Creating SDK Instances-1`, `Creating the Asset Issuer Account`_, `Activating the Asset Issuer Account`_, :ref:` Obtaining the Serial Number of the Asset Issuer Account-1`, `Assembling the Creation of the Contract Account and the CGO Token Issuance`_, :ref:`Serializing the Transaction-1`, :ref:`Signing the Transaction-1`, :ref:`Sending the Transaction-1`, :ref:`Querying Whether the Transaction Was Executed Successfully-1`.
+The specific execution process of this scenario includes `Validating Code Validity`_, `Compressing Text`_, :ref:`Creating SDK Instances-1`, `Creating the Asset Issuer Account`_, `Activating the Asset Issuer Account`_, :ref:`Obtaining the Serial Number of the Asset Issuer Account-1`, `Assembling the Creation of the Contract Account and the CGO Token Issuance`_, :ref:`Serializing the Transaction-1`, :ref:`Signing the Transaction-1`, :ref:`Sending the Transaction-1`, :ref:`Querying Whether the Transaction Was Executed Successfully-1`.
 
 
 
@@ -1984,7 +1985,7 @@ The asset issuer ``buQYLtRq4j3eqbjVNGYkKYo3sLBqW3TQH2xH`` is assigned to himself
 Watch the demo: `TriggerContractDemo.java <https://github.com/bumoproject/bumo-sdk-java/blob/develop/examples/src/main/java/io/bumo/sdk/example/TriggerContractDemo.java>`_.
 
 
-The specific implementation process in this scenario includes :ref:`Creating SDK Instances-2`, :ref:` Obtaining the Serial Number of the Asset Issuer Account-2`, `Assembling CGO Allocation and CGO Transfer`_, :ref:`Serializing Transactions-2`, :ref:`Signing Transactions-2`, :ref:`Sending Transactions-2`, :ref:`Querying whether the Transaction Was Executed Successfully-2`.
+The specific implementation process in this scenario includes :ref:`Creating SDK Instances-2`, :ref:`Obtaining the Serial Number of the Asset Issuer Account-2`, `Assembling CGO Allocation and CGO Transfer`_, :ref:`Serializing Transactions-2`, :ref:`Signing Transactions-2`, :ref:`Sending Transactions-2`, :ref:`Querying whether the Transaction Was Executed Successfully-2`.
 
 
 
@@ -2281,9 +2282,9 @@ Return value:
  hash: 6434743a136c0d03d41bb48146c65ebefc7014154b4160f3b9d3b9c50eb47054
 
 
-.. _Querying whether the Execution Was Executed Successfully-2:
+.. _Querying whether the Transaction Was Executed Successfully-2:
 
-Querying whether the Execution was Executed Successfully
+Querying whether the Transaction Was Executed Successfully
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. note:: The result returned after the transaction is sent only indicates whether the transaction was submitted successfully. If you want to know whether the transaction is executed successfully, you have to perform the one of the following two operations for querying.
