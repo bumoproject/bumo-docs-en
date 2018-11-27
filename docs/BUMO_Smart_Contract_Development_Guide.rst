@@ -1,7 +1,7 @@
 BUMO Smart Contract Development Guide
 =====================================
 
-This document mainly introduces the development of smart contracts, including `Contract Definition`_, `Syntax Description`_ of smart contracts, system 'Built-in Functions`_, `Built-in Variables `_, `Exception Handling`_, and `Examples`_.
+This document mainly introduces the development of smart contracts, including `Contract Definition`_, `Syntax Description`_ of smart contracts, system `Built-in Functions`_, `Built-in Variables`_, `Exception Handling`_, and `Examples`_.
 
 Contract Definition
 -------------------
