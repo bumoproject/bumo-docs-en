@@ -1870,7 +1870,7 @@ The specific code for signing transactions is as follows. The parameter ``transa
  return signatures; 
  } 
 
-Return value
+Return value:
 
 ::
 
@@ -1886,7 +1886,6 @@ Sending Transactions
 ~~~~~~~~~~~~~~~~~~~~~
 
 Send the serialized transaction and the signature to BuChain.
-
 The specific code for sending the transaction is as follows. The parameter ``transactionBlob`` in the example is the serialized transaction string obtained by calling ``seralizeTransaction``, and signatures is the signature data obtained by calling ``signTransaction``.
 
 
@@ -1970,7 +1969,7 @@ The following code shows how to query by calling the interface. The parameter ``
  }
 
 
-Return:
+Return value:
 
 ::
  
@@ -2425,13 +2424,13 @@ Return value:
 
 
 
-.. |warnings| image:: image/warnings.png
-.. |nowarnings| image:: image/nowarnings.png
-.. |compressedString| image:: image/compressedString.png
-.. |BUExplorer1| image:: image/BUExplorer1.png
-.. |BUExplorer2| image:: image/BUExplorer2.png
-.. |BUResult1| image:: image/BUResult1.png
-.. |BUResult2| image:: image/BUResult2.png
+.. |warnings| image:: docs/image/warnings.png
+.. |nowarnings| image:: docs/image/nowarnings.png
+.. |compressedString| image:: docs/image/compressedString.png
+.. |BUExplorer1| image:: docs/image/BUExplorer1.png
+.. |BUExplorer2| image:: docs/image/BUExplorer2.png
+.. |BUResult1| image:: docs/image/BUResult1.png
+.. |BUResult2| image:: docs/image/BUResult2.png
 
 
 
