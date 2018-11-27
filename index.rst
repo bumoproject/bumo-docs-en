@@ -59,6 +59,12 @@ Welcome to Bumo's documentation!
 .. toctree::
    :maxdepth: 2
    
+   docs/BUMO_Smart_Contract_Development_Guide
+   
+   
+.. toctree::
+   :maxdepth: 2
+   
    docs/Syntax_in_Smart_Contract 
   
       
