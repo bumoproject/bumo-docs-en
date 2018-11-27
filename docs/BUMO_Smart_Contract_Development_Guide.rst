@@ -6,7 +6,7 @@ This document mainly introduces the development of smart contracts, including `C
 Contract Definition
 -------------------
 
-A contract is a code snippet written in JavaScript. The initialization function of the contract is ``init``, and the entry functions executed are ``main`` and ``query``, where the definitions of ``init`` and ``main`` are required. The entry parameter **input** of the above functions is a string, which needs to be specified when you call the contract.
+A contract is a code snippet written in ``JavaScript``. The initialization function of the contract is ``init``, and the entry functions executed are ``main`` and ``query``, where the definitions of ``init`` and ``main`` are required. The entry parameter **input** of the above functions is a string, which needs to be specified when you call the contract.
 
 
 .. code:: javascript
@@ -31,14 +31,14 @@ A contract is a code snippet written in JavaScript. The initialization function 
 Syntax Description
 ------------------ 
 
-BUMO smart contracts are written in JavaScript. In order to facilitate developers to develop contracts in a standard and safe way, JSLint is used for detecting contract syntax. For details, please refer to `ContractRules.md <https://github.com/bumoproject/bumo/blob/master/src/web/jslint/ContractRules.md>`_.
+BUMO smart contracts are written in ``JavaScript``. In order to facilitate developers to develop contracts in a standard and safe way, JSLint is used for detecting contract syntax. For details, please refer to `ContractRules.md <https://github.com/bumoproject/bumo/blob/master/src/web/jslint/ContractRules.md>`_.
 
 Syntax Rules
 ^^^^^^^^^^^^^
 
 The syntax rules in the smart contract include the following:
 
-- Strict detection of the statement, which means all source code must start with the ** "use strict"; ** field.
+- Strict detection of the statement, which means all source code must start with the **"use strict";** field.
 - Try to use **let** to declare variables within the statement block.
 - Use **===** instead of **==** to judge the comparison; use **!==** instead of **!=** to compare.
 - The statement must end with **;**.
@@ -102,14 +102,14 @@ Read and Write Permission of Functions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Each function has a fixed read-only or write permission.
-Read-only permission means that data is not written to the blockchain, such as the **getBalance** function used to get the balance has read-only permission.
-Write permission means that data will be written to the blockchain, such as the **payCoin** function used to transfer coins has write permission.
+Read-only permission means that data is not written to the blockchain, such as the ``getBalance`` function used to get the balance has read-only permission.
+Write permission means that data will be written to the blockchain, such as the ``payCoin`` function used to transfer coins has write permission.
 Different entry functions have different calling permissions when you write smart contracts. The ``init`` and ``main`` functions can call all built-in functions but the ``query`` function can only call functions with read-only permission, otherwise you will be prompted that the interface is not defined during debugging or execution.
 
 Introduction to Return Value
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-For any internal function call, “false” will be returned if it fails, or an exception is thrown to terminate the execution.
+For any internal function call, ``false`` will be returned if it fails, or an exception is thrown to terminate the execution.
 If a parameter error is encountered, the location of the error parameter is indicated in the error description. The position refers to the index number of the parameter, that is, counting from 0.
 For example, parameter 1 indicates the second parameter is incorrect. Please refer to the following example:
 
@@ -177,7 +177,7 @@ The ``storageStore`` function is used to store the metadata of the contract acco
 
  storageStore('abc', 'values'); 
  /* Permission: write 
-    Return value: return ``true`` if it succeeds; throw an exception it fails. */
+    Return value: return true if it succeeds; throw an exception it fails. */
 
 storageLoad
 ~~~~~~~~~~~~
@@ -204,7 +204,7 @@ The ``storageLoad`` function is used to get the metadata of the contract account
  
  let value = storageLoad('abc'); 
  /* Permission: read-only 
-    Return value: return a string such as 'values' if it succeeds; return ``false`` if it fails. 
+    Return value: return a string such as 'values' if it succeeds; return false if it fails. 
     This example gets the value of 'abc' for custom data in the contract account.*/
 
 storageDel
@@ -232,7 +232,7 @@ The ``storageDel`` function is used to delete the metadata of the contract accou
  storageDel('abc');
  /*
   Permission: write
-  Return value: return ``true`` if it succeeds; throw an exception if it fails.
+  Return value: return true if it succeeds; throw an exception if it fails.
   This example deletes the value of abc for custom data in this contract account*/
 
 getAccountAsset
@@ -269,7 +269,7 @@ The ``getAccountAsset`` function is used to get the asset information of an acco
  asset_key);
  /*
  Permission: read-only
- Return value: return digital asset such as '10000' if it succeeds; return ``false`` if it fails.
+ Return value: return digital asset such as '10000' if it succeeds; return false if it fails.
  */
 
 
@@ -300,7 +300,7 @@ The ``getBlockHash`` function is used to get the block information.
  Permission: read-only
  Return value: return a string such as 
  'c2f6892eb934d56076a49f8b01aeb3f635df3d51aaed04ca521da3494451afb3' if it succeeds;
- return ``false`` if it fails.
+ return false if it fails.
  */
 
 
@@ -328,7 +328,7 @@ The ``addressCheck`` function is used for address legality checking.
  let ret = addressCheck('buQgmhhxLwhdUvcWijzxumUHaNqZtJpWvNsf');
  /*
  Permission: read-only
- Return value: return ``true`` if it succeeds; return ``false`` if it fails.
+ Return value: return true if it succeeds; return false if it fails.
  */
 
 stoI64Check
@@ -355,7 +355,7 @@ The ``stoI64Check`` function is used for validity checking of numeric strings.
  let ret = stoI64Check('12345678912345');
  /*
  Permission: read-only
- Return value: return ``true`` if it succeeds; return ``false`` if it fails.
+ Return value: return true if it succeeds; return false if it fails.
  */
 
 int64Add
@@ -589,7 +589,7 @@ The ``log`` function is used to output the log.
  let ret = log('buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY');
  /*
  Permission: read-only
- Return value: return nothing if it succeeds; return ``false`` if it fails.
+ Return value: return nothing if it succeeds; return false if it fails.
  */
 
 tlog
@@ -620,7 +620,7 @@ The ``tlog`` function is used to output the transaction log. Calling this functi
  tlog('transfer',sender +' transfer 1000',true);
  /*
  Permission: write
- Return value: return ``true`` if it succeeds; throw an exception if it fails.
+ Return value: return true if it succeeds; throw an exception if it fails.
  */
 
 issueAsset
@@ -650,7 +650,7 @@ The ``issueAsset`` function is used to issue assets.
  issueAsset("CNY", "10000");
  /*
  Permission: write
- Return: return ``true`` if it succeeds; throw an exception if it fails. 
+ Return: return true if it succeeds; throw an exception if it fails. 
  */
 
 
@@ -752,7 +752,7 @@ The ``assert`` function is used for assertion validation.
  assert(1===1, "Not valid");
  /*
  Permission: read-only
- Return value: return ``true`` if it succeeds; throw an exception if it fails. 
+ Return value: return true if it succeeds; throw an exception if it fails. 
  */
 
 
@@ -805,7 +805,7 @@ The asset of this payment operation, which is an object type.
 
 ::
 
- {"amount": 1000, "key" : {"issuer": "buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY", "code":"CNY"}}。
+ {"amount": 1000, "key" : {"issuer": "buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY", "code":"CNY"}}.
 
 blockNumber
 ^^^^^^^^^^^^
@@ -859,6 +859,7 @@ JavaScript Exception
 ^^^^^^^^^^^^^^^^^^^^^
 
 When an uncaught JavaScript exception occurs in the process of running a contract, it will be handled as follows:
+
 - The execution of this contract fails and all transactions in the contract will not take effect.
 - The transaction that triggered this contract was a failure. The error code is 151.
 
@@ -1192,7 +1193,7 @@ Based on CTP 1.0, an asset issuer issues smart contract tokens, the total amount
 
 Please refer to the demo: `CreateContractDemo.java <https://github.com/bumoproject/bumo-sdk-java/blob/develop/examples/src/main/java/io/bumo/sdk/example/CreateContractDemo.java>`_.
 
-The specific execution process of this scenario includes `Validating Code Validity `_, `Compressing Text`_, :ref:`Creating SDK Instances-1`, `Creating the Asset Issuer Account`_, `Activating the Asset Issuer Account`_, :ref:` Obtaining the Serial Number of the Asset Issuer Account-1`, `Assembling the Creation of the Contract Account and the CGO Token Issuance`_, :ref:`Serializing the Transaction-1`, :ref:`Signing the Transaction-1`, :ref:`Sending the Transaction-1`, :ref:`Querying Whether the Transaction Was Executed Successfully-1`.
+The specific execution process of this scenario includes `Validating Code Validity`_, `Compressing Text`_, :ref:`Creating SDK Instances-1`, `Creating the Asset Issuer Account`_, `Activating the Asset Issuer Account`_, :ref:` Obtaining the Serial Number of the Asset Issuer Account-1`, `Assembling the Creation of the Contract Account and the CGO Token Issuance`_, :ref:`Serializing the Transaction-1`, :ref:`Signing the Transaction-1`, :ref:`Sending the Transaction-1`, :ref:`Querying Whether the Transaction Was Executed Successfully-1`.
 
 
 
@@ -1210,8 +1211,9 @@ If there is no syntax problem, the following information is displayed.
 
 |nowarnings|
 
+
 Compressing Text
-~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~
 
 
 Open the online text compression page: https://jsmin.51240.com/, copy the verified smart contract code to the edit box on the page, then click the **Compress** button to copy the compressed string, as shown below:
@@ -1289,7 +1291,7 @@ When the account is not activated, it needs to be activated by an activated (cha
        - Test network environment: the asset issuer applies to gavin@bumo.io, with the account address of the asset included.
 
 
-.. _Obtaining the Serial Number of the Asset Issuer Account -1:
+.. _Obtaining the Serial Number of the Asset Issuer Account-1:
 
 Obtaining the Serial Number of the Asset Issuer Account
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -1913,7 +1915,7 @@ Return value:
 
 
 
-.. _Querying Whether the Transaction Was Executed Successfully -1:
+.. _Querying Whether the Transaction Was Executed Successfully-1:
 
 
 Querying Whether the Transaction Was Executed Successfully
@@ -1982,7 +1984,7 @@ The asset issuer ``buQYLtRq4j3eqbjVNGYkKYo3sLBqW3TQH2xH`` is assigned to himself
 Watch the demo: `TriggerContractDemo.java <https://github.com/bumoproject/bumo-sdk-java/blob/develop/examples/src/main/java/io/bumo/sdk/example/TriggerContractDemo.java>`_.
 
 
-The specific implementation process in this scenario includes :ref:`Creating SDK Instances-2`, :ref:` Obtaining the Serial Number of the Asset Issuer Account-2`, `Assembling CGO Allocation and CGO Transfer`_, :ref:`Serializing Transactions-2`, :ref:` Signing Transactions-2`, :ref:` Sending Transactions-2`, :ref:` Querying whether the Transaction Was Executed Successfully-2`.
+The specific implementation process in this scenario includes :ref:`Creating SDK Instances-2`, :ref:` Obtaining the Serial Number of the Asset Issuer Account-2`, `Assembling CGO Allocation and CGO Transfer`_, :ref:`Serializing Transactions-2`, :ref:`Signing Transactions-2`, :ref:`Sending Transactions-2`, :ref:`Querying whether the Transaction Was Executed Successfully-2`.
 
 
 
@@ -2017,7 +2019,7 @@ Environment description:
 
 .. _ Obtaining the Serial Number of the Asset Issuer Account -2:
 
- Obtaining the Serial Number of the Asset Issuer Account -2
+ Obtaining the Serial Number of the Asset Issuer Account-2
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Each account maintains its own serial number, which starts from 1 and is incremented. A serial number marks a transaction for that account. The code to obtain the serial number of the asset issuer account is as follows:
@@ -2303,6 +2305,7 @@ Querying by Calling the Interface
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The following code shows how to query by calling the interface. The parameter txHash in this example is the transaction hash (the unique identifier of the transaction) obtained by calling submitTransaction.
+
 .. code:: javascript
 
  public boolean checkTransactionStatus(String txHash) { 
