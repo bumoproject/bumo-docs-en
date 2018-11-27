@@ -24,9 +24,13 @@ These two technologies can provide basic functional support for BuVM, but they c
 BuVM has specifically optimized the functions, the main improvements of which are as follows:
 
 1.Increase security check for contract execution.
+
 2.Set interface permissions.
+
 3.Increase interaction between contracts.
+
 4.Enhance the exception handling mechanism.
+
 5.Security check for syntax.
 
 In addition, BuVM supports multiple languages such as JavaScript/C/C++/Python/Go, which runs across platforms, with rich and scalable underlying interfaces, and a separate sandbox environment to ensure that BUMO smart contracts are executed securely in isolated environments.
