@@ -6,7 +6,7 @@
    :alt: BUMO-logo
    :align: center
    
-Thank you for visiting the BUMO Documentation Center. We hope that the documentation we provide can be helpful to you. BUMO Documentation Center is being updated as the BUMO projects move forward. If you have any questions, please contact us.
+Thank you for visiting BUMO Documentation Center. We hope that the documentation we provide can be helpful to you. BUMO Documentation Center is being updated as the BUMO projects move forward. If you have any questions, please contact us.
    
    
    
