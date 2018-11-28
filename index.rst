@@ -1,12 +1,12 @@
 
-..  image:: docs/image/logo.png
+..  image:: image/logo.png
 ..   :height: 500px
 ..   :width: 394 px
    :scale: 50 %
    :alt: BUMO-logo
    :align: center
    
-Thanks for your visit and attention to BUMO Documentation Center. We hope that the contents of the documentation we provide can help you. BUMO Documentation Center is under continuous construction, welcome to contact us if you have any questions or feedbacks.
+Thank you for visiting the BUMO Documentation Center. We hope that the documentation we provide can be helpful to you. BUMO Documentation Center is being updated as the BUMO projects move forward. If you have any questions, please contact us.
    
    
    
