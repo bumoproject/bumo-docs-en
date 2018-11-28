@@ -93,7 +93,7 @@ The returned value is as follows:
      privateKey:  privbUAYxPLLyaxvU3EMkSTfuEDTWxAYvyCasUcCgUxDihtNXQL4oHJx
      publicKey: b001724ed9475ca4c8893329924c7dceae66c61d8577ab2c2c3b29376e143137c20a4bbed176
 
-.. note:: The account created above is not activited.
+.. note:: The account created above is not activated.
 
 
 Activating the Account of Token Issuer 
