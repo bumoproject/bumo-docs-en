@@ -455,8 +455,10 @@ The specific example is as follows:
    fmt.Println("Info:", string(data))
  }
 
-Interface Types
-^^^^^^^^^^^^^^^
+Interface Object Types
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The description of interface object types of the ``GetInfo-Account`` interface is as follows.
 
 Priv
 ++++
@@ -662,8 +664,10 @@ The specific example is as follows:
    fmt.Println("Assets:", string(data))
  }
 
-Interface Types
-^^^^^^^^^^^^^^^^
+Interface Object Types
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The description of interface object types of the ``GetAssets`` interface is as follows.
 
 Asset
 +++++
@@ -744,8 +748,10 @@ The specific example is as follows:
    fmt.Println("Metadatas:", string(data))
  }
 
-Interface Types
-^^^^^^^^^^^^^^^
+Interface Object Types
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The description of interface object types of the ``GetMetadata`` interface is as follows.
 
 .. _Metadata-1:
 
@@ -1717,8 +1723,10 @@ The specific example is as follows:
        fmt.Println("Sign:", resDataSign.Result)
    }
 
-Interface Types
-^^^^^^^^^^^^^^^
+Interface Object Types
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The description of interface object types of the ``Sign`` interface is as follows.
 
 Signature
 +++++++++
@@ -1827,8 +1835,10 @@ The specific example is as follows:
        fmt.Println("info:", string(data)
    }
 
-Interface Types
-^^^^^^^^^^^^^^^^
+Interface Object Types
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The description of interface object types of the ``GetInfo-transaction`` interface is as follows.
 
 TransactionHistory
 ++++++++++++++++++
@@ -2362,8 +2372,10 @@ The specific example is as follows:
        fmt.Println("Validators:", string(data))
    }
 
-Interface Types
-^^^^^^^^^^^^^^^
+Interface Object Types
+^^^^^^^^^^^^^^^^^^^^^^^
+
+The description of interface object types of the ``GetValidators`` interface is as follows.
 
 ValidatorInfo
 ++++++++++++++
@@ -2479,15 +2491,15 @@ The specific example is as follows:
        fmt.Println("ValidatorsReward:", resData.Result.ValidatorsReward)
    }
 
-Interface Types
-^^^^^^^^^^^^^^^
+Interface Object Types
+^^^^^^^^^^^^^^^^^^^^^^^^
 
-The following are descriptions of interface types.
+The description of interface object types of the ``GetReward`` interface is as follows.
 
 .. _ValidatorReward:
 
-Validator Reward
-++++++++++++++++n
+ValidatorReward
++++++++++++++++++
 
 +-----------+--------+-------------------+
 | Member    | Type   | Description       |
@@ -2597,8 +2609,10 @@ The specific example is as follows:
        fmt.Println("Fees:", string(data))
    }
 
-Interface Types
-^^^^^^^^^^^^^^^
+Interface Object Types
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+The description of interface object types of the ``GetFees`` interface is as follows.
 
 Fees
 +++++
