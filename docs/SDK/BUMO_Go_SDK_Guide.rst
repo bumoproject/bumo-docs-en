@@ -1306,11 +1306,11 @@ BaseOperation
 ^^^^^^^^^^^^^
 
 Before calling the BuildBlob interface, some operation objects shall be built, and now we have 16 operation objects:
-``AccountActivateOperation``,``AccountSetMetadataOperation``,``AccountSetPrivilegeOperation``,
-``AssetIssueOperation``,``AssetSendOperation``,``BUSendOperation``,``Ctp10TokenIssueOperation``,
-``Ctp10TokenTransferOperation``,``Ctp10TokenTransferFromOperation``,``Ctp10TokenApproveOperation``,
-``Ctp10TokenAssignOperation``,``Ctp10TokenChangeOwnerOperation``,``ContractCreateOperation``,
-``ContractInvokeByAssetOperation``,``ContractInvokeByBUOperation`` and ``LogCreateOperation``。
+``AccountActivateOperation``, ``AccountSetMetadataOperation``, ``AccountSetPrivilegeOperation``,
+``AssetIssueOperation``, ``AssetSendOperation``, ``BUSendOperation``, ``Ctp10TokenIssueOperation``,
+``Ctp10TokenTransferOperation``, ``Ctp10TokenTransferFromOperation``, ``Ctp10TokenApproveOperation``,
+``Ctp10TokenAssignOperation``, ``Ctp10TokenChangeOwnerOperation``, ``ContractCreateOperation``,
+``ContractInvokeByAssetOperation``, ``ContractInvokeByBUOperation`` and ``LogCreateOperation``。
 
 AccountActivateOperation
 
@@ -2056,8 +2056,8 @@ Log
 Block Services
 ---------------
 
-Block services provide block-related interfaces. There are currently 11 interfaces:``GetNumber``,``CheckStatus``,``GetTransactions``,``GetInfo-block``,``GetLatest``,
-``GetValidators``,``GetLatestValidators``,``GetReward``,``GetLatestReward``,``GetFees`` and ``GetLatestFees``。
+Block services provide block-related interfaces. There are currently 11 interfaces: ``GetNumber``, ``CheckStatus``, ``GetTransactions``, ``GetInfo-block``, ``GetLatest``,
+``GetValidators``, ``GetLatestValidators``, ``GetReward``, ``GetLatestReward``, ``GetFees`` and ``GetLatestFees``。
 
 GetNumber
 ~~~~~~~~~~~
@@ -2445,13 +2445,13 @@ The request parameter is shown in the following table:
 
 The response data is shown in the following table:
 
-+-----------------------+-------------------------+-------------------+
-| Parameter             | Type                    | Description       |
-+=======================+=========================+===================+
-| BlockReward           | int64                   | Block rewards     |
-+-----------------------+-------------------------+-------------------+
-| ValidatorsReward      | [] `ValidatorReward`_   | Validators rewards|
-+-----------------------+-------------------------+-------------------+
++-----------------------+--------------------------+-------------------+
+| Parameter             | Type                     | Description       |
++=======================+==========================+===================+
+| BlockReward           | int64                    | Block rewards     |
++-----------------------+--------------------------+-------------------+
+| ValidatorsReward      | [] :ref:`ValidatorReward`| Validators rewards|
++-----------------------+--------------------------+-------------------+
 
 
 The error code is shown in the following table:
@@ -2482,8 +2482,12 @@ The specific example is as follows:
 Interface Types
 ^^^^^^^^^^^^^^^
 
-ValidatorReward
-++++++++++++++++
+The following are descriptions of interface types.
+
+.. _ValidatorReward:
+
+Validator Reward
+++++++++++++++++n
 
 +-----------+--------+-------------------+
 | Member    | Type   | Description       |
