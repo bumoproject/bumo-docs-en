@@ -1,5 +1,5 @@
 
-..  image:: image/logo.png
+..  image:: docs/image/logo.png
 ..   :height: 500px
 ..   :width: 394 px
    :scale: 50 %
