@@ -907,7 +907,7 @@ Transaction Services
 ---------------------
 
 Transaction Services provide transaction-related interfaces and
-currently have five interfaces:``EvaluateFee``,``BuildBlob``,``Sign``,、``Submit`` and 
+currently have five interfaces: ``EvaluateFee``, ``BuildBlob``, ``Sign``, ``Submit`` and 
 ``GetInfo-transaction``.
 
 EvaluateFee
