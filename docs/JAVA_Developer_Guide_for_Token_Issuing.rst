@@ -399,5 +399,5 @@ The returned value is as follows:
  transactionStatus: true
 
 
-.. |BUBrowser| image:: /image/BUBrowser.png
-.. |execution_result_of_transaction| image:: /image/execution_result_of_transaction.png
+.. |BUBrowser| image:: ../docs/image/BUBrowser.png
+.. |execution_result_of_transaction| image:: ../docs/image/execution_result_of_transaction.png
