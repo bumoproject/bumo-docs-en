@@ -313,8 +313,8 @@ Account Services
 ----------------
 
 Account Services provide account-related interfaces, which include seven
-interfaces: ``CheckValid``,``Create``,``GetInfo-Account``,``GetNonce``,
-``GetBalance-Account``,``GetAssets`` and ``GetMetadata``.
+interfaces: ``CheckValid``, ``Create``, ``GetInfo-Account``, ``GetNonce``,
+``GetBalance-Account``, ``GetAssets`` and ``GetMetadata``.
 
 CheckValid
 ~~~~~~~~~~
