@@ -42,7 +42,7 @@ so the applications can manage and check token information conveniently.
 
  - code: capitalization and acronyms are recommended.
  - decimals: the number of decimal places which is in the range of 0~8, and 0 means no decimal place.
- - totalSupply: the value is in the range of 0~2^63-1. 0 means no upper limit. For example, when issuing 10000 tokens with decimals of 8, the value of totalSupply is 1000000000000 (10^8*10000).
+ - totalSupply: the value is in the range of 0~2^63-1. 0 means no upper limit. For example, when issuing 10000 tokens with 8 decimal places, the value of totalSupply is 1000000000000 (10^8*10000).
  - icon: base64-bit encoding, the file size is less than 32 k, and 200*200 pixels is recommended.
 
 Operations
