@@ -497,7 +497,7 @@ symbol: token symbol.
 
 decimals: decimal places.
 
-totalSupply: the total amount of tokens, and its type is string. For example, when issuing 50000 tokens, the total amount of tokens is 50000*100000000.
+totalSupply: the total amount of tokens, and its type is string. For example, when issuing 50000 tokens, the total amount of tokens is actually 50000*100000000.
 
 **Return value:**
 
