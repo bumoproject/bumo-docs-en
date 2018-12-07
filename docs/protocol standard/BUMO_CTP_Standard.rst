@@ -485,7 +485,7 @@ The ``init`` function is used for initializing parameters, the following are its
         "name":"RMB",
         "symbol":"CNY",
         "decimals":8,
-        "supply":"1500000000"
+        "totalSupply":"5000000000000"
     }
  }
 
@@ -497,7 +497,7 @@ symbol: token symbol.
 
 decimals: decimal places.
 
-supply: total supply of tokens (integer part).
+totalSupply: the total amount of tokens. For example, when issuing 50000 tokens, the total amount of tokens is 50000*100000000.
 
 **Return value:**
 
