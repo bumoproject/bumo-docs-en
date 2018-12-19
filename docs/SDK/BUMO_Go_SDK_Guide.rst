@@ -5,7 +5,7 @@ Overview
 ---------
 
 This document details the common interfaces of the Bumo Go SDK, making
-it easier for developers to operate and query the BU blockchain.
+it easier for developers to operate and query the BuChain.
 
 Import of Packages
 -------------------
@@ -22,19 +22,19 @@ Terminology
 
 This section gives details about the terms used in this document.
 
-**Operate the BU Blockchain** 
+***Operating BuChain** 
 
-Operate the BU Blockchain refers to writing data to or modifying data in
-the BU blockchain.
+Operating BuChain refers to writing data to or modifying data in
+the BuChain.
 
-**Submit Transactions**
+**Submitting Transactions**
 
-Submit Transactions refers to sending a request to write data to or
-modify data in the BU blockchain.
+Submitting Transactions refers to sending a request to write data to or
+modify data in the BuChain.
 
-**Query the BU Blockchain**
+**Querying BuChain**
 
-Query the BU Blockchain refers to querying data in the BU blockchain.
+Querying BuChain refers to querying data in the BuChain.
 
 **Account Services**
 
@@ -295,7 +295,7 @@ interface call is as follows:
 5. Broadcasting Transactions
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The broadcasting transaction interface is used to send transactions to BU blockchain and trigger the execution of transactions.
+The broadcasting transaction interface is used to send transactions to BuChain and trigger the execution of transactions.
 The specific interface call is as follows:
 
 ::
@@ -344,7 +344,7 @@ The response data is shown in the following table:
 The error code is shown in the following table:
 
 +--------------+------------+--------------+
-| Exception    | Error Code | Description  |
+| Error Message| Error Code | Description  |
 +==============+============+==============+
 | SYSTEM_ERROR | 20000      | System error |
 +--------------+------------+--------------+
@@ -429,10 +429,10 @@ The response data is shown in the following table:
 +-----------+---------+-----------------------------------+
 
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +-----------------------+------------+-------------------------+
-| Exception             | Error Code | Description             |
+| Error Message         | Error Code | Description             |
 +=======================+============+=========================+
 | INVALID_ADDRESS_ERROR | 11006      | Invalid address         |
 +-----------------------+------------+-------------------------+
@@ -535,10 +535,10 @@ The response data is shown in the following table:
 | Nonce     | Long | Account transaction serial number |
 +-----------+------+-----------------------------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +-----------------------+------------+-------------------------+
-| Exception             | Error Code | Description             |
+| Error Message         | Error Code | Description             |
 +=======================+============+=========================+
 | INVALID_ADDRESS_ERROR | 11006      | Invalid address         |
 +-----------------------+------------+-------------------------+
@@ -586,10 +586,10 @@ The response data is shown in the following table:
 | Balance   | int64 | Account balance   |
 +-----------+-------+-------------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +-----------------------+------------+-------------------------+
-| Exception             | Error Code | Description             |
+| Error Message         | Error Code | Description             |
 +=======================+============+=========================+
 | INVALID_ADDRESS_ERROR | 11006      | Invalid address         |
 +-----------------------+------------+-------------------------+
@@ -638,10 +638,10 @@ The response data is shown in the following table:
 | Asset     | [] `Asset`_    | Account asset |
 +-----------+----------------+---------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +-----------------------+------------+-------------------------+
-| Exception             | Error Code | Description             |
+| Error Message         | Error Code | Description             |
 +=======================+============+=========================+
 | INVALID_ADDRESS_ERROR | 11006      | Invalid address         |
 +-----------------------+------------+-------------------------+
@@ -721,10 +721,10 @@ The response data is shown in the following table:
 +-----------+-----------------------+-------------+
 
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +-----------------------+------------+----------------------------------------------+
-| Exception             | Error Code | Description                                  |
+| Error Message         | Error Code | Description                                  |
 +=======================+============+==============================================+
 | INVALID_ADDRESS_ERROR | 11006      | Invalid address                              |
 +-----------------------+------------+----------------------------------------------+
@@ -804,10 +804,10 @@ The response data is shown in the following table:
 | Assets    | [] `asset`_      | Account asset |
 +-----------+------------------+---------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +--------------------------+-----------+------------------+
-| Exception                | Error Code| Description      |
+| Error Message            | Error Code| Description      |
 +==========================+===========+==================+
 | INVALID_ADDRESS_ERROR    | 11006     | Invalid address  |
 +--------------------------+-----------+------------------+
@@ -876,10 +876,10 @@ The response data is shown in the following table:
 | Payload   | string | Contract code               |
 +-----------+--------+-----------------------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +-------------------------+------------+------------------+
-| Exception               | Error Code | Description      | 
+| Error Message           | Error Code | Description      | 
 +=========================+============+==================+
 | INVALID_CONTRACTADDRESS | 11037      | Invalid contract |
 | _ERROR                  |            | address          |
@@ -978,10 +978,10 @@ The response data is shown in the following table:
 | GasPrice | int64 | Transaction gas price                     |
 +----------+-------+-------------------------------------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +-------------------------+------------+------------------+
-| Exception               | Error Code | Description      |
+| Error Message           | Error Code | Description      |
 +=========================+============+==================+
 | INVALID_SOURCEADDRESS   | 11002      | Invalid          |
 | _ERROR                  |            | sourceAddress    |
@@ -1104,10 +1104,10 @@ The response data is shown in the following table:
 | TransactionBlob | string | Serialized transaction hex string |
 +-----------------+--------+-----------------------------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +-------------------------+------------+------------------+
-| Exception               | Error Code | Description      |
+| Error Message           | Error Code | Description      |
 +=========================+============+==================+
 | INVALID_SOURCEADDRESS   | 11002      | Invalid          |
 | _ERROR                  |            | sourceAddress    |
@@ -1692,10 +1692,10 @@ The response data is shown in the following table:
 | Signatures | [] `signature`_  | Signed data list |
 +------------+------------------+------------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +------------------------+------------+-----------------------------------------+
-| Exception              | Error Code | Description                             |
+| Error Message              | Error Code | Description                             |
 +========================+============+=========================================+
 | INVALID_BLOB_ERROR     | 11056      | Invalid blob                            |
 +------------------------+------------+-----------------------------------------+
@@ -1769,10 +1769,10 @@ The response data is shown in the following table:
 | hash      | string | Transaction hash |
 +-----------+--------+------------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +--------------------+------------+--------------+
-| Exception          | Error Code | Description  |
+| Error Message      | Error Code | Description  |
 +====================+============+==============+
 | INVALID_BLOB_ERROR | 11052      | Invalid blob |
 +--------------------+------------+--------------+
@@ -2091,10 +2091,10 @@ The response data is shown in the following table:
 |                   |                     | seq                        |
 +-------------------+---------------------+----------------------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +----------------------+------------+-------------------------+
-| Exception            | Error Code | Description             |
+| Error Message        | Error Code | Description             |
 +======================+============+=========================+
 | CONNECTNETWORK_ERROR | 11007      | Failed to connect to    |
 |                      |            | the network             |
@@ -2130,10 +2130,10 @@ The response data is shown in the following table:
 | IsSynchronous | boolean | Whether the block is synchronized |
 +---------------+---------+-----------------------------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +----------------------+------------+-------------------------+
-| Exception            | Error Code | Description             |
+| Error Message        | Error Code | Description             |
 +======================+============+=========================+
 | CONNECTNETWORK_ERROR | 11007      | Failed to connect to    |
 |                      |            | the network             |
@@ -2184,10 +2184,10 @@ The response data is shown in the following table:
 | Transactions          | [] `TransactionHistory`_     | Transaction content   |
 +-----------------------+------------------------------+-----------------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +---------------------------+------------+-------------------------+
-| Exception                 | Error Code | Description             |
+| Error Message             | Error Code | Description             |
 +===========================+============+=========================+
 | INVALID_BLOCKNUMBER_ERROR | 11060      | BlockNumber must be     |
 |                           |            | greater than 0          |
@@ -2244,10 +2244,10 @@ The response data is shown in the following table:
 | Version   | string | Block version                 |
 +-----------+--------+-------------------------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +---------------------------+------------+------------------------------------+
-| Exception                 | Error Code | Description                        |
+| Error Message             | Error Code | Description                        |
 +===========================+============+====================================+
 | INVALID_BLOCKNUMBER_ERROR | 11060      | BlockNumber must be greater than 0 |
 +---------------------------+------------+------------------------------------+
@@ -2295,10 +2295,10 @@ The response data is shown in the following table:
 | Version   | string | Block version             |
 +-----------+--------+---------------------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +----------------------+------------+-------------------------+
-|  Exception           | Error Code | Description             |
+|  Error Message       | Error Code | Description             |
 +======================+============+=========================+
 | CONNECTNETWORK_ERROR | 11007      | Failed to connect to    |
 |                      |            | the network             |
@@ -2345,10 +2345,10 @@ The response data is shown in the following table:
 | validators | [] `ValidatorInfo`_   | Validators list |
 +------------+-----------------------+-----------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +---------------------------+------------+--------------------------+
-| Exception                 | Error Code |  Description             |
+| Error Message             | Error Code |  Description             |
 +===========================+============+==========================+
 | INVALID_BLOCKNUMBER_ERROR | 11060      | BlockNumber must be      |
 |                           |            | greater than 0           |
@@ -2410,10 +2410,10 @@ The response data is shown in the following table:
 | validators | [] `ValidatorInfo`_   | Validators list |
 +------------+-----------------------+-----------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +---------------------------+------------+----------------------------+
-| Exception                 | Error Code | Description                |
+| Error Message             | Error Code | Description                |
 +===========================+============+============================+
 | INVALID_BLOCKNUMBER_ERROR | 11060      | BlockNumber must           |
 |                           |            | be greater than 0          |
@@ -2466,10 +2466,10 @@ The response data is shown in the following table:
 +-----------------------+--------------------------+-------------------+
 
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +---------------------------+------------+------------------------------------+
-| Exception                 | Error Code | Description                        |
+| Error Message             | Error Code | Description                        |
 +===========================+============+====================================+
 | INVALID_BLOCKNUMBER_ERROR | 11060      | BlockNumber must be greater than 0 |
 +---------------------------+------------+------------------------------------+
@@ -2531,10 +2531,10 @@ The response data is shown in the following table:
 | ValidatorsReward      | [] `ValidatorReward`_ | Validator rewards     |
 +-----------------------+-----------------------+-----------------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +----------------------+------------+-------------------------+
-| Exception            | Error Code | Description             |
+| Error Message        | Error Code | Description             |
 +======================+============+=========================+
 | CONNECTNETWORK_ERROR | 11007      | Failed to connect to    |
 |                      |            | the network             |
@@ -2582,10 +2582,10 @@ The response data is shown in the following table:
 
 
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +---------------------------+------------+--------------------------------+
-| Exception                 | Error Code | Description                    |
+| Error Message             | Error Code | Description                    |
 +===========================+============+================================+
 | INVALID_BLOCKNUMBER_ERROR | 11060      | BlockNumber must               |
 |                           |            | be greater than 0              |
@@ -2646,10 +2646,10 @@ The response data is shown in the following table:
 | Fees      | `fees`_  | Fees        |
 +-----------+----------+-------------+
 
-The error code is shown in the following table:
+The error codes are shown in the following table:
 
 +----------------------+------------+-------------------------+
-| Exception            | Error Code | Description             |
+| Error Message        | Error Code | Description             |
 +======================+============+=========================+
 | CONNECTNETWORK_ERROR | 11007      | Failed to connect to    |
 |                      |            | the network             |
