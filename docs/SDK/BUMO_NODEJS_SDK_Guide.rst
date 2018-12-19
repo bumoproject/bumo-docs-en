@@ -715,7 +715,7 @@ The example is as follows:
 
 
 Object Parameters
-^^^^^^^^^^^^^^^^^^
+~~~~~~~~~~~~~~~~~~~
 
 
 The parameter **args** of ``getInfo-Asset`` interface is **Object**, and the following are its parameters:
