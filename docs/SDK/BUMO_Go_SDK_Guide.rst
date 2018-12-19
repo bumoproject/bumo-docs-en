@@ -22,7 +22,7 @@ Terminology
 
 This section gives details about the terms used in this document.
 
-***Operating BuChain** 
+**Operating BuChain** 
 
 Operating BuChain refers to writing data to or modifying data in
 the BuChain.
