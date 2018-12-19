@@ -2699,7 +2699,7 @@ moToBu
 
 The ``moToBu`` interface is used to convert mo to bu.
 
-The method to call this interface is as follows:
+The interface all is as follows:
 
 ::
 
