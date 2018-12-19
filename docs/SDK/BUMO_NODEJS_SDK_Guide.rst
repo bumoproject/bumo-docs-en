@@ -108,11 +108,11 @@ Generating SDK Instances
 
 When generating SDK instances, the input parameter is an **options** object, and the **options** object includes the following parameter:
 
-============      ========     ============================== 
-  Parameter        Type         Description                          
-============      ========     ============================== 
-  host             String       Ip address:port                   
-============      ========     ============================== 
++--------------+------------+----------------------------------+ 
+|  Parameter   |     Type   |      Description                 |         
++--------------+------------+----------------------------------+ 
+|  host        |     String |      Ip address:port             |      
++--------------+------------+----------------------------------+    
 
 
 The example is as follows:
@@ -136,7 +136,6 @@ interface. For example, to query the account information, the specific
 call is as follows:
 
 
-
 ::
 
  const address = 'buQemmMwmRQY1JkcU7w3nhruo%X5N3j6C29uo';
@@ -146,7 +145,6 @@ call is as follows:
  }).catch(err => {
   console.log(err.message);
  });
-
 
 
 Submitting Transactions
@@ -166,8 +164,6 @@ The process of submitting transactions consists of the following steps:
 
 1. Obtaining the Nonce Value of the Account
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-
 
 
 The developer can maintain the nonce value of each account, and
@@ -281,15 +277,15 @@ The method to call this interface is as follows:
 
 The response data is described in the following table:
 
-============        ======== ============
-  Parameter         Type     Description
-============        ======== ============
-  privateKey        String   Private key  
-
-  publicKey         String   Public key  
-
-  address           String   Address  
-============        ======== ============
++--------------+-----------+--------------+
+|  Parameter   |    Type   |  Description |
++--------------+-----------+--------------+
+|  privateKey  |    String |  Private key | 
++--------------+-----------+--------------+
+|  publicKey   |    String |  Public key  |
++--------------+-----------+--------------+
+|  address     |    String |  Address     |
++--------------+-----------+--------------+  
 
 The example is as follows:
 
@@ -331,7 +327,6 @@ The response data is described in the following table:
 +-----------+--------+-------------------------------------+
 
 
-
 The error code is described in the following table:
 
 +--------------+------------+--------------+
@@ -339,7 +334,6 @@ The error code is described in the following table:
 +==============+============+==============+
 | SYSTEM_ERROR | 20000      | System error |
 +--------------+------------+--------------+
-
 
 
 The example is as follows:
@@ -390,7 +384,6 @@ The response data is described in the following table:
 +-----------+---------+-----------------------------------+
 
 
-
 The error codes are described in the following table:
 
 +-----------------------+------------+-------------------------+
@@ -425,7 +418,6 @@ The description of object parameters of the ``getInfo-Account`` interface is as 
 
 priv
 ++++
-
 
 
 +--------------+----------------+-------------------+
@@ -588,8 +580,6 @@ The example is as follows:
  const info = sdk.account.getBalance(address);
 
 
-
-
 getAssets
 ~~~~~~~~~~
 
@@ -652,13 +642,15 @@ Object Parameters
 
 The description of object parameters of the ``getAssets`` interface is as follows.
 
-=============  ========= ==========================================================
-  Parameter     Type      Description                  
-=============  ========= ==========================================================
-  key           Object    Unique identifier for tokens, including code (token code) 
-                          and issuer (account address of the token issuer)
-  amount        int64     Amount of assets             
-=============  ========= ==========================================================
++------------+----------+-----------------------------------------------------------------+
+|  Parameter |    Type  |    Description                                                  |
++------------+----------+-----------------------------------------------------------------+
+|  key       |    Object|    Unique identifier for tokens, including code (token code)    |
++------------+----------+-----------------------------------------------------------------+
+|            |          |    and issuer (account address of the token issuer)             |
++------------+----------+-----------------------------------------------------------------+
+|  amount    |    int64 |    Amount of assets                                             |
++------------+----------+-----------------------------------------------------------------+  
 
 Asset Services
 ----------------
@@ -741,13 +733,14 @@ The parameter **args** of ``getInfo-Asset`` interface is **Object**, and the fol
 The elements of the parameter **asset** of ``getInfo-Asset`` interface are **Object**, and the object parameters are:
 
 
-=============  ========= ==========================================================
-  Parameter     Type      Description                  
-=============  ========= ==========================================================
-  key           Object    Unique identifier for tokens, including code (token code) 
-                          and issuer (account address of the token issuer )
-  amount        String    Amount of assets             
-=============  ========= ==========================================================
++------------+----------+--------------------------------------------------------------+
+|  Parameter |    Type  |    Description                                               |
++------------+----------+--------------------------------------------------------------+
+|  key       |    Object|    Unique identifier for tokens, including code (token code) |
+|            |          |    and issuer (account address of the token issuer )         |
++------------+----------+--------------------------------------------------------------+
+|  amount    |    String|    Amount of assets                                          |
++------------+----------+--------------------------------------------------------------+
 
 Transaction Services
 -----------------------
@@ -783,20 +776,24 @@ The response data is described in the following table:
 
 The error codes are shown in the following table:
 
-======================================   ==========   ====================================================
-  Error Message                          Error Code   Description                                                
-======================================   ==========   ====================================================
-  INVALID_SOURCEADDRESS_ERROR            11002        Invalid sourceAddress                                
-  INVALID_NONCE_ERROR                    11048        Nonce must be between 1 and max(int64)              
-  INVALID_GASPRICE_ERROR                 11049        GasPrice must be between 1 and max(int64)          
-  INVALID_FEELIMIT_ERROR                 11050        FeeLimit must be between 1 and max(int64)           
-  OPERATIONS_EMPTY_ERROR                 11051        Operations cannot be empty                         
-  INVALID_CEILLEDGERSEQ_ERROR            11052        CeilLedgerSeq must be equal to or greater than 0      
-  INVALID_METADATA_ERROR                 11053        Invalid metadata                                     
-  SYSTEM_ERROR                           20000        System error                                       
-======================================   ========   ====================================================   
-
-
++--------------------------+-----------+------------------+
+| 错误信息                 | 错误码    | 描述             |
++==========================+===========+==================+
+| INVALID_ADDRESS_ERROR    | 11006     | Invalid address  |
++--------------------------+-----------+------------------+
+| CONNECTNETWORK_ERROR     | 11007     | Failed to connect|
+|                          |           | to the network   |
++--------------------------+-----------+------------------+
+| INVALID_ASSET_CODE_ERROR | 11023     | The length of    |
+|                          |           | code must        |
+|                          |           | be between 1 and |
+|                          |           | 1024             |
++--------------------------+-----------+------------------+
+| INVALID_ISSUER_ADDRESS   | 11027     | Invalid issuer   |
+| _ERROR                   |           | address          |
++--------------------------+-----------+------------------+
+| SYSTEM_ERROR             | 20000     | System error     |
++--------------------------+-----------+------------------+ 
 
 
 The example is as follows:
@@ -917,7 +914,6 @@ The common error codes of the AccountActivateOperation are as follows:
 +---------------------------------------------+------------+----------------------------------------------+
 
 
-
 AccountSetMetadataOperation
 ++++++++++++++++++++++++++++++++
 
@@ -978,8 +974,6 @@ The common error codes of the AccountSetMetadataOperation are as follows:
 +---------------------------------------------+------------+---------------------------------------------------+
 | SYSTEM_ERROR                                | 20000      | System error                                      |      
 +---------------------------------------------+------------+---------------------------------------------------+
-
-
 
 
 AccountSetPrivilegeOperation
@@ -1137,10 +1131,6 @@ The common error codes of the BUSendOperation are as follows:
 +---------------------------------------------+-------------+---------------------------------------------------+
 
 
-
-
-
-
 TokenIssueOperation
 ++++++++++++++++++++++++
 
@@ -1194,8 +1184,6 @@ The common error codes of the TokenIssueOperation are as follows:
 +---------------------------------------------+------------+---------------------------------------------------+ 
 | SYSTEM_ERROR                                | 20000      | System error                                      |                    
 +---------------------------------------------+------------+---------------------------------------------------+
-
-
 
 
 TokenTransferOperation
@@ -1265,8 +1253,6 @@ The common error codes of the TokenTransferOperation are as follows:
 +---------------------------------------------+------------+----------------------------------------------------+
 
 
-
-
 ContractCreateOperation
 ++++++++++++++++++++++++
 
@@ -1323,10 +1309,6 @@ The common error codes of the ContractCreateOperation are as follows:
 +---------------------------------------------+------------+----------------------------------------------------+ 
 | SYSTEM_ERROR                                | 20000      | System error                                       |      
 +---------------------------------------------+------------+----------------------------------------------------+
-
-
-
-
 
 
 ContractInvokeByAssetOperation
@@ -1413,10 +1395,6 @@ The common error codes of the ContractInvokeByAssetOperation are as follows:
 
 
 
-
-
-
-
 ContractInvokeByBUOperation
 ++++++++++++++++++++++++++++++++
 
@@ -1430,7 +1408,6 @@ The type of ContractInvokeByBUOperation is **Promise**, and the interface call i
 
 
 The parameter **args** of the ContractInvokeByBUOperation is **Object**, and the parameters of **args** are as follows:
-
 
 
 +--------------------+--------------+----------------------------------+
@@ -1491,9 +1468,6 @@ The common error codes of the ContractInvokeByBUOperation are as follows:
 
 
 
-
-
-
 LogCreateOperation
 +++++++++++++++++++
 
@@ -1524,8 +1498,6 @@ The parameter **args** of the LogCreateOperation is **Object**, and the paramete
 +--------------------+--------------+------------------------------------+
 
 
-
-
 **Return Value**
 
 The return value of the LogCreateOperation is as follows:
@@ -1553,12 +1525,6 @@ The common error codes of the LogCreateOperation are as follows:
 +---------------------------------------------+------------+----------------------------------------------------+
 
 
-
-
-
-
-
-
 evaluateFee
 ~~~~~~~~~~~~
 
@@ -1579,7 +1545,6 @@ The request parameter is described in the following table:
 +----------+-------+-------------------------------------------+
 | gasPrice | String| Transaction gas price                     |
 +----------+-------+-------------------------------------------+
-
 
 
 The common error codes are as follows:
@@ -1659,7 +1624,6 @@ The response data is described in the following table:
 +============+==================+==================+
 | signatures | Array            | Signed data list |
 +------------+------------------+------------------+
-
 
 
 The error codes are described in the following table:
@@ -1988,7 +1952,6 @@ The **signatures** parameter in **transactions** is **signatureObject**, and the
 | public_key     | String                  | Public key            |
 +----------------+-------------------------+-----------------------+
 
-  
 
 getInfo-block
 ~~~~~~~~~~~~~
@@ -2447,7 +2410,6 @@ The example is as follows:
 
 
 
-
 Contract Services
 ------------------
 
@@ -2569,11 +2531,6 @@ The example is as follows:
  }).catch(err => {
   console.log(err.message);
  });
-
-
-
-
-
 
 
 
