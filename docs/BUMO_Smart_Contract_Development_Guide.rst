@@ -77,7 +77,7 @@ Detection tools are divided into local detection tools and online detection tool
 If you use the local detection tool, you can click `jslint <https://github.com/bumoproject/bumo/tree/master/src/web/jslint>`_ and download the index.html under the directory.
 
 
-If you use the online detection tool, you can click `jslint.html <http://bumo.chinacloudapp.cn:36002/jslint.html>`_.
+If you use the online detection tool, you can click `jslint.html <http://jslint.bumocdn.com/>`_.
 
 Text Compression Tools
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -1204,7 +1204,7 @@ The specific execution process of this scenario includes `Validating Code Validi
 Validating Code Validity
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Open the online detection page: http://bumo.chinacloudapp.cn:36002/jslint.html, copy the above smart contract code into the edit box, and click the **JSLint** button.
+Open the online detection page: http://jslint.bumocdn.com/, copy the above smart contract code into the edit box, and click the **JSLint** button.
 If there is a warning that the background is red, there is a problem with the syntax, as shown below:
 |warnings|
 
@@ -1946,26 +1946,61 @@ The following code shows how to query by calling the interface. The parameter ``
 ::
 
  public boolean checkTransactionStatus(String txHash) {
-    Boolean transactionStatus = false;
+    Boolean transactionStatus = true;
 
- // Wait for 10 seconds for the transaction to be executed.
- try {
-    Thread.sleep(10000);
- } catch (InterruptedException e) {
-    e.printStackTrace();
- }
- // Init request
- TransactionGetInfoRequest request = new TransactionGetInfoRequest();
- request.setHash(txHash);
+   long startTime = System.currentTimeMillis();
+   while (true) {
+      int status = 0;
 
- // Call getInfo
- TransactionGetInfoResponse response = sdk.getTransactionService().getInfo(request);
- if (response.getErrorCode() == 0) {
-    transactionStatus = true;
- } else {
-    System.out.println("error: " + response.getErrorDesc());
-  }
- return transactionStatus;
+      // Init request
+      TransactionGetInfoRequest request = new TransactionGetInfoRequest();
+      request.setHash(txHash);
+
+      // Call getInfo
+      TransactionGetInfoResponse response = sdk.getTransactionService().getInfo(request);
+      int errorCode = response.getErrorCode();
+      if (errorCode == 0) {
+         TransactionHistory transactionHistory = response.getResult().getTransactions()[0];
+         if (transactionHistory.getErrorCode() != 0) {
+            // 交易执行失败
+            status = 0;
+         }
+         else {
+            // 交易执行成功
+            status = 1;
+         }
+      } else if (errorCode == 4) {
+         // 暂未查询到交易
+         status = -1;
+      } else {
+         // 查询失败
+         status = 0;
+      }
+      
+      if (1 == status) {
+         break;
+      } else if (0 == status) {
+         System.out.println("error: 交易(" + txHash + ") 执行失败");
+         transactionStatus = false;
+         break;
+      }
+
+      // 交易执行等待10秒
+      try {
+         Thread.sleep(10000);
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
+
+      // 交易超时
+      long endTime = System.currentTimeMillis();
+      if (endTime - startTime > 50000) {
+         System.out.println("error: 交易(" + txHash + ") 执行超时");
+         transactionStatus = false;
+         break;
+      }
+   }
+   return transactionStatus;
  }
 
 
@@ -2308,28 +2343,63 @@ The following code shows how to query by calling the interface. The parameter tx
 
 .. code:: javascript
 
- public boolean checkTransactionStatus(String txHash) { 
-    Boolean transactionStatus = false; 
-    // Call the "sendTransaction" interface encapsulated above.
- // Wait for 10 seconds for the transaction to be executed.
- try { 
-    Thread.sleep(10000); 
- } catch (InterruptedException e) { 
-    e.printStackTrace(); 
- } 
- // Init request 
- TransactionGetInfoRequest request = new TransactionGetInfoRequest(); 
- request.setHash(txHash); 
- 
- // Call getInfo 
- TransactionGetInfoResponse response = sdk.getTransactionService().getInfo(request); 
- if (response.getErrorCode() == 0) { 
-    transactionStatus = true; 
- } else { 
-    System.out.println("error: " + response.getErrorDesc()); 
- } 
- return transactionStatus; 
- } 
+ public boolean checkTransactionStatus(String txHash) {
+    Boolean transactionStatus = true;
+
+   long startTime = System.currentTimeMillis();
+   while (true) {
+      int status = 0;
+
+      // Init request
+      TransactionGetInfoRequest request = new TransactionGetInfoRequest();
+      request.setHash(txHash);
+
+      // Call getInfo
+      TransactionGetInfoResponse response = sdk.getTransactionService().getInfo(request);
+      int errorCode = response.getErrorCode();
+      if (errorCode == 0) {
+         TransactionHistory transactionHistory = response.getResult().getTransactions()[0];
+         if (transactionHistory.getErrorCode() != 0) {
+            // 交易执行失败
+            status = 0;
+         }
+         else {
+            // 交易执行成功
+            status = 1;
+         }
+      } else if (errorCode == 4) {
+         // 暂未查询到交易
+         status = -1;
+      } else {
+         // 查询失败
+         status = 0;
+      }
+      
+      if (1 == status) {
+         break;
+      } else if (0 == status) {
+         System.out.println("error: 交易(" + txHash + ") 执行失败");
+         transactionStatus = false;
+         break;
+      }
+
+      // 交易执行等待10秒
+      try {
+         Thread.sleep(10000);
+      } catch (InterruptedException e) {
+         e.printStackTrace();
+      }
+
+      // 交易超时
+      long endTime = System.currentTimeMillis();
+      if (endTime - startTime > 50000) {
+         System.out.println("error: 交易(" + txHash + ") 执行超时");
+         transactionStatus = false;
+         break;
+      }
+   }
+   return transactionStatus;
+ }
 
 
 
