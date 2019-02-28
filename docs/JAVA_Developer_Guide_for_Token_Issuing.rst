@@ -104,7 +104,7 @@ The non-activated account needs to be activated by an activited account. Please 
 
 .. note:: - Main network: you can activate the account by transfering 50.03 BU to the issuer account from the BuPocket(the Wallet). The BU can be used for the transaction fee of issuing tokens.
 
-       - Test network: the token issuer can activate the account by sending an request to gavin@bumo.io, and the content of the request is the account address of the token.
+       - Test network: by accessing the tap (https://faucet.bumotest.io), enter the address to be recharged into the edit box and click "Confirm" to complete the recharge activation.
 
 
 
