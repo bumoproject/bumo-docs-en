@@ -1,0 +1,205 @@
+/* your custom css */
+
+
+/* 公共footer样式重置 */
+.nav-footer{
+  background: #282E3B;
+  padding: 0;
+  line-height: 40px;
+}
+.nav-footer .copyright{
+  color: #fff;
+}
+
+/* 公共header样式重置 */
+.fixedHeaderContainer{
+  background: #282E3B;
+}
+.fixedHeaderContainer .headerWrapper{
+  height: 100%;
+}
+.fixedHeaderContainer header{
+  align-items: center;
+}
+.slidingNav ul li.siteNavItemActive a, .navigationSlider .slidingNav ul li.siteNavGroupActive a{
+  background: transparent;
+  color: #00D175;
+  position: relative;
+}
+.slidingNav ul li.siteNavItemActive a:after{
+  display: block;
+  content: "";
+  width: 30px;
+  height: 4px;
+  position: absolute;
+  background: #00D175;
+  left: 50%;
+  margin-left: -15px;
+  bottom: -10px;
+}
+.navigationSlider .slidingNav ul li{
+  margin: 0 20px;
+}
+.navigationSlider .slidingNav ul li a:hover{
+  color: #00D175;
+  background: transparent;
+}
+.navigationSlider .slidingNav ul li a:focus{
+  background: transparent;
+}
+
+/* 首页样式 */
+.index-top{
+  background: url(../img/index/index-top-bg.png) no-repeat center;
+  background-size: cover;
+}
+.index-top .projectTitle{
+  color: #fff;
+  font-size: 150%;
+}
+.index-cont .homeContainer .homeWrapper{
+  padding: 4em 15px;
+}
+.index-cont .projectTitle > small{
+  line-height: 1.5;
+  margin-top: 30px;
+}
+.promoSection .promoRow .pluginRowBlock{
+  justify-content: space-around;
+}
+.index-cont .button{
+  min-width: 160px;
+  text-transform: initial;
+}
+.feature-list-cont{
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 50px 20px 70px;
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.feature-list-cont .card-item{
+  width: 320px;
+  border-radius: 4px;
+  box-shadow: 0 7px 24px 0 rgba(75,74,102,0.09);
+  margin: 0px 16px 30px;
+}
+.feature-list-cont .card-item .item-top{
+  display: flex;
+  justify-content: flex-start;
+  padding: 2em 1em 0 2em;
+}
+.feature-list-cont .card-item .item-img{
+  width: 70px;
+  height: 70px;
+}
+.feature-list-cont .card-item .item-img img{
+  width: 100%;
+  height: 100%;
+}
+.feature-list-cont .card-item .item-name{
+  font-size: 20px;
+  color: #333;
+  line-height: 50px;
+  margin-left: 15px;
+  position: relative;
+}
+.feature-list-cont .card-item .item-name:after{
+  content: "";
+  display: block;
+  width: 35px;
+  height: 4px;
+  background: #00D175;
+  position: absolute;
+  bottom: 10px;
+  left: 0px;
+}
+.feature-list-cont .link-list{
+  list-style: none;
+  padding-left: 0;
+  padding-top: 2em;
+}
+.feature-list-cont .link-list .link-item>a{
+  padding: 0 2em;
+  margin-bottom: 0.2em;
+  display: block;
+  color: #999;
+  position: relative;
+}
+.feature-list-cont .link-list .link-item>a:hover{
+  color: #00D175;
+}
+.feature-list-cont .link-list .link-item>a:before{
+  display: block;
+  content: "";
+  width: 3px;
+  height: 3px;
+  background: #666;
+  border-radius: 50%;
+  position: absolute;
+  left: 20px;
+  top: 50%;
+}
+.feature-list-cont .card-item .link-all{
+  display: block;
+  margin-bottom: 1em;
+  padding: 0 2em;
+  text-decoration: underline;
+  line-height: 1.3;
+}
+
+
+@media only screen and (min-device-width: 360px) and (max-device-width: 736px) {
+}
+
+@media only screen and (min-width: 480px) {
+  .index-cont .index-top .projectTitle{
+    font-size: 200%;
+    margin-bottom: 30px;
+  }
+}
+
+@media only screen and (max-width: 1023px) {
+  .navigationSlider .slidingNav ul{
+    background: #485164;
+  }
+  .slidingNav ul li.siteNavItemActive a:after{
+    bottom: 0px !important;
+  }
+  .index-cont .projectTitle > small{
+    font-size: 14px;
+  }
+  .feature-list-cont{
+    justify-content: space-around;
+  }
+}
+
+@media only screen and (min-width: 1024px) {
+  .navigationSlider .slidingNav ul li a{
+    font-weight: normal;
+  }
+  .index-cont .wrapper{
+    padding: 4em 100px !important;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .index-cont .wrapper{
+    padding: 4em 150px !important;
+  }
+  .feature-list-cont{
+  	max-width: 1200px;
+    padding-left: 2.5%;
+    padding-right: 0;
+  }
+  .feature-list-cont .card-item{
+    width: 30%;
+    margin-right: 2.8%;
+    margin-left: 0;
+  }
+}
+
+@media only screen and (min-width: 1500px) {
+}
+

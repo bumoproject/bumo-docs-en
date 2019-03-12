@@ -1,0 +1,51 @@
+{
+  "docs": {
+    "Get Started": [
+      "introduction_to_bumo",
+      "installation_maintenance_guide",
+      "bumo_command",
+      "bumo_contract_hello_world"
+    ],
+    "Smart Contract": [
+      "introduction_to_smart_contract",
+      "syntax_in_smart_contract",
+      "codemach_editor_user_guide"
+    ],
+    "DEPs Protocol": [
+      "introduction_to_deps",
+      "atp_10",
+      "atp_20",
+      "atp_30",
+      "sto_10",
+      "dex_10"
+    ],
+    "API": [
+      "bumo_keypair_guide",
+      "api_http",
+      "api_websocket"
+    ],
+    "SDK": [
+      "sdk_java",
+      "sdk_nodejs",
+      "sdk_go",
+      "sdk_php",
+      "sdk_ios"
+    ],
+    "Development Guide": [
+      "integration_guide_for_exchanges",
+      "asset_issuance_development_guide_for_java",
+      "smart_contract_development_guide"
+    ],
+    "Wallet": [
+      "quick_wallet_user_guide",
+      "bupocket_user_guide"
+    ], 
+    "Tools": [
+      "keypair_generator_user_guide",
+      "faucet_user_guide"
+    ], 
+    "Glossary": [
+      "terminology"
+    ]
+  }
+}
