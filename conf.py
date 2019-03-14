@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# bubi documentation build configuration file, created by
+# bumo documentation build configuration file, created by
 # sphinx-quickstart on Thu Aug  2 09:16:49 2018.
 #
 # This file is execfile()d with the current directory set to its
@@ -192,7 +192,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'bubidoc'
+htmlhelp_basename = 'bumodoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -228,7 +228,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'bubi.tex', 'bubi Documentation',
+  ('index', 'bumo.tex', 'bumo Documentation',
    'wilson', 'manual'),
 ]
 
@@ -258,7 +258,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'bubi', 'bubi Documentation',
+    ('index', 'bumo', 'bumo Documentation',
      ['wilson'], 1)
 ]
 
@@ -272,8 +272,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'bubi', 'bubi Documentation',
-   'wilson', 'bubi', 'One line description of project.',
+  ('index', 'bumo', 'bumo Documentation',
+   'wilson', 'bumo', 'One line description of project.',
    'Miscellaneous'),
 ]
 
@@ -299,7 +299,7 @@ epub_publisher = 'wilson'
 epub_copyright = '2018, wilson'
 
 # The basename for the epub file. It defaults to the project name.
-#epub_basename = 'bubi'
+#epub_basename = 'bumo'
 
 # The HTML theme for the epub output. Since the default themes are not optimized
 # for small screen space, using the same theme for HTML and epub output is

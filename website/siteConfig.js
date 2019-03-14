@@ -31,8 +31,8 @@ const siteConfig = {
   //   baseUrl: '/test-site/',
 
   // Used for publishing and more
-  projectName: 'BUMO Documentation Center',
-  organizationName: 'BUMO',
+  projectName: 'bumo',
+  organizationName: 'bumoproject',
   // For top-level user or org sites, the organization is still the same.
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
@@ -44,7 +44,7 @@ const siteConfig = {
   // For no header links in the top nav bar -> headerLinks: [],
   headerLinks: [
     {doc: 'introduction_to_bumo', label: 'Docs'},
-    { href: "https://github.com/bumoproject", label: "GitHub", target: "_blank" },
+    { href: "https://github.com/bumoproject/bumo", label: "GitHub", target: "_blank" },
     { href: "https://github.com/bumoproject", label: "English", target: "_self" },
     { languages: true },
     { search: true }
@@ -110,7 +110,7 @@ const siteConfig = {
 
   // You may provide arbitrary config keys to be used as needed by your
   // template. For example, if you need your repo's URL...
-  //   repoUrl: 'https://github.com/facebook/test-site',
+  //   repoUrl: 'https://github.com/bumoproject/bumo',
 };
 
 module.exports = siteConfig;
