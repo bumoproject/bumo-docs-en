@@ -6,6 +6,8 @@ sidebar_label: Introduction
 
 ## Definition
 
+Recommand new interfaces: [Smart Contract New Interfaces](contract_new_interfaces).
+
 Smart Contract is a section of ECMAScript as specified in ECMA-262. The codes of smart contract should contain two parts of functions. The first is initialization function, init. The other one is entry function, main. When you call the main function you have to assign the input (type string). For syntax, please referring to [Contract Syntax](syntax_in_smart_contract)
 
 The following is a simple example: 
