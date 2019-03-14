@@ -499,7 +499,7 @@ function init(input_str){
 
 #### main
 
-- The `main` function is responsible for data writing, including `transfer`, `transferFrom`, and `approve`.
+- The `main` function is responsible for data writing, including [issue](#issue), [transfer](#transfer), [transferFrom](#transferfrom) and [approve](#approve) functions.
 
 - Function body
 
@@ -510,8 +510,8 @@ function main(arg) {
   const param = data.param || {};
 
   switch (operation) {
-    case 'createToken':
-      createToken(param);
+    case 'issue':
+      issue(param);
       break;
     case 'approve':
       approve(param.to, param.tokenId);
@@ -530,12 +530,40 @@ function main(arg) {
 
 #### query
 
-> Execute the query operation.
+- It is used for data querying, which includes the [totalSupply](#totalsupply)、[balanceOf](#balanceof)、[ownerOf](#ownerof)、[tokensOfOwner](#tokensofowner)、[tokenInfo](#tokeninfo)、[name](#name)、[symbol](#symbol) functions.
+- Function body.
 
 
 ```javascript
 function query(arg) {
-	
+    let result = {};
+    let input  = JSON.parse(input_str);
+
+    if(input.method === 'name'){
+        result.name = name();
+    }
+    else if(input.method === 'symbol'){
+        result = symbol();
+    }
+    else if(input.method === 'tokenInfo'){
+        result = tokenInfo(input.tokenId);
+    }
+    else if(input.method === 'totalSupply'){
+        result.totalSupply = totalSupply();
+    }
+    else if(input.method === 'balanceOf'){
+        result.balance = balanceOf(input.owner);
+    }
+    else if(input.method === 'ownerOf'){
+        result.owner = ownerOf(input.tokenId);
+    }
+    else if(input.method === 'tokensOfOwner'){
+        result.tokens = tokensOfOwner(input.owner);
+    }
+    else{
+       	throw '<Query interface passes an invalid operation type>';
+    }
+    return JSON.stringify(result);
 }
 ```
 

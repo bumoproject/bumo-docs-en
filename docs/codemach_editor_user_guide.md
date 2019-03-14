@@ -13,15 +13,15 @@ The following is the default page of the contract editor, `CodeMach Editor`. Thi
 <img src="/docs/Assets/codemacheditoroverview.jpg"
      style= "margin-left: 20px">
 
-**Area 1** is the browsing area where file directories are displayed. The **Example** directory is the default generated example, and the code inside can be copied and used directly. **Customize** is a custom folder. You can create a file by the **+** symbol next to **Custom**, or by clicking **+Folder** above.
+- **Area 1** is the browsing area where file directories are displayed. The **Example** directory is the default generated example, and the code inside can be copied and used directly. **Customize** is a custom folder. You can create a file by the **+** symbol next to **Custom**, or by clicking **+Folder** above.
 
-**Area 2** is the code editing area, and the contract code can be edited in this area.
+- **Area 2** is the code editing area, and the contract code can be edited in this area.
 
-**Area 3** is the information area, and the current user's account address and the number of available BUs are displayed here. When it prompts that BUs are insufficient, click the **Refresh** button next to it to get 100BUs again. You can set smart contract parameters at **Deploy the contract**, where parameters are passed in for the specified method. Once the contract parameters have been set, click the **Deploy** button below to generate the contract. The **Contractinformation** shows the return information displayed after the smart contract is executed.
+- **Area 3** is the information area, and the current user's account address and the number of available BUs are displayed here. When it prompts that BUs are insufficient, click the **Refresh** button next to it to get 100BUs again. You can set smart contract parameters at **Deploy the contract**, where parameters are passed in for the specified method. Once the contract parameters have been set, click the **Deploy** button below to generate the contract. The - - **Contractinformation** shows the return information displayed after the smart contract is executed.
 
-**Area 4** is the console area. After the smart contract is executed, relevant information such as contract address and transaction hash will be displayed here. If an error occurs during the execution, an error message will be returned to the console area.
+- **Area 4** is the console area. After the smart contract is executed, relevant information such as contract address and transaction hash will be displayed here. If an error occurs during the execution, an error message will be returned to the console area.
 
-**Area 5** is an area to invoke smart contracts. After selecting the main function, you can configure methods and parameters to execute the main function at **Deploy the contract**. After selecting query, you can execute the query function by configuring methods and parameters at **Deploy the contract**.  
+- **Area 5** is an area to invoke smart contracts. After selecting the main function, you can configure methods and parameters to execute the main function at **Deploy the contract**. After selecting query, you can execute the query function by configuring methods and parameters at **Deploy the contract**.  
 
 The following sections describe how to use CodeMach Editor to customize files or folders, generate smart contracts, and call smart contracts.
 

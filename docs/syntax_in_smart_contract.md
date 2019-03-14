@@ -5,7 +5,7 @@ sidebar_label: Syntax
 ---
 
 ## Overview
-Bumo smart contracts are written in the 'JaveScript'. In order to facilitate developers to develop a more standardized and safer contract, JSLint is used to check the syntax in smart contracts. Please refer to [JSLint GitHub](./). When editing a contract, you first need to ensure that the contract passes the test inJSLint before it can be detected as a legal contract by the Bumo system.
+Bumo smart contracts are written in the 'JaveScript'. In order to facilitate developers to develop a more standardized and safer contract, JSLint is used to check the syntax in smart contracts. Please refer to [JSLint GitHub](https://github.com/bumoproject/bumo/tree/master/src/web/jslint). When editing a contract, you first need to ensure that the contract passes the test inJSLint before it can be detected as a legal contract by the Bumo system.
 
 The standard syntax of JSLint is described in detail on the official website. The purpose of this document is to refine the original JSLint syntax rules as a complete document, and to supplement Bumo's modified rules. The documentation will illustrate its usage with examples. For parts not mentioned in this article, please refer to the [JsLint help manual](http://jslint.bumocdn.com/help.html).
 
@@ -52,7 +52,7 @@ If the result is correct, no warning information will prompt.
 ## Text Compression
 After the contract document is written, you can use the JSMin tool to compress it. Ensure that the original document is saved because compression is an irreversible operation.
 
-[Tool address](../../../deploy/jsmin/)
+[Tool address](https://github.com/bumoproject/bumo/tree/master/deploy/jsmin)
 
 ## Demo
 ```javascript

@@ -306,7 +306,7 @@ function init(input_str){
 
 ### main
 
-- It is used for data writing, which includes the `transfer`,`transferFrom`,`approve` functions.
+- It is used for data writing, which includes the [transfer](#transfer), [transferFrom](#transferfrom) and [approve](#approve) functions.
 - Function body.
 
 ```js
@@ -329,7 +329,7 @@ function main(input_str){
 ```
 ### query
 
-- It is used for data querying, which includes the `tokenInfo`, `allowance` functions.
+- It is used for data querying, which includes the [tokenInfo](#tokeninfo), [allowance](#allowance) functions.
 - Function body.
 
 ```js

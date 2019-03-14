@@ -221,6 +221,10 @@ class Index extends React.Component {
             label: 'Introduction'
           },
           {
+            url: `${baseUrl}docs/contract_new_interfaces`,
+            label: 'New Interfaces'
+          },
+          {
             url: `${baseUrl}docs/syntax_in_smart_contract`,
             label: 'Syntax'
           },
@@ -231,11 +235,11 @@ class Index extends React.Component {
         ]
       },
       {
-        image: `${baseUrl}img/index/dep.png`,
-        name: 'DEPs Protocol',
+        image: `${baseUrl}img/index/beps.png`,
+        name: 'BEPs Protocol',
         linkList: [
           {
-            url: `${baseUrl}docs/introduction_to_deps`,
+            url: `${baseUrl}docs/introduction_to_beps`,
             label: 'Introduction'
           },
           {
@@ -314,11 +318,15 @@ class Index extends React.Component {
           },
           {
             url: `${baseUrl}docs/asset_issuance_development_guide_for_java`,
-            label: 'Asset Issuance for Java'
+            label: 'Asset Issuance Development Guide for Java'
           },
           {
-            url: `${baseUrl}docs/smart_contract_development_guide`,
-            label: 'Smart Contract'
+            url: `${baseUrl}docs/legal_evidence_development_guide_for_java`,
+            label: 'Legal Evidence Development Guide for Java'
+          },
+          {
+            url: `${baseUrl}docs/smart_contract_development_guide_for_java`,
+            label: 'Smart Contract Development Guide for Java'
           }
         ]
       },
@@ -333,10 +341,6 @@ class Index extends React.Component {
           {
             url: `${baseUrl}docs/bupocket_user_guide`,
             label: 'BU Pocket User Guide'
-          },
-          {
-            url: `${baseUrl}docs/full_node_wallet_user_guide`,
-            label: 'Full Node Wallet User Guide'
           }
         ]
       },
@@ -344,6 +348,10 @@ class Index extends React.Component {
         image: `${baseUrl}img/index/tools.png`,
         name: 'Tools',
         linkList: [
+          {
+            url: `${baseUrl}docs/tool_application_scenario`,
+            label: 'Tool Application Scenario'
+          },
           {
             url: `${baseUrl}docs/keypair_generator_user_guide`,
             label: 'Keypair Generator'

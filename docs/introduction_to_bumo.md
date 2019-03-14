@@ -3,7 +3,7 @@ id: introduction_to_bumo
 title: Introduction to BUMO
 sidebar_label: Introduction to BUMO
 ---
- 
+
 ## What is BUMO
 
 BUMO is focusing on the next generation platform of public Blockchain infrastructure and building a future ecosystem of Ubiquitous Trust Network. Therefore, value will be transferred freely on Blockchain just as information is transferred freely on the Internet today. Lots of decentralized applications, such as digital assets and Internet of things, can be developed and deployed rapidly on BUMO network.
@@ -22,5 +22,5 @@ BUMO is focusing on the next generation platform of public Blockchain infrastruc
 
 ## Architecture
 
-<img src="/docs/Assets/arch.png"
-     style= "margin-left: 20px">
+<img src="/docs/Assets/arch.png" style= "margin-left: 20px">
+

@@ -321,7 +321,7 @@ Failure: Throw an exception.
 
 ### main
 
-- The `main` function is responsible for data writing, including `makeOrder`, `cancelOrder`, `takeOrder`, `updateFeeRate`, `updateOwner`, `clearExpiredOrder`, `withdrawFee` and other interfaces.
+- The `main` function is responsible for data writing, including [makeOrder](#makeorder), [cancelOrder](#cancelorder), [takeOrder](#takeorder), [updateFeeRate](#updatefeerate), [updateOwner](#updateowner), [clearExpiredOrder](#clearexpiredorder), [withdrawFee](#withdrawfee) and other interfaces.
 - Function body.
 
 ```js
@@ -357,7 +357,7 @@ function main(input_str){
 
 ### query
 
-- The query function is responsible for data query, including `dexInfo`, `dexInfo`, `getOrder`, `getOrderInterval` and other interfaces.
+- The query function is responsible for data query, including [dexInfo](#dexinfo), [dexInfo](#dexinfo), [getOrder](#getorder), [getOrderInterval](#getorderinterval) and other interfaces.
 - Function body.
 
 ```js

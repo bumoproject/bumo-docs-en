@@ -6,7 +6,7 @@ sidebar_label: Introduction
 
 ## Definition
 
-Smart Contract is a section of ECMAScript as specified in ECMA-262. The codes of smart contract should contain two parts of functions. The first is initialization function, init. The other one is entry function, main. When you call the main function you have to assign the input (type string). For syntax, please referring to [Contract Syntax]()
+Smart Contract is a section of ECMAScript as specified in ECMA-262. The codes of smart contract should contain two parts of functions. The first is initialization function, init. The other one is entry function, main. When you call the main function you have to assign the input (type string). For syntax, please referring to [Contract Syntax](syntax_in_smart_contract)
 
 The following is a simple example: 
 
@@ -89,7 +89,9 @@ This chapter mainly introduces some functions involved in the development proces
 
 - **Call**
 
+  ```JavaScript
   assert(condition[, message]);
+  ```
 
 - **Parameters**
 
@@ -112,11 +114,13 @@ This chapter mainly introduces some functions involved in the development proces
 
 - **Description**
 
-`getBalance` function for getting account information (except metadata and assets).
+  `getBalance` function for getting account information (except metadata and assets).
 
 - **Call**
 
-getBalance(address);
+  ```javascript
+  getBalance(address);
+  ```
 
 - **Parameters**
 
@@ -124,23 +128,25 @@ getBalance(address);
 
 - **Example**
 
-```JavaScript
- let balance = getBalance('buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY');
-/*
-  Authority: Read-Only 
-  return, numbers in stype string '999911110000'
-*/
-```
+  ```JavaScript
+  let balance = getBalance('buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY');
+  /*
+    Authority: Read-Only 
+    return, numbers in stype string '999911110000'
+  */
+  ```
 
 ##### storageStore
 
 - **Description**
 
-`storageStore` function for storing metadata of contract account.
+  `storageStore` function for storing metadata of contract account.
 
 - **Call**
 
-storageStore(metadata_key, metadata_value);
+  ```javascript
+  storageStore(metadata_key, metadata_value);
+  ```
 
 - **Parameters**
 
@@ -149,23 +155,25 @@ storageStore(metadata_key, metadata_value);
 
 - **Example**
 
-```JavaScript
-storageStore('abc', 'values');
-/*
-  Authority: Read-Only 
-  return, Successfully->true; failed->exceptions
-*/
-```
+  ```JavaScript
+  storageStore('abc', 'values');
+  /*
+    Authority: Read-Only 
+    return, Successfully->true; failed->exceptions
+  */
+  ```
 
 ##### storageLoad
 
 - **Description**
 
-`storageLoad` function for getting metadata of contract account.
+  `storageLoad` function for getting metadata of contract account.
 
 - **Call**
 
-storageLoad(metadata_key);
+  ```JavaScript
+  storageLoad(metadata_key);
+  ```
 
 - **Parameters**
 
@@ -185,11 +193,13 @@ let value = storageLoad('abc');
 
 - **Description**
 
-`storageDel` function for Deleting metadata of contract account
+  `storageDel` function for Deleting metadata of contract account
 
 - **Call**
 
-storageDel(metadata_key);
+  ```JavaScript
+  storageDel(metadata_key);
+  ```
 
 - **Parameters**
 
@@ -197,23 +207,25 @@ storageDel(metadata_key);
 
 - **Example**
 
-```JavaScript
-storageDel('abc');
-/*
-  Authority: Read-Only
-  return, Successfully->true; failed->exceptions
-*/
-```
+  ```JavaScript
+  storageDel('abc');
+  /*
+    Authority: Read-Only
+    return, Successfully->true; failed->exceptions
+  */
+  ```
 
 ##### getAccountAsset
 
 - **Description**
 
-`getAccountAsset` function for obtaining assets information of an account.
+  `getAccountAsset` function for obtaining assets information of an account.
 
 - **Call**
 
-getAccountAsset(account_address, asset_key);
+  ```JavaScript
+  getAccountAsset(account_address, asset_key);
+  ```
 
 - **Parameters**
 
@@ -222,29 +234,31 @@ getAccountAsset(account_address, asset_key);
 
 - **Example**
 
-```JavaScript
-let asset_key =
-{
-'issuer' : 'buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY',
-'code' : 'CNY'
-};
-let bar = getAccountAsset('buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY',
-asset_key);
-/*
-  Authority: Read-Only
-  return, Successfully->assets amount, such as '10000'; failed->exceptions
-*/
-```
+  ```JavaScript
+  let asset_key =
+  {
+  'issuer' : 'buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY',
+  'code' : 'CNY'
+  };
+  let bar = getAccountAsset('buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY',
+  asset_key);
+  /*
+    Authority: Read-Only
+    return, Successfully->assets amount, such as '10000'; failed->exceptions
+  */
+  ```
 
 ##### getAccountMetadata
 
 - **Description**
 
-`getAccountMetadata` function for getting the metadata for the specified account.
+  `getAccountMetadata` function for getting the metadata for the specified account.
 
 - **Call**
 
-getAccountMetadata(account_address, metadata_key);
+  ```JavaScript
+  getAccountMetadata(account_address, metadata_key);
+  ```
 
 - **Parameters**
 
@@ -253,24 +267,26 @@ getAccountMetadata(account_address, metadata_key);
 
 - **Example**
 
-```JavaScript
-let value = getAccountMetadata('buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY', 'abc');
+  ```JavaScript
+  let value = getAccountMetadata('buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY', 'abc');
 
-/*
-  Authority: Read-Only
-  return: Successfully to a string, such as 'values', failed to false
-*/
-```
+  /*
+    Authority: Read-Only
+    return: Successfully to a string, such as 'values', failed to false
+  */
+  ```
 
 ##### getBlockHash
 
 - **Description**
 
-`getBlockHash` function for getting block information.
+  `getBlockHash` function for getting block information.
 
 - **Call**
 
-getBlockHash(offset_seq);
+  ```JavaScript
+  getBlockHash(offset_seq);
+  ```
 
 - **Parameters**
 
@@ -278,23 +294,25 @@ getBlockHash(offset_seq);
 
 - **Example**
 
-```JavaScript
- et ledger = getBlockHash(4);
-/*
-  Authority: Read-Only
-  return, Successfully->value in type string, such as 'c2f6892eb934d56076a49f8b01aeb3f635df3d51aaed04ca521da3494451afb3'; failed->false
-*/
-```
+  ```JavaScript
+  et ledger = getBlockHash(4);
+  /*
+    Authority: Read-Only
+    return, Successfully->value in type string, such as 'c2f6892eb934d56076a49f8b01aeb3f635df3d51aaed04ca521da3494451afb3'; failed->false
+  */
+  ```
 
 ##### addressCheck
 
 - **Description**
 
-`addressCheck` function for checking the validity of the address.
+  `addressCheck` function for checking the validity of the address.
 
 - **Call**
 
-addressCheck(address);
+  ```JavaScript
+  addressCheck(address);
+  ```
 
 - **Parameters**
 
@@ -302,23 +320,25 @@ addressCheck(address);
 
 - **Example**
 
-```JavaScript
-let ret = addressCheck('buQgmhhxLwhdUvcWijzxumUHaNqZtJpWvNsf');
-/*
-  Authority: Read-Only
-  return, Successfully->true; failed->false
-*/
-```
+  ```JavaScript
+  let ret = addressCheck('buQgmhhxLwhdUvcWijzxumUHaNqZtJpWvNsf');
+  /*
+    Authority: Read-Only
+    return, Successfully->true; failed->false
+  */
+  ```
 
 ##### toAddress
 
 - **Description**
 
-`toAddress` function for changing public key to address.
+  `toAddress` function for changing public key to address.
 
 - **Call**
 
-toAddress(public_key);
+  ```JavaScript
+  toAddress(public_key);
+  ```
 
 - **Parameters**
 
@@ -326,13 +346,13 @@ toAddress(public_key);
 
 - **Example**
 
-```JavaScript
-let ret = toAddress('b0016ebe6191f2eb73a4f62880b2874cae1191183f50e1b18b23fcf40b75b7cd5745d671d1c8');
-/*
-  Authority: Read-Only
-  return: Successfully-> "buQi6f36idrKiGrno3RcdjUjGAibUC37FJK6"，failed to false
-*/
-```
+  ```JavaScript
+  let ret = toAddress('b0016ebe6191f2eb73a4f62880b2874cae1191183f50e1b18b23fcf40b75b7cd5745d671d1c8');
+  /*
+    Authority: Read-Only
+    return: Successfully-> "buQi6f36idrKiGrno3RcdjUjGAibUC37FJK6"，failed to false
+  */
+  ```
 
 - **Return**
 
@@ -343,11 +363,13 @@ let ret = toAddress('b0016ebe6191f2eb73a4f62880b2874cae1191183f50e1b18b23fcf40b7
 
 - **Description**
 
-`stoI64Check` for checking the validity of string number.
+  `stoI64Check` for checking the validity of string number.
 
 - **Call**
 
-stoI64Check(strNumber);
+  ```JavaScript
+  stoI64Check(strNumber);
+  ```
 
 - **Parameters**
 
@@ -355,23 +377,25 @@ stoI64Check(strNumber);
 
 - **Example**
 
-```JavaScript
-let ret = stoI64Check('12345678912345');
-/*
-  Authority: Read-Only
-  return, Successfully->true; failed->false
-*/
-```
+  ```JavaScript
+  let ret = stoI64Check('12345678912345');
+  /*
+    Authority: Read-Only
+    return, Successfully->true; failed->false
+  */
+  ```
 
 ##### int64Add
 
 - **Description**
 
-`int64Add` function for addition in 64 bits.
+  `int64Add` function for addition in 64 bits.
 
 - **Call**
 
-int64Add(left_value, right_value);
+  ```JavaScript
+  int64Add(left_value, right_value);
+  ```
 
 - **Parameters**
 
@@ -380,23 +404,25 @@ int64Add(left_value, right_value);
 
 - **Example**
 
-```JavaScript
-let ret = int64Add('12345678912345', 1);
-/*
-  Authority: Read-Only
-  return, Successfully->value in type string, such as'12345678912346'; failed->exceptions
-*/
-```
+  ```JavaScript
+  let ret = int64Add('12345678912345', 1);
+  /*
+    Authority: Read-Only
+    return, Successfully->value in type string, such as'12345678912346'; failed->exceptions
+  */
+  ```
 
 ##### int64Sub
 
 - **Description**
 
-`int64Sub` function for subtraction in 64 bits.
+  `int64Sub` function for subtraction in 64 bits.
 
 - **Call**
 
-int64Sub(left_value, right_value);
+  ```JavaScript
+  int64Sub(left_value, right_value);
+  ```
 
 - **Parameters**
 
@@ -405,23 +431,25 @@ int64Sub(left_value, right_value);
 
 - **Example**
 
-```JavaScript
-let ret = int64Sub('12345678912345', 1);
-/*
-  Authority: Read-Only
-  return, Successfully->value in type string, such as'12345678912346'; failed->exceptions
-*/
-```
+  ```JavaScript
+  let ret = int64Sub('12345678912345', 1);
+  /*
+    Authority: Read-Only
+    return, Successfully->value in type string, such as'12345678912346'; failed->exceptions
+  */
+  ```
 
 ##### int64Mul
 
 - **Description**
 
-`int64Mul` function for multiplication in 64 bite.
+  `int64Mul` function for multiplication in 64 bite.
 
 - **Call**
 
-int64Mul(left_value, right_value);
+  ```JavaScript
+  int64Mul(left_value, right_value);
+  ```
 
 - **Parameters**
 
@@ -430,23 +458,25 @@ int64Mul(left_value, right_value);
 
 - **Example**
 
-```JavaScript
-let ret = int64Mul('12345678912345', 2);
-/*
-  Authority: Read-Only
-  return, Successfully->value in type string as '24691357824690'; failed->exceptions
-*/
-```
+  ```JavaScript
+  let ret = int64Mul('12345678912345', 2);
+  /*
+    Authority: Read-Only
+    return, Successfully->value in type string as '24691357824690'; failed->exceptions
+  */
+  ```
 
 ##### int64Div
 
 - **Description**
 
-`int64Div` function for division in 64 bits.
+  `int64Div` function for division in 64 bits.
 
 - **Call**
 
-int64Div(left_value, right_value);
+  ```JavaScript
+  int64Div(left_value, right_value);
+  ```
 
 - **Parameters**
 
@@ -455,23 +485,25 @@ int64Div(left_value, right_value);
 
 - **Example**
 
-```JavaScript
-let ret = int64Div('12345678912345', 2);
-/*
-  Authority: Read-Only
-  return, Successfully->value in type string as'6172839456172'; failed->exceptions
-*/
-```
+  ```JavaScript
+  let ret = int64Div('12345678912345', 2);
+  /*
+    Authority: Read-Only
+    return, Successfully->value in type string as'6172839456172'; failed->exceptions
+  */
+  ```
 
 ##### int64Mod
 
 - **Description**
 
-`int64Mod` function modulus in 64 bits.
+  `int64Mod` function modulus in 64 bits.
 
 - **Call**
 
-int64Mod(left_value, right_value);
+  ```JavaScript
+  int64Mod(left_value, right_value);
+  ```
 
 - **Parameters**
 
@@ -480,23 +512,25 @@ int64Mod(left_value, right_value);
 
 - **Example**
 
-```JavaScript
-let ret = int64Mod('12345678912345', 2);
-/*
-  Authority: Read-Only
-  return, Successfully->value in type string, such as'1'; failed->exceptions
-*/
-```
+  ```JavaScript
+  let ret = int64Mod('12345678912345', 2);
+  /*
+    Authority: Read-Only
+    return, Successfully->value in type string, such as'1'; failed->exceptions
+  */
+  ```
 
 ##### int64Compare
 
 - **Description**
 
-`int64Compare` function for comparison in 64bits.
+  `int64Compare` function for comparison in 64bits.
 
 - **Call**
 
-int64Compare(left_value, right_value);
+  ```JavaScript
+  int64Compare(left_value, right_value);
+  ```
 
 - **Parameters**
 
@@ -505,23 +539,25 @@ int64Compare(left_value, right_value);
 
 - **Example**
 
-```JavaScript
-let ret = int64Compare('12345678912345', 2);
-/*
-  Authority: Read-Only
-  return, Successfully-> 1(left is larger than right), 0 (equal), -1 (smaller); failed->exceptions
-*/
-```
+  ```JavaScript
+  let ret = int64Compare('12345678912345', 2);
+  /*
+    Authority: Read-Only
+    return, Successfully-> 1(left is larger than right), 0 (equal), -1 (smaller); failed->exceptions
+  */
+  ```
 
 ##### toBaseUnit
 
 - **Description**
 
-`toBaseUnit` function for switching units.
+  `toBaseUnit` function for switching units.
 
 - **Call**
 
-toBaseUnit(value);
+  ```JavaScript
+  toBaseUnit(value);
+  ```
 
 - **Parameters**
 
@@ -529,27 +565,29 @@ toBaseUnit(value);
 
 - **Example**
 
-```JavaScript
-let ret = toBaseUnit('12345678912');
-/*
-  Authority: Read-Only
-  return, Successfully->value in type string as'1234567891200000000'; failed->exceptions
-*/
-```
+  ```JavaScript
+  let ret = toBaseUnit('12345678912');
+  /*
+    Authority: Read-Only
+    return, Successfully->value in type string as'1234567891200000000'; failed->exceptions
+  */
+  ```
 
 - **Return**
 
-Successfully->value multiply 10^start^ in type string; failed->false.
+  Successfully->value multiply 10^start^ in type string; failed->false.
 
 ##### sha256
 
 - **Description**
 
-`sha256` function for sha256 calculate.
+  `sha256` function for sha256 calculate.
 
 - **Call**
 
-sha256(data[, dataType]);
+  ```JavaScript
+  sha256(data[, dataType]);
+  ```
 
 - **Parameters**
 
@@ -558,28 +596,30 @@ sha256(data[, dataType]);
 
 - **Example**
 
-```JavaScript
-let ret = sha256('61626364');
-/*
-  Authority: Read-Only
-  function：sha256
-  return：Returns a base16 format string of 64 bytes successfully '88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589'，Failure to return false
-*/
-```
+  ```JavaScript
+  let ret = sha256('61626364');
+  /*
+    Authority: Read-Only
+    function：sha256
+    return：Returns a base16 format string of 64 bytes successfully '88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589'，Failure to return false
+  */
+  ```
 
 - **Return**
 
-Success returns the base16-encoded string after the hash, and failure returns false.
+  Success returns the base16-encoded string after the hash, and failure returns false.
 
 ##### ecVerify
 
 - **Description**
 
-`ecVerify` function for verifying that the signature is valid.
+  `ecVerify` function for verifying that the signature is valid.
 
 - **Call**
 
-ecVerify(signedData, publicKey,blobData [, blobDataType]);
+  ```JavaScript
+  ecVerify(signedData, publicKey,blobData [, blobDataType]);
+  ```
 
 - **Parameters**
 
@@ -590,30 +630,32 @@ ecVerify(signedData, publicKey,blobData [, blobDataType]);
 
 - **Example**
 
-```JavaScript
-let ret = sha256('61626364');
-/*
-  Authority: Read-Only
-  function：sha256
-  return：Returns a base16 format string of 64 bytes successfully '88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589'，Failure to return false
-*/
-```
+  ```JavaScript
+  let ret = sha256('61626364');
+  /*
+    Authority: Read-Only
+    function：sha256
+    return：Returns a base16 format string of 64 bytes successfully '88d4266fd4e6338d13b845fcf289579d209c897823b9217da3e161936f031589'，Failure to return false
+  */
+  ```
 
 - **Return**
 
-Successfully->true,Failure to return false.
+  Successfully->true,Failure to return false.
 
 ##### delegateCall
 
 - **Description**
 
-`delegateCall` function for verifying that the signature is valid.
+  `delegateCall` function for verifying that the signature is valid.
 
-`delegateCall` function triggers the entry to the called contract main function,and assign the execution environment of the current contract to the invoked contract.
+  `delegateCall` function triggers the entry to the called contract main function,and assign the execution environment of the current contract to the invoked contract.
 
 - **Call**
 
-delegateCall(contractAddress, input);;
+  ```JavaScript
+  delegateCall(contractAddress, input);
+  ```
 
 - **Parameters**
 
@@ -622,23 +664,25 @@ delegateCall(contractAddress, input);;
 
 - **Example**
 
-```JavaScript
-let ret = delegateCall('buQBwe7LZYCYHfxiEGb1RE9XC9kN2qrGXWCY'，'{}');
-/*
-  Authority: Read-Only
-  return：Success returns true, failure to throw exception
-*/
-```
+  ```JavaScript
+  let ret = delegateCall('buQBwe7LZYCYHfxiEGb1RE9XC9kN2qrGXWCY'，'{}');
+  /*
+    Authority: Read-Only
+    return：Success returns true, failure to throw exception
+  */
+  ```
 
 ##### log
 
 - **Description**
 
-`log` function for log.
+  `log` function for log.
 
 - **Call**
 
-log(info);
+  ```JavaScript
+  log(info);
+  ```
 
 - **Parameters**
 
@@ -646,21 +690,24 @@ log(info);
 
 - **Example**
 
-```JavaScript
-let ret = log('buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY');
-/*
-Authority: Read-Only
-return, Successfully->null; failed->exceptions
-*/
-```
+  ```JavaScript
+  let ret = log('buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY');
+  /*
+  Authority: Read-Only
+  return, Successfully->null; failed->exceptions
+  */
+  ```
 
 ##### tlog
 
 - **Description**
-`tlog` function for recording a transaction on the block.
+  `tlog` function for recording a transaction on the block.
 
 - **Call**
-tlog(topic,args...);
+
+  ```JavaScript
+  tlog(topic,args...);
+  ```
 
 - **Parameters**
 
@@ -669,21 +716,24 @@ tlog(topic,args...);
 
 - **Example**
 
-```JavaScript
-tlog('transfer',sender +' transfer 1000',true);
-/*
-  Authority: Read-Only
-  return, Successfully->true; failed->exceptions
-*/
-```
+  ```JavaScript
+  tlog('transfer',sender +' transfer 1000',true);
+  /*
+    Authority: Read-Only
+    return, Successfully->true; failed->exceptions
+  */
+  ```
 
 ##### issueAsset
 
 - **Description**
-`issueAsset` function for issuing assets.
+  `issueAsset` function for issuing assets.
 
 - **Call**
-issueAsset(code, amount);
+
+  ```JavaScript
+  issueAsset(code, amount);
+  ```
 
 - **Parameters**
 
@@ -692,21 +742,25 @@ issueAsset(code, amount);
 
 - **Example**
 
-```JavaScript
-issueAsset("CNY", "10000");
-/*
-  Authority: Read-Only
-  return, Successfully->true; failed->exceptions 
-*/
-```
+  ```JavaScript
+  issueAsset("CNY", "10000");
+  /*
+    Authority: Read-Only
+    return, Successfully->true; failed->exceptions 
+  */
+  ```
 
 ##### payAsset
 
 - **Description**
-`payAsset` function for transferring assets.
+
+  `payAsset` function for transferring assets.
 
 - **Call**
-payAsset(address, issuer, code, amount[, input]);
+
+  ```JavaScript
+  payAsset(address, issuer, code, amount[, input]);
+  ```
 
 - **Parameters**
 
@@ -718,39 +772,42 @@ payAsset(address, issuer, code, amount[, input]);
 
 - **Example**
 
-```JavaScript
-payAsset("buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY",
-"buQgmhhxLwhdUvcWijzxumUHaNqZtJpWvNsf", "CNY", "10000", "{}");
-/*
-  Authority: Read-only
-  return, Successfully->true; failed->exceptions   
-*/
-```
+  ```JavaScript
+  payAsset("buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY",
+  "buQgmhhxLwhdUvcWijzxumUHaNqZtJpWvNsf", "CNY", "10000", "{}");
+  /*
+    Authority: Read-only
+    return, Successfully->true; failed->exceptions   
+  */
+  ```
 
 ##### payCoin
 
 - **Description**
-`payCoin` function for Transferring BU coin.
+
+  `payCoin` function for Transferring BU coin.
 
 - **Call**
-payCoin(address, amount[, input]);
+
+  ```JavaScript
+  payCoin(address, amount[, input]);
+  ```
 
 - **Parameters**
-address: Address of BU receiver account.
 
-amount: BU amount.
-
-input: Optional; defaults to null.
+  - address: Address of BU receiver account.
+  - amount: BU amount.
+  - input: Optional; defaults to null.
 
 - **Example**
 
-```JavaScript
-payCoin("buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY", "10000", "{}");
-/*
-  Authority: Writable
-  return, Successfully->true; failed->exceptions  
-*/
-```
+  ```JavaScript
+  payCoin("buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY", "10000", "{}");
+  /*
+    Authority: Writable
+    return, Successfully->true; failed->exceptions  
+  */
+  ```
 
 ### Default Variables
 
@@ -760,91 +817,93 @@ This section describes some default variables involved in the development proces
 
 - **Description**
 
-Global variable thisAdress is the address of this contract account. 
+  Global variable thisAdress is the address of this contract account. 
 
 - **Example**
 
-If account X submits a transaction to call contract Y, thisAddressis Y's address:
+  If account X submits a transaction to call contract Y, thisAddressis Y's address:
 
-```JavaScript
- let bar = thisAddress;
-  /*
-  bar is Y's address.
- */
-```
+  ```JavaScript
+  let bar = thisAddress;
+    /*
+    bar is Y's address.
+  */
+  ```
 
 #### thisPayCoinAmount
 
 - **Description**
 
-BU coin for current operation
+  BU coin for current operation
 
 #### thisPayAsset
 
 - **Description**
 
-Asset object for this operation, such as follow:
+  Asset object for this operation, such as follow:
 
-```JavaScript
- {"amount": 1000, "key" : {"issuer": "buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY", "code":"CNY"}}。
-```
+  ```JavaScript
+  {"amount": 1000, "key" : {"issuer": "buQsZNDpqHJZ4g5hz47CqVMk5154w1bHKsHY", "code":"CNY"}}。
+  ```
 
 #### blockNumber
 
 - **Description**
 
-Current block height。
+  Current block height。
 
 #### blockTimestamp
 
 - **Description**
 
-Current block timestamp。
+  Current block timestamp。
 
 #### sender
 
 - **Description**
 
-Address of the caller (call the function/variables).
+  Address of the caller (call the function/variables).
 
 - **Example**
 
-There is an operation (from address X) to call contract Y in a transaction. In this process, address X is the sender.
+  There is an operation (from address X) to call contract Y in a transaction. In this process, address X is the sender.
 
-```JavaScript
- let bar = sender;
-  /*
-   bar is the account address of X.
- */
-```
+  ```JavaScript
+  let bar = sender;
+    /*
+    bar is the account address of X.
+  */
+  ```
 
 #### triggerIndex
 
-Operation sequence for triggering the contract.
+- **Description**
+  Operation sequence for triggering the contract.
 
 - **Example**
 
-An account A submits a transaction tx0, and the 0-th (count from 0) operation is transferring assets to a contract account (calling the contract). Then triggerIndexis 0.
+  An account A submits a transaction tx0, and the 0-th (count from 0) operation is transferring assets to a contract account (calling the contract). Then triggerIndexis 0.
 
-```JavaScript
- let bar = triggerIndex;
-  /*
-   bar is an int
- */
-```
+  ```JavaScript
+  let bar = triggerIndex;
+    /*
+    bar is an int
+  */
+  ```
 
 
 
 ## Exceptions
 
-### JavaScript exceptions
+- avaScript exceptions
 
-While there is an uncaught JavaScript exception in contract operation: 
+  While there is an uncaught JavaScript exception in contract operation: 
 
-- Failed execution, all transactions in this contract operation are failed.
+  1. Failed execution, all transactions in this contract operation are failed.
 
-- The transaction triggrted (TRIGGERED) the contract is failed with error code151.
+  1. The transaction triggrted (TRIGGERED) the contract is failed with error code151.
 
-### Failure in executing transactions
+- Failure in executing transactions
 
-Contracts can execute several transactions, but only one fault would lead to failure of all transactions and throw exceptions.
+  <font color=red>Contracts can execute several transactions, but only one fault would lead to failure of all transactions and throw exceptions.</font>
+

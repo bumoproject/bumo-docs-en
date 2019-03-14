@@ -3,95 +3,127 @@
   "localized-strings": {
     "next": "Next",
     "previous": "Previous",
-    "tagline": "泛在价值流通体系",
+    "tagline": "Public Blockchain for Ubiquitous Value Transfer",
     "docs": {
+      "api_http": {
+        "title": "BUMO HTTP/Restful",
+        "sidebar_label": "HTTP/Restful"
+      },
+      "api_websocket": {
+        "title": "BUMO Websocket",
+        "sidebar_label": "Websocket"
+      },
       "asset_issuance_development_guide_for_java": {
-        "title": "BUMO资产发行开发JAVA指南",
-        "sidebar_label": "BUMO资产发行开发JAVA指南"
+        "title": "BUMO Asset Issuance Development Guide for Java",
+        "sidebar_label": "Asset Issuance Development Guide for Java"
       },
       "atp_10": {
-        "title": "BUMO ATP 10 协议",
-        "sidebar_label": "BUMO ATP 10 协议"
+        "title": "BUMO ATP 10",
+        "sidebar_label": "ATP 10"
       },
       "atp_20": {
-        "title": "BUMO ATP 20 协议",
-        "sidebar_label": "BUMO ATP 20 协议"
+        "title": "BUMO ATP 20",
+        "sidebar_label": "ATP 20"
       },
       "atp_30": {
-        "title": "BUMO ATP 30 协议",
-        "sidebar_label": "BUMO ATP 30 协议"
-      },
-      "bumo_tool_application_scenario": {
-        "title": "BUMO工具应用场景示例",
-        "sidebar_label": "BUMO工具应用场景示例"
+        "title": "BUMO ATP 30",
+        "sidebar_label": "ATP 30"
       },
       "bupocket_user_guide": {
-        "title": "小布口袋APP用户手册",
-        "sidebar_label": "小布口袋APP用户手册"
+        "title": "BU Pocket User Guide",
+        "sidebar_label": "BU Pocket User Guide"
       },
       "codemach_editor_user_guide": {
-        "title": "BUMO CodeMach Editor用户手册",
-        "sidebar_label": "BUMO CodeMach Editor用户手册"
+        "title": "BUMO CodeMach Editor User Guide",
+        "sidebar_label": "CodeMach Editor User Guide"
+      },
+      "contract_hello_world": {
+        "title": "BUMO Smart Contract(Hello World)",
+        "sidebar_label": "Smart Contract(Hello World)"
       },
       "dex_10": {
-        "title": "BUMO DEX 10 协议",
-        "sidebar_label": "BUMO DEX 10 协议"
+        "title": "BUMO DEX 10",
+        "sidebar_label": "DEX 10"
       },
       "faucet_user_guide": {
-        "title": "BUMO Faucet用户手册",
-        "sidebar_label": "BUMO Faucet用户手册"
+        "title": "BUMO Faucet User Guide",
+        "sidebar_label": "Faucet User Guide"
       },
       "installation_maintenance_guide": {
-        "title": "BUMO节点安装运维指南",
-        "sidebar_label": "BUMO节点安装运维指南"
+        "title": "BUMO Installation and Maintenance Guide",
+        "sidebar_label": "Installation and Maintenance Guide"
       },
       "integration_guide_for_exchanges": {
-        "title": "BUMO交易所对接指南",
-        "sidebar_label": "BUMO交易所对接指南"
+        "title": "BUMO Integration Guide for Exchanges",
+        "sidebar_label": "Integration Guide for Exchanges"
+      },
+      "introduction_to_beps": {
+        "title": "BUMO BEPs introduction",
+        "sidebar_label": "Introduction"
       },
       "introduction_to_bumo": {
-        "title": "BUMO 简介",
-        "sidebar_label": "BUMO 简介"
+        "title": "Introduction to BUMO",
+        "sidebar_label": "Introduction to BUMO"
+      },
+      "introduction_to_smart_contract": {
+        "title": "Introduction to BUMO smart contract",
+        "sidebar_label": "Introduction"
       },
       "keypair_generator_user_guide": {
-        "title": "Keypair Generator用户手册",
-        "sidebar_label": "Keypair Generator用户手册"
+        "title": "BUMO Keypair Generator User Guide",
+        "sidebar_label": "Keypair Generator User Guide"
+      },
+      "keypair_guide": {
+        "title": "BUMO Keypair Guide",
+        "sidebar_label": "Keypair Guide"
+      },
+      "legal_evidence_development_guide_for_java": {
+        "title": "BUMO Legal Evidence Development Guide for Java",
+        "sidebar_label": "Legal Evidence Development Guide for Java"
       },
       "quick_wallet_user_guide": {
-        "title": "BOMO Quick Wallet用户手册",
-        "sidebar_label": "BUMO Quick Wallet用户手册"
+        "title": "BUMO Quick Wallet User Guide",
+        "sidebar_label": "Quick Wallet User Guide"
       },
       "sdk_go": {
         "title": "BUMO GO SDK",
-        "sidebar_label": "BUMO GO SDK"
+        "sidebar_label": "GO"
       },
       "sdk_ios": {
         "title": "BUMO IOS SDK",
-        "sidebar_label": "BUMO IOS SDK"
+        "sidebar_label": "IOS"
       },
       "sdk_java": {
-        "title": "BUMO Java SDK",
-        "sidebar_label": "BUMO Java SDK"
+        "title": "BUMO JAVA SDK",
+        "sidebar_label": "JAVA"
       },
       "sdk_nodejs": {
         "title": "BUMO Nodejs SDK",
-        "sidebar_label": "BUMO Nodejs SDK"
+        "sidebar_label": "Nodejs"
       },
       "sdk_php": {
         "title": "BUMO PHP SDK",
-        "sidebar_label": "BUMO PHP SDK"
+        "sidebar_label": "PHP"
       },
-      "smart_contract_development_guide": {
-        "title": "BUMO智能合约开发指南",
-        "sidebar_label": "BUMO智能合约开发指南"
+      "smart_contract_development_guide_for_java": {
+        "title": "BUMO Smart Contract Development Guide for Java",
+        "sidebar_label": "Smart Contract Development Guide for Java"
       },
       "sto_10": {
-        "title": "BUMO STO 10 协议",
-        "sidebar_label": "BUMO STO 10 协议"
+        "title": "BUMO STO 10",
+        "sidebar_label": "STO 10"
+      },
+      "syntax_in_smart_contract": {
+        "title": "Syntax in BUMO smart contract",
+        "sidebar_label": "Syntax"
       },
       "terminology": {
-        "title": "BUMO 术语",
-        "sidebar_label": "BUMO 术语"
+        "title": "BUMO Terminology",
+        "sidebar_label": "Terminology"
+      },
+      "tool_application_scenario": {
+        "title": "BUMO Tool Application Scenario",
+        "sidebar_label": "Tool Application Scenario"
       }
     },
     "links": {
@@ -100,13 +132,15 @@
       "English": "English"
     },
     "categories": {
-      "快速入门": "快速入门",
-      "DEPs协议": "DEPs协议",
+      "Get Started": "Get Started",
+      "Smart Contract": "Smart Contract",
+      "BEPs Protocol": "BEPs Protocol",
+      "API": "API",
       "SDK": "SDK",
-      "开发指南": "开发指南",
-      "钱包": "钱包",
-      "工具箱": "工具箱",
-      "术语": "术语"
+      "Development Guide": "Development Guide",
+      "Wallet": "Wallet",
+      "Tools": "Tools",
+      "Glossary": "Glossary"
     }
   },
   "pages-strings": {

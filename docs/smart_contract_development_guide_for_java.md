@@ -1,10 +1,16 @@
 ---
-id: smart_contract_development_guide
-title: BUMO Smart Contract Development Guide
-sidebar_label: Smart Contract
+id: smart_contract_development_guide_for_java
+title: BUMO Smart Contract Development Guide for Java
+sidebar_label: Smart Contract Development Guide for Java
 ---
 
 ## Overview
+
+The contract is a `JavaScript` code, with a standard (`ECMAScript` as specified in `ECMA-262`). The initialization function of the contract is `init`, and the entry function of the execution is the `main` function. You must have the definition of the `init` and `main` functions in the contract code. The input argument to this function is the string `input`, which is specified when the contract is called.
+
+- For details of the smart contract, refer to [Introduction to Smart Contract](introduction_to_smart_contract).
+- For details of the smart contract syntax, refer to [Syntax in Smart Contract](syntax-in-smart-contract).
+- For details of the smart contract editor, refer to[Introduction to Smart Contract Editor](introduction_to_smart_contract).
 
 This section introduces three Java-based smart contract development scenarios, and all scenarios are associated. 
 

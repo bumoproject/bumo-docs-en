@@ -83,11 +83,6 @@ Account Services provide account validity checking and query interfaces.
 Asset Services provide asset-related query interfaces that follow the
 ATP 1.0 protocol.
 
-## Ctp10Token Services
-
-Ctp10Token Services provide validity check and query interfaces
-related to contract assets, which follows the CTP 1.0 protocol.
-
 ## Contract Services
 
 Contract Services provide a contract-related validity checking and query

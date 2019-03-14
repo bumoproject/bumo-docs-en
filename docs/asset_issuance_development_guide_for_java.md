@@ -1,7 +1,7 @@
 ---
 id: asset_issuance_development_guide_for_java
 title: BUMO Asset Issuance Development Guide for Java
-sidebar_label: Asset Issuance for Java
+sidebar_label: Asset Issuance Development Guide for Java
 ---
 
 

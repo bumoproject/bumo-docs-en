@@ -1,5 +1,5 @@
 ---
-id: bumo_tool_application_scenario
+id: tool_application_scenario
 title: BUMO Tool Application Scenario
 sidebar_label: Tool Application Scenario
 ---

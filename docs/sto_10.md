@@ -136,7 +136,7 @@ value: {
 
 ## Event
 
-The functions `setDocument`, `createTranche`, `transferWithData`, `transferFromWithData`, `transferFromToTranche`, `transferTranche`, `transferToTranche`, `transfersToTranche`, `controllerTransfer`, `controllerRedeem`, `authorizeOperator`, `revokeOperator`, `authorizeOperatorForTranche`, `revokeOperatorForTranche`, `operatorTransferTranche`, `operatorRedeemTranche`, `issue`, `issueToTranche`, `redeemFrom`, `redeemTranche`, `redeemFromTranche`, `transfer`, `approve`, and `transferFrom` will trigger the event, and the event is to call the `tlog` interface, and record a transaction log on the blockchain. The log records the details of the function call for users to read.
+The functions [setDocument](#setdocument), [createTranche](#createtranche), [transferWithData](#transferwithdata), [transferFromWithData](#transferfromwithdata), [transferFromToTranche](#transferfromtotranche), [transferTranche](#transfertranche), [transferToTranche](#transfertotranche), [transfersToTranche](#transferstotranche), [controllerTransfer](#controllertransfer), [controllerRedeem](#controllerredeem), [authorizeOperator](#authorizeoperator), [revokeOperator](#revokeoperator), [authorizeOperatorForTranche](#authorizeoperatorfortranche), [revokeOperatorForTranche](#revokeoperatorfortranche), [operatorTransferTranche](#operatortransfertranche), [operatorRedeemTranche](#operatorredeemtranche), [issue](#issue), [issueToTranche](#issuetotranche), [redeem](#redeem), [redeemFrom](#redeemfrom), [redeemTranche](#redeemtranche), [redeemFromTranche](#redeemfromtranche), [transfer](#transfer), [approve](#approve), [approveTranche](#approvetranche) and [transferFrom](#transferfrom) will trigger the event, and the event is to call the `tlog` interface, and record a transaction log on the blockchain. The log records the details of the function call for users to read.
 
 The tlog is defined as follows:
 
@@ -152,10 +152,10 @@ tlog(topic,args...);
 
 ## Functions
 
-BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), [setDocument](#setdocument), [getDocument](#getdocument), [createTranche](#createtranche), [balanceOf](#balanceof), [balanceOfTranche](#balanceoftranche), [tranchesOf](#tranchesof), [transferWithData](#transferwithdata), [transferFromToTranche](#transferfromtotranche), [transferTranche](#transfertranche), [transferToTranche](#transfertotranche), [transfersToTranche](#transferstotranche)[isControllable](#iscontrollable), [controllerTransfer](#controllertransfer), [controllerRedeem](#controllerredeem), [authorizeOperator](#authorizeoperator),[revokeOperator](#revokeoperator), [authorizeOperatorForTranche](#authorizeoperatorfortranche), [revokeOperatorForTranche](#revokeOperatorfortranche), [isOperator](#isoperator), [isOperatorForTranche](#isoperatorfortranche), [operatorTransferTranche](#operatortransfertranche), [operatorRedeemTranche](#operatorredeemtranche), [isIssuable](#isissuable)[issue](#issue), [issueToTranche](#issuetotranche), [redeem](#redeem), [redeemFrom](#redeemfrom), [redeemTranche](#redeemtranche), [redeemFromTranche](#redeemfromtranche), [canTransfer](#cantransfer), [canTransferTranche](#cantransfertranche), [canTransferToTranche](#cantransfertotranche)、[transfer](#transfer), [transferFrom](#transferfrom), [approve](#approve), [approveTranche](#approvetranche), [allowance](#allowance), and [allowanceForTranche](#allowancefortranche).
+BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), [setDocument](#setdocument), [getDocument](#getdocument), [createTranche](#createtranche), [balanceOf](#balanceof), [balanceOfTranche](#balanceoftranche), [tranchesOf](#tranchesof), [transferWithData](#transferwithdata), [transferFromWithData](#transferfromwithdata), [transferFromToTranche](#transferfromtotranche), [transferTranche](#transfertranche), [transferToTranche](#transfertotranche), [transfersToTranche](#transferstotranche)[isControllable](#iscontrollable), [controllerTransfer](#controllertransfer), [controllerRedeem](#controllerredeem), [authorizeOperator](#authorizeoperator),[revokeOperator](#revokeoperator), [authorizeOperatorForTranche](#authorizeoperatorfortranche), [revokeOperatorForTranche](#revokeoperatorfortranche), [isOperator](#isoperator), [isOperatorForTranche](#isoperatorfortranche), [operatorTransferTranche](#operatortransfertranche), [operatorRedeemTranche](#operatorredeemtranche), [isIssuable](#isissuable)[issue](#issue), [issueToTranche](#issuetotranche), [redeem](#redeem), [redeemFrom](#redeemfrom), [redeemTranche](#redeemtranche), [redeemFromTranche](#redeemfromtranche), [canTransfer](#cantransfer), [canTransferTranche](#cantransfertranche), [canTransferToTranche](#cantransfertotranche)、[transfer](#transfer), [transferFrom](#transferfrom), [approve](#approve), [approveTranche](#approvetranche), [allowance](#allowance), and [allowanceForTranche](#allowancefortranche).
 
 
-### tranchesOfTokenInfo
+### tokenInfo
 
 - Description
 
@@ -1616,7 +1616,7 @@ Return value：
 
 ### main
 
-- Responsible for data writing, including `setDocument`, `createTranche`, `changeOwnership`, `issue`, `issueToTranche`, `approveTranche`, `approve`, `transfer`, `transferFrom`, `transferWithData`, `transferFromWithData`, `transferTranche`, `transferToTranche`, `transfersToTranche`, `transferFromToTranche`, `controllerTransfer`, `controllerRedeem`, `authorizeOperator`, `revokeOperator`, `revokeOperatorForTranche`, `operatorTransferTranche`, `redeem`, `redeemFrom`, `redeemTranche`, `operatorRedeemTranche` and other interfaces.
+- Responsible for data writing, including [setDocument](#setdocument), [createTranche](#createtranche), [transferWithData](#transferwithdata), [transferFromWithData](#transferfromwithdata), [transferFromToTranche](#transferfromtotranche), [transferTranche](#transfertranche), [transferToTranche](#transfertotranche), [transfersToTranche](#transferstotranche), [controllerTransfer](#controllertransfer), [controllerRedeem](#controllerredeem), [authorizeOperator](#authorizeoperator), [revokeOperator](#revokeoperator), [authorizeOperatorForTranche](#authorizeoperatorfortranche), [revokeOperatorForTranche](#revokeoperatorfortranche), [operatorTransferTranche](#operatortransfertranche), [operatorRedeemTranche](#operatorredeemtranche), [issue](#issue), [issueToTranche](#issuetotranche), [redeem](#redeem), [redeemFrom](#redeemfrom), [redeemTranche](#redeemtranche), [redeemFromTranche](#redeemfromtranche), [transfer](#transfer), [approve](#approve), [approveTranche](#approvetranche), [transferFrom](#transferfrom) and other interfaces.
 - Function body
 
 ```js
@@ -1709,7 +1709,7 @@ function main(input_str){
 
 ### query
 
-- Responsible for data query, including `getDocument`, `isIssuable`, `tokenInfo`, `balanceOf`, `tranchesOf`, `balanceOfTranche`, `allowance`, `allowanceForTranche`, `isControllable`, `isOperator`, `isOperatorForTranche` , `canTransfer`, `canTransferTranche`, `canTransferToTranche` and other interfaces.
+- Responsible for data query, including [getDocument](#getdocument), [isIssuable](#isissuable), [tokenInfo](#tokeninfo), [balanceOf](#balanceof), [tranchesOf](#tranchesof), [balanceOfTranche](#balanceoftranche), [allowance](#allowance), [allowanceForTranche](#allowancefortranche), [isControllable](#iscontrollable), [isOperator](#isoperator), [isOperatorForTranche](#isoperatorfortranche), [canTransfer](#cantransfer), [canTransferTranche](#cantransfertranche), [canTransferToTranche](#cantransfertotranche) and other interfaces.
 - Function body
 
 ```js
