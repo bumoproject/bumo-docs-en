@@ -24,3 +24,8 @@ You have to be on Node >= 8.x and Yarn >= 1.5.
    cd  website
    npm start or yarn start
    ``` 
+
+   The command of modifying the port number (such as port 8080) as follow:
+   ```shell
+   npm run start -- --port 8080 或 yarn run start --port 8080
+   ```
