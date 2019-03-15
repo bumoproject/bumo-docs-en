@@ -41,6 +41,10 @@
         "title": "BUMO Smart Contract(Hello World)",
         "sidebar_label": "Smart Contract(Hello World)"
       },
+      "contract_new_interfaces": {
+        "title": "BUMO Smart Contract New Interfaces",
+        "sidebar_label": "New Interfaces"
+      },
       "dex_10": {
         "title": "BUMO DEX 10",
         "sidebar_label": "DEX 10"

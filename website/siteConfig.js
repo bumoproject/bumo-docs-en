@@ -45,7 +45,7 @@ const siteConfig = {
   headerLinks: [
     {doc: 'introduction_to_bumo', label: 'Docs'},
     { href: "https://github.com/bumoproject/bumo", label: "GitHub", target: "_blank" },
-    { href: "https://www.documentation.cn.bumo.io", label: "中文", target: "_self" },
+    { href: "https://docs.bumo.io/cn/", label: "中文", target: "_self" },
     { languages: true },
     { search: true }
   ],
@@ -85,10 +85,10 @@ const siteConfig = {
     // Highlight.js theme to use for syntax highlighting in code blocks.
     theme: 'github',
   },
-  algolia: {
-    apiKey: '0f9f28b9ab9efae89810921a351753b5',
-    indexName: 'github',
-  },
+  //algolia: {
+  //  apiKey: '0f9f28b9ab9efae89810921a351753b5',
+  //  indexName: 'github',
+  //},
   // Add custom scripts here that would be placed in <script> tags.
   scripts: ['https://buttons.github.io/buttons.js'],
 
