@@ -28,4 +28,15 @@ window.addEventListener('load', function() {
         .classList.add('active');
     });
   });
+  // 中英文站切换----手动添加代码
+  document.querySelector('.navigationWrapper ul.nav-site').addEventListener('click', function (e) {
+    if (e.target.href === 'javascript:(0);') {
+      var currentPath = window.location.pathname
+      if (currentPath.split('/')[1] === 'cn') { // 当前为中文站-跳转至英文站
+        window.location.href = window.location.origin + currentPath.slice(3)
+      } else { // 当前为英文站-跳转至中文站
+        window.location.href = window.location.origin + '/cn' + currentPath
+      }
+    }
+  })
 });

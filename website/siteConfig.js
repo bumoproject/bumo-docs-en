@@ -45,7 +45,7 @@ const siteConfig = {
   headerLinks: [
     {doc: 'introduction_to_bumo', label: 'Docs'},
     { href: "https://github.com/bumoproject/bumo", label: "GitHub", target: "_blank" },
-    { href: "https://docs.bumo.io/cn/", label: "中文", target: "_self" },
+    { href: "javascript:(0);", label: "中文", target: "_self" },
     { languages: true },
     { search: true }
   ],
