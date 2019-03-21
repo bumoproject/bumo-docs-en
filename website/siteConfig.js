@@ -85,10 +85,10 @@ const siteConfig = {
     // Highlight.js theme to use for syntax highlighting in code blocks.
     theme: 'github',
   },
-  //algolia: {
-  //  apiKey: '0f9f28b9ab9efae89810921a351753b5',
-  //  indexName: 'github',
-  //},
+  algolia: {
+   apiKey: 'd4c9fe4edd1bc00c3fab7c201e7330ee',
+   indexName: 'bumo',
+  },
   // Add custom scripts here that would be placed in <script> tags.
   scripts: ['https://buttons.github.io/buttons.js'],
 
