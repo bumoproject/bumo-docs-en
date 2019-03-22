@@ -90,21 +90,21 @@ For example: transferring 500000000000 DT tokens to the destination account `buQ
 
 - Format in json
 
-```JSON
-    {
-      "type": 3,
-      "pay_asset": {
-        "dest_address": "buQaHVCwXj9ERtFznDnAuaQgXrwj2J7iViVK",
-        "asset": {
-          "key": {
-            "issuer": "buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD",
-            "code": "DT"
-          },
-          "amount": 500000000000
+    ```JSON
+        {
+          "type": 3,
+          "pay_asset": {
+            "dest_address": "buQaHVCwXj9ERtFznDnAuaQgXrwj2J7iViVK",
+            "asset": {
+              "key": {
+                "issuer": "buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD",
+                "code": "DT"
+              },
+              "amount": 500000000000
+            }
+          }
         }
-      }
-    }
-```
+    ```
  After the transfer, the destination account has (**amount**) DT tokens.
 
  **Attention**: If the destination account is not activated, the transaction of transferring tokens will fail.
@@ -131,37 +131,37 @@ HTTP GET /getAccountAssets?address=buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD
 
 - If the account has tokens, the following content will be returned:
 
-```json
-{
-    "error_code": 0,
-    "result": [
-        {
-            "amount": 469999999997,
-            "key": {
-                "code": "DT",
-                "issuer": "buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD"
+    ```json
+    {
+        "error_code": 0,
+        "result": [
+            {
+                "amount": 469999999997,
+                "key": {
+                    "code": "DT",
+                    "issuer": "buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD"
+                }
+            },
+            {
+                "amount": 1000000000000,
+                "key": {
+                    "code": "ABC",
+                    "issuer": "buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD"
+                }
             }
-        },
-        {
-            "amount": 1000000000000,
-            "key": {
-                "code": "ABC",
-                "issuer": "buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD"
-            }
-        }
-    ]
-}
+        ]
+    }
 
-```
+    ```
 
 - If the account does not have tokens, the following content will be returned:
 
-```json
-{
-   "error_code" : 0,
-   "result" : null
-}
-```
+    ```json
+    {
+       "error_code" : 0,
+       "result" : null
+    }
+    ```
 ### Querying Specified Metadata
 
 Querying specified metadata is to check the information about `metadata`, including `key`, `value` and `version`.
@@ -173,34 +173,34 @@ Querying specified metadata is to check the information about `metadata`, includ
 
 The following is the code of querying specified metadata:
 
-```http
-HTTP GET /getAccountMetaData?address=buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD&key=asset_property_DT
-```
+    ```http
+    HTTP GET /getAccountMetaData?address=buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD&key=asset_property_DT
+    ```
 
 - If the specified key has a value, the following content will be returned:
 
-```json
-{
-    "error_code": 0,
-    "result": {
-        "asset_property_DT": {
-            "key": "asset_property_DT",
-            "value": "{\"name\":\"DemonToken\",\"code\":\"DT\",\"totalSupply\":\"1000000000000\",\"decimals\":8,\"description\":\"This is hello Token\",\"icon\":\"iVBORw0KGgoAAAANSUhEUgAAAAE\",\"version\":\"1.0\"}",
-            "version": 4
+    ```json
+    {
+        "error_code": 0,
+        "result": {
+            "asset_property_DT": {
+                "key": "asset_property_DT",
+                "value": "{\"name\":\"DemonToken\",\"code\":\"DT\",\"totalSupply\":\"1000000000000\",\"decimals\":8,\"description\":\"This is hello Token\",\"icon\":\"iVBORw0KGgoAAAANSUhEUgAAAAE\",\"version\":\"1.0\"}",
+                "version": 4
+            }
         }
     }
-}
 
-```
+    ```
 
 - If the specified key does not have a value, the following content will be returned:
 
-```json
-{
-   "error_code" : 0,
-   "result" : null
-}
-```
+    ```json
+    {
+       "error_code" : 0,
+       "result" : null
+    }
+    ```
 
 
 

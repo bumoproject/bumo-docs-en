@@ -38,7 +38,7 @@ Address: *buQttWTBP6tVRo9jALUT3UqFzopuXKiogbed*
 
 Private key: *privby33VzSZySr7TbjHLoRgz9r2kpMyLMtXnebWUNQTiTuTj8kdhn4Y*
 
-<img src="/docs/Assets/accountaddressgeneration_1.jpg"
+<img src="/docs/assets/accountaddressgeneration_1.jpg"
      style= "margin-left: 20px">
 
 3. Click **Generator** to generate the address and private key of account B shown as the figure below:
@@ -47,7 +47,7 @@ Address: *buQtFLZgUH7Pu31X8SreKhxWsx4Y6HfaaY4F*
 
 Private key: *privbzvYJo6XR6JfQNobxpJjd6F5erzzEZbpGzMZENjppovFVe5JDMdh*  
 
-<img src="/docs/Assets/accountaddressgeneration_2.jpg"
+<img src="/docs/assets/accountaddressgeneration_2.jpg"
      style= "margin-left: 20px">
 
 **Note**: Click **Go Quick Wallet** to jump directly to the Quick Wallet page. 
@@ -57,12 +57,12 @@ Private key: *privbzvYJo6XR6JfQNobxpJjd6F5erzzEZbpGzMZENjppovFVe5JDMdh*
 You can obtain test BUs with `Faucet`. To obtain test BUs, you have to complete the following steps:
 1. Log in `Faucet`, shown as the figure below.
 
-<img src="/docs/Assets/acquiretestbu_1.jpg"
+<img src="/docs/assets/acquiretestbu_1.jpg"
      style= "margin-left: 20px">
 
 2. Enter the address of account A at the **Account Address** field, and click **Confirm**. Then a success message of sending the test BUs to account A is displayed, shown as the figure below. Now account A has 100 BUs. Minutes later when you make a quest to obtain BUs for account A, account A has 200 test BUs.
 
-<img src="/docs/Assets/acquiretestbu_2.jpg"
+<img src="/docs/assets/acquiretestbu_2.jpg"
      style= "margin-left: 20px">
 
 ### Transferring BUs
@@ -71,7 +71,7 @@ You can follow the steps below to transfer 50 test BUs from account A to account
 1. Log in `Quick Wallet`.
 2. Enter the private key of account A to log in and you can see the balance of account A is 200 BUs. The transaction detail is displayed at the bottom of the page, shown as the figure below.
 
-<img src="/docs/Assets/transferbu_1.jpg"
+<img src="/docs/assets/transferbu_1.jpg"
      style= "margin-left: 20px">  
 
 
@@ -89,13 +89,13 @@ The transaction detail is shown in the following table:
 4. Enter the transfer amount at the **Amount** field. We enter *50*, which means that we transfer *50* BUs to account B.
 5. Click **Send** to transfer. If the transfer is successful, account A will display the balance of 149.99754 BUs, and the detail is displayed at the bottom of the page, shown as the figure below.
 
-<img src="/docs/Assets/transferbu_2.jpg"
+<img src="/docs/assets/transferbu_2.jpg"
      style= "margin-left: 20px">  
 
 ### Checking the Transfer Result
 
 Log in `Quick Wallet` by entering the private key of account B. Now you can see the balance of account B is 50 BUs, and the detail is displayed at the bottom, shown as the figure below.
 
-<img src="/docs/Assets/checktransfer
+<img src="/docs/assets/checktransfer
 .jpg"
      style= "margin-left: 20px">  

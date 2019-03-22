@@ -86,8 +86,11 @@ const siteConfig = {
     theme: 'github',
   },
   algolia: {
-   apiKey: 'd4c9fe4edd1bc00c3fab7c201e7330ee',
-   indexName: 'bumo',
+    apiKey: 'd4c9fe4edd1bc00c3fab7c201e7330ee',
+    indexName: 'bumo',
+    algoliaOptions: {
+      facetFilters: ['en', 'version:VERSION'],
+    }
   },
   // Add custom scripts here that would be placed in <script> tags.
   scripts: ['https://buttons.github.io/buttons.js'],

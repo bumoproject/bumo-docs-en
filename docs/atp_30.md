@@ -56,20 +56,30 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
 
 #### issue
 
-- Issue new tokens.
-- The entry function `main`.
+- Description
+
+  Issuing new tokens.
+
+- Entry function
+
+  `main`
+
 - The parameters are in json format.
 
-```json
-{
-    "method":"issue",
-    "params": {
-        "description": "demo"
+    ```json
+    {
+        "method":"issue",
+        "params": {
+            "description": "demo"
+        }
     }
-}
-```
+    ```
 
-description: The description of the token.
+- The json parameters
+
+  | Parameter   | Description                   |
+  | ----------- | ----------------------------- |
+  | description | The description of the token. |
 
 - Function
 
@@ -83,30 +93,35 @@ description: The description of the token.
 
 - Event:
 
-```javascript
-  tlog('issue', sender, tokenId, description);
-```
+    ```javascript
+      tlog('issue', sender, tokenId, description);
+    ```
 
-topic: The function name, here is 'issue'.
+    topic: The function name, here is 'issue'.
 
-sender: The account address to call the contract.
+    sender: The account address to call the contract.
 
-tokenID: The tokenID transferred.
+    tokenID: The tokenID transferred.
 
-description: The description for the token.
+    description: The description for the token.
 
 #### totalSupply
 
-- Return the total number of tokens issued. 
-- The entry function `query`. 
+- Description
+
+  Returning the total number of tokens issued. 
+
+- Entry function
+
+  `query`
+
 - The parameter is in json format.
 
-
-```json
-{
-    "method":"totalSupply"
-}
-```
+  ```json 
+  {
+      "method":"totalSupply"
+  }
+  ```
 
 - Function:
 
@@ -116,34 +131,43 @@ description: The description for the token.
 
 - Return value:
 
-```json
-{
-    "result":{
-        "type": "string",
-        "value": {
-            "totalSupply": "2"
+    ```json
+    {
+        "result":{
+            "type": "string",
+            "value": {
+                "totalSupply": "2"
+            }
         }
-    }
-} 
-```
+    } 
+    ```
 
 #### balanceOf
 
-- Return the sum of tokens for the specified account. 
-- The entry function `query`. 
+- Description
+
+  Returning the sum of tokens for the specified account. 
+
+- Entry function
+
+     `query`
+
 - The parameter is in json format.
 
-
-```json
-{
-    "method":"balanceOf",
-    "params":{
-        "address":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj"
+    ```json
+    {
+        "method":"balanceOf",
+        "params":{
+            "address":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj"
+        }
     }
-}
-```
+    ```
 
-address: The account address.
+- The json parameters
+
+  | Parameter | Description          |
+  | --------- | -------------------- |
+  | address   | The account address. |
 
 - Function:
 
@@ -153,31 +177,43 @@ address: The account address.
 
 - Return value: The total tokens for the specified address.
 
-```json
-{
-    "result":{
-        "type": "number",
-        "value": {
-            "count": 1
+    ```json
+    {
+        "result":{
+            "type": "number",
+            "value": {
+                "count": 1
+            }
         }
-    }
-} 
-```
+    } 
+    ```
 
 #### ownerOf
 
-- Return the owner of the token.
-- The entry function `query`. 
+- Description
+
+    Returning the owner of the token.
+
+- Entry function
+
+     `query`
+
 - The parameters are in json format.
 
-```json
-{
-    "method":"ownerOf",
-    "params": {
-        "tokenId": 1
+    ```json
+    {
+        "method":"ownerOf",
+        "params": {
+            "tokenId": 1
+        }
     }
-}
-```
+    ```
+
+- The json paremeters
+
+  | Parameter | Description   |
+  | --------- | ------------- |
+  | tokenId   | The token id. |
 
 - Function:
 
@@ -187,35 +223,45 @@ address: The account address.
 
 - Return value:
 
-```json
-{
-    "result":{
-        "type": "string",
-        "value": {
-            "owner": "buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj"
+    ```json
+    {
+        "result":{
+            "type": "string",
+            "value": {
+                "owner": "buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj"
+            }
         }
-    }
-} 
-```
+    } 
+    ```
 
 #### approve
 
-- Authorize the account `spender` to transfer the token with the specified TokenId from the transaction account `sender`. Only the owner of the token can call.
-- The entry function `main`.
+- Description
+
+    Authorize the account `spender` to transfer the token with the specified TokenId from the transaction account `sender`. Only the owner of the token can call.
+
+- Entry function
+
+     `main`
+
 - The parameters are in json format.
 
-```json
-{
-    "method":"approve",
-    "params":{
-        "spender":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
-        "tokenId": 2
+    ```json
+    {
+        "method":"approve",
+        "params":{
+            "spender":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
+            "tokenId": 2
+        }
     }
-}
-```
+    ```
 
-spender: The account address.
-tokenId: The identifier of the token.
+- The json parameters
+
+  | Parameter | Description                  |
+  | --------- | ---------------------------- |
+  | spender   | The account address.         |
+  | tokenId   | The identifier of the token. |
 
 - Function
 
@@ -229,36 +275,46 @@ tokenId: The identifier of the token.
 
 - Event:
 
-```javascript
-  tlog('approve', sender, spender, tokenId);
-```
+    ```javascript
+      tlog('approve', sender, spender, tokenId);
+    ```
 
-Topic: The method name, here is 'approve'.
+    Topic: The method name, here is 'approve'.
 
-Sender: The account address to call the contract.
+    Sender: The account address to call the contract.
 
-Spender: The authorized account address.
+    Spender: The authorized account address.
 
-tokenId: The tokenId transferred.
+    tokenId: The tokenId transferred.
 
 #### transfer
 
-- Transfer the token with the specified tokenId to the destination address (to), and the log event must be triggered. Only the owner of the token can call.
-- The entry function `main`. 
+- Description
+
+    Transfer the token with the specified tokenId to the destination address (to), and the log event must be triggered. Only the owner of the token can call.
+
+- Entry function
+
+     `main`
+
 - The parameters are in json format.
 
-```json
-{
-    "method":"transfer",
-    "params":{
-        "to":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
-        "tokenId": 0
+    ```json
+    {
+        "method":"transfer",
+        "params":{
+            "to":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
+            "tokenId": 0
+        }
     }
-}
-```
+    ```
 
-to: The destination account address.
-tokenId: The identifier of the token.
+- The json parameters
+
+  | Parameter | Description                      |
+  | --------- | -------------------------------- |
+  | to        | The destination account address. |
+  | tokenId   | The identifier of the token.     |
 
 - Function
 
@@ -272,40 +328,49 @@ tokenId: The identifier of the token.
 
 - Event:
 
-  ```javascript
-  tlog('transfer', sender, to, tokenId);
-  ```
+    ```javascript
+    tlog('transfer', sender, to, tokenId);
+    ```
 
-topic: The method name, here is 'transfer'.
+    topic: The method name, here is 'transfer'.
 
-sender: The account address to call the contract.
+    sender: The account address to call the contract.
 
-to: The destination account address.
+    to: The destination account address.
 
-tokenId: The tokenId transferred.
+    tokenId: The tokenId transferred.
 
 
 #### transferFrom
 
-- The token event must be triggered when the token with tokenId is sent to the destination address(`to`) from the source account(`from`).  Prior to `transferFrom`, `from` must authorize the originator of the current transaction (ie, approve operation). Only the authorized address of the token can call.
+- Description
 
-- The entry function `main`. 
+    The token event must be triggered when the token with tokenId is sent to the destination address(`to`) from the source account(`from`).  Prior to `transferFrom`, `from` must authorize the originator of the current transaction (ie, approve operation). Only the authorized address of the token can call.
+
+- Entry function
+
+     `main`
+
 - The parameters are in json format.
 
-```json
-{
-    "method":"transferFrom",
-    "params":{
-        "from":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
-        "to":"buQYH2VeL87svMuj2TdhgmoH9wSmcqrfBner",
-        "tokenId": 1
+    ```json
+    {
+        "method":"transferFrom",
+        "params":{
+            "from":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
+            "to":"buQYH2VeL87svMuj2TdhgmoH9wSmcqrfBner",
+            "tokenId": 1
+        }
     }
-}
-```
+    ```
 
-from：The source account address.
-to：The destination account address.
-tokenId：The identifier of the token.
+- The json parameters
+
+  | Parameter | Description                      |
+  | --------- | -------------------------------- |
+  | from      | The source account address.      |
+  | to        | The destination account address. |
+  | tokenId   | The identifier of the token.     |
 
 - Function
 
@@ -319,34 +384,46 @@ tokenId：The identifier of the token.
 
 - Event
 
-```javascript
-tlog('transferFrom', sender, from, to, tokenId);
-```
+    ```javascript
+    tlog('transferFrom', sender, from, to, tokenId);
+    ```
 
-topic: The method name, here is 'transferFrom'.
+    topic: The method name, here is 'transferFrom'.
 
-sender: The account address to call the contract.
+    sender: The account address to call the contract.
 
-from: The source account address.
+    from: The source account address.
 
-to: The destination account address.
+    to: The destination account address.
 
-tokenId: The tokenId transferred.
+    tokenId: The tokenId transferred.
 
 #### tokensOfOwner
 
-- Return all tokens of the owner.
-- The entry function `query`.
+- Description
+
+    Returning all tokens of the owner.
+
+- Entry function
+
+     `query`
+
 - The parameter is in json format.
 
-```json
-{
-    "method":"ownerOf",
-    "params": {
-        "owner": "buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj"
+    ```json
+    {
+        "method":"ownerOf",
+        "params": {
+            "owner": "buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj"
+        }
     }
-}
-```
+    ```
+
+- The json parameters
+
+  | Parameter | Description         |
+  | --------- | ------------------- |
+  | owner     | The owner of token. |
 
 - Function:
 
@@ -356,31 +433,43 @@ tokenId: The tokenId transferred.
 
 - Return value:
 
-```json
-{
-    "result":{
-        "type": "Array",
-        "value": {
-            "tokens": [0, 2]
+    ```json
+    {
+        "result":{
+            "type": "Array",
+            "value": {
+                "tokens": [0, 2]
+            }
         }
-    }
-} 
-```
+    } 
+    ```
 
 #### tokenInfo
 
-- Return basic information of the token.
-- The entry function `query`.
+- Description
+
+    Returning basic information of the token.
+
+- Entry function 
+
+    `query`
+
 - The parameter is in json format.
 
-```json
-{
-    "method":"tokenInfo",
-    "params":{
-        "tokenId": 0
+    ```json
+    {
+        "method":"tokenInfo",
+        "params":{
+            "tokenId": 0
+        }
     }
-}
-```
+    ```
+
+- The json parameters
+
+  | Parameter | Description   |
+  | --------- | ------------- |
+  | tokenId   | The token id. |
 
 - Function:
 
@@ -390,33 +479,39 @@ tokenId: The tokenId transferred.
 
 - Return value:
 
-```json
-{
-    "result":{
-        "type": "string",
-        "value": {
-            "tokenInfo": {
-                "title": "demo",
-                "author": "buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
-                "info": "demo",
-                "creationTime": "135665626565612"
+    ```json
+    {
+        "result":{
+            "type": "string",
+            "value": {
+                "tokenInfo": {
+                    "title": "demo",
+                    "author": "buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
+                    "info": "demo",
+                    "creationTime": "135665626565612"
+                }
             }
         }
-    }
-} 
-```
+    } 
+    ```
 
 #### name
 
-- Return the collection name of the tokens contained in the current contract.
-- The entry function `query`.
+- Description
+
+    Returning the collection name of the tokens contained in the current contract.
+
+- Entry function
+
+     `query`
+
 - The parameter is in json format.
 
-```json
-{
-    "method":"name"
-}
-```
+    ```json
+    {
+        "method":"name"
+    }
+    ```
 
 - Function:
 
@@ -426,28 +521,34 @@ tokenId: The tokenId transferred.
 
 - Return value:
 
-```json
-{
-    "result":{
-        "type": "string",
-        "value": {
-            "name": "demo"
+    ```json
+    {
+        "result":{
+            "type": "string",
+            "value": {
+                "name": "demo"
+            }
         }
-    }
-} 
-```
+    } 
+    ```
 
 #### symbol
 
-- Return the collection symbol of the tokens contained in the current contract.
-- The entry function `query`.
+- Description
+
+    Returning the collection symbol of the tokens contained in the current contract.
+
+- Entry function
+
+     `query`
+
 - The parameter is in json format.
 
-```json
-{
-    "method":"symbol"
-}
-```
+    ```json
+    {
+        "method":"symbol"
+    }
+    ```
 
 - Function:
 
@@ -457,41 +558,40 @@ tokenId: The tokenId transferred.
 
 - Return value:
 
-```json
-{
-    "result":{
-        "type": "string",
-        "value": {
-            "symbol": "DM"
+    ```json
+    {
+        "result":{
+            "type": "string",
+            "value": {
+                "symbol": "DM"
+            }
         }
-    }
-} 
-```
+    } 
+    ```
 
 ## Contract Entry
 
 #### init
 
-- When the contract is created, the entry function `init` is triggered which is responsible for the initialization of the contract creation.
+- When the contract is created, Entry function `init` is triggered which is responsible for the initialization of the contract creation.
 
 - Function
 
-```js
-function init(input_str){
-}
-
-```
+    ```js
+    function init(input_str){
+    }
+    ```
 
 - The parameters are in json format.
 
-```json
-{
-    "params":{
-        "name":"DemoToken",
-        "symbol":"DT"
+    ```json
+    {
+        "params":{
+            "name":"DemoToken",
+            "symbol":"DT"
+        }
     }
-}
-```
+    ```
 
 - Return value
 
@@ -503,67 +603,66 @@ function init(input_str){
 
 - Function body
 
-```javascript
-function main(arg) {
-  const data = JSON.parse(arg);
-  const operation = data.operation || '';
-  const param = data.param || {};
+    ```javascript
+    function main(arg) {
+      const data = JSON.parse(arg);
+      const operation = data.operation || '';
+      const param = data.param || {};
 
-  switch (operation) {
-    case 'issue':
-      issue(param);
-      break;
-    case 'approve':
-      approve(param.to, param.tokenId);
-      break;
-    case 'transfer':
-      transfer(param.to, param.tokenId);
-      break;
-    case 'transferFrom':
-      transferFrom(param.from, param.to, param.tokenId);
-      break;
-    default:
-      throw '<Main interface passes an invalid operation type>';
-  }
-}
-```
+      switch (operation) {
+        case 'issue':
+          issue(param);
+          break;
+        case 'approve':
+          approve(param.to, param.tokenId);
+          break;
+        case 'transfer':
+          transfer(param.to, param.tokenId);
+          break;
+        case 'transferFrom':
+          transferFrom(param.from, param.to, param.tokenId);
+          break;
+        default:
+          throw '<Main interface passes an invalid operation type>';
+      }
+    }
+    ```
 
 #### query
 
 - It is used for data querying, which includes the [totalSupply](#totalsupply)、[balanceOf](#balanceof)、[ownerOf](#ownerof)、[tokensOfOwner](#tokensofowner)、[tokenInfo](#tokeninfo)、[name](#name)、[symbol](#symbol) functions.
 - Function body.
 
-
-```javascript
-function query(arg) {
-    let result = {};
-    let input  = JSON.parse(input_str);
-
-    if(input.method === 'name'){
-        result.name = name();
+    ```javascript
+    function query(arg) {
+        let result = {};
+        let input  = JSON.parse(input_str);
+    
+        if(input.method === 'name'){
+            result.name = name();
+        }
+        else if(input.method === 'symbol'){
+            result = symbol();
+        }
+        else if(input.method === 'tokenInfo'){
+            result = tokenInfo(input.tokenId);
+        }
+        else if(input.method === 'totalSupply'){
+            result.totalSupply = totalSupply();
+        }
+        else if(input.method === 'balanceOf'){
+            result.balance = balanceOf(input.owner);
+        }
+        else if(input.method === 'ownerOf'){
+            result.owner = ownerOf(input.tokenId);
+        }
+        else if(input.method === 'tokensOfOwner'){
+            result.tokens = tokensOfOwner(input.owner);
+        }
+        else{
+            throw '<Query interface passes an invalid operation type>';
+        }
+        return JSON.stringify(result);
     }
-    else if(input.method === 'symbol'){
-        result = symbol();
-    }
-    else if(input.method === 'tokenInfo'){
-        result = tokenInfo(input.tokenId);
-    }
-    else if(input.method === 'totalSupply'){
-        result.totalSupply = totalSupply();
-    }
-    else if(input.method === 'balanceOf'){
-        result.balance = balanceOf(input.owner);
-    }
-    else if(input.method === 'ownerOf'){
-        result.owner = ownerOf(input.tokenId);
-    }
-    else if(input.method === 'tokensOfOwner'){
-        result.tokens = tokensOfOwner(input.owner);
-    }
-    else{
-       	throw '<Query interface passes an invalid operation type>';
-    }
-    return JSON.stringify(result);
-}
-```
+    ```
 

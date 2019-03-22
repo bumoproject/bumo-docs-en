@@ -22,5 +22,5 @@ BUMO is focusing on the next generation platform of public Blockchain infrastruc
 
 ## Architecture
 
-<img src="/docs/Assets/arch.png" style= "margin-left: 20px">
+<img src="/docs/assets/arch.png" style= "margin-left: 20px">
 

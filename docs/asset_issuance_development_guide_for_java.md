@@ -305,12 +305,12 @@ To check whether the transaction is executed successfully, you have to perform o
 
 You can query the result from the BUMO Blockchain browser by the hash value you obtained above. The [main network](https://explorer.bumo.io)  and the [test network](http://explorer.bumotest.io)：
 
-<img src="/docs/Assets/BUBrowser.png"
+<img src="/docs/assets/BUBrowser.png"
      style= "margin-left: 20px">
 
 The result returned is as follows:
 
-<img src="/docs/Assets/execution_result_of_transaction.png"
+<img src="/docs/assets/execution_result_of_transaction.png"
      style= "margin-left: 20px">
 
 #### Querying by Calling the Interface

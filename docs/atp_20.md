@@ -55,67 +55,88 @@ The functions provided in BUMO ATP 20 Protocol include [transfer](#transfer), [t
 
 ### transfer
 
-- It is used to transfer (*value*) tokens to the destination address (*to*), and the *log* event must be triggered. An exception will be thrown if the source account does not have enough tokens.
-- Its entry function is `main`.
+- Function
+
+    It is used to transfer (*value*) tokens to the destination address (*to*), and the *log* event must be triggered. An exception will be thrown if the source account does not have enough tokens.
+
+- Entry function 
+
+    `main`
+
 - The parameters are in json format.
-```json
-{
-    "method":"transfer",
-    "params":{
-        "to":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
-        "value":"1000000"
+    ```json
+    {
+        "method":"transfer",
+        "params":{
+            "to":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
+            "value":"1000000"
+        }
     }
-}
-```
-to: The address of the destination account.
-value: The amount of tokens allowed to be transferred (string).
+    ```
+
+- The json parameters
+
+    | Parameter | Description                                              |
+    | --------- | -------------------------------------------------------- |
+    | to        | The address of the destination account.                  |
+    | value     | The amount of tokens allowed to be transferred (string). |
 
 - Function call
-```js
+    ```js
     function transfer(to, value);
-```
+    ```
 
 - Return value
 
   Return `true` or throw an exception.
 
 - event：
-  ``` js
-  tlog('transfer', sender, to, value);
-  ```
+    ``` js
+    tlog('transfer', sender, to, value);
+    ```
 
-topic: The function name, here is 'transfer'.
+    topic: The function name, here is 'transfer'.
 
-sender: The account address to call the contract.
+    sender: The account address to call the contract.
 
-to: The address of the destination account.
+    to: The address of the destination account.
 
-value: The amount of tokens allowed to be transferred (string).
+    value: The amount of tokens allowed to be transferred (string).
 
 ### approve
 
-- Authorized account `spender` can transfer `value` token from the transaction sender account.
-- Its entry function is `main`.
+- Function
+
+    Authorized account `spender` can transfer `value` token from the transaction sender account.
+
+- Entry function
+
+    `main`
+
 - Parameters are in json format.
 
-```json
-{
-    "method":"approve",
-    "params":{
-        "spender":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
-        "value":"1000000"
+    ```json
+    {
+        "method":"approve",
+        "params":{
+            "spender":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
+            "value":"1000000"
+        }
     }
-}
-```
+    ```
 
-spender:  The account address of the spender.
-value:  The amount of tokens an account is authorized to transfer (string).
+- The json parameters
+
+  | Parameter | Description                                                  |
+  | --------- | ------------------------------------------------------------ |
+  | spender   | The account address of the spender.                          |
+  | value     | The amount of tokens an account is authorized to transfer (string). |
 
 - Function call
 
-```js
-function approve(spender, value)
-```
+    ```js
+    function approve(spender, value)
+    ```
 
 - Return value
 
@@ -123,65 +144,82 @@ function approve(spender, value)
 
 - Event：
 
-``` javascript
-  tlog('approve', sender, spender, value);
-```
+    ``` javascript
+      tlog('approve', sender, spender, value);
+    ```
 
-topic: The function name，here is 'approve'.
+    topic: The function name，here is 'approve'.
 
-sender:  The account address to call the contract.
+    sender:  The account address to call the contract.
 
-spender: The account address of the spender.
+    spender: The account address of the spender.
 
-value: The amount of tokens an account is authorized to transfer (string).
+    value: The amount of tokens an account is authorized to transfer (string).
 
 ### transferFrom
 
-- It  is used to transfer (*value*) tokens from the source address (*from*) to the destination address (*to*), and the `log` event must be triggered. Before the `transferFrom` function is called, the source address (*from*) must have authorized the destination address (*to*) by calling the `approve` function for transferring a certain amount of tokens. If the amount of tokens in the source address (*from*) is insufficient or if the source address (*from*) has not authorized the destination address (*to*) for transferring enough amount of tokens, then the `transferFrom` function will throw an exception. 
-- Its entry function is `main`.
-- The parameters are in json format.
-  ```json
-  {
-      "method":"transferFrom",
-      "params":{
-          "from":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
-          "to":"buQYH2VeL87svMuj2TdhgmoH9wSmcqrfBner",
-          "value":"1000000"
-      }
-  }
-  ```
+- Function
 
-  from: The source address.
-  to: The destination address.
-  value: The amount of tokens allowed to be transferred (string).
+    It  is used to transfer (*value*) tokens from the source address (*from*) to the destination address (*to*), and the `log` event must be triggered. Before the `transferFrom` function is called, the source address (*from*) must have authorized the destination address (*to*) by calling the `approve` function for transferring a certain amount of tokens. If the amount of tokens in the source address (*from*) is insufficient or if the source address (*from*) has not authorized the destination address (*to*) for transferring enough amount of tokens, then the `transferFrom` function will throw an exception. 
+
+- Entry function
+
+    `main`
+
+- The parameters are in json format.
+    ```json
+    {
+    "method":"transferFrom",
+    "params":{
+    "from":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
+    "to":"buQYH2VeL87svMuj2TdhgmoH9wSmcqrfBner",
+    "value":"1000000"
+    }
+    }
+    ```
+
+- The json parameters
+
+  | Parameter | Description                                              |
+  | --------- | -------------------------------------------------------- |
+  | from      | The source address.                                      |
+  | to        | The destination address.                                 |
+  | value     | The amount of tokens allowed to be transferred (string). |
 
 - Function call
-```js
-function transferFrom(from,to,value)
-```
+    ```js
+    function transferFrom(from,to,value)
+    ```
+
 - Return value
 
   Return `true` or throw an exception.
 
 - Event：
-  ``` javascript
-  tlog('transferFrom', sender, from, to, value);
-  ```
+    ``` javascript
+    tlog('transferFrom', sender, from, to, value);
+    ```
 
-topic: Function name, here is `transferFrom`.
+    topic: Function name, here is `transferFrom`.
 
-sender: The acount address to call the contract.
+    sender: The acount address to call the contract.
 
-from: The source address.
+    from: The source address.
 
-to: The destination address.
+    to: The destination address.
 
-value: The amount of tokens allowed to be transferred (string).
+    value: The amount of tokens allowed to be transferred (string).
 
 ### balanceOf
 
-- It is used to check the balance of the owner account.
-- Its entry function is `query`.
+- Function
+
+  It is used to check the balance of the owner account.
+
+- Entry function
+
+  `query`
+
 - The parameters are in json format.
   ```json
   {
@@ -191,7 +229,12 @@ value: The amount of tokens allowed to be transferred (string).
     }
   }
   ```
-  address: Account address
+
+- The json parameters
+
+  | Parameter | Description     |
+  | --------- | --------------- |
+  | address   | Account address |
 
 - Function call
 
@@ -202,18 +245,24 @@ value: The amount of tokens allowed to be transferred (string).
 - Return value
 
   The balance of specified address, such as follows: 
-```json
+    ```json
   {
-    "result":{
-        "balanceOf":"100000000000000",
-    }
+      "result":{
+          "balanceOf":"100000000000000",
+      }
   } 
-```
+    ```
 
 ### tokenInfo
 
-- It is used to get the basic information of the token.
-- Its entry function is `query`.
+- Function
+
+    It is used to get the basic information of the token.
+
+- Entry function 
+
+    `query`
+
 - The parameters are in json format.
   ```json
   {
@@ -228,27 +277,33 @@ value: The amount of tokens allowed to be transferred (string).
   ```
 
 - Return value
-```json
-  {
-    "result":{
-        "type": "string",
-        "value": {
-            "tokenInfo": {
-                "name": "DemoToken",
-                "symbol": "DT",
-                "decimals": 8,
-                "totalSupply": "5000000000000",
-                "version": "1.0"
+    ```json
+      {
+        "result":{
+            "type": "string",
+            "value": {
+                "tokenInfo": {
+                    "name": "DemoToken",
+                    "symbol": "DT",
+                    "decimals": 8,
+                    "totalSupply": "5000000000000",
+                    "version": "1.0"
+                }
             }
         }
-    }
-  } 
-```
+      } 
+    ```
 
 ### allowance
 
-- It is used to check the amount of tokens still allowed to be transferred from the token owner.
-- Its entry function is `query`.
+- Function
+
+    It is used to check the amount of tokens still allowed to be transferred from the token owner.
+
+- Entry function
+
+    `query`
+
 - The parameters are in json format.
   ```json
   {
@@ -259,21 +314,26 @@ value: The amount of tokens allowed to be transferred (string).
     }
   }
   ```
-  owner: The account address of the token owner.
-  spender: The account address of the spender.
+
+- The json parameters
+
+    | Parameter | Description                             |
+    | --------- | --------------------------------------- |
+    | owner     | The account address of the token owner. |
+    | spender   | The account address of the spender.     |
 
 - Function call
 
   function allowance(owner, spender)
 
 - Return value
-```json
-  {
-    "result":{
-        "allowance":"1000000",
-    }
-  } 
-```
+    ```json
+      {
+        "result":{
+            "allowance":"1000000",
+        }
+      } 
+    ```
 
 ## Contract Entry Function
 
@@ -282,24 +342,24 @@ value: The amount of tokens allowed to be transferred (string).
 - When the contract is created, the contract `init` entry function is triggered, which is responsible for the initialization of the contract creation
 - Function call
 
-```js
-function init(input_str){
-}
-```
+    ```js
+    function init(input_str){
+    }
+    ```
 
 - Parameters are in json format
 
-```json
-{
-    "params":{
-        "name":"DemoToken",
-        "symbol":"DT",
-        "decimals":8,
-        "totalSupply":"5000000000000",
-        "version": "1.0"
+    ```json
+    {
+        "params":{
+            "name":"DemoToken",
+            "symbol":"DT",
+            "decimals":8,
+            "totalSupply":"5000000000000",
+            "version": "1.0"
+        }
     }
-}
-```
+    ```
 - Return value
 
   Return `true` or throw an exception.
@@ -309,45 +369,45 @@ function init(input_str){
 - It is used for data writing, which includes the [transfer](#transfer), [transferFrom](#transferfrom) and [approve](#approve) functions.
 - Function body.
 
-```js
-function main(input_str){
-    let input = JSON.parse(input_str);
+    ```js
+    function main(input_str){
+        let input = JSON.parse(input_str);
 
-    if(input.method === 'transfer'){
-        transfer(input.params.to, input.params.value);
+        if(input.method === 'transfer'){
+            transfer(input.params.to, input.params.value);
+        }
+        else if(input.method === 'transferFrom'){
+            transferFrom(input.params.from, input.params.to, input.params.value);
+        }
+        else if(input.method === 'approve'){
+            approve(input.params.spender, input.params.value);
+        }
+        else{
+            throw '<Main interface passes an invalid operation type>';
+        }
     }
-    else if(input.method === 'transferFrom'){
-        transferFrom(input.params.from, input.params.to, input.params.value);
-    }
-    else if(input.method === 'approve'){
-        approve(input.params.spender, input.params.value);
-    }
-    else{
-        throw '<Main interface passes an invalid operation type>';
-    }
-}
-```
+    ```
 ### query
 
 - It is used for data querying, which includes the [tokenInfo](#tokeninfo), [allowance](#allowance) functions.
 - Function body.
 
-```js
-function query(input_str){
-    globalAttribute = JSON.parse(storageLoad(globalAttributeKey));
+    ```js
+    function query(input_str){
+        globalAttribute = JSON.parse(storageLoad(globalAttributeKey));
 
-    let result = {};
-    let input  = JSON.parse(input_str);
+        let result = {};
+        let input  = JSON.parse(input_str);
 
-    if(input.method === 'tokenInfo'){
-        result.tokenInfo = globalAttribute;
+        if(input.method === 'tokenInfo'){
+            result.tokenInfo = globalAttribute;
+        }
+        else if(input.method === 'allowance'){
+            result.allowance = allowance(input.params.owner, input.params.spender);
+        }
+        else{
+            throw '<Query interface passes an invalid operation type>';
+        }
+        return JSON.stringify(result);
     }
-    else if(input.method === 'allowance'){
-        result.allowance = allowance(input.params.owner, input.params.spender);
-    }
-    else{
-       	throw '<Query interface passes an invalid operation type>';
-    }
-    return JSON.stringify(result);
-}
-```
+    ```

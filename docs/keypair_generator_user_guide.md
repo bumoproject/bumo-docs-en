@@ -8,12 +8,12 @@ Keypair Generator is a web-based address and private key generator, through whic
 
 The following figure shows Keypair Generator. Click the **Simplified Chinese/English** button at the top right to switch between **Chinese** and **English**. Click the **Go Quick Wallet** button to jump to the Quick Wallet page. 
 
-<img src="/docs/Assets/keypairgenerator_1.png"
+<img src="/docs/assets/keypairgenerator_1.png"
      style= "margin-left: 20px">
  
 Click the **Generator** button to directly generate a random account address and private key. 
 
-<img src="/docs/Assets/keypairgenerator_2.png"
+<img src="/docs/assets/keypairgenerator_2.png"
      style= "margin-left: 20px">
  
 

@@ -21,7 +21,7 @@ transaction_blob by yourself.
 The following diagram illustrates how the private, public keys and
 address are generated. 
 
- <img src="/docs/Assets/schematic.png" style= "margin-left: 20px">
+ <img src="/docs/assets/schematic.png" style= "margin-left: 20px">
 
 
 

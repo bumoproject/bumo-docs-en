@@ -40,7 +40,7 @@ BuChain provides http API interfaces. You can find the `"webserver"` object in t
 The transaction process includes five steps:
 1. Assemble the transaction object `Transaction` according to your requiremment. Different transactions have different data structures. See [Transactions](#transactions) for details.
 2. The transaction object is serialized into a byte stream `transaction_blob`. See [getTransactionBlob](#gettransactionblob) for details.
-3. Sign the `transaction_blob` with the private key `skey` to get `sign_data`, and the public key of `skey` is `pkey`. See [Keypair Guide](keypair_guide) for details.
+3. Sign the `transaction_blob` with the private key `skey` to get `sign_data`, and the public key of `skey` is `pkey`. See [Keypair Guide](../keypair_guide) for details.
 4. Submit the transaction. See [submitTransaction](#submittransaction) for details.
 5. According to the query of the transaction by hash to determine whether the transaction is successful. See [getTransactionHistory](#gettransactionhistory) for details.
 
@@ -1560,7 +1560,7 @@ Return the following content:
 
 ### Signing Signatures
 
- Signing signatures is to sign the value of `transaction_blob` in [getTransactionBlob](#gettransactionblob) with the private key of `buQoP2eRymAcUm3uvWgQ8RnjtrSnXBXfAzsV` and generate a public key. For details, please refer to [keypair](https://github.com/bumoproject/bumo/blob/master/docs/keypair_CN.md). 
+ Signing signatures is to sign the value of `transaction_blob` in [getTransactionBlob](#gettransactionblob) with the private key of `buQoP2eRymAcUm3uvWgQ8RnjtrSnXBXfAzsV` and generate a public key. For details, please refer to [keypair](../keypair_guide). 
  The resulting signature data is as follows:
 
 ```json

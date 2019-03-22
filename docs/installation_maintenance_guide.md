@@ -111,7 +111,7 @@ The source code of BUMO can be compiled after the dependencies are successfully 
   git clone https://github.com/bumoproject/bumo.git
 ```
 
-<img src="/docs/Assets/download_bumo_back2.png"
+<img src="/docs/assets/download_bumo_back2.png"
      style= "margin-left: 20px">
 
 
@@ -141,7 +141,7 @@ The source code of BUMO can be compiled after the dependencies are successfully 
   make
 ```
 
-<img src="/docs/Assets/compile_finished.png"
+<img src="/docs/assets/compile_finished.png"
      style= "margin-left: 20px">
 
 
@@ -164,7 +164,7 @@ The BUMO node can be installed after the compilation is finished. You must compl
   make install
 ```
 
-<img src="/docs/Assets/compile_installed.png"
+<img src="/docs/assets/compile_installed.png"
      style= "margin-left: 20px">
 
 
@@ -259,7 +259,7 @@ You must complete the following steps to modify the boot directory of bumo and b
   install_dir=/usr/local/buchain
 ```
 
-<img src="/docs/Assets/start_path.png"
+<img src="/docs/assets/start_path.png"
      style= "margin-left: 20px">
 
 **Note**: By default, the directory of `install_dir` is in the /usr/local/buchain directory; you can modify it according to the specific installation directory of bumo.
@@ -326,7 +326,7 @@ Setting up booting includes setting the startup level, adding startup commands, 
 ```
   /etc/init.d/bumod start
 ```
-<img src="/docs/Assets/add_start_command.png"
+<img src="/docs/assets/add_start_command.png"
      style= "margin-left: 20px">
 
 8. Press `Esc` to exit editing.
@@ -468,7 +468,7 @@ You must complete following steps to install Homebrew:
 ```   
   sudo git clone https://github.com/bumoproject/bumo.git
 ``` 
-<img src="/docs/Assets/add_start_command.png"
+<img src="/docs/assets/add_start_command.png"
      style= "margin-left: 20px">
 
 
@@ -959,7 +959,7 @@ You must stop the BUMO service before clearing the database. You must complete t
 ```
 **Note**: After the database is successfully cleared, you can see the information shown below.
 
-<img src="/docs/Assets/clear_database.png"
+<img src="/docs/assets/clear_database.png"
      style= "margin-left: 20px">
 
 **Creating a Hard Fork**
@@ -973,7 +973,7 @@ You must complete the following steps to create a hard fork.
 ```
 2. Enter `y` when prompted and then press `Enter`. The message shown below indicates the hard fork is created successfully.
 
-<img src="/docs/Assets/hard_fork_created.png"
+<img src="/docs/assets/hard_fork_created.png"
      style= "margin-left: 20px">
 
 

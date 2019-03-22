@@ -8,20 +8,20 @@ Faucet is a web-based application for you to get test BUs. You can get 100 test 
 
 1. Enter `Faucet`, shown as the following figure.
 
-<img src="/docs/Assets/faucet_1.jpg"
+<img src="/docs/assets/faucet_1.jpg"
      style= "margin-left: 20px">
 
 2. Enter the account address to get test BUs in the **Account Address** field, such as *buQttWTBP6tVRo9jALUT3UqFzopuXKiogbed*.
 
-<img src="/docs/Assets/faucet_2.jpg"
+<img src="/docs/assets/faucet_2.jpg"
      style= "margin-left: 20px">
 
 3. Click **Confirm** to get 100 test BUs.
 
-<img src="/docs/Assets/faucet_3.jpg"
+<img src="/docs/assets/faucet_3.jpg"
      style= "margin-left: 20px">
 
 **Attention**: If you make requests too frequently, the system will prompt you to try again later, shown as the following figure.
 
-<img src="/docs/Assets/faucet_4.jpg"
+<img src="/docs/assets/faucet_4.jpg"
      style= "margin-left: 20px">

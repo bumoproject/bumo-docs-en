@@ -9,9 +9,9 @@ original_id: smart_contract_development_guide_for_java
 
 The contract is a `JavaScript` code, with a standard (`ECMAScript` as specified in `ECMA-262`). The initialization function of the contract is `init`, and the entry function of the execution is the `main` function. You must have the definition of the `init` and `main` functions in the contract code. The input argument to this function is the string `input`, which is specified when the contract is called.
 
-- For details of the smart contract, refer to [Introduction to Smart Contract](introduction_to_smart_contract).
-- For details of the smart contract syntax, refer to [Syntax in Smart Contract](syntax-in-smart-contract).
-- For details of the smart contract editor, refer to[Introduction to Smart Contract Editor](introduction_to_smart_contract).
+- For details of the smart contract, refer to [Introduction to Smart Contract](../introduction_to_smart_contract).
+- For details of the smart contract syntax, refer to [Syntax in Smart Contract](../syntax-in-smart-contract).
+- For details of the smart contract editor, refer to[Introduction to Smart Contract Editor](../introduction_to_smart_contract).
 
 This section introduces three Java-based smart contract development scenarios, and all scenarios are associated. 
 
@@ -198,12 +198,12 @@ The specific execution process of this scenario includes [Validating Code Validi
 
 Open the online detection page: [bumo-jslint](#http://jslint.bumocdn.com/ ), copy the above smart contract code into the edit box, and click the **JSLint** button.
 If there is a warning that the background is red, there is a problem with the syntax, as shown below:
-<img src="/docs/Assets/warnings.png"
+<img src="/docs/assets/warnings.png"
      style= "margin-left: 20px">
 
 If there is no syntax problem, the following information is displayed.
 
-<img src="/docs/Assets/nowarnings.png"
+<img src="/docs/assets/nowarnings.png"
      style= "margin-left: 20px">
 
 
@@ -212,7 +212,7 @@ If there is no syntax problem, the following information is displayed.
 
 Open the online text compression page:  [tool from the third party](https://jsmin.51240.com/) , copy the verified smart contract code to the edit box on the page, then click the **Compress** button to copy the compressed string, as shown below:
 
-<img src="/docs/Assets/compressedString.png"
+<img src="/docs/assets/compressedString.png"
      style= "margin-left: 20px">
 
 ### Creating SDK Instances-1
@@ -465,12 +465,12 @@ The result returned after the transaction is sent only indicates whether the tra
 
 In the BUMO blockchain browser, query the above hash. [The main network](https://explorer.bumo.io) and [the test network](http://explorer.bumotest.io). The operation is as follows:
 
-<img src="/docs/Assets/BUExplorer1.png"
+<img src="/docs/assets/BUExplorer1.png"
      style= "margin-left: 20px">
 
 Result:
 
-<img src="/docs/Assets/BUResult1.png"
+<img src="/docs/assets/BUResult1.png"
      style= "margin-left: 20px">
 
 
@@ -766,12 +766,12 @@ The result returned after the transaction is sent only indicates whether the tra
 In the BUMO blockchain browser, query the above hash. [The main network](https://explorer.bumo.io) and [the test network](http://explorer.bumotest.io). The operation is as follows:
 
 
-<img src="/docs/Assets/BUExplorer2.png"
+<img src="/docs/assets/BUExplorer2.png"
      style= "margin-left: 20px">
 
 Result:
 
-<img src="/docs/Assets/BUResult2.png"
+<img src="/docs/assets/BUResult2.png"
      style= "margin-left: 20px">
 
 #### Querying by Calling the Interface-2

@@ -63,30 +63,30 @@ tlog(topic,args...);
 - The entry function is `main`.
 
 - Parameters are in json format:
-```json
-{  
+    ```json
+    {  
     'method':'makeOrder',
     'params':{
-        'own':{ //ATP token
-            'issuer':buQxxx',
-            'code':'EUR',
-            'value':10000,
-        },
-       'target':{ //BU
-           'value':1000,
-        },
-       'fee':5,
-       'expiration':'2018...'
+    'own':{ //ATP token
+    'issuer':buQxxx',
+    'code':'EUR',
+    'value':10000,
+    },
+    'target':{ //BU
+    'value':1000,
+    },
+    'fee':5,
+    'expiration':'2018...'
     }
-}
-```
-own: The token information exchanged by the order, including the issuer (the issuance address), code (the asset code), and value (number of redemption), where CTP tokens have no code, and BU tokens have no issuer and code.
+    }
+    ```
+    own: The token information exchanged by the order, including the issuer (the issuance address), code (the asset code), and value (number of redemption), where CTP tokens have no code, and BU tokens have no issuer and code.
 
-target: The token to which the order is redeemed, including the issuer, code, and value. The CTP token has no code and the BU has no issuer and code.
+    target: The token to which the order is redeemed, including the issuer, code, and value. The CTP token has no code and the BU has no issuer and code.
 
-fee: The service fee paid by the order posting account to the DEX contract to redeem the asset. If the tokens to be redeemed is not BU, the DEX contract will deduct from the redeemed BUs according to the redemption ratio.
+    fee: The service fee paid by the order posting account to the DEX contract to redeem the asset. If the tokens to be redeemed is not BU, the DEX contract will deduct from the redeemed BUs according to the redemption ratio.
 
-expiration: The due date of the order, the order is invalid after the date.
+    expiration: The due date of the order, the order is invalid after the date.
 - Function: Functions of `makeOrder`(own, target, fee, expiration).
 - Return value: Return `true` or throw an exception.
 
@@ -95,16 +95,16 @@ expiration: The due date of the order, the order is invalid after the date.
 - The account posting the order cancels it.
 - The entry function main.
 
-The parameter is in json format:
-```json
-{
+- The parameter is in json format:
+    ```json
+    {
     'method':'cancelOrder',
     'params':{
-        'order':'order_1'
+    'order':'order_1'
     }
-}
-```
-order: The sequence number of the order cancelled.
+    }
+    ```
+    order: The sequence number of the order cancelled.
 
 - Function: function cancelOrder(order)
 - Return value: return `true` or throw an exception
@@ -117,20 +117,20 @@ order: The sequence number of the order cancelled.
 - If the redemption tokens in the order are BUs, you have to trigger it with `payCoin` when filling the order, and the amount to be transferred must be the amount of BUs to redeemed plus service fee.
 - The entry function is `main`.
 
-The parameters are in json format:
-```json
-{
-    'method':'takeOrder',
-    'params':{
-      'order':'order_1',
-      'fee':5,
+- The parameters are in json format:
+    ```json
+    {
+        'method':'takeOrder',
+        'params':{
+          'order':'order_1',
+          'fee':5,
+        }
     }
-}
 
-```
-order: The sequence number of the order fully filled or partially filled.
+    ```
+    order: The sequence number of the order fully filled or partially filled.
 
-fee: The fee paid to the DEX contract by the account filling the order to redeem the asset. If the tokens to be redeemed is not BU, the DEX contract will deduct from the redeemed BUs according to the redemption ratio.
+    fee: The fee paid to the DEX contract by the account filling the order to redeem the asset. If the tokens to be redeemed is not BU, the DEX contract will deduct from the redeemed BUs according to the redemption ratio.
 
 - Function: the function takeOrder(order).
 - Return value: Return `true` or throw an exception.
@@ -141,15 +141,15 @@ fee: The fee paid to the DEX contract by the account filling the order to redeem
 - The entry function is `main`.
 
 - The parameter is in json format:
-```json
-{
-    'method' : 'updateFeeRate',
-    'params' : {
-         'rate' : '50000' //unit 1/(10^8)
+    ```json
+    {
+        'method' : 'updateFeeRate',
+        'params' : {
+             'rate' : '50000' //unit 1/(10^8)
+        }
     }
-}
-```
-rate: The ratio of the service fee to the token exchange amount.
+    ```
+    rate: The ratio of the service fee to the token exchange amount.
 - Function: the function updateFeeRate(rate)
 - Return value: Return `true` or throw an exception
 
@@ -159,16 +159,16 @@ rate: The ratio of the service fee to the token exchange amount.
 
 - The entry function is `main`.
 - The parameter is in json format:
-```json
-{
-    'method' : 'updateOwner',
-    'params' : {
-         'address' : 'buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj'
+    ```json
+    {
+        'method' : 'updateOwner',
+        'params' : {
+             'address' : 'buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj'
+        }
     }
-}
-```
+    ```
 
-address: The address of the new owner of the DEX contract.
+    address: The address of the new owner of the DEX contract.
 - Function: The function updateOwner(address).
 - Return value: Return `true` or throw an exception.
 
@@ -178,11 +178,11 @@ address: The address of the new owner of the DEX contract.
 - The entry function is `main`.
 
 - The parameter is in json format:
-```json
-{
-    'method' : 'clearExpiredOrder',
-}
-```
+    ```json
+    {
+        'method' : 'clearExpiredOrder',
+    }
+    ```
 - Function: the function clearExpiredOrder().
 - Return value: Return `true` or throw an exception.
 
@@ -192,15 +192,15 @@ address: The address of the new owner of the DEX contract.
 - The entry function is `main`.
 - The parameter is in json format.
 
-```json
-{
-    'method' : 'withdrawFee',
-    'params' : {
-         'value': 10000
+    ```json
+    {
+        'method' : 'withdrawFee',
+        'params' : {
+             'value': 10000
+        }
     }
-}
-```
-value: The amount to be withdrawn.
+    ```
+    value: The amount to be withdrawn.
 
 - Function: The function withdrawFee(value).
 - Return value: Return `true` or throw an exception.
@@ -210,81 +210,80 @@ value: The amount to be withdrawn.
 - Return basic information about the DEX contract.
 - The entry function is `query`.
 - The parameter is in json format.
-```json
-{
-    'method':'dexInfo'
-}
-```
+    ```json
+    {
+        'method':'dexInfo'
+    }
+    ```
 - Function: The function dexInfo().
 - Return value:
-```json
-{
-    'result':{
-        'type': 'string',
-        'value': {
-            'dexInfo': {
-                'owner': 'buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj',
-                'feeRate': 50000, //unit 1/(10^8)
-                'version': '1.0'
+    ```json
+    {
+        'result':{
+            'type': 'string',
+            'value': {
+                'dexInfo': {
+                    'owner': 'buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj',
+                    'feeRate': 50000, //unit 1/(10^8)
+                    'version': '1.0'
+                }
             }
         }
-    }
-} 
-```
+    } 
+    ```
 
 ### getOrder
 
 - Get the order details based on the order number.
 - The entry function is `query`.
 - The parameter is in json format:
-
-```json
-{
-    'method':'getOrder',
-    'params' : {
-         'order': 'order_1'
+    ```json
+    {
+        'method':'getOrder',
+        'params' : {
+             'order': 'order_1'
+        }
     }
-}
-```
-order: the order number.
+    ```
+    order: the order number.
 
 - Function: The function getOrder(order).
 - Return value:
-```json
-{  
-    'order_1':{
-        'own':{ //ATP token
-            'issuer':buQxxx',
-            'code':'EUR',
-            'value':10000,
-        },
-       'target':{ //BU
-           'value':1000,
-        },
-       'fee':5,
-       'expiration':'2018...'
+    ```json
+    {  
+        'order_1':{
+            'own':{ //ATP token
+                'issuer':buQxxx',
+                'code':'EUR',
+                'value':10000,
+            },
+           'target':{ //BU
+               'value':1000,
+            },
+           'fee':5,
+           'expiration':'2018...'
+        }
     }
-}
-```
+    ```
 
 ### getOrderInterval
 
 - Get the valid range of the order.
 - The entry function is `query`.
 - The parameter is in json format.
-```json
-{
-    'method':'getOrderInterval',
-}
-```
+    ```json
+    {
+        'method':'getOrderInterval',
+    }
+    ```
 
 - Function: the function getOrderInterval().
 - Return value:
-```json
-{  
-    'orderInterval':[9, 1000]
-}
-```
+    ```json
+    {  
+        'orderInterval':[9, 1000]
+    }
+    ```
 
 ## Contract Entry
 
@@ -292,92 +291,90 @@ order: the order number.
 
 - When the contract is created, the entry function `init` is triggered and it is responsible for the initialization of the contract.
 - Function
-
-```js
-function init(input_str){
-}
-```
+    ```js
+    function init(input_str){
+    }
+    ```
 
 - The parameters are in json format.
-
-```json
-{
-    'params':{
-        'owner':'buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj',
-        'feeRate':'50000',
-        'version': '1.0'
+    ```json
+    {
+        'params':{
+            'owner':'buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj',
+            'feeRate':'50000',
+            'version': '1.0'
+        }
     }
-}
-```
-- owner: If the default value is not given when a DEX contract is created, then by default the creator of the default DEX contract is the owner.
-- feeRate: The unit is 1/(10^8). For example, the feeRate is 50000, then the service rate is 50000/(10^8) = 5/10000.
-- version：The version of DEX. Such as *1.0*.
+    ```
+    - owner: If the default value is not given when a DEX contract is created, then by default the creator of the default DEX contract is the owner.
+    - feeRate: The unit is 1/(10^8). For example, the feeRate is 50000, then the service rate is 50000/(10^8) = 5/10000.
+    - version：The version of DEX. Such as *1.0*.
 
-Return value:
+- Return value:
 
-Success: None.
+    Success: None.
 
-Failure: Throw an exception.
+    Failure: Throw an exception.
 
 ### main
 
 - The `main` function is responsible for data writing, including [makeOrder](#makeorder), [cancelOrder](#cancelorder), [takeOrder](#takeorder), [updateFeeRate](#updatefeerate), [updateOwner](#updateowner), [clearExpiredOrder](#clearexpiredorder), [withdrawFee](#withdrawfee) and other interfaces.
 - Function body.
 
-```js
-function main(input_str){
-    let input = JSON.parse(input_str);
+    ```js
+    function main(input_str){
+        let input = JSON.parse(input_str);
 
-    if(input.method === 'makeOrder'){
-        makeOrder(input.params.own, input.params.target, input.params.fee, input.params.expiration);
+        if(input.method === 'makeOrder'){
+            makeOrder(input.params.own, input.params.target, input.params.fee, input.params.expiration);
+        }
+        else if(input.method === 'cancelOrder'){
+            cancelOrder(input.params.order);
+        }
+        else if(input.method === 'takeOrder'){
+            takeOrder(input.params.order);
+        }
+        else if(input.method === 'updateFeeRate'){
+            updateFeeRate(input.params.rate);
+        }
+        else if(input.method === 'updateOwner'){
+            updateOwner(input.params.owner);
+        }
+        else if(input.method === 'clearExpiredOrder'){
+            clearExpiredOrder();
+        }
+        else if(input.method === 'withdrawFee'){
+            withdrawFee(input.params.value);
+        }
+        else{
+            throw '<Main interface passes an invalid operation type>';
+        }
     }
-    else if(input.method === 'cancelOrder'){
-        cancelOrder(input.params.order);
-    }
-    else if(input.method === 'takeOrder'){
-        takeOrder(input.params.order);
-    }
-    else if(input.method === 'updateFeeRate'){
-        updateFeeRate(input.params.rate);
-    }
-    else if(input.method === 'updateOwner'){
-        updateOwner(input.params.owner);
-    }
-    else if(input.method === 'clearExpiredOrder'){
-        clearExpiredOrder();
-    }
-    else if(input.method === 'withdrawFee'){
-        withdrawFee(input.params.value);
-    }
-    else{
-        throw '<Main interface passes an invalid operation type>';
-    }
-}
-```
+    ```
 
 ### query
 
 - The query function is responsible for data query, including [dexInfo](#dexinfo), [dexInfo](#dexinfo), [getOrder](#getorder), [getOrderInterval](#getorderinterval) and other interfaces.
 - Function body.
 
-```js
-function query(input_str){
+    ```js
+    function query(input_str){
 
-    let result = {};
-    let input  = JSON.parse(input_str);
+        let result = {};
+        let input  = JSON.parse(input_str);
 
-    if(input.method === 'dexInfo'){
-        result.dexInfo = dexInfo();
+        if(input.method === 'dexInfo'){
+            result.dexInfo = dexInfo();
+        }
+        else if(input.method === 'getOrder'){
+            result.order = getOrder(input.params.order);
+        }
+        else if(input.method === 'getOrderInterval'){
+            result.interval = getOrderInterval();
+        }
+        else{
+            throw '<Query interface passes an invalid operation type>';
+        }
+        return JSON.stringify(result);
     }
-    else if(input.method === 'getOrder'){
-        result.order = getOrder(input.params.order);
-    }
-    else if(input.method === 'getOrderInterval'){
-        result.interval = getOrderInterval();
-    }
-    else{
-       	throw '<Query interface passes an invalid operation type>';
-    }
-    return JSON.stringify(result);
-}
-```
+    ```

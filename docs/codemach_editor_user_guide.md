@@ -10,7 +10,7 @@ BUMO provides a developer-friendly smart contract editor, `CodeMach Editor`, for
 
 The following is the default page of the contract editor, `CodeMach Editor`. This page is divided into five areas. The following describes the functions of `CodeMach Editor` in each area.
 
-<img src="/docs/Assets/codemacheditoroverview.jpg"
+<img src="/docs/assets/codemacheditoroverview.jpg"
      style= "margin-left: 20px">
 
 - **Area 1** is the browsing area where file directories are displayed. The **Example** directory is the default generated example, and the code inside can be copied and used directly. **Customize** is a custom folder. You can create a file by the **+** symbol next to **Custom**, or by clicking **+Folder** above.
@@ -34,17 +34,17 @@ The fllowing sections walk you through the process to customize folders and file
 You can customize files in `CodeMach Editor` by following these steps:
 1. Click **+Folder** in the upper right corner of the browsing area, or the **+** symbol to the right of the **Customize** folder.
 
-<img src="/docs/Assets/customfolder.jpg"
+<img src="/docs/assets/customfolder.jpg"
      style= "margin-left: 20px">
 
 2. In the pop-up dialog box, enter the name of the new folder, such as *bumotest*.
 
-<img src="/docs/Assets/newfolder.jpg"
+<img src="/docs/assets/newfolder.jpg"
      style= "margin-left: 20px">  
 
 3. Click **Enter** to complete the new folder and the new folder is displayed in the list on the left.
 
-<img src="/docs/Assets/foldercreated.jpg"
+<img src="/docs/assets/foldercreated.jpg"
      style= "margin-left: 20px">  
 
 
@@ -54,12 +54,12 @@ You can create new files in the **Example** folder or **Customize** folder of `C
 1. Click the **+** symbol to the right of the folder where you want to create a new file. For example, select the new folder **bumotest**.
 2. In the pop-up dialog box, enter the name of the new file, such as *newfile*.
 
-<img src="/docs/Assets/newfile.jpg"
+<img src="/docs/assets/newfile.jpg"
      style= "margin-left: 20px">  
 
 3. Click **Enter** to complete the new file and the new file is displayed under the **bumotest** folder.
 
-<img src="/docs/Assets/newfilecreated.jpg"
+<img src="/docs/assets/newfilecreated.jpg"
      style= "margin-left: 20px">  
 
 ## Generating Smart Contracts
@@ -68,7 +68,7 @@ You can generate a smart contract after setting parameters for the smart contrac
 1. Enter the parameters of the init function at **Deploy the contract**, such as *5*.
 2. Click **Deploy** to generate a smart contract.
 
-<img src="/docs/Assets/smartcontractgenerated.jpg"
+<img src="/docs/assets/smartcontractgenerated.jpg"
      style= "margin-left: 20px">
 
 **Note**:
@@ -89,7 +89,7 @@ You can call the main function by the following steps:
 3. Enter the number of BUs to send at **Amount of BU to be sent to the contract address**.
 4. Click **Invoke** to complete the call.
 
-<img src="/docs/Assets/callmain.jpg"
+<img src="/docs/assets/callmain.jpg"
      style= "margin-left: 20px">
 
 **Note**: After the `main` function is called, the transaction hash value and the transaction result are displayed at the console.
@@ -101,7 +101,7 @@ You can call the query function by the following steps:
 2. Enter the parameter in the input box, such as *3*.
 3. Click **Invoke** to complete the call.
 
-<img src="/docs/Assets/callquery.jpg"
+<img src="/docs/assets/callquery.jpg"
      style= "margin-left: 20px">
 
 **Note**: After the `query` function is called, the result of the query is displayed at the console.
