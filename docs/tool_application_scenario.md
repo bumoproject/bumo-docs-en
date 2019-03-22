@@ -10,15 +10,15 @@ This document will introduce applications including `Faucet`, `Quick Wallet` and
 
 ### Faucet
 
-`Faucet` is a web-based application for you to get test BUs. You can get 100 test BUs by entering your test account address. You can get BUs for the same account multiple times, but frequent requests are not suggested. You can use the beta version of `Faucet` by entering https://faucet.bumotest.io/ on a browser. 
+`Faucet` is a web-based application for you to get test BUs. You can get 100 test BUs by entering your test account address. You can get BUs for the same account multiple times, but frequent requests are not suggested. You can use the beta version of `Faucet` by entering https://faucet.bumotest.io/ on a browser. Specific use steps can refer to [Faucet User Guide](../faucet_user_guide).
 
 ### QuickWallet
 
-`Quick Wallet` is a web-based lightweight wallet that allows you to quickly log in `Quick Wallet` to send BUs. Currently, `Quick Wallet` is available in both official and beta versions. The official website is https://quickwallet.bumo.io and the beta is https://quickwallet.bumotest.io. 
+`Quick Wallet` is a web-based lightweight wallet that allows you to quickly log in `Quick Wallet` to send BUs. Currently, `Quick Wallet` is available in both official and beta versions. The official website is https://quickwallet.bumo.io and the beta is https://quickwallet.bumotest.io. Specific use steps can refer to [Quick Wallet User Guide](../quick_wallet_user_guide).
 
 ### KeypairGenerator
 
-`Keypair Generator` is a web-based address and private key generator, through which the account address and private key can be randomly generated. `Keypair Generator` is currently available in both official and beta versions. The official website is https://keypair.bumo.io/ and the beta is https://keypair.bumotest.io/. 
+`Keypair Generator` is a web-based address and private key generator, through which the account address and private key can be randomly generated. `Keypair Generator` is currently available in both official and beta versions. The official website is https://keypair.bumo.io/ and the beta is https://keypair.bumotest.io/. Specific use steps can refer to [Keypair User Guide](../keypair_generator_user_guide).
 
 ## Introduction to Scenarios
 

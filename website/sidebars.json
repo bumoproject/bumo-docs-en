@@ -3,7 +3,6 @@
     "Get Started": [
       "introduction_to_bumo",
       "installation_maintenance_guide",
-      "command",
       "contract_hello_world"
     ],
     "Smart Contract": [

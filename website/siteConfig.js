@@ -89,7 +89,7 @@ const siteConfig = {
     apiKey: 'd4c9fe4edd1bc00c3fab7c201e7330ee',
     indexName: 'bumo',
     algoliaOptions: {
-      facetFilters: ['en', 'version:VERSION'],
+      facetFilters: ['language:en', 'version:VERSION'],
     }
   },
   // Add custom scripts here that would be placed in <script> tags.

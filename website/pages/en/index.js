@@ -265,7 +265,7 @@ class Index extends React.Component {
         name: 'API',
         linkList: [
           {
-            url: `${baseUrl}docs/bumo_keypair_guide`,
+            url: `${baseUrl}docs/keypair_guide`,
             label: 'Keypair'
           },
           {
