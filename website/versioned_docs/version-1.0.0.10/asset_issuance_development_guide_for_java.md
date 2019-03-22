@@ -53,7 +53,7 @@ The environment description is as follows:
 | Network Environment | IP     | Port  | Blockchain Browser                |
 | ---------------| ----------------- | ----- | -------------------- |
 | Main network   | seed1.bumo.io     | 16002 | https://explorer.bumo.io |
-| Test network   | seed1.bumotest.io | 26002 | http://explorer.bumotest.io |
+| Test network   | seed1.bumotest.io | 26002 | https://explorer.bumotest.io |
 
 
 
@@ -304,7 +304,7 @@ To check whether the transaction is executed successfully, you have to perform o
 
 #### Querying from the Blockchain Browser
 
-You can query the result from the BUMO Blockchain browser by the hash value you obtained above. The [main network](https://explorer.bumo.io)  and the [test network](http://explorer.bumotest.io)：
+You can query the result from the BUMO Blockchain browser by the hash value you obtained above. The [main network](https://explorer.bumo.io)  and the [test network](https://explorer.bumotest.io)：
 
 <img src="/docs/assets/BUBrowser.png"
      style= "margin-left: 20px">
