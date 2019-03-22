@@ -197,7 +197,7 @@ The response message is shown below:
    |__source_address  Source account address
 ```
 **Note**:
-- For how to use Bumo-sdk-java, visit the following link: [JAVA](sdk_java)
+- For how to use Bumo-sdk-java, visit the following link: [JAVA SDK](sdk_java)
 - For the example of API guide for the exchange, visit the following link: [ExchangeDemo.java](https://github.com/bumoproject/bumo-sdk-java/blob/release2.0.0/examples/src/main/java/io/bumo/sdk/example/ExchangeDemo.java)
 
 #### Withdrawing or Transferring BU by Users

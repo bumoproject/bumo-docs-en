@@ -10,7 +10,7 @@ original_id: smart_contract_development_guide_for_java
 The contract is a `JavaScript` code, with a standard (`ECMAScript` as specified in `ECMA-262`). The initialization function of the contract is `init`, and the entry function of the execution is the `main` function. You must have the definition of the `init` and `main` functions in the contract code. The input argument to this function is the string `input`, which is specified when the contract is called.
 
 - For details of the smart contract, refer to [Introduction to Smart Contract](../introduction_to_smart_contract).
-- For details of the smart contract syntax, refer to [Syntax in Smart Contract](../syntax-in-smart-contract).
+- For details of the smart contract syntax, refer to [Syntax in Smart Contract](../syntax_in_smart_contract).
 - For details of the smart contract editor, refer to[Introduction to Smart Contract Editor](../introduction_to_smart_contract).
 
 This section introduces three Java-based smart contract development scenarios, and all scenarios are associated. 
@@ -196,7 +196,7 @@ The specific execution process of this scenario includes [Validating Code Validi
 
 ### Validating Code Validity
 
-Open the online detection page: [bumo-jslint](#http://jslint.bumocdn.com/ ), copy the above smart contract code into the edit box, and click the **JSLint** button.
+Open the online detection page: [bumo-jslint](http://jslint.bumocdn.com/ ), copy the above smart contract code into the edit box, and click the **JSLint** button.
 If there is a warning that the background is red, there is a problem with the syntax, as shown below:
 <img src="/docs/assets/warnings.png"
      style= "margin-left: 20px">
@@ -224,7 +224,7 @@ Environment description:
 | Network Environment | IP                | Port  | Blockchain Explorer         |
 | ------------------- | ----------------- | ----- | --------------------------- |
 | Mainnet             | seed1.bumo.io     | 16002 | https://explorer.bumo.io    |
-| Testnet             | seed1.bumotest.io | 26002 | http://explorer.bumotest.io |
+| Testnet             | seed1.bumotest.io | 26002 | https://explorer.bumotest.io |
 
 
 Sample code
@@ -463,7 +463,7 @@ The result returned after the transaction is sent only indicates whether the tra
 
 #### Querying with the Blockchain Explorer-1
 
-In the BUMO blockchain browser, query the above hash. [The main network](https://explorer.bumo.io) and [the test network](http://explorer.bumotest.io). The operation is as follows:
+In the BUMO blockchain browser, query the above hash. [The main network](https://explorer.bumo.io) and [the test network](https://explorer.bumotest.io). The operation is as follows:
 
 <img src="/docs/assets/BUExplorer1.png"
      style= "margin-left: 20px">
@@ -565,7 +565,7 @@ Environment description:
 | Network Environment | IP                | Port  | Blockchain Explorer         |
 | ------------------- | ----------------- | ----- | --------------------------- |
 | Mainnet             | seed1.bumo.io     | 16002 | https://explorer.bumo.io    |
-| Testnet             | seed1.bumotest.io | 26002 | http://explorer.bumotest.io |
+| Testnet             | seed1.bumotest.io | 26002 | https://explorer.bumotest.io |
 
 ### Obtaining the Serial Number of the Asset Issuer Account-2
 
@@ -763,7 +763,7 @@ The result returned after the transaction is sent only indicates whether the tra
 
 #### Querying with the Blockchain Explorer-2
 
-In the BUMO blockchain browser, query the above hash. [The main network](https://explorer.bumo.io) and [the test network](http://explorer.bumotest.io). The operation is as follows:
+In the BUMO blockchain browser, query the above hash. [The main network](https://explorer.bumo.io) and [the test network](https://explorer.bumotest.io). The operation is as follows:
 
 
 <img src="/docs/assets/BUExplorer2.png"
@@ -865,7 +865,7 @@ Environment description:
 | Network Environment | IP                | Port  | Blockchain Explorer         |
 | ------------------- | ----------------- | ----- | --------------------------- |
 | Mainnet             | seed1.bumo.io     | 16002 | https://explorer.bumo.io    |
-| Testnet             | seed1.bumotest.io | 26002 | http://explorer.bumotest.io |
+| Testnet             | seed1.bumotest.io | 26002 | https://explorer.bumotest.io |
 
 ### Querying Balance
 

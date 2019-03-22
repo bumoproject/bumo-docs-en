@@ -36,9 +36,7 @@ function Versions(props) {
                 <th>{latestVersion}</th>
                 <td>
                   <a
-                    href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/${
-                      props.language
-                    }introduction_to_bumo`}>
+                    href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/introduction_to_bumo`}>
                     Documentation
                   </a>
                 </td>
@@ -58,9 +56,7 @@ function Versions(props) {
                 <th>master</th>
                 <td>
                   <a
-                    href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/${
-                      props.language
-                    }next/introduction_to_bumo`}>
+                    href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/next/introduction_to_bumo`}>
                     Documentation
                   </a>
                 </td>
@@ -83,9 +79,7 @@ function Versions(props) {
                       <th>{version}</th>
                       <td>
                         <a
-                          href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/${
-                            props.language
-                          }${version}/introduction_to_bumo`}>
+                          href={`${siteConfig.baseUrl}${siteConfig.docsUrl}/${version}/introduction_to_bumo`}>
                           Documentation
                         </a>
                       </td>

@@ -40,7 +40,7 @@ You have to complete the following steps. And the following 2.0.2 is an example.
 
 #### Mode 2  Importing the JAR Package in the Project
 
-1. Download the [BUMO JAVA SDK]((https://github.com/bumoproject/bumo-sdk-java/releases)) package.
+1. Download the [BUMO JAVA SDK](https://github.com/bumoproject/bumo-sdk-java/releases) package.
 2. Unzip the *bumo-sdk-java-{version}.zip* package.
 3. Import the *bumo-sdk-{version}.jar* file and the included libs jar into your project.
 

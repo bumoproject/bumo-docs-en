@@ -52,7 +52,7 @@ The environment description is as follows:
 | Network Environment | IP     | Port  | Blockchain Browser                |
 | ---------------| ----------------- | ----- | -------------------- |
 | Main network   | seed1.bumo.io     | 16002 | https://explorer.bumo.io |
-| Test network   | seed1.bumotest.io | 26002 | http://explorer.bumotest.io |
+| Test network   | seed1.bumotest.io | 26002 | https://explorer.bumotest.io |
 
 
 
@@ -84,7 +84,7 @@ The non-activated account needs to be activated by an activited account. Please 
 
 **Note**: 
 - Main network: You can activate the account by transfering 50.03 BU to the issuer account from the BuPocket(the Wallet). The BU can be used for the transaction fee of issuing tokens.
-- Test network: By accessing the [faucet] (https://faucet.bumotest.io), enter the address to be recharged into the edit box and click "Confirm" to complete the recharge activation.
+- Test network: By accessing the [faucet](https://faucet.bumotest.io), enter the address to be recharged into the edit box and click "Confirm" to complete the recharge activation.
 
 
 
@@ -303,7 +303,7 @@ To check whether the transaction is executed successfully, you have to perform o
 
 #### Querying from the Blockchain Browser
 
-You can query the result from the BUMO Blockchain browser by the hash value you obtained above. The [main network](https://explorer.bumo.io)  and the [test network](http://explorer.bumotest.io)：
+You can query the result from the BUMO Blockchain browser by the hash value you obtained above. The [main network](https://explorer.bumo.io)  and the [test network](https://explorer.bumotest.io)：
 
 <img src="/docs/assets/BUBrowser.png"
      style= "margin-left: 20px">

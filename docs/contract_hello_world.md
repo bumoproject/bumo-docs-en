@@ -9,7 +9,7 @@ sidebar_label: Smart Contract(Hello World)
 The contract is a `JavaScript` code, with a standard (`ECMAScript` as specified in `ECMA-262`). The initialization function of the contract is `init`, and the entry function of the execution is the `main` function. You must have the definition of the `init` and `main` functions in the contract code. The input argument to this function is the string `input`, which is specified when the contract is called.
 
 - For details of the smart contract, refer to [Introduction to Smart Contract](../introduction_to_smart_contract).
-- For details of the smart contract syntax, refer to [Syntax in Smart Contract](../syntax-in-smart-contract).
+- For details of the smart contract syntax, refer to [Syntax in Smart Contract](../syntax_in_smart_contract).
 - For details of the smart contract editor, refer to[Introduction to Smart Contract Editor](../introduction_to_smart_contract).
 
 The following example is implemented in [Contract Editor](https://cme.bumo.io).
