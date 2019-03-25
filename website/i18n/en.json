@@ -129,123 +129,127 @@
         "title": "BUMO Tool Application Scenario",
         "sidebar_label": "Tool Application Scenario"
       },
-      "version-1.0.0.10-api_http": {
+      "version-1.0.0-api_http": {
         "title": "BUMO HTTP/Restful",
         "sidebar_label": "HTTP/Restful"
       },
-      "version-1.0.0.10-api_websocket": {
+      "version-1.0.0-api_websocket": {
         "title": "BUMO Websocket",
         "sidebar_label": "Websocket"
       },
-      "version-1.0.0.10-asset_issuance_development_guide_for_java": {
+      "version-1.0.0-asset_issuance_development_guide_for_java": {
         "title": "BUMO Asset Issuance Development Guide for Java",
         "sidebar_label": "Asset Issuance Development Guide for Java"
       },
-      "version-1.0.0.10-atp_10": {
+      "version-1.0.0-atp_10": {
         "title": "BUMO ATP 10",
         "sidebar_label": "ATP 10"
       },
-      "version-1.0.0.10-atp_20": {
+      "version-1.0.0-atp_20": {
         "title": "BUMO ATP 20",
         "sidebar_label": "ATP 20"
       },
-      "version-1.0.0.10-atp_30": {
+      "version-1.0.0-atp_30": {
         "title": "BUMO ATP 30",
         "sidebar_label": "ATP 30"
       },
-      "version-1.0.0.10-bupocket_user_guide": {
+      "version-1.0.0-bupocket_user_guide": {
         "title": "BU Pocket User Guide",
         "sidebar_label": "BU Pocket User Guide"
       },
-      "version-1.0.0.10-codemach_editor_user_guide": {
+      "version-1.0.0-codemach_editor_user_guide": {
         "title": "BUMO CodeMach Editor User Guide",
         "sidebar_label": "CodeMach Editor User Guide"
       },
-      "version-1.0.0.10-contract_hello_world": {
+      "version-1.0.0-contract_hello_world": {
         "title": "BUMO Smart Contract(Hello World)",
         "sidebar_label": "Smart Contract(Hello World)"
       },
-      "version-1.0.0.10-dex_10": {
+      "version-1.0.0-contract_new_interfaces": {
+        "title": "BUMO Smart Contract New Interfaces",
+        "sidebar_label": "New Interfaces"
+      },
+      "version-1.0.0-dex_10": {
         "title": "BUMO DEX 10",
         "sidebar_label": "DEX 10"
       },
-      "version-1.0.0.10-faucet_user_guide": {
+      "version-1.0.0-faucet_user_guide": {
         "title": "BUMO Faucet User Guide",
         "sidebar_label": "Faucet User Guide"
       },
-      "version-1.0.0.10-installation_maintenance_guide": {
+      "version-1.0.0-installation_maintenance_guide": {
         "title": "BUMO Installation and Maintenance Guide",
         "sidebar_label": "Installation and Maintenance Guide"
       },
-      "version-1.0.0.10-integration_guide_for_exchanges": {
+      "version-1.0.0-integration_guide_for_exchanges": {
         "title": "BUMO Integration Guide for Exchanges",
         "sidebar_label": "Integration Guide for Exchanges"
       },
-      "version-1.0.0.10-introduction_to_beps": {
+      "version-1.0.0-introduction_to_beps": {
         "title": "BUMO BEPs introduction",
         "sidebar_label": "Introduction"
       },
-      "version-1.0.0.10-introduction_to_bumo": {
+      "version-1.0.0-introduction_to_bumo": {
         "title": "Introduction to BUMO",
         "sidebar_label": "Introduction to BUMO"
       },
-      "version-1.0.0.10-introduction_to_smart_contract": {
+      "version-1.0.0-introduction_to_smart_contract": {
         "title": "Introduction to BUMO smart contract",
         "sidebar_label": "Introduction"
       },
-      "version-1.0.0.10-keypair_generator_user_guide": {
+      "version-1.0.0-keypair_generator_user_guide": {
         "title": "BUMO Keypair Generator User Guide",
         "sidebar_label": "Keypair Generator User Guide"
       },
-      "version-1.0.0.10-keypair_guide": {
+      "version-1.0.0-keypair_guide": {
         "title": "BUMO Keypair Guide",
         "sidebar_label": "Keypair Guide"
       },
-      "version-1.0.0.10-legal_evidence_development_guide_for_java": {
+      "version-1.0.0-legal_evidence_development_guide_for_java": {
         "title": "BUMO Legal Evidence Development Guide for Java",
         "sidebar_label": "Legal Evidence Development Guide for Java"
       },
-      "version-1.0.0.10-quick_wallet_user_guide": {
+      "version-1.0.0-quick_wallet_user_guide": {
         "title": "BUMO Quick Wallet User Guide",
         "sidebar_label": "Quick Wallet User Guide"
       },
-      "version-1.0.0.10-sdk_go": {
+      "version-1.0.0-sdk_go": {
         "title": "BUMO GO SDK",
         "sidebar_label": "GO"
       },
-      "version-1.0.0.10-sdk_ios": {
+      "version-1.0.0-sdk_ios": {
         "title": "BUMO IOS SDK",
         "sidebar_label": "IOS"
       },
-      "version-1.0.0.10-sdk_java": {
+      "version-1.0.0-sdk_java": {
         "title": "BUMO JAVA SDK",
         "sidebar_label": "JAVA"
       },
-      "version-1.0.0.10-sdk_nodejs": {
+      "version-1.0.0-sdk_nodejs": {
         "title": "BUMO Nodejs SDK",
         "sidebar_label": "Nodejs"
       },
-      "version-1.0.0.10-sdk_php": {
+      "version-1.0.0-sdk_php": {
         "title": "BUMO PHP SDK",
         "sidebar_label": "PHP"
       },
-      "version-1.0.0.10-smart_contract_development_guide_for_java": {
+      "version-1.0.0-smart_contract_development_guide_for_java": {
         "title": "BUMO Smart Contract Development Guide for Java",
         "sidebar_label": "Smart Contract Development Guide for Java"
       },
-      "version-1.0.0.10-sto_10": {
+      "version-1.0.0-sto_10": {
         "title": "BUMO STO 10",
         "sidebar_label": "STO 10"
       },
-      "version-1.0.0.10-syntax_in_smart_contract": {
+      "version-1.0.0-syntax_in_smart_contract": {
         "title": "Syntax in BUMO smart contract",
         "sidebar_label": "Syntax"
       },
-      "version-1.0.0.10-terminology": {
+      "version-1.0.0-terminology": {
         "title": "BUMO Terminology",
         "sidebar_label": "Terminology"
       },
-      "version-1.0.0.10-tool_application_scenario": {
+      "version-1.0.0-tool_application_scenario": {
         "title": "BUMO Tool Application Scenario",
         "sidebar_label": "Tool Application Scenario"
       }
