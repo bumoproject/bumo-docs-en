@@ -1,0 +1,52 @@
+{
+  "version-1.0.0.10-docs": {
+    "Get Started": [
+      "version-1.0.0.10-introduction_to_bumo",
+      "version-1.0.0.10-installation_maintenance_guide",
+      "version-1.0.0.10-contract_hello_world"
+    ],
+    "Smart Contract": [
+      "version-1.0.0.10-introduction_to_smart_contract",
+      "version-1.0.0.10-syntax_in_smart_contract",
+      "version-1.0.0.10-codemach_editor_user_guide"
+    ],
+    "BEPs Protocol": [
+      "version-1.0.0.10-introduction_to_beps",
+      "version-1.0.0.10-atp_10",
+      "version-1.0.0.10-atp_20",
+      "version-1.0.0.10-atp_30",
+      "version-1.0.0.10-sto_10",
+      "version-1.0.0.10-dex_10"
+    ],
+    "API": [
+      "version-1.0.0.10-keypair_guide",
+      "version-1.0.0.10-api_http",
+      "version-1.0.0.10-api_websocket"
+    ],
+    "SDK": [
+      "version-1.0.0.10-sdk_java",
+      "version-1.0.0.10-sdk_nodejs",
+      "version-1.0.0.10-sdk_go",
+      "version-1.0.0.10-sdk_php",
+      "version-1.0.0.10-sdk_ios"
+    ],
+    "Development Guide": [
+      "version-1.0.0.10-integration_guide_for_exchanges",
+      "version-1.0.0.10-asset_issuance_development_guide_for_java",
+      "version-1.0.0.10-legal_evidence_development_guide_for_java",
+      "version-1.0.0.10-smart_contract_development_guide_for_java"
+    ],
+    "Wallet": [
+      "version-1.0.0.10-quick_wallet_user_guide",
+      "version-1.0.0.10-bupocket_user_guide"
+    ],
+    "Tools": [
+      "version-1.0.0.10-tool_application_scenario",
+      "version-1.0.0.10-keypair_generator_user_guide",
+      "version-1.0.0.10-faucet_user_guide"
+    ],
+    "Glossary": [
+      "version-1.0.0.10-terminology"
+    ]
+  }
+}
