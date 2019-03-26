@@ -140,27 +140,27 @@ function main(input)
 ```
 
 ## Rules List
- 
-- Detect the statement strictly with all source code added the 'use strict' field at the beginning
 
-- Use 'let' to declare variables within a statement block
+- Detect the statement strictly with all source code added the `'use strict'` field at the beginning
 
-- Use '===' instead of '==' to judge the comparison; use '!==' instead of '!=' to compare
-- A statement must end with ';'
+- Use` let` to declare variables within a statement block
 
-- A statement block must be enclosed with '{}' and empty statement blocks are prohibited
+- Use `===` instead of `== ` to judge the comparison; use `!==` instead of `!=` to compare
+- A statement must end with `;`
 
-- The initial variable of the 'for' loop variable needs to be declared before the conditional statement block, and a new value is assigned to it when used
+- A statement block must be enclosed with `{}` and empty statement blocks are prohibited
 
-- Use '+=' and '-=' to substitute '++' and '--'
+- The initial variable of the `for` loop variable needs to be declared before the conditional statement block, and a new value is assigned to it when used
 
-- Prohibit to use keywords like 'eval', 'void' and 'this'
+- Use `+=` and `-=` to substitute `++` and `--`
 
-- Prohibit to use 'new' to create 'Number', 'String' and 'Boolean' objects, which objects can be obtained by calling their constructors
+- Prohibit to use keywords like 'eval', `void` and `this`
+
+- Prohibit to use `new` to create `Number`, `String` and `Boolean` objects, which objects can be obtained by calling their constructors
 
 - Prohibit to create an array with array keywords
 
-- Prohibit to use keywords like 'try' and 'catch', but you can use 'throw' to throw exceptions
+- Prohibit to use keywords like `try` and `catch`, but you can use `throw` to throw exceptions
 
 ```javascript
 "Array", "ArrayBuffer", "Float32Array", "Float64Array", 

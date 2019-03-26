@@ -37,7 +37,7 @@ The attributes of tokens are stored in the smart contract account, and you can c
 
 ## Event
 
-The functions `transfer`, `approve`, `transferFrom` will trigger the event (see the description of each function for details), The event is to call the `tlog` function, and a transaction log is recorded on the blockchain.  The log records the function call details for the user to read.
+The functions [transfer](#transfer), [transferFrom](#transferfrom) , [approve](#approve) will trigger the event (see the description of each function for details), The event is to call the `tlog` function, and a transaction log is recorded on the blockchain.  The log records the function call details for the user to read.
 
 The tlog is defined as follows:
 
@@ -46,8 +46,8 @@ tlog(topic,args...);
 ```
 
 - `tlog`: It will generate a transaction written on the block.
-- `topic`: Log subject, must be a string type, parameter length (0,128).
-- `args...`: It can contain up to 5 parameters, and the parameter type can be string, numeric or Boolean type, each parameter length (0,1024).
+- `topic`: Log subject, must be a string type, parameter length (0,128].
+- `args...`: It can contain up to 5 parameters, and the parameter type can be string, numeric or Boolean type, each parameter length (0,1024].
 
 ## Functions
 
@@ -63,7 +63,7 @@ The functions provided in BUMO ATP 20 Protocol include [transfer](#transfer), [t
 
     `main`
 
-- The parameters are in json format.
+- The parameters are in json format
     ```json
     {
         "method":"transfer",
@@ -88,7 +88,7 @@ The functions provided in BUMO ATP 20 Protocol include [transfer](#transfer), [t
 
 - Return value
 
-  Return `true` or throw an exception.
+  Returning `true` or throw an exception.
 
 - event：
     ``` js
@@ -140,12 +140,12 @@ The functions provided in BUMO ATP 20 Protocol include [transfer](#transfer), [t
 
 - Return value
 
-   Return `true` or throw an exception.
+   Returning `true` or throw an exception.
 
 - Event：
 
     ``` javascript
-      tlog('approve', sender, spender, value);
+    tlog('approve', sender, spender, value);
     ```
 
     topic: The function name，here is 'approve'.
@@ -166,15 +166,15 @@ The functions provided in BUMO ATP 20 Protocol include [transfer](#transfer), [t
 
     `main`
 
-- The parameters are in json format.
+- The parameters are in json format
     ```json
     {
-    "method":"transferFrom",
-    "params":{
-    "from":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
-    "to":"buQYH2VeL87svMuj2TdhgmoH9wSmcqrfBner",
-    "value":"1000000"
-    }
+        "method":"transferFrom",
+        "params":{
+            "from":"buQnTmK9iBFHyG2oLce7vcejPQ1g5xLVycsj",
+            "to":"buQYH2VeL87svMuj2TdhgmoH9wSmcqrfBner",
+            "value":"1000000"
+        }
     }
     ```
 
@@ -193,7 +193,7 @@ The functions provided in BUMO ATP 20 Protocol include [transfer](#transfer), [t
 
 - Return value
 
-  Return `true` or throw an exception.
+  Returning `true` or throw an exception.
 
 - Event：
     ``` javascript
@@ -220,7 +220,7 @@ The functions provided in BUMO ATP 20 Protocol include [transfer](#transfer), [t
 
   `query`
 
-- The parameters are in json format.
+- The parameters are in json format
   ```json
   {
     "method":"balanceOf",
@@ -263,7 +263,7 @@ The functions provided in BUMO ATP 20 Protocol include [transfer](#transfer), [t
 
     `query`
 
-- The parameters are in json format.
+- The parameters are in json format
   ```json
   {
     "method":"tokenInfo"
@@ -304,7 +304,7 @@ The functions provided in BUMO ATP 20 Protocol include [transfer](#transfer), [t
 
     `query`
 
-- The parameters are in json format.
+- The parameters are in json format
   ```json
   {
     "method":"allowance",
@@ -367,7 +367,7 @@ The functions provided in BUMO ATP 20 Protocol include [transfer](#transfer), [t
 ### main
 
 - It is used for data writing, which includes the [transfer](#transfer), [transferFrom](#transferfrom) and [approve](#approve) functions.
-- Function body.
+- Function body
 
     ```js
     function main(input_str){
@@ -390,7 +390,7 @@ The functions provided in BUMO ATP 20 Protocol include [transfer](#transfer), [t
 ### query
 
 - It is used for data querying, which includes the [tokenInfo](#tokeninfo), [allowance](#allowance) functions.
-- Function body.
+- Function body
 
     ```js
     function query(input_str){

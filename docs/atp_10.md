@@ -23,7 +23,7 @@ You can set the attributes of the tokens to be issued by setting the metadata of
 |code          | Token code              |
 |description   | Description of tokens |
 |decimals      | Decimal places of tokens |
-|totalSupply   | Total amount of tokens **(The value is 10 ^ decimals  issuing amount)** |
+|totalSupply   | Total amount of tokens **(The value is 10 ^ decimals * issuing amount)** |
 |icon          | Token icon (optional)            |
 |version       | ATP version      |
 
@@ -58,7 +58,7 @@ Registering Tokens is to set the metadata of the tokens. You can set **key**, **
 **Attention**：The value of **key** must be composed of the prefix **asset_property_** and token code (you can refer to the code parameters when [Issuing Tokens](#issuing-tokens)).  You can check the result by [Querying Specified Metadata](#querying-specified-metadata) after you have set the values.
 
 ### Issuing Tokens  
-Issuing Tokens is to issue a certain amount of digital tokens, and these tokens can be viewed in the account balance after being issued. When issuing tokens, you can set the parameters **amount** (amount of tokens to be issued) and **code** (token code) by initiating the `Issuing Tokens` transaction. 
+Issuing Tokens is to issue a certain amount of digital tokens, and these tokens can be viewed in the account balance after being issued. When issuing tokens, you can set the parameters **amount** (amount of tokens to be issued) and **code** (token code) by initiating the `Issuing Assets` transaction. 
 
 **For example：issuing 10000 DT tokens with 8 decimal places, now the value of amount is 10 ^ 8 * 10000**.
 
@@ -75,7 +75,7 @@ Issuing Tokens is to issue a certain amount of digital tokens, and these tokens 
     ```
 
 ### Transferring Tokens  
-Transferring Tokens is to transfer a certain amount of tokens to a destination account. When transferring tokens, you can set the parameters by initiating the `Transferring Tokens` transaction. The following table shows the parameters to be set.
+Transferring Tokens is to transfer a certain amount of tokens to a destination account. When transferring tokens, you can set the parameters by initiating the `Transferring Assets` transaction. The following table shows the parameters to be set.
 
 | Parameter                 | Description                                                  |
 | -------------------------- | ------------------------------------------------------------ |
@@ -105,9 +105,9 @@ For example: transferring 500000000000 DT tokens to the destination account `buQ
           }
         }
     ```
- After the transfer, the destination account has (**amount**) DT tokens.
+    After the transfer, the destination account has (**amount**) DT tokens.
 
- **Attention**: If the destination account is not activated, the transaction of transferring tokens will fail.
+    **Attention**: If the destination account is not activated, the transaction of transferring tokens will fail.
 
 ### Issuing Additional Tokens 
 
@@ -173,9 +173,9 @@ Querying specified metadata is to check the information about `metadata`, includ
 
 The following is the code of querying specified metadata:
 
-    ```http
-    HTTP GET /getAccountMetaData?address=buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD&key=asset_property_DT
-    ```
+```http
+HTTP GET /getAccountMetaData?address=buQhzVyca8tQhnqKoW5XY1hix2mCt5KTYzcD&key=asset_property_DT
+```
 
 - If the specified key has a value, the following content will be returned:
 
@@ -190,7 +190,6 @@ The following is the code of querying specified metadata:
             }
         }
     }
-
     ```
 
 - If the specified key does not have a value, the following content will be returned:

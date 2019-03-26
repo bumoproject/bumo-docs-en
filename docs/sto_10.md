@@ -159,11 +159,11 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
 - Description
 
-  Query Token details.
+  `query` Token details.
 
 - Entry function
 
-  query
+  `query`
 
 - Parameter
 
@@ -200,15 +200,15 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
 > Note: Only used by the owner and controller of the token.
 
--   Description
+- Description
 
   Set up legal documents or other reference materials.
 
--   Entry function
+- Entry function
 
-  main
+    `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -226,44 +226,43 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
     - documentHash: The hexadecimal string of the document hash.
     ```
 
--   Return value
+- Return value
 
-  Success: true
+    Success: true
   
-  Failure: Throw an exception
+    Failure: Throw an exception
 
 - Event
 
-    ```javascript
-      tlog('setDocument', sender, name, url, hashType, documentHash);
-    ```
+  ```javascript
+  tlog('setDocument', sender, name, url, hashType, documentHash);
+  ```
 
-
-    Topic: The method name, here is 'setDocument'.
-
-    sender: The account address to call the contract.
-
-    name: The document name.
-
-    url: The online document url.
-
-    hashType: The hash type.
-
-    documentHash: The Hash hex string.
+  Topic: The method name, here is 'setDocument'.
+  
+  sender: The account address to call the contract.
+  
+  name: The document name.
+  
+  url: The online document url.
+  
+  hashType: The hash type.
+  
+  documentHash: The Hash hex string.
 
 
 
 ### getDocument
 
--   Description
+- Description
 
   Check legal documents or other reference materials
 
--   Entry function
+- Entry function
 
-  query
+  `query`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -275,7 +274,7 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
     - name: The document name
     ```
 
--   Return value
+- Return value
     ```json
     {
         "result": {
@@ -300,17 +299,17 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
 ### createTranche
 
-It is only available to the owner of the Token.
+> Note: It is only available to the owner of the Token.
 
--   Description
+- Description
 
   Create a branch (only the issuer is allowed to operate)
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -338,9 +337,9 @@ It is only available to the owner of the Token.
     - value: The constraint content and the range is [1,256].
     - tokenHolders: A list of distributed accounts, up to 8 accounts are supported.
     ```
-  **Note**: At most 8 tokenHolders are allowed to be distributed.
+    **Note**: At most 8 tokenHolders are allowed to be distributed.
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -350,11 +349,11 @@ It is only available to the owner of the Token.
 
 - Description
 
-  Query the total tokens of all tranches under the specified account.
+  `query` the total tokens of all tranches under the specified account.
 
 - Entry function
 
-  query
+  `query`
 
 - Parameter
 
@@ -384,13 +383,13 @@ It is only available to the owner of the Token.
 
 - Description
 
-  Query the token balance of the specified tranche under the specified account.
+  `query` the token balance of the specified tranche under the specified account.
 
--   Entry function
+- Entry function
 
-  query
+  `query`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -402,7 +401,7 @@ It is only available to the owner of the Token.
     }
     ```
 
--   Return value
+- Return value
 
     ```json
     {
@@ -417,15 +416,15 @@ It is only available to the owner of the Token.
 
 ### tranchesOf
 
--   Description
+- Description
 
-  Query the number of all tranches associated with a specific address of the token holder.
+  `query` the number of all tranches associated with a specific address of the token holder.
 
--   Entry function
+- Entry function
 
-  query
+  `query`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -436,7 +435,7 @@ It is only available to the owner of the Token.
     }
     ```
 
--   Return value
+- Return value
 
     ```json
     {
@@ -451,15 +450,15 @@ It is only available to the owner of the Token.
 
 ### transferWithData
 
--   Description
+- Description
 
   Transfer the contract trigger's tokens to the target account and allow any data to be carried.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -499,16 +498,16 @@ It is only available to the owner of the Token.
 
 ### transferFromWithData
 
--   Description
+- Description
 
   Transfer the tokens of the specified holder to the target account (the contract trigger must be granted a sufficient share) and allow any data to be carried.
 
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -550,16 +549,16 @@ It is only available to the owner of the Token.
 
 ### transferFromToTranche
 
--   Description
+- Description
 
   Transfer the tokens of the specified tranche of the holder to the target account and allow any data to be carried.
 
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -590,15 +589,15 @@ It is only available to the owner of the Token.
 ### transferTranche
 
 
--   Description
+- Description
 
   Transfer the tokens of the specified tranche of the contract trigger to the specified tranche of the target account and allow any data to be carried.
 
-  -   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -615,23 +614,23 @@ It is only available to the owner of the Token.
     - value: Number of tokens, and the range is [0, 2^63-1].
     - data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. The range is [0,128k].
     ```
--   Return value
+- Return value
 
-  Success: `true`
+    Success: `true`
 
-  Failure: Throw an exception
+    Failure: Throw an exception
 
 ### transferToTranche
 
--   Description
+- Description
 
-  Transfer the tokens of the specified tranche of the contract trigger to the specified tranche of the target account and allow any data to be carried.
+    Transfer the tokens of the specified tranche of the contract trigger to the specified tranche of the target account and allow any data to be carried.
 
--   Entry function
+- Entry function
 
-  main
+    `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -658,16 +657,16 @@ It is only available to the owner of the Token.
 
 ### transfersToTranche
 
--   Description
+- Description
 
   Transfer the tokens of the specified tranche of the contract trigger to a certain tranche of multiple target accounts and allow any data to be carried.
 
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -702,15 +701,15 @@ It is only available to the owner of the Token.
 
 > **Note**: If isControllable is `true`, the controller can use [operatorTransferTranche](#operatortransfertranche) and [operatorRedeemTranche](#operatorredeemtranche) without authorization.
 
--   Description
+- Description
 
   Determine whether the current Token is controllable, and whether the circulation between the two accounts can be controlled by the judicial/designated account (no authorization required).
 
--   Entry function
+- Entry function
 
-  query
+  `query`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -718,7 +717,7 @@ It is only available to the owner of the Token.
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -726,17 +725,17 @@ It is only available to the owner of the Token.
 
 ### controllerTransfer
 
-In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need to retain the ability to forcibly transfer tokens. This may be to resolve legal disputes or court orders, or to remedy the loss of investors who are inaccessible to their private keys.
+> Note: In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need to retain the ability to forcibly transfer tokens. This may be to resolve legal disputes or court orders, or to remedy the loss of investors who are inaccessible to their private keys.
 
--   Description
+- Description
 
   Allow authorized addresses to pass tokens between any two token holders.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -760,7 +759,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     - operatorData: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. The range is [0,64k].
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -768,17 +767,17 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### controllerRedeem
 
-  In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need to retain the ability to forcibly transfer tokens. This may be to resolve legal disputes or court orders, or to remedy the loss of investors who are inaccessible to their private keys.
+> Note: In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need to retain the ability to forcibly transfer tokens. This may be to resolve legal disputes or court orders, or to remedy the loss of investors who are inaccessible to their private keys.
 
-  -   Description
+- Description
 
   Allow authorized addresses to redeem tokens for any token holder.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -791,12 +790,12 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
             "operatorData": ""
         }
     }
+    
+    - data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. 
     ```
 
-  data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. 
 
-
--   Return value
+- Return value
 
   Success: `true`
 
@@ -806,15 +805,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### authorizeOperator
 
--   Description
+- Description
 
   Authorize an operator for all tranches of the contract trigger.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -825,7 +824,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -833,15 +832,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### revokeOperator
 
--   Description
+- Description
 
   Unauthorize the operator of all tranches of the previous contract trigger.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -852,7 +851,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -860,15 +859,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### authorizeOperatorForTranche
 
--   Description
+- Description
 
   Authorize an operator for the specified tranche of the contract trigger.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -880,7 +879,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -888,15 +887,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### revokeOperatorForTranche
 
--   Description
+- Description
 
   Unauthorize the operator for the specified tranche of the contract trigger.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -908,7 +907,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -918,15 +917,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### isOperator
 
--   Description
+- Description
 
   Determine whether the one is the operator of all tranches of the token holder.
 
--   Entry function
+- Entry function
 
-  query
+  `query`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -938,7 +937,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -947,15 +946,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### isOperatorForTranche
 
--   Description
+- Description
 
   Determine whether the one is the operator of the specified tranche of the token holder.
 
--   Entry function
+- Entry function
 
-  query
+  `query`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -968,7 +967,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -976,15 +975,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### operatorTransferTranche
 
--   Description
+- Description
 
   Allow the operator to transfer tokens within the specified tranche on behalf of the token holder.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1000,7 +999,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -1010,15 +1009,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### operatorRedeemTranche
 
--   Description
+- Description
 
   Allow the operator to redeem tokens on behalf of the token holder within the specified tranche (the total amount of tokens will be reduced).
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1032,7 +1031,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -1040,15 +1039,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### isIssuable
 
--   Description
+- Description
 
   The securities token issuer can specify that the issuance is completed (ie no new token can be cast or issued).
 
--   Entry function
+- Entry function
 
-  query
+  `query`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1056,7 +1055,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: true
 
@@ -1064,15 +1063,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### issue
 
--   Description
+- Description
 
   Increase the total supply of the specified token holder.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1085,7 +1084,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -1093,15 +1092,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### issueToTranche
 
--   Description
+- Description
 
   Increase the supply of the specified tranche of the specified token holder.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1115,7 +1114,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -1125,15 +1124,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### redeem
 
--   Description
+- Description
 
   Redeem a specified amount of tokens from the contract trigger (the total supply will decrease).
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1145,7 +1144,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -1155,15 +1154,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### redeemFrom
 
--   Description
+- Description
 
   Redeem a specified amount of tokens from the specified token holder (the total supply will decrease).
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1176,7 +1175,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -1184,15 +1183,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### redeemTranche
 
--   Description
+- Description
 
   Redeem a specified amount of tokens from the specified tranche of the contract trigger (the total supply will decrease).
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1205,7 +1204,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -1213,15 +1212,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### redeemFromTranche
 
--   Description
+- Description
 
   Redeem a specified amount of tokens from the specified token holder (the total supply will be reduced and a sufficient share must be granted ).
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1235,7 +1234,7 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -1243,15 +1242,15 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
 
 ### canTransfer
 
--   Description
+- Description
 
   Whether the transmission can be successful.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1265,23 +1264,23 @@ In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need 
     }
     ```
 
--   Return value
+- Return value
 
-Success: `true`
+  Success: `true`
 
-Failure: Throw an error message
+  Failure: Throw an error message
 
 ### canTransferTranche
 
--   Description
+- Description
 
   Specify whether the tokens in the tranche can be successfully transferred.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1296,23 +1295,23 @@ Failure: Throw an error message
     }
     ```
 
--   Return value
+- Return value
 
-Success: true
+  Success: true
 
-Failure: Throw an error message
+  Failure: Throw an error message
 
 ### canTransferToTranche
 
--   Description
+- Description
 
   Specify whether the tokens in the tranche can be transferred to the target specified tranche.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1328,25 +1327,25 @@ Failure: Throw an error message
     }
     ```
 
--   Return value
+- Return value
 
-Success: `true`
+  Success: `true`
 
-Failure: Throw an error message
+  Failure: Throw an error message
 
 
 
 ### transfer
 
--   Description
+- Description
 
   Transfer the contract trigger's tokens to the target account.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1358,7 +1357,7 @@ Failure: Throw an error message
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -1381,15 +1380,15 @@ Failure: Throw an error message
 
 ### transferFrom
 
--   Description
+- Description
 
   Transfer the tokens of the specified holder to the target account (the contract trigger must be granted a sufficient share).
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1402,7 +1401,7 @@ Failure: Throw an error message
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -1428,15 +1427,15 @@ Failure: Throw an error message
 
 ### approve
 
--   Description
+- Description
 
   Allow the specified account to operate the tokens on behalf of the token holder.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1448,7 +1447,7 @@ Failure: Throw an error message
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -1472,15 +1471,15 @@ Failure: Throw an error message
 
 ### approveTranche
 
--   Description
+- Description
 
   Allow the specified account to operate the tokens on behalf of the token holder.
 
--   Entry function
+- Entry function
 
-  main
+  `main`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1493,7 +1492,7 @@ Failure: Throw an error message
     }
     ```
 
--   Return value
+- Return value
 
   Success: `true`
 
@@ -1501,15 +1500,15 @@ Failure: Throw an error message
 
 ### allowance
 
--   Description
+- Description
 
-  Query the number of tokens that the specified account can operate on behalf of the token holder.
+  `query` the number of tokens that the specified account can operate on behalf of the token holder.
 
--   Entry function
+- Entry function
 
-  query
+  `query`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1521,7 +1520,7 @@ Failure: Throw an error message
     }
     ```
 
--   Return value
+- Return value
 
     ```json
     {
@@ -1537,15 +1536,15 @@ Failure: Throw an error message
 
 ### allowanceForTranche
 
--   Description
+- Description
 
-  Query the number of tokens that the specified account can operate on behalf of the token holder.
+  `query` the number of tokens that the specified account can operate on behalf of the token holder.
 
--   Entry function
+- Entry function
 
-  query
+  `query`
 
--   Parameter
+- Parameter
 
     ```json
     {
@@ -1558,7 +1557,7 @@ Failure: Throw an error message
     }
     ```
 
--   Return value
+- Return value
 
     ```json
     {

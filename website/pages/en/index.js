@@ -270,7 +270,7 @@ class Index extends React.Component {
           },
           {
             url: `${baseUrl}docs/api_http`,
-            label: 'HTTP/Restful'
+            label: 'HTTP'
           },
           {
             url: `${baseUrl}docs/api_websocket`,

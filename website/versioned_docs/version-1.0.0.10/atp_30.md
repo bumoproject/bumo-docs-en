@@ -13,7 +13,7 @@ ATP 30 (Account-based Tokenization Protocol) is "Non-Fungible Tokens", abbreviat
 - TokenId is unique within the contract.
 - TokenId can only be owned by one owner (i.e. address).
 - An owner can have multiple NFTs, and its balance only counts
-- ATP 30 provides the `approve`, `transfer`, and `transferFrom` interfaces for transferring ownership.
+- ATP 30 provides the  [approve](#approve),  [transfer](#transfer), and [transferFrom](#transferfrom) interfaces for transferring ownership.
 
 ## Standards
 
@@ -39,7 +39,7 @@ The attributes of tokens are stored in the account of the smart contract. The at
 
 ## Event
 
-The functions `issue`, `transfer`, `approve`, and `transferFrom` will trigger the event. The event is to call the `tlog` interface, and a transaction log is recorded on the blockchain. The log records the details of the function call for the user to read.
+The functions [issue](#issue), [transfer](#transfer), [approve](#approve), and [transferFrom](#transferfrom) will trigger the event. The event is to call the `tlog` interface, and a transaction log is recorded on the blockchain. The log records the details of the function call for the user to read.
 
 The tlog is defined as follows:
 

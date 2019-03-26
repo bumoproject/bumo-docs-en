@@ -49,57 +49,57 @@ You must install the dependencies required by the system before compiling the so
 
 1. Input the following command to install `automake`.
 
-```
-  sudo apt-get install automake
-```
+    ```shell
+    sudo apt-get install automake
+    ```
 
 2. Input the following command to install `autoconf`.
 
-```
-  sudo apt-get install autoconf
-```
+    ```shell
+    sudo apt-get install autoconf
+    ```
 
 3. Input the following command to install `libtool`.
 
-```
-  sudo apt-get install libtool
-```
+    ```shell
+    sudo apt-get install libtool
+    ```
 
 4. Input the following command to install `g++`.
 
-```
-  sudo apt-get install g++
-```
+    ```shell
+    sudo apt-get install g++
+    ```
 
 5. Input the following command to install `libssl-dev`.
 
-``` 
-  sudo apt-get install libssl-dev
-```
+    ```shell
+    sudo apt-get install libssl-dev
+    ```
 
 6. Input the following command to install `cmake`.
 
-```
-  sudo apt-get install cmake
-```
+    ```shell
+    sudo apt-get install cmake
+    ```
 
 7. Input the following command to install `libbz2-dev`.
 
-```
-  sudo apt-get install libbz2-dev
-```
+    ```shell
+    sudo apt-get install libbz2-dev
+    ```
 
 8. Input the following command to install `python`.
 
-```
-  sudo apt-get install python
-```
+    ```shell
+    sudo apt-get install python
+    ```
 
 9. Input the following command to install `unzip`.
 
-```
-  sudo apt-get install unzip
-```
+    ```shell
+    sudo apt-get install unzip
+    ```
 
 #### Compiling the BUMO Source Code
 
@@ -107,45 +107,43 @@ The source code of BUMO can be compiled after the dependencies are successfully 
 
 1. In the root directory, input the following command to download the source code file of BUMO. If `git` is not installed, you can install `git` with the `sudo apt-get install git` command.
 
-```
-  git clone https://github.com/bumoproject/bumo.git
-```
+    ```shell
+    git clone https://github.com/bumoproject/bumo.git
+    ```
 
-<img src="/docs/assets/download_bumo_back2.png"
-​     style= "margin-left: 20px">
+  <img src="/docs/assets/download_bumo_back2.png" style= "margin-left: 20px">
 
 
-**Note**: The bumo/ directory will be created automatically during BUMO source code being downloaded, and the source code files will be stored in this directory.
+  > **Note**: The bumo/ directory will be created automatically during BUMO source code being downloaded, and the source code files will be stored in this directory.
 
 2. Input the following command to enter the file directory of the source code.
 
-```
-  cd /bumo/build/
-```
+    ```shell
+    cd /bumo/build/
+    ```
 
 3. Input the following command to download the dependencies and initialize the development environment.
 
-```  
-  ./install-build-deps-linux.sh
-```
+    ```shell  
+    ./install-build-deps-linux.sh
+    ```
 
 4. Input the following command to return to the bumo/ directory.
 
-```
-  cd ../
-```
+    ```shell
+    cd ../
+    ```
 
 5. Input the following command to complete the compilation of the BUMO source code. The message below shows that the compilation is successful.
 
-``` 
-  make
-```
+    ```shell
+    make
+    ```
+    
 
-<img src="/docs/assets/compile_finished.png"
-​     style= "margin-left: 20px">
+  <img src="/docs/assets/compile_finished.png" style= "margin-left: 20px">
 
-
-**Note**: The executable files generated after compilation are **bumo** and **bumod** which are stored in the /bumo/bin directory.
+  > **Note**: The executable files generated after compilation are **bumo** and **bumod** which are stored in the /bumo/bin directory.
 
 
 #### Installing the BUMO Node
@@ -154,26 +152,22 @@ The BUMO node can be installed after the compilation is finished. You must compl
 
 1. Input the following command to enter the installation directory.
 
-```
-  cd /bumo/
-```
+    ```shell
+    cd /bumo/
+    ```
 
 2. Input the following command to complete the installation. The message below shows that the installation is successful.
 
-```  
-  make install
-```
+    ```shell
+    make install
+    ```
 
-<img src="/docs/assets/compile_installed.png"
-​     style= "margin-left: 20px">
+  <img src="docs/assets/compile_installed.png" style= "margin-left: 20px">
 
-
-**Note**: 
-   - By default, the service is installed in the /usr/local/buchain/ directory.
-   - After the installation is finished, you can start the bumo service with the `service bumo start` command without additional configuration.
-   - After installing the BUMO node, the directory structure in the buchain/ directory is as follows:
-
-
+  > **Note**: 
+  >   - By default, the service is installed in the /usr/local/buchain/ directory.
+  >   - After the installation is finished, you can start the bumo service with the `service bumo start` command without additional configuration.
+  >   - After installing the BUMO node, the directory structure in the buchain/ directory is as follows:
 
 | Directory                         | Description|
 |------|:--------:|
@@ -196,35 +190,35 @@ You must complete the following steps to obtain the installation package of BUMO
 
 1. Input the following command to download the installation package of BUMO.
 
-```
-  wget https://github.com/bumoproject/bumo/releases/download/1.0.0.7/buchain-1.0.0.7-linux-x64.tar.gz
-```
-**Note**: 
-   - If you have not installed `wget`, you can use the `apt-get install wget` command to install `wget`.
-   - You can find the version you need from the https://github.com/bumoproject/bumo/releases link and then right-click the version to copy the download link.
-   - In this example the file is downloaded to the root directory.
+    ```shell
+    wget https://github.com/bumoproject/bumo/releases/download/1.0.0.7/buchain-1.0.0.7-linux-x64.tar.gz
+    ```
+  > **Note**: 
+  >   - If you have not installed `wget`, you can use the `apt-get install wget` command to install `wget`.
+  >   - You can find the version you need from the https://github.com/bumoproject/bumo/releases link and then right-click the version to copy the download link.
+  >   - In this example the file is downloaded to the root directory.
 
 2. Copy the installation package to the /usr/local/ directory by inputting the following command.
 
-```
-  cp buchain-1.0.0.7-linux-x64.tar.gz /usr/local/
-```
+    ```shell
+    cp buchain-1.0.0.7-linux-x64.tar.gz /usr/local/
+    ```
 
 **Note**: The above copy operation is done in the directory where the file is downloaded. You must copy the file according to the specific download directory.
 
 3. Input the following command to go to the /usr/local/ directory.
 
-```
-  cd /usr/local/
-```
+    ```shell
+    cd /usr/local/
+    ```
 
 4. Input the following command to extract the file.
 
-```
-  tar -zxvf buchain-1.0.0.7-linux-x64.tar.gz
-```
+    ```shell
+    tar -zxvf buchain-1.0.0.7-linux-x64.tar.gz
+    ```
 
-**Note**: After extracting the file, the buchain/ directory is generated.
+  > **Note**: After extracting the file, the buchain/ directory is generated.
 
 
 #### Registering the Services
@@ -233,15 +227,15 @@ After extracting the file, you must register the services of bumo and bumod. You
 
 1. Input the following command to register the service of bumo.
 
-```
-  ln -s /usr/local/buchain/scripts/bumo /etc/init.d/bumo
-```
+    ```shell
+    ln -s /usr/local/buchain/scripts/bumo /etc/init.d/bumo
+    ```
 
 2. Input the following command to register the service of bumod.
 
-``` 
-  ln -s /usr/local/buchain/scripts/bumod /etc/init.d/bumod
-```
+    ```shell 
+    ln -s /usr/local/buchain/scripts/bumod /etc/init.d/bumod
+    ```
 
 #### Modifying the Service Startup Directory
 
@@ -249,20 +243,19 @@ You must complete the following steps to modify the boot directory of bumo and b
 
 1. Open the bumo file by inputting the following command in the local/ directory.
 
-```
-  vim buchain/scripts/bumo
-```
+    ```shell
+    vim buchain/scripts/bumo
+    ```
 
 2. Locate `install_dir` and change the installation directory of bumo.
 
-```
-  install_dir=/usr/local/buchain
-```
+    ```shell
+    install_dir=/usr/local/buchain
+    ```
 
-<img src="/docs/assets/start_path.png"
-​     style= "margin-left: 20px">
+  <img src="/docs/assets/start_path.png" style= "margin-left: 20px">
 
-**Note**: By default, the directory of `install_dir` is in the /usr/local/buchain directory; you can modify it according to the specific installation directory of bumo.
+  > **Note**: By default, the directory of `install_dir` is in the /usr/local/buchain directory; you can modify it according to the specific installation directory of bumo.
 
 3. Press `Esc` to exit editing.
 
@@ -270,15 +263,15 @@ You must complete the following steps to modify the boot directory of bumo and b
 
 5. Open the bumod file by inputting the following command in the local/ directory.
 
-```
-  vim /buchain/scripts/bumod
-```
+    ```shell
+    vim /buchain/scripts/bumod
+    ```
 
 6. Locate `install_dir` and change the installation directory for bumod.
 
-```
-  install_dir=/usr/local/buchain
-```
+    ```shell
+    install_dir=/usr/local/buchain
+    ```
 
 **Note**: By default, the directory of `install_dir` is in the /usr/local/buchain directory; you can modify it according to the specific installation directory of bumod.
 
@@ -292,42 +285,43 @@ Setting up booting includes setting the startup level, adding startup commands, 
 
 1. Input the following command to set level 1.
 
-```  
-  ln -s -f /etc/init.d/bumod /etc/rc1.d/S99bumod
-```
+    ```shell  
+    ln -s -f /etc/init.d/bumod /etc/rc1.d/S99bumod
+    ```
 2. Input the following command to set level 2.
 
-``` 
-  ln -s -f /etc/init.d/bumod /etc/rc2.d/S99bumod
-```
+    ```shell 
+    ln -s -f /etc/init.d/bumod /etc/rc2.d/S99bumod
+    ```
 3. Input the following command to set level 3.
 
-```
-  ln -s -f /etc/init.d/bumod /etc/rc3.d/S99bumod
-```
+    ```shell
+    ln -s -f /etc/init.d/bumod /etc/rc3.d/S99bumod
+    ```
 4. Input the following command to set level 4.
 
-``` 
-  ln -s -f /etc/init.d/bumod /etc/rc4.d/S99bumod
-```
+    ```shell 
+    ln -s -f /etc/init.d/bumod /etc/rc4.d/S99bumod
+    ```
 5. Input the following command to set level 5.
 
-```  
-  ln -s -f /etc/init.d/bumod /etc/rc5.d/S99bumod
-```
+    ```shell  
+    ln -s -f /etc/init.d/bumod /etc/rc5.d/S99bumod
+    ```
 6. Input the following command to open the rc.local file.
 
-```
-  vim /etc/rc.local
-```
+    ```shell
+    vim /etc/rc.local
+    ```
 
 7. Append the following command to the end of the rc.local file.
 
-```
-  /etc/init.d/bumod start
-```
-<img src="/docs/assets/add_start_command.png"
-​     style= "margin-left: 20px">
+    ```shell
+    /etc/init.d/bumod start
+    ```
+    
+
+  <img src="/docs/assets/add_start_command.png" style= "margin-left: 20px">
 
 8. Press `Esc` to exit editing.
 
@@ -335,9 +329,9 @@ Setting up booting includes setting the startup level, adding startup commands, 
 
 10. Execute the following command to set the permission of the rc.local file.
 
-```  
-  chmod +x /etc/rc.local
-```
+    ```shell  
+    chmod +x /etc/rc.local
+    ```
 
 **Note**: Now the BUMO node is installed. Before starting the bumo service, you must select the configuration file for the running environment.
 
@@ -348,25 +342,24 @@ After installing the BUMO node, you must select the configuration file of the ru
 
 1. Input the following command to go to the configuration file directory.
 
-```  
-  cd /usr/local/buchain/config/
-```
+    ```shell  
+      cd /usr/local/buchain/config/
+    ```
 
-**Note**: The configuration files for the following runtime environments are available in this directory.
-
-  - bumo-mainnet.json：This file is the configuration file of the main network environment and is applied in the production environment
-  - bumo-testnet.json：This file is the configuration file of the test network environment
-  - bumo-single.json：This file is the configuration file for the single-node debugging environment
+  > **Note**: The configuration files for the following runtime environments are available in this directory.
+  >   - bumo-mainnet.json：This file is the configuration file of the main network environment and is applied in the production environment
+  >  - bumo-testnet.json：This file is the configuration file of the test network environment
+  >  - bumo-single.json：This file is the configuration file for the single-node debugging environment
 
 2. Input the following command to rename the configuration file for the runtime environment.
 
-```
-  mv bumo-testnet.json bumo.json
-```
-**Note**: 
-   - In this example, the test network environment is selected as the running environment. You can also select other files as your running environment according to your needs.
-   - After renaming the file, the bumo service can be started by the `service start bumo` command.
-   - After installing the BUMO node, you can view the directory structure of the installation file in the buchain/ directory.
+    ```shell
+    mv bumo-testnet.json bumo.json
+    ```
+  > **Note**: 
+  >    - In this example, the test network environment is selected as the running environment. You can also select other files as your running environment according to your needs.
+  >   - After renaming the file, the bumo service can be started by the `service bumo start` command.
+  >   - After installing the BUMO node, you can view the directory structure of the installation file in the buchain/ directory.
 
 ## Installing the BUMO Node in MacOS
 
@@ -415,87 +408,87 @@ You must complete following steps to install Homebrew:
 1. Open the terminal in the MacOS system.
 2. Input the following code in the terminal:
 
-``` 
- /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-```
+    ```shell 
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    ```
 3. Press `Enter` to install.
 
 #### Installing Dependencies in MacOS
 
 1. Input the following command to set `Homebrew` without automatic update.
 
-``` 
-  export HOMEBREW_NO_AUTO_UPDATE=true
-```
+    ```shell 
+    export HOMEBREW_NO_AUTO_UPDATE=true
+    ```
 2. Input the following command to install `autoconf`.
 
-``` 
-  brew install autoconf
-```
+    ```shell 
+    brew install autoconf
+    ```
 3. Input the following command to install `automake`.
 
-``` 
-   brew install automake
-```
+    ```shell 
+    brew install automake
+    ```
 4. Input the following command to install `libtool`.
 
-``` 
-  brew install libtool
-```
+    ```shell 
+    brew install libtool
+    ```
 5. Input the following command to install `cmake`.
 
-```   
-  brew install cmake
-```
+    ```shell   
+    brew install cmake
+    ```
 6. Input the following command to install `python`.
 
-```   
-  brew install python
-```
+    ```shell   
+    brew install python
+    ```
 7. Input the following command to install `m4`.
 
-``` 
-  brew install m4
-```
+    ```shell 
+    brew install m4
+    ```
 8. Input the following command to install `wget`.
 
-```   
-  brew install wget
-```
+    ```shell   
+    brew install wget
+    ```
 #### Compiling the BUMO Source Code in MacOS
 1. In the root directory, input the following command to download the source code file of BUMO. If `git` is not installed, you can install `git` with the `sudo apt-get install git` command. 
 
-```   
-  sudo git clone https://github.com/bumoproject/bumo.git
-```
-<img src="/docs/assets/add_start_command.png"
-​     style= "margin-left: 20px">
+    ```shell   
+    sudo git clone https://github.com/bumoproject/bumo.git
+    ```
+    
 
+  <img src="/docs/assets/add_start_command.png" style= "margin-left: 20px">
 
-**Note**: The bumo/ directory will be created automatically during the BUMO source code being downloaded, and the source code file will be stored in this directory.
+  > **Note**: The bumo/ directory will be created automatically during the BUMO source code being downloaded, and the source code file will be stored in this directory.
 
 2. Input the following command to go to the file directory of the source code. 
 
-```   
-  cd /bumo/build/
-```
+    ```shell   
+    cd /bumo/build/
+    ```
 3. Input the following command to download the dependencies and initialize the development environment.
 
-```  
-  sudo ./install-build-deps-mac.sh
-```
+    ```shell  
+    sudo ./install-build-deps-mac.sh
+    ```
 
 4. Input the following command to return to the bumo/ directory.
 
-``` 
-  cd ../
-```
+    ```shell 
+    cd ../
+    ```
 
 5. Input the following command to complete the compilation of the BUMO source code.
 
-```  
-  sudo make
-```
+    ```shell  
+    sudo make
+    ```
 
 **Note**:  The executable files generated after compilastion are **bumo** and **bumod** which are stored in the /bumo/bin directory.
 
@@ -505,20 +498,19 @@ The BUMO node can be installed after the compilation is finished. You must compl
 
 1. Input the following command to go to the installation directory.
 
-``` 
-  cd /bumo/
-```
+    ```shell 
+    cd /bumo/
+    ```
 
-2.Input the following command to complete the installation.
+2. Input the following command to complete the installation.
 
-```   
-  sudo make install
-```
+    ```shell
+    sudo make install
+    ```
 
-**Note**: 
-   - By default, the service is installed in the /usr/local/buchain/ directory.
-   - After installing the BUMO node, the directory structure in the buchain/ directory is as follows:
-
+  > **Note**: 
+  >   - By default, the service is installed in the /usr/local/buchain/ directory.
+  >   - After installing the BUMO node, the directory structure in the buchain/ directory is as follows:
 
 | Directory | Description   |
 |-----|:---------:|
@@ -537,35 +529,35 @@ Installing with a Package refers to installing the BUMO node with an installatio
 
 1. Download the required installation package from the address below.
 
-```
-  sudo wget https://github.com/bumoproject/bumo/releases/download/1.0.0.7/buchain-1.0.0.7-macOS-x64.tar.gz
-```
-**Note**: 
-   - If you have not intstalled `wget`, you can use the `apt-get install wget` command to install `wget`.
-   - You can find the version you need from the https://github.com/bumoproject/bumo/releases link and then right-click the version to copy the download link.
-   - In this example the file is downloaded to the root directory.
+    ```shell
+    sudo wget https://github.com/bumoproject/bumo/releases/download/1.0.0.7/buchain-1.0.0.7-macOS-x64.tar.gz
+    ```
+  > **Note**: 
+  >   - If you have not intstalled `wget`, you can use the `apt-get install wget` command to install `wget`.
+  >   - You can find the version you need from the https://github.com/bumoproject/bumo/releases link and then right-click the version to copy the download link.
+  >   - In this example the file is downloaded to the root directory.
 
 2. Copy the installation package to the /usr/local/ directory by inputting the following command.
 
-```
-  sudo cp buchain-1.0.0.7-macOS-x64.tar.gz /usr/local/
-```
+    ```shell
+    sudo cp buchain-1.0.0.7-macOS-x64.tar.gz /usr/local/
+    ```
 
 **Note**: The above `copy` operation is done in the directory where the file is downloaded. You must copy the file according to the specific download directory.
 
 3. Input the following command to go to the /usr/local/ directory.
 
-```
-  cd /usr/local/
-```
+    ```shell
+    cd /usr/local/
+    ```
 
 4. Input the following command to extract the file.
 
-```
-  sudo tar -zxvf buchain-1.0.0.7-macOS-x64.tar.gz
-```
+    ```shell
+    sudo tar -zxvf buchain-1.0.0.7-macOS-x64.tar.gz
+    ```
 
-**Note**: After extracting the file, the buchain/ directory is generated.
+  > **Note**: After extracting the file, the buchain/ directory is generated.
 
 | Directory   | Description |
 |-------|:---------:|
@@ -581,25 +573,24 @@ After installing the BUMO node, you must select the configuration file of the ru
 
 1. Input the following command to go to the configuration file directory.
 
-```  
-  cd /usr/local/buchain/config/
-```
+    ```shell  
+    cd /usr/local/buchain/config/
+    ```
 
-**Note**: The configuration files for the following runtime environments are available in this directory.
-
-  - bumo-mainnet.json：This file is the configuration file of the main network environment and is applied in the production environment
-  - bumo-testnet.json：This file is the configuration file of the test network environment
-  - bumo-single.json：This file is the configuration file for the single-node debugging environment
+  > **Note**: The configuration files for the following runtime environments are available in this directory.
+  >   - bumo-mainnet.json：This file is the configuration file of the main network environment and is applied in the production environment
+  >   - bumo-testnet.json：This file is the configuration file of the test network environment
+  >   - bumo-single.json：This file is the configuration file for the single-node debugging environment
 
 2. Input the following command to rename the configuration file for the runtime environment.
 
-```
-  mv bumo-testnet.json bumo.json
-```
-**Note**: 
-   - In this example, the test network environment is selected as the running environment. You can also select other files as your running environment according to your needs.
-   - After renaming the file, the bumo service can be started by the `service start bumo` command.
-   - After installing the BUMO node, you can view the directory structure of the installation file in the buchain/ directory.
+    ```shell
+    mv bumo-testnet.json bumo.json
+    ```
+  > **Note**: 
+  >    - In this example, the test network environment is selected as the running environment. You can also select other files as your running environment according to your needs.
+  >    - After renaming the file, you enter the /usr/local/buchain/bin directory, and the bumo service can be started by the `./bumo` command.
+  >    - After installing the BUMO node, you can view the directory structure of the installation file in the buchain/ directory.
 
 
 ## Configuration
@@ -613,113 +604,107 @@ General configuration includes data storage, communication between nodes, WEB AP
 
 **Data Storage**
 
-``` 
-   "db":{
-   "account_path": "data/account.db", //Store account data
-   "ledger_path": "data/ledger.db", //Store block data
-   "keyvalue_path": "data/keyvalue.db" //Store consensus data
-   }
+```json 
+"db":{
+    "account_path": "data/account.db", //Store account data
+    "ledger_path": "data/ledger.db", //Store block data
+    "keyvalue_path": "data/keyvalue.db" //Store consensus data
+}
 ```
 
 **Communication between Nodes**
 
-```
-   "p2p":
-   {
-   "network_id":30000,//Network ID
-   //Consensus network
-   "consensus_network":
-   {
-   "heartbeat_interval":60, //Heartbeat cycle, in second
-   "listen_port":36001,//Port monitored
-   "target_peer_connection":50, //Maximum number of active connections
-   "known_peers":
-   [
-   "127.0.0.1:36001"//Connect to other nodes
-   ]
-   }
-   }
+```json
+"p2p":{
+    "network_id":30000,//Network ID
+    //Consensus network
+    "consensus_network":
+    {
+        "heartbeat_interval":60, //Heartbeat cycle, in second
+        "listen_port":36001,//Port monitored
+        "target_peer_connection":50, //Maximum number of active connections
+        "known_peers":
+        [
+            "127.0.0.1:36001"//Connect to other nodes
+        ]
+    }
+}
 ```
 
 **WEB API Configuration**
 
-```
-   "webserver":{
-   "listen_addresses":"0.0.0.0:16002"
-   }
+```json
+"webserver":{
+    "listen_addresses":"0.0.0.0:16002"
+}
 ```
 
 **WebSocket API Configuration**
 
-```
-   "wsserver":
-   {
-   "listen_address":"0.0.0.0:36003"
-   }
+```json
+"wsserver":{
+    "listen_address":"0.0.0.0:36003"
+}
 ```
 
 **Block Configuration** 
 
-```
-   "ledger":
-   {
-   "validation_address":"buQmtDED9nFcCfRkwAF4TVhg6SL1FupDNhZY",//The address of validation node; the sync node or wallet does not need to be configured
-   "validation_private_key": "e174929ecec818c0861aeb168ebb800f6317dae1d439ec85ac0ce4ccdb88487487c3b74a316ee777a3a7a77e5b12efd724cd789b3b57b063b5db0215fc8f3e89", //The private key of validation node; the sync node or wallet does not need to be configured
-   "max_trans_per_ledger":1000, //Maximum number of transactions per block
-   "tx_pool": //Transaction pool configuration
-   {
-   "queue_limit":10240, // Limited transactions in the transaction pool
-   "queue_per_account_txs_limit":64 //Maximum transaction buffer for a single account
-   }
-   }
+```json
+"ledger":{
+    "validation_address":"buQmtDED9nFcCfRkwAF4TVhg6SL1FupDNhZY",//The address of validation node; the sync node or wallet does not need to be configured
+    "validation_private_key": "e174929ecec818c0861aeb168ebb800f6317dae1d439ec85ac0ce4ccdb88487487c3b74a316ee777a3a7a77e5b12efd724cd789b3b57b063b5db0215fc8f3e89", //The private key of validation node; the sync node or wallet does not need to be configured
+    "max_trans_per_ledger":1000, //Maximum number of transactions per block
+    "tx_pool": //Transaction pool configuration
+    {
+        "queue_limit":10240, // Limited transactions in the transaction pool
+        "queue_per_account_txs_limit":64 //Maximum transaction buffer for a single account
+    }
+}
 ```
 
 **Note**: `Validation_address` and `validation_private_key` can be obtained through the bumo program command line tool. Please save the account information properly and you will not be able to retrieve it if it is lost.
 
-```
-   [root@bumo ~]# cd /usr/local/buchain/bin
-   [root@bumo bin]#./bumo --create-account
+```json
+[root@bumo ~]# cd /usr/local/buchain/bin
+[root@bumo bin]#./bumo --create-account
 
-   {
-   "address" : "buQmtDED9nFcCfRkwAF4TVhg6SL1FupDNhZY", //Address
-   "private_key" : "privbsZozNs3q9aixZWEUzL9ft8AYph5DixN1sQccYvLs2zPsPhPK1Pt", //Private key
-   "private_key_aes" : "e174929ecec818c0861aeb168ebb800f6317dae1d439ec85ac0ce4ccdb88487487c3b74a316ee777a3a7a77e5b12efd724cd789b3b57b063b5db0215fc8f3e89", //AES encrypted private key
-   "public_key" : "b00108d329d5ff69a70177a60bf1b68972576b35a22d99d0b9a61541ab568521db5ee817fea6", //Public key
-   "public_key_raw" : "08d329d5ff69a70177a60bf1b68972576b35a22d99d0b9a61541ab568521db5e", //Original public key
-   "sign_type" : "ed25519" //ed25519 encrypted
-   }
+{
+    "address" : "buQmtDED9nFcCfRkwAF4TVhg6SL1FupDNhZY", //Address
+    "private_key" : "privbsZozNs3q9aixZWEUzL9ft8AYph5DixN1sQccYvLs2zPsPhPK1Pt", //Private key
+    "private_key_aes" : "e174929ecec818c0861aeb168ebb800f6317dae1d439ec85ac0ce4ccdb88487487c3b74a316ee777a3a7a77e5b12efd724cd789b3b57b063b5db0215fc8f3e89", //AES encrypted private key
+    "public_key" : "b00108d329d5ff69a70177a60bf1b68972576b35a22d99d0b9a61541ab568521db5ee817fea6", //Public key
+    "public_key_raw" : "08d329d5ff69a70177a60bf1b68972576b35a22d99d0b9a61541ab568521db5e", //Original public key
+    "sign_type" : "ed25519" //Eed25519 encrypted
+}
 ```
 
 **Genesis**
 
-```
-   "genesis":
-   {
-   "account": "buQs9npaCq9mNFZG18qu88ZcmXYqd6bqpTU3", //Genesis address
-   "slogan": "a new era of value", //Slogan stored in genesis
-   "fees":
-   {
-   "base_reserve": 10000000, //Base reserve for the account
-   "gas_price": 1000 //Byte fee
-   },
-   "validators": ["buQBwe7LZYCYHfxiEGb1RE9XC9kN2qrGXWCY"] //The block list of validation node
-   }
+```json
+"genesis":{
+    "account": "buQs9npaCq9mNFZG18qu88ZcmXYqd6bqpTU3", //Genesis address
+    "slogan": "a new era of value", //Slogan stored in genesis
+    "fees":{
+        "base_reserve": 10000000, //Base reserve for the account
+        "gas_price": 1000 //Byte fee
+    },
+    "validators": ["buQBwe7LZYCYHfxiEGb1RE9XC9kN2qrGXWCY"] //The block list of validation node
+}
 ```
 
 **Note**: The `genesis` configuration on the same blockchain must be consistent. `account` can be obtained by the bumo program command line tool `./bumo --create-account`. Please save the account information properly and you will not be able to retrieve it if it is lost.
 
 **Log Configuration**
 
-```
-   "logger":
-   {
-   "path":"log/buchain.log", // Log directory
-   "dest":"FILE|STDOUT|STDERR", //Output file classification
-   "level":"TRACE|INFO|WARNING|ERROR|FATAL",//Log level
-   "time_capacity":1, //Time span, day
-   "size_capacity":10, //Capacity, Megabyte
-   "expire_days":10 //Cycle of cleaning up the log, day
-   }
+```json
+"logger":{
+    "path":"log/buchain.log", // Log directory
+    "dest":"FILE|STDOUT|STDERR", //Output file classification
+    "level":"TRACE|INFO|WARNING|ERROR|FATAL",//Log level
+    "time_capacity":1, //Time span, day
+    "size_capacity":10, //Capacity, Megabyte
+    "expire_days":10 //Cycle of cleaning up the log, day
+}
 ```
 
 ### Multi-Node Configuration Example
@@ -731,143 +716,122 @@ In this section, two verification nodes and one synchronization node are taken a
 The `known_peers` of p2p must be the IP and port of other known nodes for the interconnection between nodes.
 
 
-```
-   verification node one:
-   "p2p":
-   {
-   "network_id":30000,
-   "consensus_network":
-   {
-   "heartbeat_interval":60,
-   "listen_port":36001,
-   "target_peer_connection":50,
-   "known_peers":
-   [
-   "192.168.1.102:36001", //IP and port of node two
-   "192.168.1.103:36001" //IP and port of node three
-   ]
-   }
-   }
+```json
+Verification node one:
+"p2p":{
+    "network_id":30000,
+    "consensus_network":{
+        "heartbeat_interval":60,
+        "listen_port":36001,
+        "target_peer_connection":50,
+        "known_peers":[
+            "192.168.1.102:36001", //IP and port of node two
+            "192.168.1.103:36001" //IP and port of node three
+        ]
+    }
+}
 
-   verification node two:
-   "p2p":
-   {
-   "network_id":30000,
-   "consensus_network":
-   {
-   "heartbeat_interval":60,
-   "listen_port":36001,
-   "target_peer_connection":50,
-   "known_peers":
-   [
-   "192.168.1.101:36001", //IP and port of node one
-   "192.168.1.103:36001" //IP and port of node three 
-   ]
-   }
-   }
+Verification node two:
+"p2p":{
+    "network_id":30000,
+    "consensus_network":{
+        "heartbeat_interval":60,
+        "listen_port":36001,
+        "target_peer_connection":50,
+        "known_peers":[
+            "192.168.1.101:36001", //IP and port of node one
+            "192.168.1.103:36001" //IP and port of node three 
+        ]
+    }
+}
 
-   synchronization node three:
-   "p2p":
-   {
-   "network_id":30000,
-   "consensus_network":
-   {
-   "heartbeat_interval":60,
-   "listen_port":36001,
-   "target_peer_connection":50,
-   "known_peers":
-   [
-   "192.168.1.101:36001", //IP and port of node one
-   "192.168.1.102:36001" //IP and port of node two
-   ]
-   }
-   }
+Synchronization node three:
+"p2p":{
+    "network_id":30000,
+    "consensus_network":{
+        "heartbeat_interval":60,
+        "listen_port":36001,
+        "target_peer_connection":50,
+        "known_peers":[
+            "192.168.1.101:36001", //IP and port of node one
+            "192.168.1.102:36001" //IP and port of node two
+        ]
+    }
+}
 ```
 **Configuration of Leger Module**
 
 The `validation_address` and `validation_private_key` from the ledger of verification node must match. And you must input `validation_address` of all the verification nodes into `genesis.validators`.
 
-```
-   Verification node one:
-   "ledger":
-   {
-   "validation_address":"buQBwe7LZYCYHfxiEGb1RE9XC9kN2qrGXWCY",//The address of verification node one; the sync node or wallet does not need to be configured
-   "validation_private_key": "66932f19d5be465ea9e7cfcb3ea7326d81953b9f99bc39ddb437b5367937f234b866695e1aae9be4bae27317c9987f80be882ae3d2535d4586deb3645ecd7e54", //The private key of verification node two; the synchronization node or wallet does not need to be configured
-   "max_trans_per_ledger":1000,
-   "tx_pool":
-   {
-   "queue_limit":10240,
-   "queue_per_account_txs_limit":64
-   }
-   }
+```json
+Verification node one:
+"ledger":{
+    "validation_address":"buQBwe7LZYCYHfxiEGb1RE9XC9kN2qrGXWCY",//The address of verification node one; the sync node or wallet does not need to be configured
+    "validation_private_key": "66932f19d5be465ea9e7cfcb3ea7326d81953b9f99bc39ddb437b5367937f234b866695e1aae9be4bae27317c9987f80be882ae3d2535d4586deb3645ecd7e54", //The private key of verification node two; the synchronization node or wallet does not need to be configured
+    "max_trans_per_ledger":1000,
+    "tx_pool":{
+        "queue_limit":10240,
+        "queue_per_account_txs_limit":64
+    }
+}
 
-   Verification node two:
-   "ledger":
-   {
-   "validation_address":"buQqkp5SDcsxpwWXQ2QFQbvHKnZ199HY3dHm",//The address of verification node two; the sync node or wallet does not need to be configured
-   "validation_private_key": "1cb0151ec2b23cb97bf94d86ee1100582f9f5fbfdfe40a69edae2d2b8711395c40c1da859ac0bc93240a8a70c4a06779ed06d299880417d71fc51c1a0267875f", //The private key of verification node two; the synchronization node or wallet does not need to be configured
-   "max_trans_per_ledger":1000,
-   "tx_pool":
-   {
-   "queue_limit":10240,
-   "queue_per_account_txs_limit":64
-   }
-   }
+Verification node two:
+"ledger":{
+    "validation_address":"buQqkp5SDcsxpwWXQ2QFQbvHKnZ199HY3dHm",//The address of verification node two; the sync node or wallet does not need to be configured
+    "validation_private_key": "1cb0151ec2b23cb97bf94d86ee1100582f9f5fbfdfe40a69edae2d2b8711395c40c1da859ac0bc93240a8a70c4a06779ed06d299880417d71fc51c1a0267875f", //The private key of verification node two; the synchronization node or wallet does not need to be configured
+    "max_trans_per_ledger":1000,
+    "tx_pool":{
+        "queue_limit":10240,
+        "queue_per_account_txs_limit":64
+    }
+}
 
-   Verification node three:
-   "ledger":
-   {
-   "max_trans_per_ledger":1000,
-   "tx_pool":
-   {
-   "queue_limit":10240,
-   "queue_per_account_txs_limit":64
-   }
-   }
+Synchronization node three:
+"ledger":{
+    "max_trans_per_ledger":1000,
+    "tx_pool":{
+        "queue_limit":10240,
+        "queue_per_account_txs_limit":64
+    }
+}
 ```
 **Configuration of Genesis Module**
 
 The genesis configuration on the same blockchain must be consistent.
 
-```
-   Verification note one:
-   "genesis":
-   {
-   "account": "buQs9npaCq9mNFZG18qu88ZcmXYqd6bqpTU3",
-   "slogan" : "a new era of value",
-   "fees":
-   {
-   "base_reserve": 10000000,
-   "gas_price": 1000
-   },
-   "validators": ["buQBwe7LZYCYHfxiEGb1RE9XC9kN2qrGXWCY", "buQqkp5SDcsxpwWXQ2QFQbvHKnZ199HY3dHm"] //All verification node addresses need to be configured. If there are two verification nodes, configure two addresses.
-   }
+```json
+Verification note one:
+"genesis":{
+    "account": "buQs9npaCq9mNFZG18qu88ZcmXYqd6bqpTU3",
+    "slogan" : "a new era of value",
+    "fees":{
+        "base_reserve": 10000000,
+        "gas_price": 1000
+    },
+    "validators": ["buQBwe7LZYCYHfxiEGb1RE9XC9kN2qrGXWCY", "buQqkp5SDcsxpwWXQ2QFQbvHKnZ199HY3dHm"] //All verification node addresses need to be configured. If there are two verification nodes, configure two addresses.
+}
 
-   Verification note two:
-   "genesis":
-   {
-   "account": "buQs9npaCq9mNFZG18qu88ZcmXYqd6bqpTU3",
-   "slogan" : "a new era of value",
-   "fees":
-   {
-   "base_reserve": 10000000,
-   "gas_price": 1000
-   },
-   "validators": ["buQBwe7LZYCYHfxiEGb1RE9XC9kN2qrGXWCY", "buQqkp5SDcsxpwWXQ2QFQbvHKnZ199HY3dHm"] //All verification node addresses need to be configured. If there are two verification nodes, configure two addresses.
-   }
+Verification note two:
+"genesis":{
+    "account": "buQs9npaCq9mNFZG18qu88ZcmXYqd6bqpTU3",
+    "slogan" : "a new era of value",
+    "fees":{
+        "base_reserve": 10000000,
+        "gas_price": 1000
+    },
+    "validators": ["buQBwe7LZYCYHfxiEGb1RE9XC9kN2qrGXWCY", "buQqkp5SDcsxpwWXQ2QFQbvHKnZ199HY3dHm"] //All verification node addresses need to be configured. If there are two verification nodes, configure two addresses.
+}
 
-   Verification note three:
-   "genesis":
-   {
-   "account": "buQs9npaCq9mNFZG18qu88ZcmXYqd6bqpTU3",
-   "slogan" : "a new era of value",
-   "fees":
-   {
-   "base_reserve": 10000000,
-   "gas_price": 1000
-   },
-   "validators": ["buQBwe7LZYCYHfxiEGb1RE9XC9kN2qrGXWCY", "buQqkp5SDcsxpwWXQ2QFQbvHKnZ199HY3dHm"] //All verification node addresses need to be configured. If there are two verification nodes, configure two addresses.
-   }
+Synchronization note three:
+"genesis":{
+    "account": "buQs9npaCq9mNFZG18qu88ZcmXYqd6bqpTU3",
+    "slogan" : "a new era of value",
+    "fees":{
+        "base_reserve": 10000000,
+        "gas_price": 1000
+    },
+    "validators": ["buQBwe7LZYCYHfxiEGb1RE9XC9kN2qrGXWCY", "buQqkp5SDcsxpwWXQ2QFQbvHKnZ199HY3dHm"] //All verification node addresses need to be configured. If there are two verification nodes, configure two addresses.
+}
 ```
 **Note**: 
    - Before running, make sure that the initial data of each node is consistent, otherwise you will not be able to reach consensus to generate the block.
@@ -881,8 +845,8 @@ In the maintenance service, the BUMO service operations such as startup, shutdow
 
 Input the following command to start the bumo service.
 
-```
-   service bumo start
+```shell
+service bumo start
 ```
 **Note**: To start the bumo service in MacOS, you must enter the /usr/local/buchain/bin directory and start the bumo service with the `./bumo` command.
 
@@ -890,8 +854,8 @@ Input the following command to start the bumo service.
 
 Input the following command to stop the bumo service.
 
-```
-   service bumo stop
+```shell
+service bumo stop
 ```
 **Note**: In the MacOS system, you can stop the bumo service by pressing `control+c`.
 
@@ -899,8 +863,8 @@ Input the following command to stop the bumo service.
 
 Input the following command to query the bumo service.
 
-```
-   service bumo status
+```shell
+service bumo status
 ```
 **Note**: No service is available in MacOS.
 
@@ -908,13 +872,13 @@ Input the following command to query the bumo service.
 
 Input the following command to query the detailed system status.
 
-```
-   curl 127.0.0.1:19333/getModulesStatus
+```shell
+curl 127.0.0.1:19333/getModulesStatus
 ```
 The result is shown below:
 
-```
-   {
+```json
+{
     "glue_manager":{
         "cache_topic_size":0,
         "ledger_upgrade":{
@@ -939,7 +903,8 @@ The result is shown below:
         "tx_count":1185   //Total transactions
     },
     "peer_manager":Object{...},
-    "web server":Object{...},
+    "web server":Object{...}
+}
 ```
 **Note**: No service is available in MacOS.
 
@@ -949,18 +914,18 @@ You must stop the BUMO service before clearing the database. You must complete t
 
 1. Input the following command to enter the bumo service directory.
 
-```
-   cd /usr/local/buchain/bin
-```
+    ```shell
+    cd /usr/local/buchain/bin
+    ```
 2. Input the following command to clear the database.
 
-```
-   ./bumo --dropdb
-```
-**Note**: After the database is successfully cleared, you can see the information shown below.
+    ```shell
+    ./bumo --dropdb
+    ```
+    
+  > **Note**: After the database is successfully cleared, you can see the information shown below.
 
-<img src="/docs/assets/clear_database.png"
-​     style= "margin-left: 20px">
+  <img src="/docs/assets/clear_database.png" style= "margin-left: 20px">
 
 **Creating a Hard Fork**
 
@@ -968,42 +933,39 @@ You must complete the following steps to create a hard fork.
 
 1. Create the hard fork by inputting the following command in the /usr/local directory.
 
-```
-  buchain/bin/bumo --create-hardfork
-```
+    ```shell
+    buchain/bin/bumo --create-hardfork
+    ```
 2. Enter `y` when prompted and then press `Enter`. The message shown below indicates the hard fork is created successfully.
 
-<img src="/docs/assets/hard_fork_created.png"
-​     style= "margin-left: 20px">
-
-
-**Note**: 
+  <img src="/docs/assets/hard_fork_created.png" style= "margin-left: 20px">
+  
+  > **Note**: 
    - After executing the above command, the new blockchain network has only one verification node.
    - After executing the hard fork command, the following hash value is displayed:
-
-```
-  4b9ad78065c65aaf1280edf6129ab2da93c99c42f2bcd380b5966750ccd5d80d
-```
+  
+    ```shell
+    4b9ad78065c65aaf1280edf6129ab2da93c99c42f2bcd380b5966750ccd5d80d
+    ```
 
 3. Input the following command to clear the consensus status data. When clearing the consensus status data, you must ensure that the bumo service is not running, otherwise it cannot be cleared.
 
-```  
-  buchain/bin/bumo --clear-consensus-status
-```
+    ```shell  
+    buchain/bin/bumo --clear-consensus-status
+    ```
 
 4. Add the hash value to the bumo.json file in the /usr/local/buchain/config directory of the node or synchronization node.
 
-```
-  "ledger": {
-  "genesis_account": "buQs9npaCq9mNFZG18qu88ZcmXYqd6bqpTU3",
-  "max_trans_per_ledger": 1000,
-  "hardfork_points":
-  [
-  "4b9ad78065c65aaf1280edf6129ab2da93c99c42f2bcd380b5966750ccd5d80d
-  "
-  ]
-  },
-```
+    ```json
+    "ledger": {
+        "genesis_account": "buQs9npaCq9mNFZG18qu88ZcmXYqd6bqpTU3",
+        "max_trans_per_ledger": 1000,
+        "hardfork_points":[
+            "4b9ad78065c65aaf1280edf6129ab2da93c99c42f2bcd380b5966750ccd5d80d
+            "
+        ]
+    },
+    ```
 5. Start the node service for the configuration to take effect.
 
 **Changing the Running Environment**
@@ -1012,30 +974,29 @@ Before changing the running environment, you must make sure that the BUMO servic
 
 1. Input the following command to enter the directory where the configuration file is located.
 
-```
-  cd /usr/local/buchain/config/
-```
+    ```shell
+    cd /usr/local/buchain/config/
+    ```
 
-**Note**: The configuration files for the following runtime environments are available in this directory.
-
-  - bumo-mainnet.json：This file is the configuration file of the main network environment and is applied in the production environment
-  - bumo-testnet.json：This file is the configuration file of the test network environment
-  - bumo-single.json：This file is the configuration file for the single-node debugging environment
+  > **Note**: The configuration files for the following runtime environments are available in this directory.
+  >   - bumo-mainnet.json：This file is the configuration file of the main network environment and is applied in the production environment
+  >   - bumo-testnet.json：This file is the configuration file of the test network environment
+  >   - bumo-single.json：This file is the configuration file for the single-node debugging environment
 
 2. Change the configuration file name (bumo.json) for the current running environment, for example:
 
-```  
-  mv bumo.json bumoprevious.json
-```
+    ```shell  
+    mv bumo.json bumoprevious.json
+    ```
 
 3. Change the environment configuration file to run to bumo.json, for example:
 
-```  
-  mv bumo-mainnet.json bumo.json
-```
-**Note**: 
-   - In this example, the main network environment is set to the running environment.
-   - After changing the running environment, you must clear the database to restart the bumo service.
+    ```shell  
+    mv bumo-mainnet.json bumo.json
+    ```
+  > **Note**: 
+  >    - In this example, the main network environment is set to the running environment.
+  >    - After changing the running environment, you must clear the database to restart the bumo service.
 
 ## Uninstalling the BUMO Node
 
@@ -1047,14 +1008,14 @@ If you installed the BUMO node by compilation, you can uninstall the BUMO node b
 
 1. Input the following command to enter the BUMO installation directory.
 
-```  
-  cd /bumo
-```
+    ```shell  
+    cd /bumo
+    ```
 2. Input the following command to delete the BUMO node.
 
-```  
-  make uninstall
-```
+    ```shell  
+    make uninstall
+    ```
 Now the BUMO node is uninstalled.
 
 ### Uninstalling the BUMO Node Installed with a Package
@@ -1063,21 +1024,21 @@ If you installed the BUMO node with the installation package, you can uninstall 
 
 1. Input the following command to delete the directory of the buchain.
 
-```
-  sudo rm -rf /usr/local/buchain/
-```
+    ```shell
+    sudo rm -rf /usr/local/buchain/
+    ```
 
 2. Input the following command to delete the soft link of bumo.
 
-```
-  sudo rm -rf /etc/init.d/bumo
-```
+    ```shell
+    sudo rm -rf /etc/init.d/bumo
+    ```
 
 3. Input the following command to delete the soft link of bumod.
 
-```
-  sudo rm -rf /etc/init.d/bumod
-```
+    ```shell
+    sudo rm -rf /etc/init.d/bumod
+    ```
 Now the BUMO node is uninstalled.
 
 

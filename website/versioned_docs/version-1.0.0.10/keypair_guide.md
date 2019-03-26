@@ -249,84 +249,84 @@ Transaction_blobs by Yourself.
 
 **Attention :** As the transaction_blob is likely to be intercepted and tampered with, it is not recommended to generate transaction_blobs in this way.
 
-If you need to call the interface to generate transaction_blobs, sign and submit transactions, please refer to the [Serializing Transaction Data](api_http#serializing-transaction-data) interface of http.
+If you need to call the interface to generate transaction_blobs, sign and submit transactions, please refer to the [Serializing Transaction Data](../api_http#serializing-transaction-data) interface of http.
 
 Calling the interface to generate a transaction_blob includes the following steps:
 
 1. Call the getAccount interface to get the nonce value of the account that is to initiate a transaction. The code is shown below:
 
-```http
-HTTP GET host:port/getAccount?address=accountAddress
-```
+    ```http
+    HTTP GET host:port/getAccount?address=accountAddress
+    ```
 
 2. Populate the json data as needed and complete filling the transaction data. The format is shown below:
 
-```json
-{
-    "source_address":"xxxxxxxxxxx", //The source transaction account, the originator of the transaction
-    "nonce":2, //Nonce value
-    "ceil_ledger_seq": 0, //Optional
-    "fee_limit":1000, //Fee paid in transaction
-    "gas_price": 1000, //Gas price (Not less than the configured value)
-    "metadata":"0123456789abcdef", //Optional, metadata for the transaction given by users, in hexadecimal format
-    "operations":[
-        {
-            //Populate according to specific operations
-        },
-        {
-            //Populate according to specific operations
-        }
-        ......
-    ]
-}
-```
+    ```json
+    {
+        "source_address":"xxxxxxxxxxx", //The source transaction account, the originator of the transaction
+        "nonce":2, //Nonce value
+        "ceil_ledger_seq": 0, //Optional
+        "fee_limit":1000, //Fee paid in transaction
+        "gas_price": 1000, //Gas price (Not less than the configured value)
+        "metadata":"0123456789abcdef", //Optional, metadata for the transaction given by users, in hexadecimal format
+        "operations":[
+            {
+                //Populate according to specific operations
+            },
+            {
+                //Populate according to specific operations
+            }
+            ......
+        ]
+    }
+    ```
 
    **Note :** The nonce value needs to be incremented by 1 based on the value obtained in Step 1.
 
 3. By calling the `getTransactionBlob` interface, the json data generated in Step 2 is passed as a parameter, and a transaction hash and a `transaction_blob` are obtained to implement transaction serialization. The format is shown below:
 
-```json
-{
-    "error_code": 0,
-    "error_desc": "",
-    "result": {
-        "hash": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //Transaction hash
-        "transaction_blob": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //The hexadecimal representation after the transaction is serialized
+    ```json
+    {
+        "error_code": 0,
+        "error_desc": "",
+        "result": {
+            "hash": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //Transaction hash
+            "transaction_blob": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //The hexadecimal representation after the transaction is serialized
+        }
     }
-}
-```
+    ```
 
 4. Sign the transaction and populate the transaction data. Sign the transaction_blob according to the previously generated private key, and then populate the json data of the submitted transaction. The format is shown below:
 
-```json
-{
-    "items" : [{
-        "transaction_blob" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //The hexadecimal representation after the transaction is serialized
-        "signatures" : [{//The first signature
-            "sign_data" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //Signature data
-            "public_key" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //Public key
-        }, {//The second signature
-            "sign_data" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //Signature data
-            "public_key" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //Public key
+    ```json
+    {
+        "items" : [{
+            "transaction_blob" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //The hexadecimal representation after the transaction is serialized
+            "signatures" : [{//The first signature
+                "sign_data" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //Signature data
+                "public_key" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //Public key
+            }, {//The second signature
+                "sign_data" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //Signature data
+                "public_key" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //Public key
+            }]
         }]
-    }]
-}
-```
+    }
+    ```
 
 5. By calling the submitTransaction interface, the json data generated in Step 4 is passed as a parameter, the response result is obtained and transaction submission is completed. The format of the response result is shown below:
 
-```json
-{
-    "results": [
-        {
-            "error_code": 0,
-            "error_desc": "",
-            "hash": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //Transaction hash
-        }
-    ],
-    "success_count": 1
-}
-```
+    ```json
+    {
+        "results": [
+            {
+                "error_code": 0,
+                "error_desc": "",
+                "hash": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //Transaction hash
+            }
+        ],
+        "success_count": 1
+    }
+    ```
 
 
 
@@ -336,9 +336,9 @@ Generating the transaction_blob by yourself, signing, and submitting the transac
 
 1. Call the getAccount interface to get the nonce value of the account that is to initiate a transaction. The code is shown below:
 
-```http
-HTTP GET host:port/getAccount?address=account address
-```
+    ```http
+    HTTP GET host:port/getAccount?address=account address
+    ```
 
 2. Populate the transaction object (`Transaction`) of the protocol buffer
   and serialize it to get the `transaction_blob`. For details of the
@@ -346,35 +346,35 @@ HTTP GET host:port/getAccount?address=account address
 
 3. Sign the transaction and populate the transaction data. Generate a public key based on the private key, sign the `transaction_blob` with the private key, and then populate the json data of the submitted transaction. The format is shown below:
 
-```json
-{
-    "items" : [{
-        "transaction_blob" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //The hexadecimal representation after the transaction is serialized
-        "signatures" : [{//The first signature
-            "sign_data" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //Signature data
-            "public_key" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //Public key
-        }, {//The second signature
-            "sign_data" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //Signature data
-            "public_key" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //Public key
+    ```json
+    {
+        "items" : [{
+            "transaction_blob" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //The hexadecimal representation after the transaction is serialized
+            "signatures" : [{//The first signature
+                "sign_data" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //Signature data
+                "public_key" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //Public key
+            }, {//The second signature
+                "sign_data" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", //Signature data
+                "public_key" : "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //Public key
+            }]
         }]
-    }]
-}
-```
+    }
+    ```
 
 4. By calling the submitTransaction interface, the json data generated in Step 3 is passed as a parameter to complete the transaction submission. The response result format is shown below:
 
-```json
-{
-    "results": [
-        {
-            "error_code": 0,
-            "error_desc": "",
-            "hash": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //Transaction hash
-        }
-    ],
-    "success_count": 1
-}
-```
+    ```json
+    {
+        "results": [
+            {
+                "error_code": 0,
+                "error_desc": "",
+                "hash": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" //Transaction hash
+            }
+        ],
+        "success_count": 1
+    }
+    ```
 
 
 
@@ -745,12 +745,12 @@ The account address of account B generated by [Generating Address](#generating-a
 }
 ```
 
-   **Note :** The nonce value is not 6, so this transaction would fail.
+  **Note :** The nonce value is not 6, so this transaction would fail.
 
 3. Serialize the transaction data.
 
 ```http
-   POST http://seed1.bumotest.io:26002/getTransactionBlob
+POST http://seed1.bumotest.io:26002/getTransactionBlob
 ```
 
 Request message:
@@ -800,26 +800,26 @@ Import package: import io.bumo.encryption.key.PrivateKey;
 
 Private key:
 ```
-   privbvTuL1k8z27i9eyBrFDUvAVVCSxKeLtzjMMZEqimFwbNchnejS81
+privbvTuL1k8z27i9eyBrFDUvAVVCSxKeLtzjMMZEqimFwbNchnejS81
 ```
 
 The sign_data after being signed:
 ```
-   9C86CE621A1C9368E93F332C55FDF423C087631B51E95381B80F81044714E3CE3DCF5E4634E5BE77B12ABD3C54554E834A30643ADA80D19A4A3C924D0B3FA601
+9C86CE621A1C9368E93F332C55FDF423C087631B51E95381B80F81044714E3CE3DCF5E4634E5BE77B12ABD3C54554E834A30643ADA80D19A4A3C924D0B3FA601
 ```
 
 5. Complete populating the transaction data.
 
 ```json
-   {
-       "items" : [{
-           "transaction_blob" : "0a2462755173757248314d34726a4c6b666a7a6b7852394b584a366a537532723978424e4577100718c0843d20e8073a37080122330a246275516f50326552796d4163556d33757657675138526e6a7472536e58425866417a73561a0608011a0208012880ade204",
-           "signatures" : [{
-               "sign_data" : "9C86CE621A1C9368E93F332C55FDF423C087631B51E95381B80F81044714E3CE3DCF5E4634E5BE77B12ABD3C54554E834A30643ADA80D19A4A3C924D0B3FA601",
-               "public_key" : "b00179b4adb1d3188aa1b98d6977a837bd4afdbb4813ac65472074fe3a491979bf256ba63895"
-           }]
-       }]
-   }
+{
+    "items" : [{
+        "transaction_blob" : "0a2462755173757248314d34726a4c6b666a7a6b7852394b584a366a537532723978424e4577100718c0843d20e8073a37080122330a246275516f50326552796d4163556d33757657675138526e6a7472536e58425866417a73561a0608011a0208012880ade204",
+        "signatures" : [{
+            "sign_data" : "9C86CE621A1C9368E93F332C55FDF423C087631B51E95381B80F81044714E3CE3DCF5E4634E5BE77B12ABD3C54554E834A30643ADA80D19A4A3C924D0B3FA601",
+            "public_key" : "b00179b4adb1d3188aa1b98d6977a837bd4afdbb4813ac65472074fe3a491979bf256ba63895"
+        }]
+    }]
+}
 ```
 
 6. Submit the transaction by POST.
