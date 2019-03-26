@@ -37,7 +37,7 @@ const siteConfig = {
   // e.g., for the https://JoelMarcey.github.io site, it would be set like...
   //   organizationName: 'JoelMarcey'
   
-  editUrl: 'https://github.com/bumoproject/bumo-docs-en/tree/develop/docs/',
+  editUrl: 'https://github.com/bumoproject/bumo-docs-en/tree/master/docs/',
   docsSideNavCollapsible: true,
   scrollToTop: true,
   
