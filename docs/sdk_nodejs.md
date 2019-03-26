@@ -45,7 +45,7 @@ The response data of the interfaces are JavaScript object, and the following is 
 
 ## Usage
 
-This section describes the process of using the SDK. First you need to generate the SDK implementation and then call the interface of the corresponding service. Services include [account service](#account-service), [asset service](#asset-service), [contract service](#contract-service), [transaction service](#transaction-service), and [block service](#block-service). Interfaces are classified into [generating public-private keys and address](#generating-public-private-keys-and-address), [checking Validity](#Cchecking-validity), [querying](#querying), and [broadcasting transaction](broadcasting-transaction).
+This section describes the process of using the SDK. First you need to generate the SDK implementation and then call the interface of the corresponding service. Services include [account service](#account-service), [asset service](#asset-service), [contract service](#contract-service), [transaction service](#transaction-service), and [block service](#block-service). Interfaces are classified into [generating public-private keys and address](#generating-public-private-keys-and-address), [checking Validity](#Cchecking-validity), [querying](#querying), and [broadcasting transaction](broadcasting).
 
 ### Generating SDK Instance
 
@@ -82,11 +82,11 @@ sdk.account.getInfo(address).then(info=> {
 ### Broadcasting Transactions
 Broadcasting transactions refers to the initiation of a transaction by means of broadcasting. The broadcast transaction consists of the following steps:
 
-1. [Obtaining the nonce value of the account](#obtaining-the-nonce-value-of-the-account)
+1. [Obtaining the nonce value of the account](#obtaining-the-nonce-value-of-the)
 2. [Building operations](#building-operations)
-3. [Serializing transactions](#serializing-transactions)
-4. [Signing transactions](#signing-transactions)
-5. [Commiting transactions](#commiting-transactions)
+3. [Serializing transactions](#serializings)
+4. [Signing transactions](#signings)
+5. [Commiting transactions](#commitings)
 
 #### Obtaining the Nonce Value of the Account
 
@@ -194,7 +194,7 @@ sdk.account.create().then(result => {
 });
 ```
 
-### checkValid-account
+### checkValid
 - **Interface description**
 
    The `create` interface in account service can generate private key, public key and address of an new account.
@@ -235,7 +235,7 @@ sdk.account.checkValid(address).then(result => {
 });
 ```
 
-### getInfo-account
+### getInfo
 
 - **Interface description**
 
@@ -322,7 +322,7 @@ sdk.account.getNonce(address).then(result => {
 });
 ```
 
-### getBalance-account
+### getBalance
 
 - **Interface description**
 
@@ -459,7 +459,7 @@ sdk.account.getMetadata(args).then(result => {
 
 Asset Services follow the ATP 1.0 protocol, and Account Services provide an asset-related interface. Currently there is one interface: `getInfo`.
 
-### getInfo-asset
+### getInfo
 
 - **Interface description**
 
@@ -514,7 +514,7 @@ sdk.token.asset.getInfo(args).then(data => {
 
 Contract Services provide contract-related interfaces and currently have four interfaces: `checkValid`, `getInfo`, `getAddress`, and `call`.
 
-### checkValid-contract
+### checkValid
 
 - **Interface description**
 
@@ -556,7 +556,7 @@ sdk.contract.checkValid(contractAddress).then(result => {
 });
 ```
 
-### getInfo-contract
+### getInfo
 
 - **Interface description**
 
@@ -707,7 +707,7 @@ Transaction Services provide transaction-related interfaces and currently have f
 
 **Note**: 
 
-Before you can call buildBlob, you need to build some operations (details for [Operations List](#operators-list)), including [Activate Account](#activate-account), [Set Account Metadata](#set-account-metadata), [Set Account Priviledge](#set-account-priviledge), [Send BU](#send-bu), [Issue Asset](#issue-asset), [Pay Asset](#pay-asset), [Create Contract](#create-contract), [Invoke Contract By Paying Asset](#invoke-contract-by-paying-asset), [Invoke Contract By Send BU](#invoke-contract-by-send-bu), and [Record Log](#record-log).
+Before you can call buildBlob, you need to build some operations (details for [Operations List](#operators-list)), including [Activate Account](#activate), [Set Account Metadata](#set-metadata), [Set Account Priviledge](#set-priviledge), [Send BU](#send-bu), [Issue Asset](#issue), [Pay Asset](#pay), [Create Contract](#create), [Invoke Contract By Paying Asset](#invoke-by-paying), [Invoke Contract By Send BU](#invoke-by-send-bu), and [Record Log](#record-log).
 
 ### Operations List
 
@@ -1311,7 +1311,7 @@ const args = {
 let transactionInfo = yield sdk.transaction.submit(args);
 ```
 
-### getInfo-transaction
+### getInfo
 
 - **Interface description**
 
@@ -1467,7 +1467,7 @@ sdk.block.getTransactions(100).then(result => {
 });
 ```
 
-### getInfo-block
+### getInfo
 
 - **Interface description**
 

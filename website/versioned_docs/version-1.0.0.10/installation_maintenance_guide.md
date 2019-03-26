@@ -113,7 +113,7 @@ The source code of BUMO can be compiled after the dependencies are successfully 
 ```
 
 <img src="/docs/assets/download_bumo_back2.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 
 **Note**: The bumo/ directory will be created automatically during BUMO source code being downloaded, and the source code files will be stored in this directory.
@@ -143,7 +143,7 @@ The source code of BUMO can be compiled after the dependencies are successfully 
 ```
 
 <img src="/docs/assets/compile_finished.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 
 **Note**: The executable files generated after compilation are **bumo** and **bumod** which are stored in the /bumo/bin directory.
@@ -166,24 +166,24 @@ The BUMO node can be installed after the compilation is finished. You must compl
 ```
 
 <img src="/docs/assets/compile_installed.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 
 **Note**: 
    - By default, the service is installed in the /usr/local/buchain/ directory.
    - After the installation is finished, you can start the bumo service with the `service bumo start` command without additional configuration.
    - After installing the BUMO node, the directory structure in the buchain/ directory is as follows:
-   
+
 
 
 | Directory                         | Description|
-|------|:--------:|                      
-| bin                               | The directory stores the executable file (compiled bumo executable)|        
-| jslib                             | The directory stores the third-party `js` library|         
-| config                            | The configuration file directorycontains: bumo.json| 
+|------|:--------:|
+| bin                               | The directory stores the executable file (compiled bumo executable)|
+| jslib                             | The directory stores the third-party `js` library|
+| config                            | The configuration file directorycontains: bumo.json|
 | data                              | The database directory stores account ledger data|
 | scripts                           | The directory stores scripts to start and stop the node   |
-| log                               | The directory stores logs (Available after bumo is started)|    
+| log                               | The directory stores logs (Available after bumo is started)|
 
 
 
@@ -261,7 +261,7 @@ You must complete the following steps to modify the boot directory of bumo and b
 ```
 
 <img src="/docs/assets/start_path.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 **Note**: By default, the directory of `install_dir` is in the /usr/local/buchain directory; you can modify it according to the specific installation directory of bumo.
 
@@ -300,7 +300,7 @@ Setting up booting includes setting the startup level, adding startup commands, 
 
 ``` 
   ln -s -f /etc/init.d/bumod /etc/rc2.d/S99bumod
-``` 
+```
 3. Input the following command to set level 3.
 
 ```
@@ -328,7 +328,7 @@ Setting up booting includes setting the startup level, adding startup commands, 
   /etc/init.d/bumod start
 ```
 <img src="/docs/assets/add_start_command.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 8. Press `Esc` to exit editing.
 
@@ -418,7 +418,7 @@ You must complete following steps to install Homebrew:
 
 ``` 
  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-``` 
+```
 3. Press `Enter` to install.
 
 #### Installing Dependencies in MacOS
@@ -427,50 +427,50 @@ You must complete following steps to install Homebrew:
 
 ``` 
   export HOMEBREW_NO_AUTO_UPDATE=true
-``` 
+```
 2. Input the following command to install `autoconf`.
 
 ``` 
   brew install autoconf
-``` 
+```
 3. Input the following command to install `automake`.
 
 ``` 
    brew install automake
-``` 
+```
 4. Input the following command to install `libtool`.
 
 ``` 
   brew install libtool
-``` 
+```
 5. Input the following command to install `cmake`.
 
 ```   
   brew install cmake
-``` 
+```
 6. Input the following command to install `python`.
 
 ```   
   brew install python
-``` 
+```
 7. Input the following command to install `m4`.
 
 ``` 
   brew install m4
-``` 
+```
 8. Input the following command to install `wget`.
 
 ```   
   brew install wget
-``` 
+```
 #### Compiling the BUMO Source Code in MacOS
 1. In the root directory, input the following command to download the source code file of BUMO. If `git` is not installed, you can install `git` with the `sudo apt-get install git` command. 
 
 ```   
   sudo git clone https://github.com/bumoproject/bumo.git
-``` 
+```
 <img src="/docs/assets/add_start_command.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 
 **Note**: The bumo/ directory will be created automatically during the BUMO source code being downloaded, and the source code file will be stored in this directory.
@@ -479,28 +479,28 @@ You must complete following steps to install Homebrew:
 
 ```   
   cd /bumo/build/
-``` 
+```
 3. Input the following command to download the dependencies and initialize the development environment.
 
 ```  
   sudo ./install-build-deps-mac.sh
-``` 
+```
 
 4. Input the following command to return to the bumo/ directory.
 
 ``` 
   cd ../
-``` 
+```
 
 5. Input the following command to complete the compilation of the BUMO source code.
 
 ```  
   sudo make
-``` 
+```
 
 **Note**:  The executable files generated after compilastion are **bumo** and **bumod** which are stored in the /bumo/bin directory.
 
-### Installing the BUMO Node in MacOS
+### Installing BUMO Node in MacOS
 
 The BUMO node can be installed after the compilation is finished. You must complete the following steps to install a BUMO node:
 
@@ -508,13 +508,13 @@ The BUMO node can be installed after the compilation is finished. You must compl
 
 ``` 
   cd /bumo/
-``` 
+```
 
 2.Input the following command to complete the installation.
 
 ```   
   sudo make install
-``` 
+```
 
 **Note**: 
    - By default, the service is installed in the /usr/local/buchain/ directory.
@@ -961,7 +961,7 @@ You must stop the BUMO service before clearing the database. You must complete t
 **Note**: After the database is successfully cleared, you can see the information shown below.
 
 <img src="/docs/assets/clear_database.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 **Creating a Hard Fork**
 
@@ -975,7 +975,7 @@ You must complete the following steps to create a hard fork.
 2. Enter `y` when prompted and then press `Enter`. The message shown below indicates the hard fork is created successfully.
 
 <img src="/docs/assets/hard_fork_created.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 
 **Note**: 

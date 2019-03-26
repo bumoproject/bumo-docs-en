@@ -32,9 +32,9 @@ This section details the format of the request parameters and response data.
 
 ### Request Parameters
 
-The class name of the request parameter of the interface is composed of **Service Name** + **Method Name** + **Request**. For example, the request parameter format of the [getInfo](#getinfo-account) interface in Account Services is `AccountGetInfoRequest`.
+The class name of the request parameter of the interface is composed of **Service Name** + **Method Name** + **Request**. For example, the request parameter format of the [getInfo](#getinfo) interface in Account Services is `AccountGetInfoRequest`.
 
-The member of the request parameter is the member of the input parameter of each interface. For example, if the input parameter of the [getInfo](#getinfo-account) interface in Account Services is address, the complete structure of the request parameters of the interface is as follows:
+The member of the request parameter is the member of the input parameter of each interface. For example, if the input parameter of the [getInfo](#getinfo) interface in Account Services is address, the complete structure of the request parameters of the interface is as follows:
 
 ```php
 class AccountGetInfoRequest {
@@ -46,7 +46,7 @@ class AccountGetInfoRequest {
 
 The class name of the response data of the interface is composed of **Service Name** + **Method Name** + **Response**. For example, the response data format of the [getNonce](#getnonce) interface in Account Services is `AccountGetNonceResponse`.
 
-The members of the response data include error codes, error descriptions, and return results. For example, the members of the response data of the [getInfo](#getinfo-account) interface in Assets Services are as follows:
+The members of the response data include error codes, error descriptions, and return results. For example, the members of the response data of the [getNonce](#getnonce) interface in Assets Services are as follows:
 ```php
 class AccountGetNonceResponse {
 	$errorCode; // int
@@ -68,7 +68,7 @@ class AccountGetNonceResult {
 
 ## Usage
 
-This section describes the process of using the SDK. First you need to generate the SDK implementation and then call the interface of the corresponding service. Services include [account service](#account-service), [asset service](#asset-service), [contract service](#contract-service), [transaction service](#transaction-service), and [block service](#block-service). Interfaces are classified into [generating public-private keys and address](#generating-public-private-keys-and-address), [checking Validity](#Cchecking-validity), [querying](#querying), and [broadcasting transaction](broadcasting-transaction).
+This section describes the process of using the SDK. First you need to generate the SDK implementation and then call the interface of the corresponding service. Services include [account service](#account-service), [asset service](#asset-service), [contract service](#contract-service), [transaction service](#transaction-service), and [block service](#block-service). Interfaces are classified into [generating public-private keys and address](#generating-public-private-keys-and-address), [checking Validity](#Cchecking-validity), [querying](#querying), and [broadcasting transaction](broadcasting).
 
 ### Generating SDK Instance
 
@@ -145,11 +145,11 @@ else {
 ### Broadcasting Transactions
 Broadcasting transactions refers to the initiation of a transaction by means of broadcasting. The broadcast transaction consists of the following steps:
 
-1. [Obtaining the nonce value of the account](#obtaining-the-nonce-value-of-the-account)
+1. [Obtaining the nonce value of the account](#obtaining-the-nonce-value-of-the)
 2. [Building operations](#building-operations)
-3. [Serializing transactions](#serializing-transactions)
-4. [Signing transactions](#signing-transactions)
-5. [Commiting transactions](#commiting-transactions)
+3. [Serializing transactions](#serializings)
+4. [Signing transactions](#signings)
+5. [Commiting transactions](#commitings)
 
 #### Obtaining the Nonce Value of the Account
 
@@ -258,7 +258,7 @@ if (0 == $response->error_code) {
 
 Account Service provide account-related interfaces, which include six interfaces: `checkValid`,  `getInfo`,  `getNonce`,  `getBalance`, `getAssets`,  and `getMetadata`.
 
-### checkValid-account
+### checkValid
 - **Interface description**
 
    The `checkValid` interface is used to check the validity of the account address on the blockchain.
@@ -311,7 +311,7 @@ if(0 == $response->error_code) {
 }
 ```
 
-### getInfo-account
+### getInfo
 
 - **Interface description**
 
@@ -427,7 +427,7 @@ if(0 == $response->error_code){
 }
 ```
 
-### getBalance-account
+### getBalance
 
 - **Interface description**
 
@@ -607,7 +607,7 @@ if ($response->error_code == 0) {
 
 Asset Services follow the ATP 1.0 protocol, and Account Services provide an asset-related interface. Currently there is one interface: `getInfo`.
 
-### getInfo-asset
+### getInfo
 
 - **Interface description**
 
@@ -674,7 +674,7 @@ if ($response->error_code == 0) {
 
 Contract Services provide contract-related interfaces and currently have four interfaces: `checkValid`, `getInfo`, `getAddress`, and `call`.
 
-### checkValid-contract
+### checkValid
 
 - **Interface description**
 
@@ -729,7 +729,7 @@ if ($response->error_code == 0) {
 }
 ```
 
-### getInfo-contract
+### getInfo
 
 - **Interface description**
 
@@ -1394,7 +1394,7 @@ if (0 == $response->error_code) {
 }
 ```
 
-### getInfo-transaction
+### getInfo
 
 - **Interface description**
 
@@ -1595,7 +1595,7 @@ if(0 == $response->error_code){
 }
 ```
 
-### getInfo-block
+### getInfo
 
 - **Interface description**
 
