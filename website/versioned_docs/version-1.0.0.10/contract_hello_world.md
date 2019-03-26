@@ -6,7 +6,7 @@ original_id: contract_hello_world
 ---
 
 ## Overview
-　　
+
 The contract is a `JavaScript` code, with a standard (`ECMAScript` as specified in `ECMA-262`). The initialization function of the contract is `init`, and the entry function of the execution is the `main` function. You must have the definition of the `init` and `main` functions in the contract code. The input argument to this function is the string `input`, which is specified when the contract is called.
 
 - For details of the smart contract, refer to [Introduction to Smart Contract](../introduction_to_smart_contract).
@@ -27,28 +27,28 @@ We will show you how to use the contract with a simple example.
 
 - The contract source code
 
-Edit a snippet of contract code as follows:
+    Edit a snippet of contract code as follows:
 
-```javascript
-"use strict";
-function init(bar)
-{
-  assert(typeof bar === 'string' && bar.length > 0, 'The param of init must be a not empty string');
-  storageStore(bar, 'init : ' + bar);
-}
+    ```javascript
+    "use strict";
+    function init(bar)
+    {
+      assert(typeof bar === 'string' && bar.length > 0, 'The param of init must be a not empty string');
+      storageStore(bar, 'init : ' + bar);
+    }
 
-function main(input)
-{
-  assert(typeof input === 'string' && input.length > 0, 'The param of main must be a not empty string');
-  storageStore(input, 'main : ' + input);
-}
+    function main(input)
+    {
+      assert(typeof input === 'string' && input.length > 0, 'The param of main must be a not empty string');
+      storageStore(input, 'main : ' + input);
+    }
 
-function query(input)
-{ 
-  assert(typeof input === 'string' && input.length > 0, 'The param of query must be a not empty string');
-  return storageLoad(input);
-}
-```
+    function query(input)
+    { 
+      assert(typeof input === 'string' && input.length > 0, 'The param of query must be a not empty string');
+      return storageLoad(input);
+    }
+    ```
 
 - Simple illustration
 
@@ -58,7 +58,7 @@ function query(input)
 
 - The result is as follows:
 
-<img src="/docs/assets/contractcodehelloworld.png" style= "margin-left: 20px">
+  <img src="/docs/assets/contractcodehelloworld.png" style= "margin-left: 20px">
 
 
 
@@ -75,7 +75,7 @@ function query(input)
 
 - Parameter
 
- Type `hello` in the edit box above the `Deploy` button.
+  Type `hello` in the edit box above the `Deploy` button.
 
 - Result
 
@@ -117,7 +117,7 @@ function query(input)
 
 - Running the function
 
- This operation will run the `query` function in the contract code, and the `query` function has a parameter `input`.
+  This operation will run the `query` function in the contract code, and the `query` function has a parameter `input`.
 
 - Parameter
 
@@ -125,6 +125,6 @@ function query(input)
 
 - Result
 
-   Click the **Invoke** button and the result is as follows:
+  Click the **Invoke** button and the result is as follows:
 
   <img src="/docs/assets/contractquery.png" style= "margin-left: 20px">
