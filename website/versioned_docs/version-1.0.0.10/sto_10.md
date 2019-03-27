@@ -147,8 +147,8 @@ tlog(topic,args...);
 ```
 
 - tlog will generate a transaction written on the block.
-- topic: The log subject, must be a string type, and the parameter length is (0,128).
-- args...: It can contain up to 5 parameters, the parameter type can be string, numeric or boolean type, and the length of each parameter is (0,1024).
+- topic: The log subject, must be a string type, and the parameter length is (0,128].
+- args...: It can contain up to 5 parameters, the parameter type can be string, numeric or boolean type, and the length of each parameter is (0,1024].
 
 
 ## Functions
@@ -240,11 +240,11 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
   ```
 
   Topic: The method name, here is 'setDocument'.
-    
+  
   sender: The account address to call the contract.
-    
+  
   name: The document name.
-    
+  
   url: The online document url.
   
   hashType: The hash type.
@@ -330,7 +330,7 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
             }
         }
     }
-
+    
     - id: The trancheid, and the range is [1, 2^63-1].
     - description: The trancheDescription, and the range is [1,64k].
     - limits: The constraints.
@@ -345,6 +345,24 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
   Success: `true`
 
   Failure: Throw an exception
+
+- Event
+
+    ```javascript
+    tlog('createTranche', sender, id, description, limits, tokenHolders);
+    ```
+
+    Topic: The method name, here is 'createTranche'.
+
+    sender: The account address to call the contract.
+
+    id: The trancheid.
+
+    description: The trancheDescription.
+
+    limits: The constraints, json string.
+
+    tokenHolders: A list of distributed accounts, json string.
 
 ### balanceOf
 
@@ -487,7 +505,7 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
       tlog('transferWithData', sender, to, value, data);
     ```
 
-    topic: The method name, here is `transfer`.
+    topic: The method name, here is 'transferWithData'.
 
     sender: The account address to call the contract.
 
@@ -537,7 +555,7 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
       tlog('transferFromWithData', sender, from, to, value, data);
     ```
 
-    topic: The method name, here is 'transfer’.
+    topic: The method name, here is 'transferFromWithData’.
 
     sender: The account address to call the contract.
 
@@ -573,18 +591,39 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
             "data": ""
         }
     }
-
+    
     - from: The sending address of the tokens.
     - fromTranche: The tranche id of the party to pay tokens, and the range of the id is [0,2^63-1].
     - to: The recipient address of tokens.
     - value: Number of tokens, and the range is [0, 2^63-1].
     - data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. The range is [0,128k].
     ```
+
 - Return value
 
   Success: `true`
 
   Failure: Throw an exception
+
+- Event
+
+    ```javascript
+    tlog('transferFromToTranche', sender, from + '_' + fromTranche, to + '_' + toTranche, value, data);
+    ```
+
+    Topic: The method name, here is 'transferFromToTranche'.
+
+    sender: The account address to call the contract.
+
+    fromTranche: The tranche id of the party to pay tokens.
+
+    to: The recipient address of tokens.
+
+    toTranche: The tranche id of the party to receive tokens.
+
+    value: Number of tokens.
+
+    data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases.
 
 
 ### transferTranche
@@ -615,11 +654,30 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
     - value: Number of tokens, and the range is [0, 2^63-1].
     - data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. The range is [0,128k].
     ```
+
 - Return value
 
     Success: `true`
 
     Failure: Throw an exception
+
+- Event
+
+    ```javascript
+    tlog('transferTranche', sender, tranche, to, value, data);
+    ```
+
+    Topic: The method name, here is 'transferTranche'.
+
+    sender: The account address to call the contract.
+
+    tranche: The tranche id of the token sending account and the token receiving account.
+
+    to: The recipient address of tokens.
+
+    value: Number of tokens.
+
+    data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases.
 
 ### transferToTranche
 
@@ -650,11 +708,30 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
     - value: Number of tokens, and the range is [0, 2^63-1].
     - data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. The range is [0,128k].
     ```
+
 - Return value
 
   Success: `true`
 
   Failure: Throw an exception
+
+- Event
+
+    ```javascript
+    tlog('transferTranche', sender, tranche, to, value, data);
+    ```
+
+    Topic: The method name, here is 'setDocument'.
+
+    sender: The account address to call the contract.
+
+    tranche: The tranche id of the token sending account and the token receiving account.
+
+    to: The recipient address of tokens.
+
+    value: Number of tokens.
+
+    data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases.
 
 ### transfersToTranche
 
@@ -690,11 +767,28 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
     - value1/value2/...: Number of tokens to be transferred, and the range is [0, 2^63-1].
     - data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. The range is [0,128k].
     ```
+
 - Return value
 
   Success: Return the tranche of the target account
 
   Failure: Throw an exception
+
+- Event
+
+    ```javascript
+    tlog('transfersToTranche', sender, fromTranche, toTranche, tokenHolders, data);
+    ```
+
+    Topic: The method name, here is 'transfersToTranche'.
+
+    fromTranche: The tranche id of the party to pay tokens.
+
+    toTranche: The tranche id of the party to receive tokens.
+
+    tokenHolders: The list of token-receiving accounts, json string.
+
+    data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases.
 
 
 
@@ -766,6 +860,28 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
   Failure: Throw an exception
 
+- Event
+
+    ```javascript
+    tlog('controllerTransfer', sender, from + '_' + fromTranche, to + '_' + toTranche, value, data + '; ' + operatorData);
+    ```
+
+    Topic: The method name, here is 'controllerTransfer'.
+
+    sender: The account address to call the contract.
+
+    from: The account address to pay tokens.
+
+    fromTranche: The tranche id of the party to pay tokens.
+
+    toTranche: The tranche id of the party to receive tokens.
+
+    to: The list of token-receiving accounts, json string.
+
+    data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases.
+
+    operatorData: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. 
+
 ### controllerRedeem
 
 > Note: In some jurisdictions, an issuer (or an entity entrusted by an issuer) may need to retain the ability to forcibly transfer tokens. This may be to resolve legal disputes or court orders, or to remedy the loss of investors who are inaccessible to their private keys.
@@ -802,6 +918,26 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
   Failure: Throw an exception
 
+- Event
+
+  ```javascript
+  tlog('controllerRedeem', sender, tokenHolder, tranche, value, data + '; ' + operatorData);
+  ```
+
+  Topic: The method name, here is 'controllerRedeem'.
+
+  sender: The account address to call the contract.
+
+  tokenHolder: The token holder.
+
+  tranche: The tranche id.
+
+  value: The amount of tokens to be redeemed.
+
+  data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases.
+
+  operatorData: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. 
+
 
 
 ### authorizeOperator
@@ -831,6 +967,18 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
   Failure: Throw an exception
 
+- Event
+
+    ```javascript
+    tlog('authorizeOperator', sender, operator);
+    ```
+
+    Topic: The method name, here is 'authorizeOperator'.
+
+    sender: The account address to call the contract.
+
+    operator: The operator.
+
 ### revokeOperator
 
 - Description
@@ -857,6 +1005,18 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
   Success: `true`
 
   Failure: Throw an exception
+
+- Event
+
+    ```javascript
+    tlog('revokeOperator', sender, operator);
+    ```
+
+    Topic: The method name, here is 'authorizeOperator'.
+
+    sender: The account address to call the contract.
+
+    operator: The operator.
 
 ### authorizeOperatorForTranche
 
@@ -886,6 +1046,20 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
   Failure: Throw an exception
 
+- Event
+
+    ```javascript
+    tlog('authorizeOperatorForTranche', sender, tranche, operator);
+    ```
+
+    Topic: The method name, here is 'authorizeOperatorForTranche'.
+
+    sender: The account address to call the contract.
+
+    tranche: The tranche id.
+
+    operator: The operator.
+
 ### revokeOperatorForTranche
 
 - Description
@@ -913,6 +1087,20 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
   Success: `true`
 
   Failure: Throw an exception
+
+- Event
+
+    ```javascript
+    tlog('revokeOperatorForTranche', sender, tranche, operator);
+    ```
+
+    Topic: The method name, here is 'revokeOperatorForTranche'.
+
+    sender: The account address to call the contract.
+
+    tranche: The tranche id.
+
+    operator: The operator.
 
 
 
@@ -1006,6 +1194,26 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
   Failure: Throw an exception
 
+- Event
+
+    ```javascript
+    tlog('operatorTransferTranche', sender, tranche, from, to, value, data + '; ' + operatorData);
+    ```
+
+    Topic: The method name, here is 'controllerTransfer'.
+
+    sender: The account address to call the contract.
+
+    tranche: The tranche id.
+
+    from: The account address to pay tokens.
+
+    to: The list of token-receiving accounts, json string.
+
+    data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases.
+
+    operatorData: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. 
+
 
 
 ### operatorRedeemTranche
@@ -1037,6 +1245,24 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
   Success: `true`
 
   Failure: Throw an exception
+
+- Event
+
+    ```javascript
+    tlog('operatorRedeemTranche', sender, tranche, tokenHolder, value, operatorData);
+    ```
+
+    Topic: The method name, here is 'operatorRedeemTranche'.
+
+    sender: The account address to call the contract.
+
+    tranche: The tranche id.
+
+    tokenHolder: The account address to redeem tokens.
+
+    value: The amount of tokens to be redeemed.
+
+    operatorData: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. 
 
 ### isIssuable
 
@@ -1091,6 +1317,22 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
   Failure: Throw an exception
 
+- Event
+
+    ```javascript
+    tlog('issue', sender, tokenHolder, nowSupply, data);
+    ```
+
+    Topic: The method name, here is 'issue'.
+
+    sender: The account address to call the contract.
+
+    tokenHolder: The account address to get tokens.
+
+    nowSupply: The amount of tokens to be supplied.
+
+    data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. 
+
 ### issueToTranche
 
 - Description
@@ -1121,6 +1363,24 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
   Failure: Throw an exception
 
+- Event
+
+    ```javascript
+    tlog('issueToTranche', sender, tranche, tokenHolder, nowSupply, data);
+    ```
+
+    Topic: The method name, here is 'issueToTranche'.
+
+    sender: The account address to call the contract.
+
+    tranche: The tranche id.
+
+    tokenHolder: The account address to get tokens.
+
+    nowSupply: The amount of tokens to be supplied.
+
+    data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. 
+
 
 
 ### redeem
@@ -1150,6 +1410,20 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
   Success: `true`
 
   Failure: Throw an exception
+
+- Event
+
+    ```javascript
+    tlog('redeem', sender, value, data);
+    ```
+
+    Topic: The method name, here is 'issueToTranche'.
+
+    sender: The account address to call the contract.
+
+    value: The amount of tokens to be redeemed.
+
+    data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. 
 
 
 
@@ -1182,6 +1456,22 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
   Failure: Throw an exception
 
+- Event
+
+    ```javascript
+    tlog('redeemFrom', sender, tokenHolder, value, data);
+    ```
+
+    Topic: The method name, here is 'issueToTranche'.
+
+    sender: The account address to call the contract.
+
+    tokenHolder: The token holder to redeem his tokens.
+
+    value: The amount of tokens to be redeemed.
+
+    data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. 
+
 ### redeemTranche
 
 - Description
@@ -1210,6 +1500,22 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
   Success: `true`
 
   Failure: Throw an exception
+
+- Event
+
+    ```javascript
+    tlog('redeemTranche', sender, tranche, value, data);
+    ```
+
+    Topic: The method name, here is 'issueToTranche'.
+
+    sender: The account address to call the contract.
+
+    tranche: The  tranche id.
+
+    value: The amount of tokens to be redeemed.
+
+    data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. 
 
 ### redeemFromTranche
 
@@ -1241,6 +1547,24 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
   Failure: Throw an exception
 
+- Event
+
+    ```javascript
+    tlog('redeemTranche', sender, tranche, tokenHolder, value, data);
+    ```
+
+    Topic: The method name, here is 'issueToTranche'.
+
+    sender: The account address to call the contract.
+
+    tranche: The  tranche id.
+
+    tokenHolder: The token holder to redeem his tokens.
+
+    value: The amount of tokens to be redeemed.
+
+    data: Allow any data to be submitted with the transfer for interpretation or recording. This can be signature data for authorizing transfers (for example, dynamic whitelisting), but flexible enough to accommodate other use cases. 
+
 ### canTransfer
 
 - Description
@@ -1249,7 +1573,7 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
 - Entry function
 
-  `main`
+  `query`
 
 - Parameter
 
@@ -1279,7 +1603,7 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
 - Entry function
 
-  `main`
+  `query`
 
 - Parameter
 
@@ -1310,7 +1634,7 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
 - Entry function
 
-  `main`
+  `query`
 
 - Parameter
 
@@ -1498,6 +1822,22 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
   Success: `true`
 
   Failure: Throw an exception
+
+- Event
+
+    ```javascript
+      tlog('approveTranche', sender, tranche, spender, value);
+    ```
+
+    topic: The method name, here is `approve`.
+
+    sender: The account address to call the contract.
+
+    tranche: The tranche id.
+
+    spender: The authorized account address.
+
+    value: The amount to transfer (string type).
 
 ### allowance
 

@@ -16,7 +16,7 @@ The decentralized asset exchange contracts based on this standard interface allo
 
 The BUMO smart contract is implemented in JavaScript and contains the initialization function `init` and two entry functions `main`, and `query`. The `init` function is used to initialize the contract when it is created; the `main` function is mainly responsible for data writing, and the `query` function is responsible for data querying. 
 
-The DEX 1.0 protocol supports free conversion between ATP tokens (see atp.md) or CTP tokens (see ctp.md) and BU, and the service fee is charged in BU. When the assets are exchanged, the party paying BUs needs to pay the service fee separately according to the service fee ratio in addition to the planned exchange amount, which is similar to the tax excluded from the price, that is, the service fee is not included in the exchange amount. The party paying the atp or ctp tokens pays the service fee in BU received after the transaction is completed according to the service fee rate, which is similar to the tax included in the price, that is, the service fee is included in the exchange amount. The ratio of service fee to transaction amount can be set by the DEX contract.
+The DEX 1.0 protocol supports free conversion between ATP tokens and BU, and the service fee is charged in BU. When the assets are exchanged, the party paying BUs needs to pay the service fee separately according to the service fee ratio in addition to the planned exchange amount, which is similar to the tax excluded from the price, that is, the service fee is not included in the exchange amount. The party paying the atp or ctp tokens pays the service fee in BU received after the transaction is completed according to the service fee rate, which is similar to the tax included in the price, that is, the service fee is included in the exchange amount. The ratio of service fee to transaction amount can be set by the DEX contract.
 
 
 ## Attributes of DEX 
@@ -34,20 +34,7 @@ The attributes of DEX stored in the smart contract's account can be queried thro
 - feeRate: The unit is 1/(10^8). For example, the feeRate is 50000, then the service rate is 50000/(10^8) = 5/10000.
 - version：The version of DEX. Such as *1.0*.
 
-## Event
 
-The functions `makeOrder`,` cancelOrder`, `takeOrder`,` updateFeeRate`, `clearExpiredOrder`, and `withdrawFee` will trigger the event. The event is to call the `tlog` interface to record a transaction log on the blockchain. The log records the details of the function call for you to read.
-
-The tlog is defined as follows:
-
-```
-tlog(topic,args...);
-
-```
-
-- tlog will generate a transaction written on the block.
-- topic: The log subject, must be a string type, and the parameter length is (0,128).
-- args...: It can contain up to 5 parameters, the parameter type can be string, numeric or boolean type, and the length of each parameter is (0,1024).
 
 ## Functions
 
@@ -93,15 +80,15 @@ tlog(topic,args...);
 ### cancelOrder
 
 - The account posting the order cancels it.
-- The entry function main.
+- The entry function `main`.
 
 - The parameter is in json format:
     ```json
     {
-    'method':'cancelOrder',
-    'params':{
-    'order':'order_1'
-    }
+        'method':'cancelOrder',
+        'params':{
+            'order':'order_1'
+        }
     }
     ```
     order: The sequence number of the order cancelled.
@@ -354,15 +341,15 @@ tlog(topic,args...);
 
 ### query
 
-- The query function is responsible for data query, including [dexInfo](#dexinfo), [dexInfo](#dexinfo), [getOrder](#getorder), [getOrderInterval](#getorderinterval) and other interfaces.
+- The query function is responsible for data query, including [dexInfo](#dexinfo), [getOrder](#getorder), [getOrderInterval](#getorderinterval) and other interfaces.
 - Function body.
 
     ```js
     function query(input_str){
-
+    
         let result = {};
         let input  = JSON.parse(input_str);
-
+    
         if(input.method === 'dexInfo'){
             result.dexInfo = dexInfo();
         }

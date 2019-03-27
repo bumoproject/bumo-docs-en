@@ -362,7 +362,7 @@ The source account creates a new account on the blockchain. Creating Accounts ar
 
     | Keyword  | Type   | Description                                                         |
     | ------- | ------ | ------------------------------------------------------------ |
-    | key     | string | The keyword of metadata, which ranges (0, 1024)                        |
+    | key     | string | The keyword of metadata, which ranges (0, 1024].                      |
     | value   | string | The content of metadata, which ranges [0, 256K].                         |
     | version | int64  | Optional, metadata version number. The default value is *0*. 0: when the value is zero, it means no limit version; >0: when the value is greater than zero, it means the current value version must be this value; <0: when the value is less than zero, it means the value is illegal |
 

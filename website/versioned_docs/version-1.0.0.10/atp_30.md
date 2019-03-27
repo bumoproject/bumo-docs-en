@@ -48,14 +48,14 @@ tlog(topic,args...);
 ```
 
 - `tlog`: It will generate a transaction written on the block.
-- `topic`: Log subject, must be a string type, parameter length (0,128).
-- `args...`: It can contain up to 5 parameters, and the parameter type can be string, numeric or Boolean type, each parameter length (0,1024).
+- `topic`: Log subject, must be a string type, parameter length (0,128].
+- `args...`: It can contain up to 5 parameters, and the parameter type can be string, numeric or Boolean type, each parameter length (0,1024].
 
 ## Functions
 
-Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#totalsupply), [balanceOf](#balanceof), [ownerOf](#ownerof), [approve](#approve), [transfer](#transfer), [transferFrom](#transferfrom), [tokensOfOwner](tokensofowner), [tokenInfo](#tokeninfo), [name](#name), and [symbol](#symbol).
+Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#totalsupply), [balanceOf](#balanceof), [ownerOf](#ownerof), [approve](#approve), [transfer](#transfer), [transferFrom](#transferfrom), [tokensOfOwner](#tokensofowner), [tokenInfo](#tokeninfo), [name](#name), and [symbol](#symbol).
 
-#### issue
+### issue
 
 - Description
 
@@ -106,7 +106,7 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
 
     description: The description for the token.
 
-#### totalSupply
+### totalSupply
 
 - Description
 
@@ -143,7 +143,7 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
     } 
     ```
 
-#### balanceOf
+### balanceOf
 
 - Description
 
@@ -189,7 +189,7 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
     } 
     ```
 
-#### ownerOf
+### ownerOf
 
 - Description
 
@@ -235,7 +235,7 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
     } 
     ```
 
-#### approve
+### approve
 
 - Description
 
@@ -288,7 +288,7 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
 
     tokenId: The tokenId transferred.
 
-#### transfer
+### transfer
 
 - Description
 
@@ -342,7 +342,7 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
     tokenId: The tokenId transferred.
 
 
-#### transferFrom
+### transferFrom
 
 - Description
 
@@ -399,7 +399,7 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
 
     tokenId: The tokenId transferred.
 
-#### tokensOfOwner
+### tokensOfOwner
 
 - Description
 
@@ -445,7 +445,7 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
     } 
     ```
 
-#### tokenInfo
+### tokenInfo
 
 - Description
 
@@ -496,7 +496,7 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
     } 
     ```
 
-#### name
+### name
 
 - Description
 
@@ -533,7 +533,7 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
     } 
     ```
 
-#### symbol
+### symbol
 
 - Description
 
@@ -572,7 +572,7 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
 
 ## Contract Entry
 
-#### init
+### init
 
 - When the contract is created, Entry function `init` is triggered which is responsible for the initialization of the contract creation.
 
@@ -598,7 +598,7 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
 
   Return `true` or throw an exception.
 
-#### main
+### main
 
 - The `main` function is responsible for data writing, including [issue](#issue), [transfer](#transfer), [transferFrom](#transferfrom) and [approve](#approve) functions.
 
@@ -629,7 +629,7 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
     }
     ```
 
-#### query
+### query
 
 - It is used for data querying, which includes the [totalSupply](#totalsupply)、[balanceOf](#balanceof)、[ownerOf](#ownerof)、[tokensOfOwner](#tokensofowner)、[tokenInfo](#tokeninfo)、[name](#name)、[symbol](#symbol) functions.
 - Function body.

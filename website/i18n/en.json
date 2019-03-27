@@ -10,8 +10,7 @@
         "sidebar_label": "HTTP"
       },
       "api_websocket": {
-        "title": "BUMO Websocket",
-        "sidebar_label": "Websocket"
+        "title": "api_websocket"
       },
       "asset_issuance_development_guide_for_java": {
         "title": "BUMO Asset Issuance Development Guide for Java",
@@ -165,9 +164,9 @@
         "title": "BUMO Smart Contract(Hello World)",
         "sidebar_label": "Smart Contract(Hello World)"
       },
-      "version-1.0.0.10-dex_10": {
-        "title": "BUMO DEX 10",
-        "sidebar_label": "DEX 10"
+      "version-1.0.0.10-sdk_ios": {
+        "title": "BUMO IOS SDK",
+        "sidebar_label": "IOS"
       },
       "version-1.0.0.10-faucet_user_guide": {
         "title": "BUMO Faucet User Guide",
@@ -212,10 +211,6 @@
       "version-1.0.0.10-sdk_go": {
         "title": "BUMO GO SDK",
         "sidebar_label": "GO"
-      },
-      "version-1.0.0.10-sdk_ios": {
-        "title": "BUMO IOS SDK",
-        "sidebar_label": "IOS"
       },
       "version-1.0.0.10-sdk_java": {
         "title": "BUMO JAVA SDK",

@@ -17,13 +17,13 @@ Php5.6 or above is required.
 4. Copy the corresponding version of ed25519 in the libs directory to the PHP extension directory
 5. Add 'extension=ed25519.so' in php.ini
 6. Execute the following commands to add to project:
-```bash
-composer require bumo/bumo-sdk:^{version}
-```
-Example: 
-```shell
-composer require bumo/bumo-sdk:^v1.0.0
-```
+    ```bash
+    composer require bumo/bumo-sdk:^{version}
+    ```
+    Example: 
+    ```shell
+    composer require bumo/bumo-sdk:^v1.0.0
+    ```
 
 ## Format of Request Parameters and Response Data
 
@@ -267,126 +267,126 @@ Transaction Service provide transaction-related interfaces and currently have fi
 
 - **Method call**
 
-```php
-/**
- * Serialize the transaction
- * @param TransactionBuildBlobRequest $transactionBuildBlobRequest
- * @return TransactionBuildBlobResponse
- */
-public function buildBlob($transactionBuildBlobRequest);
-```
+    ```php
+    /**
+    * Serialize the transaction
+    * @param TransactionBuildBlobRequest $transactionBuildBlobRequest
+    * @return TransactionBuildBlobResponse
+    */
+    public function buildBlob($transactionBuildBlobRequest);
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-sourceAddress|String|Required, the source account address initiating the operation
-nonce|Long|Required, the transaction serial number to be initiated, add 1 in the function, size limit [1, max(int64)]
-gasPrice|Long|Required, transaction gas price, unit MO, 1 BU = 10^8 MO, size limit [1000, max(int64)]
-feeLimit|Long|Required, the minimum fees required for the transaction, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)]
-operation|BaseOperation[]|Required, list of operations to be committed which cannot be empty
-ceilLedgerSeq|long|Optional, set a value which will be combined with the current block height to restrict transactions. If transactions do not complete within the set value plus the current block height, the transactions fail. The value you set must be greater than 0. If the value is set to 0, no limit is set.
-metadata|String|Optional, note
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    sourceAddress|String|Required, the source account address initiating the operation
+    nonce|Long|Required, the transaction serial number to be initiated, add 1 in the function, size limit [1, max(int64)]
+    gasPrice|Long|Required, transaction gas price, unit MO, 1 BU = 10^8 MO, size limit [1000, max(int64)]
+    feeLimit|Long|Required, the minimum fees required for the transaction, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)]
+    operation|BaseOperation[]|Required, list of operations to be committed which cannot be empty
+    ceilLedgerSeq|long|Optional, set a value which will be combined with the current block height to restrict transactions. If transactions do not complete within the set value plus the current block height, the transactions fail. The value you set must be greater than 0. If the value is set to 0, no limit is set.
+    metadata|String|Optional, note
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-transactionBlob|String|Serialized transaction hex string
-hash|String|Transaction hash
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    transactionBlob|String|Serialized transaction hex string
+    hash|String|Transaction hash
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
-INVALID_NONCE_ERROR|11048|Nonce must be between 1 and max(int64)
-INVALID_DESTADDRESS_ERROR|11003|Invalid destAddress
-INVALID_INITBALANCE_ERROR|11004|InitBalance must be between 1 and max(int64) 
-SOURCEADDRESS_EQUAL_DESTADDRESS_ERROR|11005|SourceAddress cannot be equal to destAddress
-INVALID_ISSUE_AMMOUNT_ERROR|11008|AssetAmount this will be issued must be between 1 and max(int64)
-INVALID_DATAKEY_ERROR|11011|The length of key must be between 1 and 1024
-INVALID_DATAVALUE_ERROR|11012|The length of value must be between 0 and 256000
-INVALID_DATAVERSION_ERROR|11013|The version must be equal to or bigger than 0 
-INVALID_MASTERWEIGHT _ERROR|11015|MasterWeight must be between 0 and max(uint32)
-INVALID_SIGNER_ADDRESS_ERROR|11016|Invalid signer address
-INVALID_SIGNER_WEIGHT _ERROR|11017|Signer weight must be between 0 and max(uint32)
-INVALID_TX_THRESHOLD_ERROR|11018|TxThreshold must be between 0 and max(int64)
-INVALID_OPERATION_TYPE_ERROR|11019|Operation type must be between 1 and 100
-INVALID_TYPE_THRESHOLD_ERROR|11020|TypeThreshold must be between 0 and max(int64)
-INVALID_ASSET_CODE _ERROR|11023|The length of key must be between 1 and 64
-INVALID_ASSET_AMOUNT_ERROR|11024|AssetAmount must be between 0 and max(int64)
-INVALID_BU_AMOUNT_ERROR|11026|BuAmount must be between 0 and max(int64)
-INVALID_ISSUER_ADDRESS_ERROR|11027|Invalid issuer address
-NO_SUCH_TOKEN_ERROR|11030|No such token
-INVALID_TOKEN_NAME_ERROR|11031|The length of token name must be between 1 and 1024
-INVALID_TOKEN_SYMBOL_ERROR|11032|The length of symbol must be between 1 and 1024
-INVALID_TOKEN_DECIMALS_ERROR|11033|Decimals must be between 0 and 8
-INVALID_TOKEN_TOTALSUPPLY_ERROR|11034|TotalSupply must be between 1 and max(int64)
-INVALID_TOKENOWNER_ERRPR|11035|Invalid token owner
-INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
-CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR|11038|ContractAddress is not a contract account
-INVALID_TOKEN_AMOUNT_ERROR|11039|Token amount must be between 1 and max(int64)
-SOURCEADDRESS_EQUAL_CONTRACTADDRESS_ERROR|11040|SourceAddress cannot be equal to contractAddress
-INVALID_FROMADDRESS_ERROR|11041|Invalid fromAddress
-FROMADDRESS_EQUAL_DESTADDRESS_ERROR|11042|FromAddress cannot be equal to destAddress
-INVALID_SPENDER_ERROR|11043|Invalid spender
-PAYLOAD_EMPTY_ERROR|11044|Payload cannot be empty
-INVALID_LOG_TOPIC_ERROR|11045|The length of a log topic must be between 1 and 128
-INVALID_LOG_DATA_ERROR|11046|The length of one piece of log data must be between 1 and1024
-INVALID_CONTRACT_TYPE_ERROR|11047|Type must be equal or bigger than 0 
-INVALID_NONCE_ERROR|11048|Nonce must be between 1 and max(int64)
-INVALID_ GASPRICE_ERROR|11049|GasPrice must be between 1000 and max(int64)
-INVALID_FEELIMIT_ERROR|11050|FeeLimit must be between 1 and max(int64)
-OPERATIONS_EMPTY_ERROR|11051|Operations cannot be empty
-INVALID_CEILLEDGERSEQ_ERROR|11052|CeilLedgerSeq must be equal to or bigger than 0
-OPERATIONS_ONE_ERROR|11053|One of the operations cannot be resolved
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR|20000|System error
-METADATA_NOT_STRING_ERROR|17001|Metadata must be a string
-INPUT_NOT_STRING_ERROR|17002|Input must be a string
-INIT_INPUT_NOT_STRING_ERROR|17003|InitInput must be a string
-INVALID_REQUEST_ERROR|17004|Request is invalid
-INVALID_DELETE_FLAG_ERROR|17005|The deleteFlag is invalid
-SIGNERS_NOT_ARRAY_ERROR|17006 |The signers should be an array
-INVALID_SIGNER_ERROR|17007|The signer is invalid
-TYPE_THRESHOLDS_NOT_ARRAY_ERROR|17008|The typeThresholds should be an array
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
+    INVALID_NONCE_ERROR|11048|Nonce must be between 1 and max(int64)
+    INVALID_DESTADDRESS_ERROR|11003|Invalid destAddress
+    INVALID_INITBALANCE_ERROR|11004|InitBalance must be between 1 and max(int64) 
+    SOURCEADDRESS_EQUAL_DESTADDRESS_ERROR|11005|SourceAddress cannot be equal to destAddress
+    INVALID_ISSUE_AMMOUNT_ERROR|11008|AssetAmount this will be issued must be between 1 and max(int64)
+    INVALID_DATAKEY_ERROR|11011|The length of key must be between 1 and 1024
+    INVALID_DATAVALUE_ERROR|11012|The length of value must be between 0 and 256000
+    INVALID_DATAVERSION_ERROR|11013|The version must be equal to or bigger than 0 
+    INVALID_MASTERWEIGHT _ERROR|11015|MasterWeight must be between 0 and max(uint32)
+    INVALID_SIGNER_ADDRESS_ERROR|11016|Invalid signer address
+    INVALID_SIGNER_WEIGHT _ERROR|11017|Signer weight must be between 0 and max(uint32)
+    INVALID_TX_THRESHOLD_ERROR|11018|TxThreshold must be between 0 and max(int64)
+    INVALID_OPERATION_TYPE_ERROR|11019|Operation type must be between 1 and 100
+    INVALID_TYPE_THRESHOLD_ERROR|11020|TypeThreshold must be between 0 and max(int64)
+    INVALID_ASSET_CODE _ERROR|11023|The length of key must be between 1 and 64
+    INVALID_ASSET_AMOUNT_ERROR|11024|AssetAmount must be between 0 and max(int64)
+    INVALID_BU_AMOUNT_ERROR|11026|BuAmount must be between 0 and max(int64)
+    INVALID_ISSUER_ADDRESS_ERROR|11027|Invalid issuer address
+    NO_SUCH_TOKEN_ERROR|11030|No such token
+    INVALID_TOKEN_NAME_ERROR|11031|The length of token name must be between 1 and 1024
+    INVALID_TOKEN_SYMBOL_ERROR|11032|The length of symbol must be between 1 and 1024
+    INVALID_TOKEN_DECIMALS_ERROR|11033|Decimals must be between 0 and 8
+    INVALID_TOKEN_TOTALSUPPLY_ERROR|11034|TotalSupply must be between 1 and max(int64)
+    INVALID_TOKENOWNER_ERRPR|11035|Invalid token owner
+    INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
+    CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR|11038|ContractAddress is not a contract account
+    INVALID_TOKEN_AMOUNT_ERROR|11039|Token amount must be between 1 and max(int64)
+    SOURCEADDRESS_EQUAL_CONTRACTADDRESS_ERROR|11040|SourceAddress cannot be equal to contractAddress
+    INVALID_FROMADDRESS_ERROR|11041|Invalid fromAddress
+    FROMADDRESS_EQUAL_DESTADDRESS_ERROR|11042|FromAddress cannot be equal to destAddress
+    INVALID_SPENDER_ERROR|11043|Invalid spender
+    PAYLOAD_EMPTY_ERROR|11044|Payload cannot be empty
+    INVALID_LOG_TOPIC_ERROR|11045|The length of a log topic must be between 1 and 128
+    INVALID_LOG_DATA_ERROR|11046|The length of one piece of log data must be between 1 and1024
+    INVALID_CONTRACT_TYPE_ERROR|11047|Type must be equal or bigger than 0 
+    INVALID_NONCE_ERROR|11048|Nonce must be between 1 and max(int64)
+    INVALID_ GASPRICE_ERROR|11049|GasPrice must be between 1000 and max(int64)
+    INVALID_FEELIMIT_ERROR|11050|FeeLimit must be between 1 and max(int64)
+    OPERATIONS_EMPTY_ERROR|11051|Operations cannot be empty
+    INVALID_CEILLEDGERSEQ_ERROR|11052|CeilLedgerSeq must be equal to or bigger than 0
+    OPERATIONS_ONE_ERROR|11053|One of the operations cannot be resolved
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR|20000|System error
+    METADATA_NOT_STRING_ERROR|17001|Metadata must be a string
+    INPUT_NOT_STRING_ERROR|17002|Input must be a string
+    INIT_INPUT_NOT_STRING_ERROR|17003|InitInput must be a string
+    INVALID_REQUEST_ERROR|17004|Request is invalid
+    INVALID_DELETE_FLAG_ERROR|17005|The deleteFlag is invalid
+    SIGNERS_NOT_ARRAY_ERROR|17006 |The signers should be an array
+    INVALID_SIGNER_ERROR|17007|The signer is invalid
+    TYPE_THRESHOLDS_NOT_ARRAY_ERROR|17008|The typeThresholds should be an array
 
 - **Example**
 
-```php
-// Initialize variables
-$senderAddresss = "buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea";
-$destAddress = "buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
-$buAmount = \src\common\Tools::BU2MO(10.9);
-$gasPrice = 1000;
-$feeLimit = \src\common\Tools::BU2MO(0.01);
-$nonce = 1;
+    ```php
+    // Initialize variables
+    $senderAddresss = "buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea";
+    $destAddress = "buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
+    $buAmount = \src\common\Tools::BU2MO(10.9);
+    $gasPrice = 1000;
+    $feeLimit = \src\common\Tools::BU2MO(0.01);
+    $nonce = 1;
 
-// Build BUSendOperation
-$operation = new \src\model\request\operation\BUSendOperation();
-$operation->setSourceAddress($senderAddresss);
-$operation->setDestAddress($destAddress);
-$operation->setAmount($buAmount);
+    // Build BUSendOperation
+    $operation = new \src\model\request\operation\BUSendOperation();
+    $operation->setSourceAddress($senderAddresss);
+    $operation->setDestAddress($destAddress);
+    $operation->setAmount($buAmount);
 
-// Initialize request parameters
-$request = new \src\model\request\TransactionBuildBlobRequest();
-$request->setSourceAddress($senderAddresss);
-$request->setNonce($nonce);
-$request->setFeeLimit($feeLimit);
-$request->setGasPrice($gasPrice);
-$request->addOperation($operation);
+    // Initialize request parameters
+    $request = new \src\model\request\TransactionBuildBlobRequest();
+    $request->setSourceAddress($senderAddresss);
+    $request->setNonce($nonce);
+    $request->setFeeLimit($feeLimit);
+    $request->setGasPrice($gasPrice);
+    $request->addOperation($operation);
 
-// Call the buildBlob interface
-$transactionBlob = null;
-$response = $sdk->getTransactionService()->buildBlob($request);
-if ($response->error_code == 0) {
-    $result = $response->result;
-    echo json_encode($result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the buildBlob interface
+    $transactionBlob = null;
+    $response = $sdk->getTransactionService()->buildBlob($request);
+    if ($response->error_code == 0) {
+        $result = $response->result;
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### evaluateFee
 
@@ -396,80 +396,80 @@ if ($response->error_code == 0) {
 
 - **Method call**
 
-```php
-/**
- * Evaluate the fee of a transaction
- * @param TransactionEvaluateFeeRequest $transactionEvaluateFeeRequest
- * @return TransactionEvaluateFeeResponse
- */
-public function evaluateFee($transactionEvaluateFeeRequest);
-```
+    ```php
+    /**
+    * Evaluate the fee of a transaction
+    * @param TransactionEvaluateFeeRequest $transactionEvaluateFeeRequest
+    * @return TransactionEvaluateFeeResponse
+    */
+    public function evaluateFee($transactionEvaluateFeeRequest);
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ----------------  
-sourceAddress|String|Required, the source account address initiating the operation|
-nonce|Long|Required, transaction serial number to be initiated, size limit [1, max(int64)]|
-operation|BaseOperation[]|Required, list of operations to be committed which cannot be empty|
-signtureNumber|Integer|Optional, the number of people to sign, the default is 1, size limit [1, max(uint32)]|
-ceilLedgerSeq|Long|Optional, set a value which will be combined with the current block height to restrict transactions. If transactions do not complete within the set value plus the current block height, the transactions fail. The value you set must be greater than 0. If the value is set to 0, no limit is set.|
-metadata|String|Optional, note|
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ----------------  
+    sourceAddress|String|Required, the source account address initiating the operation|
+    nonce|Long|Required, transaction serial number to be initiated, size limit [1, max(int64)]|
+    operation|BaseOperation[]|Required, list of operations to be committed which cannot be empty|
+    signtureNumber|Integer|Optional, the number of people to sign, the default is 1, size limit [1, max(uint32)]|
+    ceilLedgerSeq|Long|Optional, set a value which will be combined with the current block height to restrict transactions. If transactions do not complete within the set value plus the current block height, the transactions fail. The value you set must be greater than 0. If the value is set to 0, no limit is set.|
+    metadata|String|Optional, note|
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-txs     |   [TestTx](#testtx)[]     |  Evaluation transaction set
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    txs     |   [TestTx](#testtx)[]     |  Evaluation transaction set
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
-INVALID_NONCE_ERROR|11045|Nonce must be between 1 and max(int64)
-OPERATIONS_EMPTY_ERROR|11051|Operations cannot be empty
-OPERATIONS_ONE_ERROR|11053|One of the operations cannot be resolved
-INVALID_SIGNATURENUMBER_ERROR|11054|SignagureNumber must be between 1 and max(uint32)
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR|20000|System error
-INVALID_REQUEST_ERROR|17004|Request is invalid
-METADATA_NOT_STRING_ERROR|17001|Metadata must be a string
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
+    INVALID_NONCE_ERROR|11045|Nonce must be between 1 and max(int64)
+    OPERATIONS_EMPTY_ERROR|11051|Operations cannot be empty
+    OPERATIONS_ONE_ERROR|11053|One of the operations cannot be resolved
+    INVALID_SIGNATURENUMBER_ERROR|11054|SignagureNumber must be between 1 and max(uint32)
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR|20000|System error
+    INVALID_REQUEST_ERROR|17004|Request is invalid
+    METADATA_NOT_STRING_ERROR|17001|Metadata must be a string
 
 - **Example**
 
-```php
-// Initialize variables
-$senderAddresss = "buQnnUEBREw2hB6pWHGPzwanX7d28xk6KVcp";
-$destAddress = "buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea";
-$buAmount = \src\common\Tools::BU2MO(10.9);
-$gasPrice = 1000;
-$feeLimit = \src\common\Tools::BU2MO(0.01);
-$nonce = 51;
+    ```php
+    // Initialize variables
+    $senderAddresss = "buQnnUEBREw2hB6pWHGPzwanX7d28xk6KVcp";
+    $destAddress = "buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea";
+    $buAmount = \src\common\Tools::BU2MO(10.9);
+    $gasPrice = 1000;
+    $feeLimit = \src\common\Tools::BU2MO(0.01);
+    $nonce = 51;
 
-// Build BUSendOperation
-$buSendOperation = new \src\model\request\operation\BUSendOperation();
-$buSendOperation->setSourceAddress($senderAddresss);
-$buSendOperation->setDestAddress($destAddress);
-$buSendOperation->setAmount($buAmount);
+    // Build BUSendOperation
+    $buSendOperation = new \src\model\request\operation\BUSendOperation();
+    $buSendOperation->setSourceAddress($senderAddresss);
+    $buSendOperation->setDestAddress($destAddress);
+    $buSendOperation->setAmount($buAmount);
 
-// Initialize request parameters for transaction evaluation
-$request = new \src\model\request\TransactionEvaluateFeeRequest();
-$request->addOperation($buSendOperation);
-$request->setSourceAddress($senderAddresss);
-$request->setNonce($nonce);
-$request->setSignatureNumber(1);
-$request->setMetadata(bin2hex("evaluate fees"));
+    // Initialize request parameters for transaction evaluation
+    $request = new \src\model\request\TransactionEvaluateFeeRequest();
+    $request->addOperation($buSendOperation);
+    $request->setSourceAddress($senderAddresss);
+    $request->setNonce($nonce);
+    $request->setSignatureNumber(1);
+    $request->setMetadata(bin2hex("evaluate fees"));
 
-// Call the evaluateFee interface
-$response = $sdk->getTransactionService().evaluateFee($request);
-if ($response->error_code == 0) {
-    $result = $response->result;
-    echo json_encode($result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the evaluateFee interface
+    $response = $sdk->getTransactionService().evaluateFee($request);
+    if ($response->error_code == 0) {
+        $result = $response->result;
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### sign
 
@@ -479,56 +479,56 @@ if ($response->error_code == 0) {
 
 - **Method call**
 
-```php 
-/**
- * Sign a transaction
- * @param TransactionSignRequest $transactionSignRequest
- * @return TransactionSignResponse
- */
-public function sign($transactionSignRequest);
-```
+    ```php 
+    /**
+    * Sign a transaction
+    * @param TransactionSignRequest $transactionSignRequest
+    * @return TransactionSignResponse
+    */
+    public function sign($transactionSignRequest);
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blob|String|Required, pending transaction blob to be signed
-privateKeys|String[]|Required, private key list
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blob|String|Required, pending transaction blob to be signed
+    privateKeys|String[]|Required, private key list
 
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-signatures|[Signature](#signature)|Signed data list
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    signatures|[Signature](#signature)|Signed data list
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_BLOB_ERROR|11056|Invalid blob
-PRIVATEKEY_NULL_ERROR|11057|PrivateKeys cannot be empty
-PRIVATEKEY_ONE_ERROR|11058|One of privateKeys is invalid
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR|20000|System error
-INVALID_REQUEST_ERROR|17004|Request is invalid
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_BLOB_ERROR|11056|Invalid blob
+    PRIVATEKEY_NULL_ERROR|11057|PrivateKeys cannot be empty
+    PRIVATEKEY_ONE_ERROR|11058|One of privateKeys is invalid
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR|20000|System error
+    INVALID_REQUEST_ERROR|17004|Request is invalid
 
 - **Example**
 
-```php
-// Initialize request parameters
-$issuePrivateKey = "privbyQCRp7DLqKtRFCqKQJr81TurTqG6UKXMMtGAmPG3abcM9XHjWvq";
-$transactionBlob = "0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704";
-$request = new \src\model\request\TransactionSignRequest();
-$request->setBlob($transactionBlob);
-$request->addPrivateKey($issuePrivateKey);
-$response = $sdk->getTransactionService()->sign($request);
-if(0 == $response->error_code){
-	echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
-}else{
-	echo "error: " . $response->error_desc;
-}
-```
+    ```php
+    // Initialize request parameters
+    $issuePrivateKey = "privbyQCRp7DLqKtRFCqKQJr81TurTqG6UKXMMtGAmPG3abcM9XHjWvq";
+    $transactionBlob = "0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704";
+    $request = new \src\model\request\TransactionSignRequest();
+    $request->setBlob($transactionBlob);
+    $request->addPrivateKey($issuePrivateKey);
+    $response = $sdk->getTransactionService()->sign($request);
+    if(0 == $response->error_code){
+        echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
+    }else{
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### submit
 
@@ -538,62 +538,62 @@ if(0 == $response->error_code){
 
 - **Method call**
 
-```php
-/**
- * Submit a transaction to bu chain
- * @param TransactionSubmitRequest $transactionSubmitRequest
- * @return TransactionSubmitResponse
- */
-public function submit($transactionSubmitRequest);
-```
+    ```php
+    /**
+    * Submit a transaction to bu chain
+    * @param TransactionSubmitRequest $transactionSubmitRequest
+    * @return TransactionSubmitResponse
+    */
+    public function submit($transactionSubmitRequest);
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blob|String|Required, transaction blob
-signature|[Signature](#signature)[]|Required, signature list
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blob|String|Required, transaction blob
+    signature|[Signature](#signature)[]|Required, signature list
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-hash|String|Transaction hash
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    hash|String|Transaction hash
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_BLOB_ERROR|11056|Invalid blob
-SIGNATURE_EMPTY_ERROR|11067|The signatures cannot be empty
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR|20000|System error
-INVALID_REQUEST_ERROR|17004|Request is invalid
-SIGNATURES_ARRAY_ERROR|17009|The signatures should be an array
-INVALID_SIGNATURE_ERROR|17010|The signature is invalid
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_BLOB_ERROR|11056|Invalid blob
+    SIGNATURE_EMPTY_ERROR|11067|The signatures cannot be empty
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR|20000|System error
+    INVALID_REQUEST_ERROR|17004|Request is invalid
+    SIGNATURES_ARRAY_ERROR|17009|The signatures should be an array
+    INVALID_SIGNATURE_ERROR|17010|The signature is invalid
 
 - **Example**
 
-```php
-// Initialize request parameters
-$transactionBlob = "0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704";
-$signature = new Signature();
-$signature->setSignData(
-  "D2B5E3045F2C1B7D363D4F58C1858C30ABBBB0F41E4B2E18AF680553CA9C3689078E215C097086E47A4393BCA715C7A5D2C180D8750F35C6798944F79CC5000A");
-$signature->setPublicKey(
-  "b0011765082a9352e04678ef38d38046dc01306edef676547456c0c23e270aaed7ffe9e31477");
-$request = new \src\model\request\\src\model\request\TransactionSubmitRequest();
-$request->setTransactionBlob($transactionBlob);
-$request->addSignature($signature);
+    ```php
+    // Initialize request parameters
+    $transactionBlob = "0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704";
+    $signature = new Signature();
+    $signature->setSignData(
+    "D2B5E3045F2C1B7D363D4F58C1858C30ABBBB0F41E4B2E18AF680553CA9C3689078E215C097086E47A4393BCA715C7A5D2C180D8750F35C6798944F79CC5000A");
+    $signature->setPublicKey(
+    "b0011765082a9352e04678ef38d38046dc01306edef676547456c0c23e270aaed7ffe9e31477");
+    $request = new \src\model\request\\src\model\request\TransactionSubmitRequest();
+    $request->setTransactionBlob($transactionBlob);
+    $request->addSignature($signature);
 
-// Call the submit interface
-$response = $sdk->getTransactionService()->submit($request);
-if (0 == $response->error_code) { 
-    echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
-} else{
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the submit interface
+    $response = $sdk->getTransactionService()->submit($request);
+    if (0 == $response->error_code) { 
+        echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
+    } else{
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getInfo
 
@@ -603,54 +603,54 @@ if (0 == $response->error_code) {
 
 - **Method call**
 
-```php
-/**
- * Get the information of specific block
- * @param TransactionGetInfoRequest $transactionGetInfoRequest
- * @return TransactionGetInfoResponse
- */
-function getInfo($transactionGetInfoRequest);
-```
+    ```php
+    /**
+    * Get the information of specific block
+    * @param TransactionGetInfoRequest $transactionGetInfoRequest
+    * @return TransactionGetInfoResponse
+    */
+    function getInfo($transactionGetInfoRequest);
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-hash|String|Transaction hash
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    hash|String|Transaction hash
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-totalCount|Long|Total number of transactions returned
-transactions|[TransactionHistory](#transactionhistory)[]|Transaction content
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    totalCount|Long|Total number of transactions returned
+    transactions|[TransactionHistory](#transactionhistory)[]|Transaction content
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_HASH_ERROR|11055|Invalid transaction hash
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
-INVALID_REQUEST_ERROR|17004|Request is invalid
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_HASH_ERROR|11055|Invalid transaction hash
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
+    INVALID_REQUEST_ERROR|17004|Request is invalid
 
 - **Example**
 
-```php
-// Initialize request parameters
-$txHash = "1653f54fbba1134f7e35acee49592a7c29384da10f2f629c9a214f6e54747705";
-$request = new \src\model\request\TransactionGetInfoRequest();
-$request->setHash(txHash);
+    ```php
+    // Initialize request parameters
+    $txHash = "1653f54fbba1134f7e35acee49592a7c29384da10f2f629c9a214f6e54747705";
+    $request = new \src\model\request\TransactionGetInfoRequest();
+    $request->setHash(txHash);
 
-// Call the getInfo interface
-$response = $sdk->getTransactionService()->getInfo($request);
-if ($response->error_code == 0) {
-    echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the getInfo interface
+    $response = $sdk->getTransactionService()->getInfo($request);
+    if ($response->error_code == 0) {
+        echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ## Operations
 
@@ -661,10 +661,10 @@ Operations refer to the things that are to be done in a transaction, and the ope
 
 BaseOperation is the base class for all operations in the buildBlob interface. The following table describes BaseOperation:
 
-   Member    |     Type  |        Description                           
-   ------------- | -------- | ----------------------------------   
-   sourceAddress |   String |  Optional, source account address of the operation
-   metadata      |   String |  Optional, note
+Member    |     Type  |        Description                           
+------------- | -------- | ----------------------------------   
+sourceAddress |   String |  Optional, source account address of the operation
+metadata      |   String |  Optional, note
 
 ### AccountActivateOperation
 
@@ -888,51 +888,51 @@ Account Service provide account-related interfaces, which include six interfaces
 
 - **Method call**
 
-```php
-/**
- * Check the availability of address
- * @param AccountCheckValidRequest $accountCheckValidRequest
- * @return AccountCheckValidResponse
- */
-public function checkValid($accountCheckValidRequest);
-```
+    ```php
+    /**
+    * Check the availability of address
+    * @param AccountCheckValidRequest $accountCheckValidRequest
+    * @return AccountCheckValidResponse
+    */
+    public function checkValid($accountCheckValidRequest);
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   String     |  Required, the account address to be checked on the blockchain
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    address     |   String     |  Required, the account address to be checked on the blockchain
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-is_valid     | boolean |  Whether the response data is valid   
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    is_valid     | boolean |  Whether the response data is valid   
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR |   20000     |  System error 
-INVALID_REQUEST_ERROR | 17004 | Request is invalid 
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR |   20000     |  System error 
+    INVALID_REQUEST_ERROR | 17004 | Request is invalid 
 
 - **Example**
 
-```php
-// Initialize request parameters
-$address = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo";
-$request = new \src\model\request\AccountCheckValidRequest();
-$request->setAddress(address);
+    ```php
+    // Initialize request parameters
+    $address = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo";
+    $request = new \src\model\request\AccountCheckValidRequest();
+    $request->setAddress(address);
 
-// Call the checkValid
-$response = $sdk->getAccountService()->checkValid($request);
-if(0 == $response->error_code) {
-	echo $response->result->is_valid . "\n";
-} else {
-	echo "error: " . $response->error_desc . "\n";
-}
-```
+    // Call the checkValid
+    $response = $sdk->getAccountService()->checkValid($request);
+    if(0 == $response->error_code) {
+        echo $response->result->is_valid . "\n";
+    } else {
+        echo "error: " . $response->error_desc . "\n";
+    }
+    ```
 
 ### getInfo
 
@@ -942,57 +942,57 @@ if(0 == $response->error_code) {
 
 - **Method call**
 
-```php
-/**
- * Get account info
- * @param AccountGetInfoRequest $accountGetInfoRequest
- * @return AccountGetInfoResponse, including address，balance，nonce and privilege
- */
-public function getInfo($accountGetInfoRequest);
-```
+    ```php
+    /**
+    * Get account info
+    * @param AccountGetInfoRequest $accountGetInfoRequest
+    * @return AccountGetInfoResponse, including address，balance，nonce and privilege
+    */
+    public function getInfo($accountGetInfoRequest);
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   String     |  Required, the account address to be queried on the blockchain 
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    address     |   String     |  Required, the account address to be queried on the blockchain 
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
---------- | ------------- | ---------------- 
-address	  |    String     |    Account address
-balance	  |    Long       |    Account balance, unit is MO, 1 BU = 10^8 MO, the account balance must be > 0
-nonce	  |    Long       |    Account transaction serial number must be greater than 0
-priv	  | [Priv](#priv) |    Account privilege
+    Parameter      |     Type     |        Description       
+    --------- | ------------- | ---------------- 
+    address	  |    String     |    Account address
+    balance	  |    Long       |    Account balance, unit is MO, 1 BU = 10^8 MO, the account balance must be > 0
+    nonce	  |    Long       |    Account transaction serial number must be greater than 0
+    priv	  | [Priv](#priv) |    Account privilege
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR| 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-SYSTEM_ERROR |   20000     |  System error 
-INVALID_REQUEST_ERROR | 17004 | Request is invalid 
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_ADDRESS_ERROR| 11006 | Invalid address
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+    SYSTEM_ERROR |   20000     |  System error 
+    INVALID_REQUEST_ERROR | 17004 | Request is invalid 
 
 - **Example**
 
-```php
-// Initialize request parameters
-$accountAddress = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo";
-$request = new \src\model\request\AccountGetInfoRequest();
-$request->setAddress($accountAddress);
+    ```php
+    // Initialize request parameters
+    $accountAddress = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo";
+    $request = new \src\model\request\AccountGetInfoRequest();
+    $request->setAddress($accountAddress);
 
-// Call the getInfo interface
-$response =  $sdk->getAccountService()->getInfo($request);
-if ($response->error_code == 0) {
-    $result = $response->result;
-    echo "Account info: " . json_encode($result, JSON_UNESCAPED_UNICODE) . "\n";
-} else {
-    echo "error: " . $response->error_desc . "\n";
-}
-```
+    // Call the getInfo interface
+    $response =  $sdk->getAccountService()->getInfo($request);
+    if ($response->error_code == 0) {
+        $result = $response->result;
+        echo "Account info: " . json_encode($result, JSON_UNESCAPED_UNICODE) . "\n";
+    } else {
+        echo "error: " . $response->error_desc . "\n";
+    }
+    ```
 
 ### getNonce
 
@@ -1002,53 +1002,53 @@ if ($response->error_code == 0) {
 
 - **Method call**
 
-```php
-/**
- * Get account nonce
- * @param AccountGetNonceRequest $accountGetNonceRequest
- * @return AccountGetNonceResponse
- */
-public function getNonce($accountGetNonceRequest);
-```
+    ```php
+    /**
+    * Get account nonce
+    * @param AccountGetNonceRequest $accountGetNonceRequest
+    * @return AccountGetNonceResponse
+    */
+    public function getNonce($accountGetNonceRequest);
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   String     |  Required, the account address to be queried on the blockchain
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    address     |   String     |  Required, the account address to be queried on the blockchain
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-nonce       |   Long       |  Account transaction serial number
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    nonce       |   Long       |  Account transaction serial number
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR| 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-SYSTEM_ERROR |   20000     |  System error 
-INVALID_REQUEST_ERROR | 17004 | Request is invalid 
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_ADDRESS_ERROR| 11006 | Invalid address
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+    SYSTEM_ERROR |   20000     |  System error 
+    INVALID_REQUEST_ERROR | 17004 | Request is invalid 
 
 - **Example**
 
-```php
-// Initialize request parameters
-$accountAddress = "buQswSaKDACkrFsnP1wcVsLAUzXQsemauEjf";
-$request = new \src\model\request\AccountGetNonceRequest();
-$request->setAddress($accountAddress);
+    ```php
+    // Initialize request parameters
+    $accountAddress = "buQswSaKDACkrFsnP1wcVsLAUzXQsemauEjf";
+    $request = new \src\model\request\AccountGetNonceRequest();
+    $request->setAddress($accountAddress);
 
-// Call the getNonce interface
-$response = $sdk->getAccountService()->getNonce($request);
-if(0 == $response->error_code){
-    echo "Account nonce:" . $response->result->nonce;
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the getNonce interface
+    $response = $sdk->getAccountService()->getNonce($request);
+    if(0 == $response->error_code){
+        echo "Account nonce:" . $response->result->nonce;
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getBalance
 
@@ -1058,54 +1058,54 @@ if(0 == $response->error_code){
 
 - **Method call**
 
-```php
-/**
- * Get account balance of BU
- * @param AccountGetBalanceRequest $accountGetBalanceRequest
- * @return AccountGetBalanceResponse
- */
-public function getBalance($accountGetBalanceRequest);
-```
+    ```php
+    /**
+    * Get account balance of BU
+    * @param AccountGetBalanceRequest $accountGetBalanceRequest
+    * @return AccountGetBalanceResponse
+    */
+    public function getBalance($accountGetBalanceRequest);
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   String     |  Required, the account address to be queried on the blockchain
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    address     |   String     |  Required, the account address to be queried on the blockchain
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-balance     |   Long       |  BU balance, unit MO, 1 BU = 10^8 MO
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    balance     |   Long       |  BU balance, unit MO, 1 BU = 10^8 MO
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR| 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-SYSTEM_ERROR |   20000     |  System error 
-INVALID_REQUEST_ERROR | 17004 | Request is invalid 
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_ADDRESS_ERROR| 11006 | Invalid address
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+    SYSTEM_ERROR |   20000     |  System error 
+    INVALID_REQUEST_ERROR | 17004 | Request is invalid 
 
 - **Example**
 
-```php
-// Initialize request parameters
-$accountAddress = "buQswSaKDACkrFsnP1wcVsLAUzXQsemauEjf";
-$request = new \src\model\request\AccountGetBalanceRequest();
-$request->setAddress($accountAddress);
+    ```php
+    // Initialize request parameters
+    $accountAddress = "buQswSaKDACkrFsnP1wcVsLAUzXQsemauEjf";
+    $request = new \src\model\request\AccountGetBalanceRequest();
+    $request->setAddress($accountAddress);
 
-// Call the getBalance interface
-$response = $sdk->getAccountService()->getBalance($request);
-if(0 == $response->error_code){
-    $result = $response->result;
-    echo "BU balance：" . \src\common\Tools::BU2MO($result->balance) . " BU";
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the getBalance interface
+    $response = $sdk->getAccountService()->getBalance($request);
+    if(0 == $response->error_code){
+        $result = $response->result;
+        echo "BU balance：" . \src\common\Tools::BU2MO($result->balance) . " BU";
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getAssets
 
@@ -1115,54 +1115,54 @@ if(0 == $response->error_code){
 
 - **Method call**
 
-```php
-/**
- * Get all assets of an account
- * @param AccountGetAssetsRequest $accountGetAssetsRequest
- * @return AccountGetAssetsResponse, include code, issuer, amount
- */
-public function getAssets;
-```
+    ```php
+    /**
+    * Get all assets of an account
+    * @param AccountGetAssetsRequest $accountGetAssetsRequest
+    * @return AccountGetAssetsResponse, include code, issuer, amount
+    */
+    public function getAssets;
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   String     |  Required, the account address to be queried
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    address     |   String     |  Required, the account address to be queried
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-asset	    | [AssetInfo](#assetinfo)[] |Account asset
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    asset	    | [AssetInfo](#assetinfo)[] |Account asset
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR| 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-NO_ASSET_ERROR|11009|The account does not have the asset
-SYSTEM_ERROR|20000|System error
-INVALID_REQUEST_ERROR|17004|Request is invalid
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_ADDRESS_ERROR| 11006 | Invalid address
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+    NO_ASSET_ERROR|11009|The account does not have the asset
+    SYSTEM_ERROR|20000|System error
+    INVALID_REQUEST_ERROR|17004|Request is invalid
 
 - **Example**
 
-```php
-// Initialize request parameters
-$request = new \src\model\request\AccountGetAssetsRequest();
-$request->setAddress("buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw");
+    ```php
+    // Initialize request parameters
+    $request = new \src\model\request\AccountGetAssetsRequest();
+    $request->setAddress("buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw");
 
-// Call the getAssets interface
-$response = $sdk->getAccountService()->getAssets($request);
-if ($response->error_code == 0) {
-    $result = $response->result;
-    echo json_encode($result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the getAssets interface
+    $response = $sdk->getAccountService()->getAssets($request);
+    if ($response->error_code == 0) {
+        $result = $response->result;
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getMetadata
 
@@ -1172,59 +1172,59 @@ if ($response->error_code == 0) {
 
 - **Method call**
 
-```php
-/**
- * Get the metadata of an account
- * @param AccountGetMetadataRequest $accountGetMetadataRequest
- * @return AccountGetMetadataResponse, include key and value
- */
-public function getMetadata($accountGetMetadataRequest);
-```
+    ```php
+    /**
+    * Get the metadata of an account
+    * @param AccountGetMetadataRequest $accountGetMetadataRequest
+    * @return AccountGetMetadataResponse, include key and value
+    */
+    public function getMetadata($accountGetMetadataRequest);
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
--------- | -------- | ---------------- 
-address  |  String  |  Required, the account address to be queried  
-key      |  String  |  Optional, metadata keyword, length limit [1, 1024]
+    Parameter      |     Type     |        Description       
+    -------- | -------- | ---------------- 
+    address  |  String  |  Required, the account address to be queried  
+    key      |  String  |  Optional, metadata keyword, length limit [1, 1024]
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ----------- | ---------------- 
-metadata    |[MetadataInfo](#metadatainfo)   |  Account
+    Parameter      |     Type     |        Description       
+    ----------- | ----------- | ---------------- 
+    metadata    |[MetadataInfo](#metadatainfo)   |  Account
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR | 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR | 11007 | Failed to connect to the network
-NO_METADATA_ERROR|11010|The account does not have the metadata
-INVALID_DATAKEY_ERROR | 11011 | The length of key must be between 1 and 1024
-SYSTEM_ERROR | 20000| System error
-INVALID_REQUEST_ERROR | 17004 | Request is invalid 
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_ADDRESS_ERROR | 11006 | Invalid address
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR | 11007 | Failed to connect to the network
+    NO_METADATA_ERROR|11010|The account does not have the metadata
+    INVALID_DATAKEY_ERROR | 11011 | The length of key must be between 1 and 1024
+    SYSTEM_ERROR | 20000| System error
+    INVALID_REQUEST_ERROR | 17004 | Request is invalid 
 
 
 - **Example**
 
-```php
-// Initialize request parameters
-$accountAddress = "buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
-$request = new \src\model\request\AccountGetMetadataRequest();
-$request->setAddress($accountAddress);
-$request->setKey("20180704");
+    ```php
+    // Initialize request parameters
+    $accountAddress = "buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
+    $request = new \src\model\request\AccountGetMetadataRequest();
+    $request->setAddress($accountAddress);
+    $request->setKey("20180704");
 
-// Call the getMetadata interface
-$response =  $sdk->getAccountService()->getMetadata($request);
-if ($response->error_code == 0) {
-    $result = $response->result;
-    echo json_encode($result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the getMetadata interface
+    $response =  $sdk->getAccountService()->getMetadata($request);
+    if ($response->error_code == 0) {
+        $result = $response->result;
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ## Asset Service
 
@@ -1238,60 +1238,60 @@ Asset Service follow the ATP 1.0 protocol, and Account Service provide an asset-
 
 - **Method call**
 
-```php
-/**
- * Get details of the specified asset
- * @param  AssetGetInfoRequest $assetGetInfoRequest
- * @return AssetGetInfoResponse
- */
-function getInfo($assetGetInfoRequest);
-```
+    ```php
+    /**
+    * Get details of the specified asset
+    * @param  AssetGetInfoRequest $assetGetInfoRequest
+    * @return AssetGetInfoResponse
+    */
+    function getInfo($assetGetInfoRequest);
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   String    |  Required, the account address to be queried
-code        |   String    |  Required, asset code, length limit [1, 64]
-issuer      |   String    |  Required, the account address for issuing assets
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    address     |   String    |  Required, the account address to be queried
+    code        |   String    |  Required, asset code, length limit [1, 64]
+    issuer      |   String    |  Required, the account address for issuing assets
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-asset	    | [AssetInfo](#assetinfo)[] |Account asset   
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    asset	    | [AssetInfo](#assetinfo)[] |Account asset   
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR|11006|Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-INVALID_ASSET_CODE_ERROR|11023|The length of asset code must be between 1 and 64
-INVALID_ISSUER_ADDRESS_ERROR|11027|Invalid issuer address
- NO_ASSET_ERROR               | 11009  | The account does not have this token              
-SYSTEM_ERROR|20000|System error
-INVALID_REQUEST_ERROR|17004|Request is invalid
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_ADDRESS_ERROR|11006|Invalid address
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    INVALID_ASSET_CODE_ERROR|11023|The length of asset code must be between 1 and 64
+    INVALID_ISSUER_ADDRESS_ERROR|11027|Invalid issuer address
+    NO_ASSET_ERROR               | 11009  | The account does not have this token              
+    SYSTEM_ERROR|20000|System error
+    INVALID_REQUEST_ERROR|17004|Request is invalid
 
 - **Example**
 
-```php
-// Initialize request parameters
-$request = new \src\model\request\AssetGetInfoRequest();
-$request->setAddress("buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw");
-$request->setIssuer("buQBjJD1BSJ7nzAbzdTenAhpFjmxRVEEtmxH");
-$request->setCode("HNC");
+    ```php
+    // Initialize request parameters
+    $request = new \src\model\request\AssetGetInfoRequest();
+    $request->setAddress("buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw");
+    $request->setIssuer("buQBjJD1BSJ7nzAbzdTenAhpFjmxRVEEtmxH");
+    $request->setCode("HNC");
 
-// Call the getInfo interface
-$response = $sdk->getAssetService()->getInfo($request);
-if ($response->error_code == 0) {
-    $result = $response->result;
-    echo json_encode($result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the getInfo interface
+    $response = $sdk->getAssetService()->getInfo($request);
+    if ($response->error_code == 0) {
+        $result = $response->result;
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ## Contract Service
 
@@ -1305,52 +1305,52 @@ Contract Service provide contract-related interfaces and currently have four int
 
 - **Method call**
 
-```php
-/**
- * Check the availability of a contract
- * @param  ContractCheckValidRequest $contractCheckValidRequest
- * @return ContractCheckValidResponse
- */
-function checkValid($contractCheckValidRequest);
-```
+    ```php
+    /**
+    * Check the availability of a contract
+    * @param  ContractCheckValidRequest $contractCheckValidRequest
+    * @return ContractCheckValidResponse
+    */
+    function checkValid($contractCheckValidRequest);
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-contractAddress     |   String     |  Contract account address to be tested
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    contractAddress     |   String     |  Contract account address to be tested
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-isValid     |   Boolean     |  Whether the response data is valid   
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    isValid     |   Boolean     |  Whether the response data is valid   
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR |   20000     |  System error 
-INVALID_REQUEST_ERROR | 17004 | Request is invalid 
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR |   20000     |  System error 
+    INVALID_REQUEST_ERROR | 17004 | Request is invalid 
 
 - **Example**
 
-```php
-// Initialize request parameters
-$request = new \src\model\request\ContractCheckValidRequest();
-$request->setContractAddress("buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea");
+    ```php
+    // Initialize request parameters
+    $request = new \src\model\request\ContractCheckValidRequest();
+    $request->setContractAddress("buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea");
 
-// Call the checkValid interface
-$response = $sdk->getContractService()->checkValid($request);
-if ($response->error_code == 0) {
-    $result = $response->result;
-    echo result->is_valid;
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the checkValid interface
+    $response = $sdk->getContractService()->checkValid($request);
+    if ($response->error_code == 0) {
+        $result = $response->result;
+        echo result->is_valid;
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getInfo
 
@@ -1360,54 +1360,54 @@ if ($response->error_code == 0) {
 
 - **Method call**
 
-```php
-/**
- * Get the details of contract, include type and payload
- * @param ContractGetInfoRequest $contractGetInfoRequest
- * @return ContractGetInfoResponse
- */
-function getInfo($contractGetInfoRequest);
-```
+    ```php
+    /**
+    * Get the details of contract, include type and payload
+    * @param ContractGetInfoRequest $contractGetInfoRequest
+    * @return ContractGetInfoResponse
+    */
+    function getInfo($contractGetInfoRequest);
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-contractAddress     |   String     |  Contract account address to be queried 
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    contractAddress     |   String     |  Contract account address to be queried 
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-contract|[ContractInfo](#contractinfo)|Contract info
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    contract|[ContractInfo](#contractinfo)|Contract info
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
-CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR|11038|contractAddress is not a contract account
-NO_SUCH_TOKEN_ERROR|11030|No such token
-GET_TOKEN_INFO_ERROR|11066|Failed to get token info
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR|20000|System error
-INVALID_REQUEST_ERROR|17004|Request is invalid
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
+    CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR|11038|contractAddress is not a contract account
+    NO_SUCH_TOKEN_ERROR|11030|No such token
+    GET_TOKEN_INFO_ERROR|11066|Failed to get token info
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR|20000|System error
+    INVALID_REQUEST_ERROR|17004|Request is invalid
 
 - **Example**
 
-```php
-// Initialize request parameters
-$request = new \src\model\request\ContractGetInfoRequest();
-$request->setContractAddress("buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea");
+    ```php
+    // Initialize request parameters
+    $request = new \src\model\request\ContractGetInfoRequest();
+    $request->setContractAddress("buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea");
 
-// Call the getInfo interface
-$response = $sdk->getContractService()->getInfo($request);
-if ($response->error_code == 0) {
-    echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the getInfo interface
+    $response = $sdk->getContractService()->getInfo($request);
+    if ($response->error_code == 0) {
+        echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getAddress
 
@@ -1417,52 +1417,52 @@ The `getAddress` interface is used to query the contract address.
 
 - **Method call**
 
-```php
-/**
- * Get the address of a contract account
- * @param  ContractGetAddressRequest $contractGetAddressRequest
- * @return ContractGetAddressResponse
- */
-function getAddress($contractGetAddressRequest)
-```
+    ```php
+    /**
+    * Get the address of a contract account
+    * @param  ContractGetAddressRequest $contractGetAddressRequest
+    * @return ContractGetAddressResponse
+    */
+    function getAddress($contractGetAddressRequest)
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-hash     |   String     |  The hash used to create a contract transaction   
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    hash     |   String     |  The hash used to create a contract transaction   
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-contractAddressList|List<[ContractAddressInfo](#contractaddressinfo)>|Contract address list
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    contractAddressList|List<[ContractAddressInfo](#contractaddressinfo)>|Contract address list
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_HASH_ERROR|11055|Invalid transaction hash
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR|20000|System error
-INVALID_REQUEST_ERROR|17004|Request is invalid
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_HASH_ERROR|11055|Invalid transaction hash
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR|20000|System error
+    INVALID_REQUEST_ERROR|17004|Request is invalid
 
 - **Example**
 
-```php
-// Initialize request parameters
-$request = new \src\model\request\ContractGetAddressRequest();
-$request->setHash("44246c5ba1b8b835a5cbc29bdc9454cdb9a9d049870e41227f2dcfbcf7a07689");
+    ```php
+    // Initialize request parameters
+    $request = new \src\model\request\ContractGetAddressRequest();
+    $request->setHash("44246c5ba1b8b835a5cbc29bdc9454cdb9a9d049870e41227f2dcfbcf7a07689");
 
-// Call the getAddress interface
-$response = $sdk->getContractService()->getAddress($request);
-if ($response->error_code == 0) {
-   echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
-} else {
-   echo "error: " . $response->error_desc;
-}
-```
+    // Call the getAddress interface
+    $response = $sdk->getContractService()->getAddress($request);
+    if ($response->error_code == 0) {
+    echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
+    } else {
+    echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### call 
 
@@ -1472,72 +1472,72 @@ if ($response->error_code == 0) {
 
 - **Method call**
 
-```php
-/**
- * Call contract for free
- * @param  ContractCallRequest $contractCallRequest
- * @return ContractCallResponse
- */
-function call($contractCallRequest);
-```
+    ```php
+    /**
+    * Call contract for free
+    * @param  ContractCallRequest $contractCallRequest
+    * @return ContractCallResponse
+    */
+    function call($contractCallRequest);
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-sourceAddress|String|Optional, the account address to trigger the contract
-contractAddress|String|Optional, the contract account address and code cannot be empty at the same time
-code|String|Optional, the contract code and contractAddress cannot be empty at the same time, length limit [1, 64]
-input|String|Optional, input parameter for the contract
-contractBalance|String|Optional, the initial BU balance given to the contract, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)]
-optType|Integer|Required, 0: Call the read/write interface of the contract init, 1: Call the read/write interface of the contract main, 2: Call the read-only interface query
-feeLimit|Long|Minimum fee required for the transaction, size limit [1, max(int64)]
-gasPrice|Long|Transaction fuel price, size limit [1000, max(int64)]
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    sourceAddress|String|Optional, the account address to trigger the contract
+    contractAddress|String|Optional, the contract account address and code cannot be empty at the same time
+    code|String|Optional, the contract code and contractAddress cannot be empty at the same time, length limit [1, 64]
+    input|String|Optional, input parameter for the contract
+    contractBalance|String|Optional, the initial BU balance given to the contract, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)]
+    optType|Integer|Required, 0: Call the read/write interface of the contract init, 1: Call the read/write interface of the contract main, 2: Call the read-only interface query
+    feeLimit|Long|Minimum fee required for the transaction, size limit [1, max(int64)]
+    gasPrice|Long|Transaction fuel price, size limit [1000, max(int64)]
 
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-logs|JSONObject|Log information
-queryRets|JSONArray|Query the result set
-stat|[ContractStat](#contractstat)|Contract resource occupancy
-txs|[TransactionEnvs](#transactionenvs)[]|Transaction set
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    logs|JSONObject|Log information
+    queryRets|JSONArray|Query the result set
+    stat|[ContractStat](#contractstat)|Contract resource occupancy
+    txs|[TransactionEnvs](#transactionenvs)[]|Transaction set
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description 
------------  | ----------- | -------- 
-INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
-INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
-CONTRACTADDRESS_CODE_BOTH_NULL_ERROR|11063|ContractAddress and code cannot be empty at the same time
-INVALID_OPTTYPE_ERROR|11064|OptType must be between 0 and 2
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
-INVALID_CONTRACT_BALANCE_ERROR|11044|The contractBalance must be between 1 and max(int64)
-INVALID_GASPRICE_ERROR|11049|GasPrice must be between 1000 and max(int64)
-INVALID_REQUEST_ERROR|17004|Request is invalid
-INPUT_NOT_STRING_ERROR|17002|Input must be a string
+    Error Message      |     Error Code     |        Description 
+    -----------  | ----------- | -------- 
+    INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
+    INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
+    CONTRACTADDRESS_CODE_BOTH_NULL_ERROR|11063|ContractAddress and code cannot be empty at the same time
+    INVALID_OPTTYPE_ERROR|11064|OptType must be between 0 and 2
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
+    INVALID_CONTRACT_BALANCE_ERROR|11044|The contractBalance must be between 1 and max(int64)
+    INVALID_GASPRICE_ERROR|11049|GasPrice must be between 1000 and max(int64)
+    INVALID_REQUEST_ERROR|17004|Request is invalid
+    INPUT_NOT_STRING_ERROR|17002|Input must be a string
 
 - **Example**
 
-```php
-// Initialize request parameters
-$request = new \src\model\request\ContractCallRequest();
-$request->setCode("\"use strict\";log(undefined);function query() { getBalance(thisAddress); }");
-$request->setFeeLimit(1000000000);
-$request->setOptType(2);
+    ```php
+    // Initialize request parameters
+    $request = new \src\model\request\ContractCallRequest();
+    $request->setCode("\"use strict\";log(undefined);function query() { getBalance(thisAddress); }");
+    $request->setFeeLimit(1000000000);
+    $request->setOptType(2);
 
-// Call the call interface
-$response = $sdk->getContractService()->call($request);
-if ($response->error_code == 0) {
-    $result = $response->result;
-    echo json_encode($result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the call interface
+    $response = $sdk->getContractService()->call($request);
+    if ($response->error_code == 0) {
+        $result = $response->result;
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 
 ## Block service
@@ -1552,39 +1552,39 @@ Block service provide block-related interfaces. There are currently 11 interface
 
 - **Method call**
 
-```php
-/**
- * Get the latest block number
- * @return BlockGetNumberResponse
- */
-function getNumber()
-```
+    ```php
+    /**
+    * Get the latest block number
+    * @return BlockGetNumberResponse
+    */
+    function getNumber()
+    ```
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-header|BlockHeader|Block head
-blockNumber|Long|The latest block height,corresponding to the underlying field sequence
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    header|BlockHeader|Block head
+    blockNumber|Long|The latest block height,corresponding to the underlying field sequence
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description  
------------  | ----------- | -------- 
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description  
+    -----------  | ----------- | -------- 
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```php
-// Call the getNumber interface
-$response = $sdk->getBlockService()->getNumber();
-if(0 == $response->error_code){
-	echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
-}else{
-	echo "error: " . $response->error_desc;
-}
-```
+    ```php
+    // Call the getNumber interface
+    $response = $sdk->getBlockService()->getNumber();
+    if(0 == $response->error_code){
+        echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
+    }else{
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### checkStatus
 
@@ -1594,38 +1594,38 @@ if(0 == $response->error_code){
 
 - **Method call**
 
-```php
-/**
- * Check the status of block synchronization
- * @return BlockCheckStatusResponse
- */
-public function checkStatus()
-```
+    ```php
+    /**
+    * Check the status of block synchronization
+    * @return BlockCheckStatusResponse
+    */
+    public function checkStatus()
+    ```
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-isSynchronous    |   Boolean     |  Whether the block is synchronized  
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    isSynchronous    |   Boolean     |  Whether the block is synchronized  
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```php
-// Call the checkStatus
-$response = $sdk->getBlockService()->checkStatus();
-if(0 == $response->error_code){
-	echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
-}else{
-	echo "error: " . $response->error_desc;
-}
-```
+    ```php
+    // Call the checkStatus
+    $response = $sdk->getBlockService()->checkStatus();
+    if(0 == $response->error_code){
+        echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
+    }else{
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getTransactions
 
@@ -1635,54 +1635,54 @@ if(0 == $response->error_code){
 
 - **Method call**
 
-```php
-/**
- * Get the transactions of specific block
- * @param BlockGetTransactionsRequest $blockGetTransactionsRequest
- * @return BlockGetTransactionsResponse
- */
-function getTransactions($blockGetTransactionsRequest)
-```
+    ```php
+    /**
+    * Get the transactions of specific block
+    * @param BlockGetTransactionsRequest $blockGetTransactionsRequest
+    * @return BlockGetTransactionsResponse
+    */
+    function getTransactions($blockGetTransactionsRequest)
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockNumber|Long|Required, the height of the block to be queried must be greater than 0
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockNumber|Long|Required, the height of the block to be queried must be greater than 0
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-totalCount|Long|Total number of transactions returned
-transactions|[TransactionHistory](#transactionhistory)[]|Transaction content
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    totalCount|Long|Total number of transactions returned
+    transactions|[TransactionHistory](#transactionhistory)[]|Transaction content
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
-INVALID_REQUEST_ERROR|17004|Request is invalid
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
+    INVALID_REQUEST_ERROR|17004|Request is invalid
 
 - **Example**
 
-```php
-// Initialize request parameters
-$blockNumber = 617247;
-$request = new \src\model\request\BlockGetTransactionsRequest();
-$request->setBlockNumber($blockNumber);
+    ```php
+    // Initialize request parameters
+    $blockNumber = 617247;
+    $request = new \src\model\request\BlockGetTransactionsRequest();
+    $request->setBlockNumber($blockNumber);
 
-// Call the getTransactions interface
-$response = $sdk->getBlockService()->getTransactions($request);
-if(0 == $response->error_code){
-    echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
-}else{
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the getTransactions interface
+    $response = $sdk->getBlockService()->getTransactions($request);
+    if(0 == $response->error_code){
+        echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
+    }else{
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getInfo
 
@@ -1692,56 +1692,56 @@ if(0 == $response->error_code){
 
 - **Method call**
 
-```php
-/**
- * Get the information of specific block
- * @param BlockGetInfoRequest $blockGetInfoRequest
- * @return BlockGetInfoResponse
- */
-function getInfo($blockGetInfoRequest)
-```
+    ```php
+    /**
+    * Get the information of specific block
+    * @param BlockGetInfoRequest $blockGetInfoRequest
+    * @return BlockGetInfoResponse
+    */
+    function getInfo($blockGetInfoRequest)
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockNumber|Long|Required, the height of the block to be queried
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockNumber|Long|Required, the height of the block to be queried
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-closeTime|Long|Block closure time
-number|Long|Block height
-txCount|Long|Total transactions amount
-version|String|Block version
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    closeTime|Long|Block closure time
+    number|Long|Block height
+    txCount|Long|Total transactions amount
+    version|String|Block version
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
-INVALID_REQUEST_ERROR|17004|Request is invalid
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
+    INVALID_REQUEST_ERROR|17004|Request is invalid
 
 - **Example**
 
-```php
-// Initialize request parameters
-$request = new \src\model\request\BlockGetInfoRequest();
-$request->setBlockNumber(629743);
+    ```php
+    // Initialize request parameters
+    $request = new \src\model\request\BlockGetInfoRequest();
+    $request->setBlockNumber(629743);
 
-// Call the getInfo interface
-$response = $sdk->getBlockService()->getInfo($request);
-if ($response->error_code == 0) {
-    $result = $response->result;
-    echo json_encode($result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the getInfo interface
+    $response = $sdk->getBlockService()->getInfo($request);
+    if ($response->error_code == 0) {
+        $result = $response->result;
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getLatestInfo
 
@@ -1751,43 +1751,43 @@ if ($response->error_code == 0) {
 
 - **Method call**
 
-```php
-/**
- * Get the latest information of block
- * @return BlockGetLatestInfoResponse
- */
-function getLatestInfo()
-```
+    ```php
+    /**
+    * Get the latest information of block
+    * @return BlockGetLatestInfoResponse
+    */
+    function getLatestInfo()
+    ```
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-closeTime|Long|Block closure time
-number|Long|Block height,corresponding to the underlying field seq
-txCount|Long|Total transactions amount
-version|String|Block version
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    closeTime|Long|Block closure time
+    number|Long|Block height,corresponding to the underlying field seq
+    txCount|Long|Total transactions amount
+    version|String|Block version
 
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```php
-// Call the getLatestInfo interface
-$response = $sdk->getBlockService()->getLatestInfo();
-if ($response->error_code == 0) {
-    $result = $response->result;
-    echo json_encode($result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    ```php
+    // Call the getLatestInfo interface
+    $response = $sdk->getBlockService()->getLatestInfo();
+    if ($response->error_code == 0) {
+        $result = $response->result;
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getValidators
 
@@ -1797,53 +1797,53 @@ if ($response->error_code == 0) {
 
 - **Method call**
 
-```php
-/**
- * Get the validators of specific block
- * @param  BlockGetValidatorsRequest $blockGetValidatorsRequest
- * @return BlockGetValidatorsResponse
- */
-function getValidators($blockGetValidatorsRequest)
-```
+    ```php
+    /**
+    * Get the validators of specific block
+    * @param  BlockGetValidatorsRequest $blockGetValidatorsRequest
+    * @return BlockGetValidatorsResponse
+    */
+    function getValidators($blockGetValidatorsRequest)
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockNumber|Long|Required, the height of the block to be queried must be greater than 0
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockNumber|Long|Required, the height of the block to be queried must be greater than 0
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-validators|[ValidatorInfo](#validatorinfo)[]|Validators list
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    validators|[ValidatorInfo](#validatorinfo)[]|Validators list
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
-INVALID_REQUEST_ERROR|17004|Request is invalid
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
+    INVALID_REQUEST_ERROR|17004|Request is invalid
 
 - **Example**
 
-```php
-// Initialize request parameters
-$request = new \src\model\request\BlockGetValidatorsRequest();
-$request->setBlockNumber(629743);
+    ```php
+    // Initialize request parameters
+    $request = new \src\model\request\BlockGetValidatorsRequest();
+    $request->setBlockNumber(629743);
 
-// Call the getValidators interface
-$response = $sdk->getBlockService()->getValidators($request);
-if ($response->error_code == 0) {
-    $result = $response->result;
-    echo json_encode($result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the getValidators interface
+    $response = $sdk->getBlockService()->getValidators($request);
+    if ($response->error_code == 0) {
+        $result = $response->result;
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getLatestValidators
 
@@ -1853,39 +1853,39 @@ if ($response->error_code == 0) {
 
 - **Method call**
 
-```php
-/**
- * Get the latest validators of block
- * @return BlockGetLatestValidatorsResponse
- */
-function getLatestValidators()
-```
+    ```php
+    /**
+    * Get the latest validators of block
+    * @return BlockGetLatestValidatorsResponse
+    */
+    function getLatestValidators()
+    ```
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-validators|[ValidatorInfo](#validatorinfo)[]|Validators list
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    validators|[ValidatorInfo](#validatorinfo)[]|Validators list
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```php
-// Call the getLatestValidators interface
-$response = $sdk->getBlockService()->getLatestValidators();
-if ($response->error_code == 0) {
-    $result = $response->result;
-    echo json_encode($result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    ```php
+    // Call the getLatestValidators interface
+    $response = $sdk->getBlockService()->getLatestValidators();
+    if ($response->error_code == 0) {
+        $result = $response->result;
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getReward
 
@@ -1895,55 +1895,55 @@ if ($response->error_code == 0) {
 
 - **Method call**
 
-```php
-/**
- * Get the reward of specific block
- * @param  BlockGetRewardRequest $blockGetRewardRequest
- * @return BlockGetRewardResponse
- */
-function GetReward($blockGetRewardRequest)
-```
+    ```php
+    /**
+    * Get the reward of specific block
+    * @param  BlockGetRewardRequest $blockGetRewardRequest
+    * @return BlockGetRewardResponse
+    */
+    function GetReward($blockGetRewardRequest)
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockNumber|Long|Required, the height of the block to be queried must be greater than 0
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockNumber|Long|Required, the height of the block to be queried must be greater than 0
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockReward|Long|Block rewards
-validatorsReward|[ValidatorReward](#validatorreward)[]|Validator rewards
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockReward|Long|Block rewards
+    validatorsReward|[ValidatorReward](#validatorreward)[]|Validator rewards
 
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
-INVALID_REQUEST_ERROR|17004|Request is invalid
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
+    INVALID_REQUEST_ERROR|17004|Request is invalid
 
 - **Example**
 
-```php
-// Initialize request parameters
-$request = new \src\model\request\BlockGetRewardRequest();
-$request->setBlockNumber(629743);
+    ```php
+    // Initialize request parameters
+    $request = new \src\model\request\BlockGetRewardRequest();
+    $request->setBlockNumber(629743);
 
-// Call the getReward interface
-$response = $sdk->getBlockService()->getReward($request);
-if ($response->error_code == 0) {
-    $result = $response->result;
-    echo json_encode($result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the getReward interface
+    $response = $sdk->getBlockService()->getReward($request);
+    if ($response->error_code == 0) {
+        $result = $response->result;
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getLatestReward
 
@@ -1953,40 +1953,40 @@ if ($response->error_code == 0) {
 
 - **Method call**
 
-```php
-/**
- * Get the latest reward of block
- * @return BlockGetLatestRewardResponse
- */
-function GetLatestReward()
-```
+    ```php
+    /**
+    * Get the latest reward of block
+    * @return BlockGetLatestRewardResponse
+    */
+    function GetLatestReward()
+    ```
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockReward|Long|Block rewards
-validatorsReward|[ValidatorReward](#validatorreward)[]|Validator rewards
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockReward|Long|Block rewards
+    validatorsReward|[ValidatorReward](#validatorreward)[]|Validator rewards
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```php
-// Call the getLatestReward interface
-$response = $sdk->getBlockService()->getLatestReward();
-if ($response->error_code == 0) {
-    $result = $response->result;
-    echo json_encode($result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    ```php
+    // Call the getLatestReward interface
+    $response = $sdk->getBlockService()->getLatestReward();
+    if ($response->error_code == 0) {
+        $result = $response->result;
+        echo json_encode($result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getFees
 
@@ -1996,52 +1996,52 @@ if ($response->error_code == 0) {
 
 - **Method call**
 
-```php
-/**
- * Get the fees of specific block
- * @param  BlockGetFeesRequest $blockGetFeesRequest
- * @return BlockGetFeesResponse
- */
-function getFees($blockGetFeesRequest)
-```
+    ```php
+    /**
+    * Get the fees of specific block
+    * @param  BlockGetFeesRequest $blockGetFeesRequest
+    * @return BlockGetFeesResponse
+    */
+    function getFees($blockGetFeesRequest)
+    ```
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockNumber|Long|Required, the height of the block to be queried must be greater than 0
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockNumber|Long|Required, the height of the block to be queried must be greater than 0
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-fees|[Fees](#fees)|Fees
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    fees|[Fees](#fees)|Fees
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
-INVALID_REQUEST_ERROR|17004|Request is invalid
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
+    INVALID_REQUEST_ERROR|17004|Request is invalid
 
 - **Example**
 
-```php
-// Initialize request parameters
-$request = new \src\model\request\BlockGetFeesRequest();
-$request->setBlockNumber(629743L);
+    ```php
+    // Initialize request parameters
+    $request = new \src\model\request\BlockGetFeesRequest();
+    $request->setBlockNumber(629743L);
 
-// Call the getFees interface
-$response = $sdk->getBlockService()->getFees($request);
-if ($response->error_code == 0) {
-    echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    // Call the getFees interface
+    $response = $sdk->getBlockService()->getFees($request);
+    if ($response->error_code == 0) {
+        echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
 
 ### getLatestFees
 
@@ -2051,38 +2051,40 @@ if ($response->error_code == 0) {
 
 - **Method call**
 
-```php
-/**
- * Get the latest fees of block
- * @return BlockGetLatestFeesResponse
- */
-function getLatestFees()
-```
+    ```php
+    /**
+    * Get the latest fees of block
+    * @return BlockGetLatestFeesResponse
+    */
+    function getLatestFees()
+    ```
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-fees|[Fees](#fees)|Fees
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    fees|[Fees](#fees)|Fees
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```php
-// Call the getLatestFees interface
-$response = $sdk->getBlockService()->getLatestFees();
-if ($response->error_code == 0) {
-    echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
-} else {
-    echo "error: " . $response->error_desc;
-}
-```
+    ```php
+    // Call the getLatestFees interface
+    $response = $sdk->getBlockService()->getLatestFees();
+    if ($response->error_code == 0) {
+        echo json_encode($response->result, JSON_UNESCAPED_UNICODE);
+    } else {
+        echo "error: " . $response->error_desc;
+    }
+    ```
+
+
 ## Data Object
 #### Priv
 Member       |     Type     |       Description       
@@ -2113,10 +2115,10 @@ threshold    |    Long      | Threshold, size limit [0, max(int64)]
 
 Member       |     Type     |       Description      
 ----------- | ------------ | ---------------- 
-  key       | [Key](#key)  | Unique identifier for asset
-  assetAmount    | Long        | Amount of assets
+key       | [Key](#key)  | Unique identifier for asset
+assetAmount    | Long        | Amount of assets
 
- #### Key
+#### Key
 
 Member       |     Type     |       Description       
 -------- | ----------- | -----------
@@ -2148,16 +2150,16 @@ operationIndex|Integer|The subscript of the operation
 
 Member       |     Type     |       Description      
 ----------- | ------------ | ---------------- |
-  applyTime|Long|Receipt time
-  memoryUsage|Long|Memory footprint
-  stackUsage|Long|Stack occupancy
-  step|Long|Steps needed
+applyTime|Long|Receipt time
+memoryUsage|Long|Memory footprint
+stackUsage|Long|Stack occupancy
+step|Long|Steps needed
 
 #### TransactionEnvs
 
 Member       |     Type     |       Description      
 ----------- | ------------ | ---------------- 
-  transactionEnv|[TransactionEnv](#transactionenv)|Transaction
+transactionEnv|[TransactionEnv](#transactionenv)|Transaction
 
 #### TransactionEnv
 
@@ -2298,8 +2300,8 @@ gasPrice|Long|Transaction fuel price
 
 Member       |     Type     |       Description       
 ----------- | ------------ | ---------------- 
-  signData|Long|Signed data
-  publicKey|Long|Public key
+signData|Long|Signed data
+publicKey|Long|Public key
 
 #### TransactionHistory
 
@@ -2326,8 +2328,8 @@ plegeCoinAmount|Long|Validators deposit
 
 Member       |     Type     |       Description       
 ----------- | ------------ | ---------------- 
-  validator|String|Validator address
-  reward|Long|Validator reward
+validator|String|Validator address
+reward|Long|Validator reward
 
 #### Fees
 

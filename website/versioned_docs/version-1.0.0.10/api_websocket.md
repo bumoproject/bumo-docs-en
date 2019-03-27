@@ -56,7 +56,7 @@ BUMO Blockchain offers websocket API. You can find the`"wsserver"` objecct in th
 
 ### Perform Transaction
 
-- Fill in the transaction → `Transaction`(Details for :[Transaction](#transaction))
+- Fill in the transaction → `Transaction`(Details for :[Transactions](#transactions))
 - Serializing the transaction (protocol buffer 3) to bytes stream → `transaction_blob`，`Transaction` Object has the serialization method, which is called to get the `transaction_blob`。
 - Signing the `transaction_blob` with private key `skey`, and get the `sign_data`. The public key of `skey` is `pkey`。(Details for [Keypair Guide](../keypair_guide))
 - Submitting transaction, And you can get the message of whether the execution is successful or not through the response message.(Details for [Submit Transaction](#submit-transaction))
@@ -226,8 +226,8 @@ message OperationCreateAccount{
 
 > **Note**: Both `master_weight` and `tx_threshold` must be 1 in the current operation. And only the following keywords are allowed to be initialized.
 
-    - Keyword in protobuf
-    
+- Keyword in protobuf
+  
     | Keyword       | Type   | Description                                                  |
     | ------------- | ------ | ------------------------------------------------------------ |
     | dest_address  | string | The address of the target account. When creating a normal account, it cannot be empty |
@@ -356,7 +356,7 @@ message OperationCreateAccount{
 
     | Keyword | Type   | Description                                                  |
     | ------- | ------ | ------------------------------------------------------------ |
-    | key     | string | The keyword of metadata, which ranges (0, 1024)              |
+    | key     | string | The keyword of metadata, which ranges (0, 1024].             |
     | value   | string | The content of metadata, which ranges [0, 256K].             |
     | version | int64  | Optional, metadata version number. The default value is *0*. 0: when the value is zero, it means no limit version; >0: when the value is greater than zero, it means the current value version must be this value; <0: when the value is less than zero, it means the value is illegal |
 
@@ -544,7 +544,7 @@ enum ChainMessageType {
 
 - Function
 
-  The transaction that will need to be executed is sent to the blockchain  execution through the message type. Please refer to [Transaction](#Transaction) for details of the transaction structure.
+  The transaction that will need to be executed is sent to the blockchain  execution through the message type. Please refer to [Transactions](#Transactions) for details of the transaction structure.
 
 - Request Message Type
 
@@ -571,7 +571,7 @@ enum ChainMessageType {
 
   | Parameter      | Type             | Description                  |
   | ----------- | ----------- | ---------------------------------------- |
-  | transaction | Transaction | Details for [Transaction](#transaction)。                  |
+  | transaction | Transaction | Details for [Transactions](#transactions)。                |
   | public_key  | string      | The public key of transaction sender |
   | sign_data   | bytes       | Signature data obtained by signing `transaction_blob` |
 

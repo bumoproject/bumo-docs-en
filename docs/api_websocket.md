@@ -1,8 +1,4 @@
----
-id: api_websocket
-title: BUMO Websocket
-sidebar_label: Websocket
----
+]
 
 
 
@@ -55,7 +51,7 @@ BUMO Blockchain offers websocket API. You can find the`"wsserver"` objecct in th
 
 ### Perform Transaction
 
-- Fill in the transaction → `Transaction`(Details for :[Transaction](#transaction))
+- Fill in the transaction → `Transaction`(Details for :[Transactions](#transactions))
 - Serializing the transaction (protocol buffer 3) to bytes stream → `transaction_blob`，`Transaction` Object has the serialization method, which is called to get the `transaction_blob`。
 - Signing the `transaction_blob` with private key `skey`, and get the `sign_data`. The public key of `skey` is `pkey`。(Details for [Keypair Guide](../keypair_guide))
 - Submitting transaction, And you can get the message of whether the execution is successful or not through the response message.(Details for [Submit Transaction](#submit-transaction))
@@ -66,34 +62,34 @@ BUMO Blockchain offers websocket API. You can find the`"wsserver"` objecct in th
 
 - In protobuf format
 
-```protobuf
-message Transaction {
-	enum Limit{
-		UNKNOWN = 0;
-		OPERATIONS = 1000;
-	};
-	string source_address = 1;
-	int64 nonce = 2;
-	int64  fee_limit = 3;
-	int64  gas_price =4;
-	int64 ceil_ledger_seq = 5;
-	bytes metadata = 6;
-	repeated Operation operations = 7;
-	int64 chain_id = 8;
-}
-```
+    ```protobuf
+    message Transaction {
+        enum Limit{
+            UNKNOWN = 0;
+            OPERATIONS = 1000;
+        };
+        string source_address = 1;
+        int64 nonce = 2;
+        int64  fee_limit = 3;
+        int64  gas_price =4;
+        int64 ceil_ledger_seq = 5;
+        bytes metadata = 6;
+        repeated Operation operations = 7;
+        int64 chain_id = 8;
+    }
+    ```
 
 - Keywords in protobuf
 
-| Keyword         | Type   | Description                                                  |
-| --------------- | ------ | ------------------------------------------------------------ |
-| source_address  | string | The source account of the transaction, which is the account of the transaction initiator. When the transaction is successful, the nonce field of the source account will be automatically incremented by 1. The nonce in the account number is the number of transactions executed by this account |
-| nonce           | int64  | Its value must be equal to the current nonce+1 of the source account of the transaction, which is designed to prevent replay attacks. If you want to know how to query the nonce of an account, you can refer to the [getAccount](../api_http#getAccount) interface in HTTP. If the account queried does not display the nonce value, the current nonce of the account is 0. |
-| fee_limit       | int64  | The maximum fee that can be accepted for this transaction. The transaction will first charge a fee based on this fee. If the transaction is executed successfully, the actual cost will be charged, otherwise the fee for this field will be charged. The unit is MO, 1 BU = 10^8 MO |
-| gas_price       | int64  | It is used to calculate the handling fee for each operation and also involved in the calculation of the transaction byte fee. The unit is MO, 1 BU = 10^8 MO |
-| ceil_ledger_seq | int64  | Optional, the block height restriction for this transaction, which is also an advanced feature |
-| operations      | array  | The operation list. The payload of this transaction, which is what the transaction wants to do. See [Operations](#operations) for more details |
-| metadata        | string | Optional, a user-defined field that can be left blank or filled in a note |
+    | Keyword         | Type   | Description                                                  |
+    | --------------- | ------ | ------------------------------------------------------------ |
+    | source_address  | string | The source account of the transaction, which is the account of the transaction initiator. When the transaction is successful, the nonce field of the source account will be automatically incremented by 1. The nonce in the account number is the number of transactions executed by this account |
+    | nonce           | int64  | Its value must be equal to the current nonce+1 of the source account of the transaction, which is designed to prevent replay attacks. If you want to know how to query the nonce of an account, you can refer to the [getAccount](../api_http#getAccount) interface in HTTP. If the account queried does not display the nonce value, the current nonce of the account is 0. |
+    | fee_limit       | int64  | The maximum fee that can be accepted for this transaction. The transaction will first charge a fee based on this fee. If the transaction is executed successfully, the actual cost will be charged, otherwise the fee for this field will be charged. The unit is MO, 1 BU = 10^8 MO |
+    | gas_price       | int64  | It is used to calculate the handling fee for each operation and also involved in the calculation of the transaction byte fee. The unit is MO, 1 BU = 10^8 MO |
+    | ceil_ledger_seq | int64  | Optional, the block height restriction for this transaction, which is also an advanced feature |
+    | operations      | array  | The operation list. The payload of this transaction, which is what the transaction wants to do. See [Operations](#operations) for more details |
+    | metadata        | string | Optional, a user-defined field that can be left blank or filled in a note |
 
 
 
@@ -103,50 +99,50 @@ The corresponding `operations` in the protobuf structure of the transaction can 
 
 - In protobuf format
 
-```protobuf
-message Operation {
-	enum Type {
-		UNKNOWN = 0;
-		CREATE_ACCOUNT 			= 1;
-		ISSUE_ASSET 			= 2;
-		PAY_ASSET               = 3;
-		SET_METADATA			= 4;
-		SET_SIGNER_WEIGHT		= 5;
-		SET_THRESHOLD			= 6;
-		PAY_COIN                = 7;
-		LOG						= 8;
-		SET_PRIVILEGE			= 9;
-	};
-	Type type = 1;
-	string source_address = 2;
-	bytes metadata	= 3;
+    ```protobuf
+    message Operation {
+        enum Type {
+            UNKNOWN = 0;
+            CREATE_ACCOUNT 			= 1;
+            ISSUE_ASSET 			= 2;
+            PAY_ASSET               = 3;
+            SET_METADATA			= 4;
+            SET_SIGNER_WEIGHT		= 5;
+            SET_THRESHOLD			= 6;
+            PAY_COIN                = 7;
+            LOG						= 8;
+            SET_PRIVILEGE			= 9;
+        };
+        Type type = 1;
+        string source_address = 2;
+        bytes metadata	= 3;
 
-	OperationCreateAccount		create_account 	   = 4;
-	OperationIssueAsset			issue_asset 	   = 5;
-	OperationPayAsset			pay_asset 		   = 6;
-	OperationSetMetadata		set_metadata	   = 7;
-	OperationSetSignerWeight	set_signer_weight  = 8;
-	OperationSetThreshold		set_threshold 	   = 9;
-	OperationPayCoin			pay_coin           = 10;
-	OperationLog				log				   = 11;
-	OperationSetPrivilege		set_privilege	   = 12;
-}
-```
+        OperationCreateAccount		create_account 	   = 4;
+        OperationIssueAsset			issue_asset 	   = 5;
+        OperationPayAsset			pay_asset 		   = 6;
+        OperationSetMetadata		set_metadata	   = 7;
+        OperationSetSignerWeight	set_signer_weight  = 8;
+        OperationSetThreshold		set_threshold 	   = 9;
+        OperationPayCoin			pay_coin           = 10;
+        OperationLog				log				   = 11;
+        OperationSetPrivilege		set_privilege	   = 12;
+    }
+    ```
 
 - Keyword in protobuf
 
-| Keyword        | Type                   | Description                                                  |
-| -------------- | ---------------------- | ------------------------------------------------------------ |
-| type           | int                    | Operation code, different operation codes perform different operations, see [Operation Codes](#operation-codes) for details |
-| source_address | string                 | Optional, the source account of the operation, that is, the operator of the operation. When not filled in, the default is the same as the source account of the transaction |
-| metadata       | string                 | Optional, a user-defined field that can be left blank or filled in a note |
-| create_account | OperationCreateAccount | The [Creating Accounts](#creating-accounts) operation        |
-| issue_asset    | OperationIssueAsset    | The [Issuing Assets](#issuing-assets) operation              |
-| pay_asset      | OperationPayAsset      | The  [Transferring Assets](#transferring-assets) operation   |
-| set_metadata   | OperationSetMetadata   | The [Setting Metadata](#setting-metadata) operation          |
-| pay_coin       | OperationPayCoin       | The [Transferring BU Assets](#transferring-bu-assets) operation |
-| log            | OperationLog           | The [Recording Logs](#recording-logs) operation              |
-| set_privilege  | OperationSetPrivilege  | The [Setting Privileges](#setting-privileges) operation      |
+    | Keyword        | Type                   | Description                                                  |
+    | -------------- | ---------------------- | ------------------------------------------------------------ |
+    | type           | int                    | Operation code, different operation codes perform different operations, see [Operation Codes](#operation-codes) for details |
+    | source_address | string                 | Optional, the source account of the operation, that is, the operator of the operation. When not filled in, the default is the same as the source account of the transaction |
+    | metadata       | string                 | Optional, a user-defined field that can be left blank or filled in a note |
+    | create_account | OperationCreateAccount | The [Creating Accounts](#creating-accounts) operation        |
+    | issue_asset    | OperationIssueAsset    | The [Issuing Assets](#issuing-assets) operation              |
+    | pay_asset      | OperationPayAsset      | The  [Transferring Assets](#transferring-assets) operation   |
+    | set_metadata   | OperationSetMetadata   | The [Setting Metadata](#setting-metadata) operation          |
+    | pay_coin       | OperationPayCoin       | The [Transferring BU Assets](#transferring-bu-assets) operation |
+    | log            | OperationLog           | The [Recording Logs](#recording-logs) operation              |
+    | set_privilege  | OperationSetPrivilege  | The [Setting Privileges](#setting-privileges) operation      |
 
 
 
@@ -226,13 +222,13 @@ message OperationCreateAccount{
 > **Note**: Both `master_weight` and `tx_threshold` must be 1 in the current operation. And only the following keywords are allowed to be initialized.
 
 - Keyword in protobuf
-
-| Keyword       | Type   | Description                                                  |
-| ------------- | ------ | ------------------------------------------------------------ |
-| dest_address  | string | The address of the target account. When creating a normal account, it cannot be empty |
-| init_balance  | int64  | The initial BU value of the target account, in MO, 1 BU = 10^8 MO |
-| master_weight | int64  | The master weight of the target account, which ranges [0, MAX(UINT32)] |
-| tx_threshold  | int64  | The threshold for initiating a transaction below which the transaction cannot be initiated, which ranges ​​[0, MAX(INT64)] |
+  
+    | Keyword       | Type   | Description                                                  |
+    | ------------- | ------ | ------------------------------------------------------------ |
+    | dest_address  | string | The address of the target account. When creating a normal account, it cannot be empty |
+    | init_balance  | int64  | The initial BU value of the target account, in MO, 1 BU = 10^8 MO |
+    | master_weight | int64  | The master weight of the target account, which ranges [0, MAX(UINT32)] |
+    | tx_threshold  | int64  | The threshold for initiating a transaction below which the transaction cannot be initiated, which ranges ​​[0, MAX(INT64)] |
 
 - Query
 
@@ -246,26 +242,26 @@ message OperationCreateAccount{
 
 - Keyword in protobuf
 
-| Keyword       | Type   | Description                                                  |
-| ------------- | ------ | ------------------------------------------------------------ |
-| payload       | string | The contract code                                            |
-| init_balance  | int64  | The initial BU value of the target account, in MO, 1 BU = 10^8 MO |
-| init_input    | string | Optional, the input parameter of the init function in the contract code |
-| master_weight | int64  | The master weight of the target account                      |
-| tx_threshold  | int64  | The threshold for initiating a transaction below which it is not possible to initiate a transaction. |
+    | Keyword       | Type   | Description                                                  |
+    | ------------- | ------ | ------------------------------------------------------------ |
+    | payload       | string | The contract code                                            |
+    | init_balance  | int64  | The initial BU value of the target account, in MO, 1 BU = 10^8 MO |
+    | init_input    | string | Optional, the input parameter of the init function in the contract code |
+    | master_weight | int64  | The master weight of the target account                      |
+    | tx_threshold  | int64  | The threshold for initiating a transaction below which it is not possible to initiate a transaction. |
 
 - Query
   - The account information is queried through the [getAccount](../api_http#getAccount) interface in HTTP.
   - Query with the [getTransactionHistory](../api_http#gettransactionhistory) interface in HTTP, and the result is as follows:
 
-```protobuf
-[
-    {
-        "contract_address": "buQm5RazrT9QYjbTPDwMkbVqjkVqa7WinbjM", //The contract account
-        "operation_index": 0                                        //The operation index value in the transaction array, 0 means the first transaction
-    }
-]
-```
+    ```protobuf
+    [
+        {
+            "contract_address": "buQm5RazrT9QYjbTPDwMkbVqjkVqa7WinbjM", //The contract account
+            "operation_index": 0                                        //The operation index value in the transaction array, 0 means the first transaction
+        }
+    ]
+    ```
 
 
 
@@ -277,19 +273,19 @@ message OperationCreateAccount{
 
 - In protobuf format
 
-```protobuf
-message OperationIssueAsset{
-	string code = 1;
-	int64 amount = 2;
-}
-```
+    ```protobuf
+    message OperationIssueAsset{
+        string code = 1;
+        int64 amount = 2;
+    }
+    ```
 
 - Keyword in protobuf
 
-| Keyword | Type   | Description                                                  |
-| ------- | ------ | ------------------------------------------------------------ |
-| code    | string | The code of the asset to be issued, which ranges [1, 64]     |
-| amount  | int64  | The amount of the asset to be issued, which ranges ​​(0, MAX(int64)) |
+    | Keyword | Type   | Description                                                  |
+    | ------- | ------ | ------------------------------------------------------------ |
+    | code    | string | The code of the asset to be issued, which ranges [1, 64]     |
+    | amount  | int64  | The amount of the asset to be issued, which ranges (0, MAX(int64)) |
 
 
 
@@ -303,34 +299,34 @@ message OperationIssueAsset{
 
 - In protobuf format
 
-```protobuf
-message AssetKey{
-	 string issuer = 1;
-	 string code = 2;
-	 int32 type = 3;
-}
-message Asset{
-	 AssetKey	key = 1;
-	 int64		amount = 2;
-}
+    ```protobuf
+    message AssetKey{
+         string issuer = 1;
+         string code = 2;
+         int32 type = 3;
+    }
+    message Asset{
+         AssetKey	key = 1;
+         int64		amount = 2;
+    }
 
-//　Pay asset operation
-message OperationPayAsset{
-	string dest_address = 1;
-	Asset asset = 2;
-	string input = 3;
-}
-```
+    //　Pay asset operation
+    message OperationPayAsset{
+        string dest_address = 1;
+        Asset asset = 2;
+        string input = 3;
+    }
+    ```
 
 - Keyword in protobuf
 
-| Keyword      | Type   | Description                                                  |
-| ------------ | ------ | ------------------------------------------------------------ |
-| dest_address | string | The address of the target account                            |
-| issuer       | string | The address of the issuer                                    |
-| code         | string | The asset code which ranges [1, 64]                          |
-| amount       | int64  | The amount of the asset which ranges (0,MAX(int64))          |
-| input        | string | Optionally, if the target account is a contract account, the input will be passed to the argument of the `main` function of the contract code. This setting is invalid if the target account is a normal account |
+    | Keyword      | Type   | Description                                                  |
+    | ------------ | ------ | ------------------------------------------------------------ |
+    | dest_address | string | The address of the target account                            |
+    | issuer       | string | The address of the issuer                                    |
+    | code         | string | The asset code which ranges [1, 64]                          |
+    | amount       | int64  | The amount of the asset which ranges (0,MAX(int64))          |
+    | input        | string | Optionally, if the target account is a contract account, the input will be passed to the argument of the `main` function of the contract code. This setting is invalid if the target account is a normal account |
 
 
 
@@ -338,26 +334,26 @@ message OperationPayAsset{
 
 - Function
 
- The source account of this operation modifies or adds metadata to the metadata table.
+  The source account of this operation modifies or adds metadata to the metadata table.
 
 - In protobuf format
 
-```protobuf
-message OperationSetMetadata{
-	string	key = 1;  
-	string  value = 2;
-	int64 	version = 3;
-	bool    delete_flag = 4;
-}
-```
+    ```protobuf
+    message OperationSetMetadata{
+        string	key = 1;  
+        string  value = 2;
+        int64 	version = 3;
+        bool    delete_flag = 4;
+    }
+    ```
 
 - Keyword in protobuf
 
-| Keyword | Type   | Description                                                  |
-| ------- | ------ | ------------------------------------------------------------ |
-| key     | string | The keyword of metadata, which ranges (0, 1024)              |
-| value   | string | The content of metadata, which ranges [0, 256K].             |
-| version | int64  | Optional, metadata version number. The default value is *0*. 0: when the value is zero, it means no limit version; >0: when the value is greater than zero, it means the current value version must be this value; <0: when the value is less than zero, it means the value is illegal |
+    | Keyword | Type   | Description                                                  |
+    | ------- | ------ | ------------------------------------------------------------ |
+    | key     | string | The keyword of metadata, which ranges (0, 1024].             |
+    | value   | string | The content of metadata, which ranges [0, 256K].             |
+    | version | int64  | Optional, metadata version number. The default value is *0*. 0: when the value is zero, it means no limit version; >0: when the value is greater than zero, it means the current value version must be this value; <0: when the value is less than zero, it means the value is illegal |
 
 
 
@@ -365,47 +361,47 @@ message OperationSetMetadata{
 
 - Function
 
-Set the weights that the signer has and set the thresholds required for each operation. For details, see [Assignment of Control Rights](../api_http#assignment-of-control-rights) in HTTP.
+  Set the weights that the signer has and set the thresholds required for each operation. For details, see [Assignment of Control Rights](../api_http#assignment-of-control-rights) in HTTP.
 
 - In protobuf format
 
-```protobuf
-message Signer {
-	enum Limit{
-		SIGNER_NONE = 0;
-		SIGNER = 100;
-	};
-	string address = 1;
-	int64 weight = 2;
-}
-message OperationTypeThreshold{
-	Operation.Type type = 1;
-	int64 threshold = 2;
-}
+    ```protobuf
+    message Signer {
+        enum Limit{
+            SIGNER_NONE = 0;
+            SIGNER = 100;
+        };
+        string address = 1;
+        int64 weight = 2;
+    }
+    message OperationTypeThreshold{
+        Operation.Type type = 1;
+        int64 threshold = 2;
+    }
 
-//　Set privilege object
-message OperationSetPrivilege{
-	string master_weight = 1;
-	repeated Signer signers = 2;
-	string tx_threshold = 3;
-	repeated OperationTypeThreshold type_thresholds = 4;
-}
-```
+    //　Set privilege object
+    message OperationSetPrivilege{
+        string master_weight = 1;
+        repeated Signer signers = 2;
+        string tx_threshold = 3;
+        repeated OperationTypeThreshold type_thresholds = 4;
+    }
+    ```
 
 
 
 - Keywords in protobuf
 
-| Keyword         | Type   | Description                                                  |
-| --------------- | ------ | ------------------------------------------------------------ |
-| master_weight   | string | Optional, by default "", it indicates the master weight of the account. "" : do not set this value; "0": set the master weight to 0; ("0", "MAX(UINT32)"]: set the weight value to this value; Other: illegal |
-| signers         | array  | Optional, a list of signers that need to operate. By default is an empty object. Empty objects are not set |
-| address         | string | The signer's address that needs to operate, which should be in accordance with the address verification rules |
-| weight          | int64  | Optional, by default is 0. 0: delete the signer; (0, MAX (UINT32)]: set the weight to this value, others: illegal |
-| tx_threshold    | string | Optional, by default "", it means the minimum privilege for the account. "", do not set this value; "0": set `tx_threshold` weight to 0; ("0", "MAX(INT64)"]: set the weight value to this value; others: illegal. |
-| type_thresholds | array  | Optional, a list of thresholds ​​required for different operations; by default is an empty object. Empty objects are not set |
-| type            | int    | To indicate a certain operation type  (0, 100]               |
-| threshold       | int64  | Optional, by default is 0. 0: delete the type operation; (0, MAX(INT64)]: set the weight value to this value; Other: illegal |
+    | Keyword         | Type   | Description                                                  |
+    | --------------- | ------ | ------------------------------------------------------------ |
+    | master_weight   | string | Optional, by default "", it indicates the master weight of the account. "" : do not set this value; "0": set the master weight to 0; ("0", "MAX(UINT32)"]: set the weight value to this value; Other: illegal |
+    | signers         | array  | Optional, a list of signers that need to operate. By default is an empty object. Empty objects are not set |
+    | address         | string | The signer's address that needs to operate, which should be in accordance with the address verification rules |
+    | weight          | int64  | Optional, by default is 0. 0: delete the signer; (0, MAX (UINT32)]: set the weight to this value, others: illegal |
+    | tx_threshold    | string | Optional, by default "", it means the minimum privilege for the account. "", do not set this value; "0": set `tx_threshold` weight to 0; ("0", "MAX(INT64)"]: set the weight value to this value; others: illegal. |
+    | type_thresholds | array  | Optional, a list of thresholds ​​required for different operations; by default is an empty object. Empty objects are not set |
+    | type            | int    | To indicate a certain operation type  (0, 100]               |
+    | threshold       | int64  | Optional, by default is 0. 0: delete the type operation; (0, MAX(INT64)]: set the weight value to this value; Other: illegal |
 
 
 
@@ -422,43 +418,43 @@ message OperationSetPrivilege{
 
 - In protobuf format
 
-```protobuf
-message OperationPayCoin{
-	string dest_address = 1;
-	int64 amount = 2;
-	string input = 3;
-}
-```
+    ```protobuf
+    message OperationPayCoin{
+        string dest_address = 1;
+        int64 amount = 2;
+        string input = 3;
+    }
+    ```
 
 - protobufKeyword
 
-| Keyword      | Type   | Description                                                  |
-| ------------ | ------ | ------------------------------------------------------------ |
-| dest_address | string | The target account                                           |
-| amount       | array  | Optional, a list of signers that need to operate. By default is an empty object. Empty objects are not set. |
-| input        | string | Optionally, if the target account is a contract account, and the input will be passed to the argument of the `main` function of the contract code. This setting is invalid if the target account is a normal account. |
+    | Keyword      | Type   | Description                                                  |
+    | ------------ | ------ | ------------------------------------------------------------ |
+    | dest_address | string | The target account                                           |
+    | amount       | array  | Optional, a list of signers that need to operate. By default is an empty object. Empty objects are not set. |
+    | input        | string | Optionally, if the target account is a contract account, and the input will be passed to the argument of the `main` function of the contract code. This setting is invalid if the target account is a normal account. |
 
 ### Recording Logs
 
 - Function
 
- The source account of this operation writes the log to the blockchain.
+  The source account of this operation writes the log to the blockchain.
 
 - In protobuf format
 
-```protobuf
-message OperationLog{
-	string topic = 1;
-	repeated string datas = 2;
-}
-```
+    ```protobuf
+    message OperationLog{
+        string topic = 1;
+        repeated string datas = 2;
+    }
+    ```
 
 - protobufKeyword
 
-| Keyword | Type   | Description                                             |
-| ------- | ------ | ------------------------------------------------------- |
-| topic   | string | The log topic and the parameter length is (0,128]       |
-| datas   | array  | The log content. The length of each element is (0,1024] |
+    | Keyword | Type   | Description                                             |
+    | ------- | ------ | ------------------------------------------------------- |
+    | topic   | string | The log topic and the parameter length is (0,128]       |
+    | datas   | array  | The log content. The length of each element is (0,1024] |
 
 
 
@@ -543,7 +539,7 @@ enum ChainMessageType {
 
 - Function
 
-  The transaction that will need to be executed is sent to the blockchain  execution through the message type. Please refer to [Transaction](#Transaction) for details of the transaction structure.
+  The transaction that will need to be executed is sent to the blockchain  execution through the message type. Please refer to [Transactions](#Transactions) for details of the transaction structure.
 
 - Request Message Type
 
@@ -570,7 +566,7 @@ enum ChainMessageType {
 
   | Parameter      | Type             | Description                  |
   | ----------- | ----------- | ---------------------------------------- |
-  | transaction | Transaction | Details for [Transaction](#transaction)。                  |
+  | transaction | Transaction | Details for [Transactions](#transactions)。                |
   | public_key  | string      | The public key of transaction sender |
   | sign_data   | bytes       | Signature data obtained by signing `transaction_blob` |
 

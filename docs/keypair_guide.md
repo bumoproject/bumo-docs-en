@@ -133,7 +133,6 @@ b00115764cd017e0da753271fa26cd529451a21b8253d001f0d43612e19ec632570a74ab166b
 | Name     | Data                                                         | Length  |
 | -------- | ------------------------------------------------------------ | ------- |
 | Prefix   | 0xB0                                                         | 1 Byte  |
-| Prefix   | 0xB0                                                         | 1 Byte  |
 | Version  | 0x01                                                         | 1 Byte  |
 | Checksum | After performing `SHA256` calculation twice on the byte array obtained in step 2, take the first 4 bytes of the operation result | 4 Bytes |
 

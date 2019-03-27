@@ -290,7 +290,7 @@ Transaction Service provide transaction-related interfaces and currently have fi
 
 - **Method call**
 
-`TransactionBuildBlobResponse buildBlob(TransactionBuildBlobRequest);`
+  `TransactionBuildBlobResponse buildBlob(TransactionBuildBlobRequest);`
 
 - **Request parameters**
 
@@ -362,39 +362,39 @@ Transaction Service provide transaction-related interfaces and currently have fi
 
 - **Example**
 
-```java
-// Initialize variables
-String senderAddresss = "buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea";
-String destAddress = "buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
-Long buAmount = ToBaseUnit.BU2MO("10.9");
-Long gasPrice = 1000L;
-Long feeLimit = ToBaseUnit.BU2MO("0.01");
-Long nonce = 1L;
+   ```java
+   // Initialize variables
+   String senderAddresss = "buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea";
+   String destAddress = "buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
+   Long buAmount = ToBaseUnit.BU2MO("10.9");
+   Long gasPrice = 1000L;
+   Long feeLimit = ToBaseUnit.BU2MO("0.01");
+   Long nonce = 1L;
 
-// Build BUSendOperation
-BUSendOperation operation = new BUSendOperation();
-operation.setSourceAddress(senderAddresss);
-operation.setDestAddress(destAddress);
-operation.setAmount(buAmount);
+   // Build BUSendOperation
+   BUSendOperation operation = new BUSendOperation();
+   operation.setSourceAddress(senderAddresss);
+   operation.setDestAddress(destAddress);
+   operation.setAmount(buAmount);
 
-// Initialize request parameters
-TransactionBuildBlobRequest request = new TransactionBuildBlobRequest();
-request.setSourceAddress(senderAddresss);
-request.setNonce(nonce);
-request.setFeeLimit(feeLimit);
-request.setGasPrice(gasPrice);
-request.addOperation(operation);
+   // Initialize request parameters
+   TransactionBuildBlobRequest request = new TransactionBuildBlobRequest();
+   request.setSourceAddress(senderAddresss);
+   request.setNonce(nonce);
+   request.setFeeLimit(feeLimit);
+   request.setGasPrice(gasPrice);
+   request.addOperation(operation);
 
-// Call the buildBlob interface
-String transactionBlob = null;
-TransactionBuildBlobResponse response = sdk.getTransactionService().buildBlob(request);
-if (response.getErrorCode() == 0) {
-    TransactionBuildBlobResult result = response.getResult();
-    System.out.println(JSON.toJSONString(result, true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the buildBlob interface
+   String transactionBlob = null;
+   TransactionBuildBlobResponse response = sdk.getTransactionService().buildBlob(request);
+   if (response.getErrorCode() == 0) {
+      TransactionBuildBlobResult result = response.getResult();
+      System.out.println(JSON.toJSONString(result, true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### evaluateFee
 
@@ -404,7 +404,7 @@ if (response.getErrorCode() == 0) {
 
 - **Method call**
 
-`TransactionEvaluateFeeResponse evaluateFee (TransactionEvaluateFeeRequest);`
+  `TransactionEvaluateFeeResponse evaluateFee (TransactionEvaluateFeeRequest);`
 
 - **Request parameters**
 
@@ -437,38 +437,38 @@ if (response.getErrorCode() == 0) {
 
 - **Example**
 
-```java
-// Initialize variables
-String senderAddresss = "buQnnUEBREw2hB6pWHGPzwanX7d28xk6KVcp";
-String destAddress = "buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea";
-Long buAmount = ToBaseUnit.BU2MO("10.9");
-Long gasPrice = 1000L;
-Long feeLimit = ToBaseUnit.BU2MO("0.01");
-Long nonce = 51L;
+   ```java
+   // Initialize variables
+   String senderAddresss = "buQnnUEBREw2hB6pWHGPzwanX7d28xk6KVcp";
+   String destAddress = "buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea";
+   Long buAmount = ToBaseUnit.BU2MO("10.9");
+   Long gasPrice = 1000L;
+   Long feeLimit = ToBaseUnit.BU2MO("0.01");
+   Long nonce = 51L;
 
-// Build BUSendOperation
-BUSendOperation buSendOperation = new BUSendOperation();
-buSendOperation.setSourceAddress(senderAddresss);
-buSendOperation.setDestAddress(destAddress);
-buSendOperation.setAmount(buAmount);
+   // Build BUSendOperation
+   BUSendOperation buSendOperation = new BUSendOperation();
+   buSendOperation.setSourceAddress(senderAddresss);
+   buSendOperation.setDestAddress(destAddress);
+   buSendOperation.setAmount(buAmount);
 
-// Initialize request parameters for transaction evaluation
-TransactionEvaluateFeeRequest request = new TransactionEvaluateFeeRequest();
-request.addOperation(buSendOperation);
-request.setSourceAddress(senderAddresss);
-request.setNonce(nonce);
-request.setSignatureNumber(1);
-request.setMetadata(HexFormat.byteToHex("evaluate fees".getBytes()));
+   // Initialize request parameters for transaction evaluation
+   TransactionEvaluateFeeRequest request = new TransactionEvaluateFeeRequest();
+   request.addOperation(buSendOperation);
+   request.setSourceAddress(senderAddresss);
+   request.setNonce(nonce);
+   request.setSignatureNumber(1);
+   request.setMetadata(HexFormat.byteToHex("evaluate fees".getBytes()));
 
-// Call the evaluateFee interface
-TransactionEvaluateFeeResponse response = sdk.getTransactionService().evaluateFee(request);
-if (response.getErrorCode() == 0) {
-    TransactionEvaluateFeeResult result = response.getResult();
-    System.out.println(JSON.toJSONString(result, true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the evaluateFee interface
+   TransactionEvaluateFeeResponse response = sdk.getTransactionService().evaluateFee(request);
+   if (response.getErrorCode() == 0) {
+      TransactionEvaluateFeeResult result = response.getResult();
+      System.out.println(JSON.toJSONString(result, true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### sign
 
@@ -478,7 +478,7 @@ if (response.getErrorCode() == 0) {
 
 - **Method call**
 
-TransactionSignResponse sign(TransactionSignRequest);
+  `TransactionSignResponse sign(TransactionSignRequest);`
 
 - **Request parameters**
 
@@ -506,23 +506,23 @@ TransactionSignResponse sign(TransactionSignRequest);
 
 - **Example**
 
-```
-// Initialize request parameters
-String issuePrivateKey = "privbyQCRp7DLqKtRFCqKQJr81TurTqG6UKXMMtGAmPG3abcM9XHjWvq";
-String []signerPrivateKeyArr = {issuePrivateKey};
-String transactionBlob = "0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704";
-TransactionSignRequest request = new TransactionSignRequest();
-request.setBlob(transactionBlob);
-for (int i = 0; i < signerPrivateKeyArr.length; i++) {
-    request.addPrivateKey(signerPrivateKeyArr[i]);
-}
-TransactionSignResponse response = sdk.getTransactionService().sign(request);
-if(0 == response.getErrorCode()){
-	System.out.println(JSON.toJSONString(response.getResult(), true));
-}else{
-	System.out.println("error: " + response.getErrorDesc());
-}
-```
+   ```
+   // Initialize request parameters
+   String issuePrivateKey = "privbyQCRp7DLqKtRFCqKQJr81TurTqG6UKXMMtGAmPG3abcM9XHjWvq";
+   String []signerPrivateKeyArr = {issuePrivateKey};
+   String transactionBlob = "0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704";
+   TransactionSignRequest request = new TransactionSignRequest();
+   request.setBlob(transactionBlob);
+   for (int i = 0; i < signerPrivateKeyArr.length; i++) {
+      request.addPrivateKey(signerPrivateKeyArr[i]);
+   }
+   TransactionSignResponse response = sdk.getTransactionService().sign(request);
+   if(0 == response.getErrorCode()){
+      System.out.println(JSON.toJSONString(response.getResult(), true));
+   }else{
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### submit
 
@@ -532,14 +532,14 @@ if(0 == response.getErrorCode()){
 
 - **Method call**
 
-`TransactionSubmitResponse submit(TransactionSubmitRequest);`
+  `TransactionSubmitResponse submit(TransactionSubmitRequest);`
 
 - **Request parameters**
 
    Parameter      |     Type     |        Description       
    ----------- | ------------ | ---------------- 
-    blob|String|Required, transaction blob
-    signature|[Signature](#signature)[]|Required, signature list
+   blob|String|Required, transaction blob
+   signature|[Signature](#signature)[]|Required, signature list
 
 - **Response data**
 
@@ -558,24 +558,24 @@ if(0 == response.getErrorCode()){
 
 - **Example**
 
-```java
-// Initialize request parameters
-String transactionBlob = "0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704";
-Signature signature = new Signature();
-signature.setSignData("D2B5E3045F2C1B7D363D4F58C1858C30ABBBB0F41E4B2E18AF680553CA9C3689078E215C097086E47A4393BCA715C7A5D2C180D8750F35C6798944F79CC5000A");
-signature.setPublicKey("b0011765082a9352e04678ef38d38046dc01306edef676547456c0c23e270aaed7ffe9e31477");
-TransactionSubmitRequest request = new TransactionSubmitRequest();
-request.setTransactionBlob(transactionBlob);
-request.addSignature(signature);
+   ```java
+   // Initialize request parameters
+   String transactionBlob = "0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704";
+   Signature signature = new Signature();
+   signature.setSignData("D2B5E3045F2C1B7D363D4F58C1858C30ABBBB0F41E4B2E18AF680553CA9C3689078E215C097086E47A4393BCA715C7A5D2C180D8750F35C6798944F79CC5000A");
+   signature.setPublicKey("b0011765082a9352e04678ef38d38046dc01306edef676547456c0c23e270aaed7ffe9e31477");
+   TransactionSubmitRequest request = new TransactionSubmitRequest();
+   request.setTransactionBlob(transactionBlob);
+   request.addSignature(signature);
 
-// Call the submit interface
-TransactionSubmitResponse response = sdk.getTransactionService().submit(request);
-if (0 == response.getErrorCode()) { 
-    System.out.println(JSON.toJSONString(response.getResult(), true));
-} else{
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the submit interface
+   TransactionSubmitResponse response = sdk.getTransactionService().submit(request);
+   if (0 == response.getErrorCode()) { 
+      System.out.println(JSON.toJSONString(response.getResult(), true));
+   } else{
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getInfo
 
@@ -585,7 +585,7 @@ if (0 == response.getErrorCode()) {
 
 - **Method call**
 
-`TransactionGetInfoResponse getInfo (TransactionGetInfoRequest);`
+  `TransactionGetInfoResponse getInfo (TransactionGetInfoRequest);`
 
 - **Request parameters**
 
@@ -611,20 +611,20 @@ if (0 == response.getErrorCode()) {
 
 - **Example**
 
-```java 
-// Initialize request parameters
-String txHash = "1653f54fbba1134f7e35acee49592a7c29384da10f2f629c9a214f6e54747705";
-TransactionGetInfoRequest request = new TransactionGetInfoRequest();
-request.setHash(txHash);
+   ```java 
+   // Initialize request parameters
+   String txHash = "1653f54fbba1134f7e35acee49592a7c29384da10f2f629c9a214f6e54747705";
+   TransactionGetInfoRequest request = new TransactionGetInfoRequest();
+   request.setHash(txHash);
 
-// Call the getInfo interface
-TransactionGetInfoResponse response = sdk.getTransactionService().getInfo(request);
-if (response.getErrorCode() == 0) {
-    System.out.println(JSON.toJSONString(response.getResult(), true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the getInfo interface
+   TransactionGetInfoResponse response = sdk.getTransactionService().getInfo(request);
+   if (response.getErrorCode() == 0) {
+      System.out.println(JSON.toJSONString(response.getResult(), true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 
 ## Operations
@@ -636,10 +636,10 @@ Operations refer to the things that are to be done in a transaction, and the ope
 
 BaseOperation is the base class for all operations in the buildBlob interface. The following table describes BaseOperation:
 
-   Member    |     Type  |        Description                           
-   ------------- | -------- | ----------------------------------   
-   sourceAddress |   String |  Optional, source account address of the operation
-   metadata      |   String |  Optional, note
+Member    |     Type  |        Description                           
+------------- | -------- | ----------------------------------   
+sourceAddress |   String |  Optional, source account address of the operation
+metadata      |   String |  Optional, note
 
 ### AccountActivateOperation
 
@@ -864,7 +864,7 @@ Account Service provide account-related interfaces, which include six interfaces
 
 - **Method call**
 
-`AccounCheckValidResponse checkValid(AccountCheckValidRequest)`
+  `AccounCheckValidResponse checkValid(AccountCheckValidRequest)`
 
 - **Request parameters**
 
@@ -887,20 +887,20 @@ Account Service provide account-related interfaces, which include six interfaces
 
 - **Example**
 
-```java
-// Initialize request parameters
-String address = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo";
-AccountCheckValidRequest request = new AccountCheckValidRequest();
-request.setAddress(address);
+   ```java
+   // Initialize request parameters
+   String address = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo";
+   AccountCheckValidRequest request = new AccountCheckValidRequest();
+   request.setAddress(address);
 
-// Call the checkValid
-AccountCheckValidResponse response = sdk.getAccountService().checkValid(request);
-if(0 == response.getErrorCode()) {
-	System.out.println(response.getResult().isValid());
-} else {
-	System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the checkValid
+   AccountCheckValidResponse response = sdk.getAccountService().checkValid(request);
+   if(0 == response.getErrorCode()) {
+      System.out.println(response.getResult().isValid());
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getInfo
 
@@ -910,49 +910,49 @@ if(0 == response.getErrorCode()) {
 
 - **Method call**
 
-`AccountGetInfoResponse GetInfo(AccountGetInfoRequest);`
+  `AccountGetInfoResponse GetInfo(AccountGetInfoRequest);`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   String     |  Required, the account address to be queried on the blockchain  
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   address     |   String     |  Required, the account address to be queried on the blockchain  
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
---------- | ------------- | ---------------- 
-address	  |    String     |    Account address
-balance	  |    Long       |    Account balance, unit is MO, 1 BU = 10^8 MO, the account balance must be > 0
-nonce	  |    Long       |    Account transaction serial number must be greater than 0
-priv	  | [Priv](#priv) |    Account privilege
+   Parameter      |     Type     |        Description       
+   --------- | ------------- | ---------------- 
+   address	  |    String     |    Account address
+   balance	  |    Long       |    Account balance, unit is MO, 1 BU = 10^8 MO, the account balance must be > 0
+   nonce	  |    Long       |    Account transaction serial number must be greater than 0
+   priv	  | [Priv](#priv) |    Account privilege
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR| 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-SYSTEM_ERROR |   20000     |  System error 
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_ADDRESS_ERROR| 11006 | Invalid address
+   REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+   CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+   SYSTEM_ERROR |   20000     |  System error 
 
 - **Example**
 
-```java 
-// Initialize request parameters
-String accountAddress = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo";
-AccountGetInfoRequest request = new AccountGetInfoRequest();
-request.setAddress(accountAddress);
+   ```java 
+   // Initialize request parameters
+   String accountAddress = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo";
+   AccountGetInfoRequest request = new AccountGetInfoRequest();
+   request.setAddress(accountAddress);
 
-// Call thegetInfo interface
-AccountGetInfoResponse response =  sdk.getAccountService().getInfo(request);
-if (response.getErrorCode() == 0) {
-    AccountGetInfoResult result = response.getResult();
-    System.out.println("Account info: \n" + JSON.toJSONString(result, true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call thegetInfo interface
+   AccountGetInfoResponse response =  sdk.getAccountService().getInfo(request);
+   if (response.getErrorCode() == 0) {
+      AccountGetInfoResult result = response.getResult();
+      System.out.println("Account info: \n" + JSON.toJSONString(result, true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getNonce
 
@@ -962,45 +962,45 @@ if (response.getErrorCode() == 0) {
 
 - **Method call**
 
-`AccountGetNonceResponse getNonce(AccountGetNonceRequest);`
+  `AccountGetNonceResponse getNonce(AccountGetNonceRequest);`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   String     |  Required, the account address to be queried on the blockchain
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   address     |   String     |  Required, the account address to be queried on the blockchain
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-nonce       |   Long       |  Account transaction serial number
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   nonce       |   Long       |  Account transaction serial number
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR| 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-SYSTEM_ERROR |   20000     |  System error 
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_ADDRESS_ERROR| 11006 | Invalid address
+   REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+   CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+   SYSTEM_ERROR |   20000     |  System error 
 
 - **Example**
 
-```java
-// Initialize request parameters
-String accountAddress = "buQswSaKDACkrFsnP1wcVsLAUzXQsemauEjf";
-AccountGetNonceRequest request = new AccountGetNonceRequest();
-request.setAddress(accountAddress);
+   ```java
+   // Initialize request parameters
+   String accountAddress = "buQswSaKDACkrFsnP1wcVsLAUzXQsemauEjf";
+   AccountGetNonceRequest request = new AccountGetNonceRequest();
+   request.setAddress(accountAddress);
 
-// Call thegetNonce interface
-AccountGetNonceResponse response = sdk.getAccountService().getNonce(request);
-if(0 == response.getErrorCode()){
-    System.out.println("Account nonce:" + response.getResult().getNonce());
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call thegetNonce interface
+   AccountGetNonceResponse response = sdk.getAccountService().getNonce(request);
+   if(0 == response.getErrorCode()){
+      System.out.println("Account nonce:" + response.getResult().getNonce());
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getBalance
 
@@ -1010,46 +1010,46 @@ if(0 == response.getErrorCode()){
 
 - **Method call**
 
-`AccountGetBalanceResponse getBalance(AccountGetBalanceRequest);`
+  `AccountGetBalanceResponse getBalance(AccountGetBalanceRequest);`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   String     |  Required, the account address to be queried on the blockchain
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   address     |   String     |  Required, the account address to be queried on the blockchain
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-balance     |   Long       | BU balance, unit MO, 1 BU = 10^8 MO
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   balance     |   Long       | BU balance, unit MO, 1 BU = 10^8 MO
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR| 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-SYSTEM_ERROR |   20000     |  System error 
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_ADDRESS_ERROR| 11006 | Invalid address
+   REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+   CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+   SYSTEM_ERROR |   20000     |  System error 
 
 - **Example**
 
-```java
-// Initialize request parameters
-String accountAddress = "buQswSaKDACkrFsnP1wcVsLAUzXQsemauEjf";
-AccountGetBalanceRequest request = new AccountGetBalanceRequest();
-request.setAddress(accountAddress);
+   ```java
+   // Initialize request parameters
+   String accountAddress = "buQswSaKDACkrFsnP1wcVsLAUzXQsemauEjf";
+   AccountGetBalanceRequest request = new AccountGetBalanceRequest();
+   request.setAddress(accountAddress);
 
-// Call thegetBalance interface
-AccountGetBalanceResponse response = sdk.getAccountService().getBalance(request);
-if(0 == response.getErrorCode()){
-    AccountGetBalanceResult result = response.getResult();
-    System.out.println("BU balance：" + ToBaseUnit.MO2BU(result.getBalance().toString()) + " BU");
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call thegetBalance interface
+   AccountGetBalanceResponse response = sdk.getAccountService().getBalance(request);
+   if(0 == response.getErrorCode()){
+      AccountGetBalanceResult result = response.getResult();
+      System.out.println("BU balance：" + ToBaseUnit.MO2BU(result.getBalance().toString()) + " BU");
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getAssets
 
@@ -1059,46 +1059,46 @@ if(0 == response.getErrorCode()){
 
 - **Method call**
 
-`AccountGetAssets getAssets(AccountGetAssetsRequest);`
+  `AccountGetAssets getAssets(AccountGetAssetsRequest);`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   String     |  Required, the account address to be queried
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   address     |   String     |  Required, the account address to be queried
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-	asset	    | [AssetInfo](#assetinfo)[] |Account asset
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   asset	    | [AssetInfo](#assetinfo)[] |Account asset
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR| 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-NO_ASSET_ERROR|11009|The account does not have the asset
-SYSTEM_ERROR|20000|System error
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_ADDRESS_ERROR| 11006 | Invalid address
+   REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+   CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+   NO_ASSET_ERROR|11009|The account does not have the asset
+   SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```java
-// Initialize request parameters
-AccountGetAssetsRequest request = new AccountGetAssetsRequest();
-request.setAddress("buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw");
+   ```java
+   // Initialize request parameters
+   AccountGetAssetsRequest request = new AccountGetAssetsRequest();
+   request.setAddress("buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw");
 
-// Call thegetAssets interface
-AccountGetAssetsResponse response = sdk.getAccountService().getAssets(request);
-if (response.getErrorCode() == 0) {
-    AccountGetAssetsResult result = response.getResult();
-    System.out.println(JSON.toJSONString(result, true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call thegetAssets interface
+   AccountGetAssetsResponse response = sdk.getAccountService().getAssets(request);
+   if (response.getErrorCode() == 0) {
+      AccountGetAssetsResult result = response.getResult();
+      System.out.println(JSON.toJSONString(result, true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getMetadata
 
@@ -1108,51 +1108,51 @@ if (response.getErrorCode() == 0) {
 
 - **Method call**
 
-`AccountGetMetadataResponse getMetadata(AccountGetMetadataRequest);`
+  `AccountGetMetadataResponse getMetadata(AccountGetMetadataRequest);`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
--------- | -------- | ---------------- 
-address  |  String  |  Required, the account address to be queried  
-key      |  String  |  Optional, metadata keyword, length limit [1, 1024]
+   Parameter      |     Type     |        Description       
+   -------- | -------- | ---------------- 
+   address  |  String  |  Required, the account address to be queried  
+   key      |  String  |  Optional, metadata keyword, length limit [1, 1024]
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ----------- | ---------------- 
-metadata    |[MetadataInfo](#metadatainfo)   |  Account
+   Parameter      |     Type     |        Description       
+   ----------- | ----------- | ---------------- 
+   metadata    |[MetadataInfo](#metadatainfo)   |  Account
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR | 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR | 11007 | Failed to connect to the network
-NO_METADATA_ERROR|11010|The account does not have the metadata
-INVALID_DATAKEY_ERROR | 11011 | The length of key must be between 1 and 1024
-SYSTEM_ERROR | 20000| System error
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_ADDRESS_ERROR | 11006 | Invalid address
+   REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+   CONNECTNETWORK_ERROR | 11007 | Failed to connect to the network
+   NO_METADATA_ERROR|11010|The account does not have the metadata
+   INVALID_DATAKEY_ERROR | 11011 | The length of key must be between 1 and 1024
+   SYSTEM_ERROR | 20000| System error
 
 
 - **Example**
 
-```java
-// Initialize request parameters
-String accountAddress = "buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
-AccountGetMetadataRequest request = new AccountGetMetadataRequest();
-request.setAddress(accountAddress);
-request.setKey("20180704");
+   ```java
+   // Initialize request parameters
+   String accountAddress = "buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
+   AccountGetMetadataRequest request = new AccountGetMetadataRequest();
+   request.setAddress(accountAddress);
+   request.setKey("20180704");
 
-// Call the getMetadata interface
-AccountGetMetadataResponse response =  sdk.getAccountService().getMetadata(request);
-if (response.getErrorCode() == 0) {
-    AccountGetMetadataResult result = response.getResult();
-    System.out.println(JSON.toJSONString(result, true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the getMetadata interface
+   AccountGetMetadataResponse response =  sdk.getAccountService().getMetadata(request);
+   if (response.getErrorCode() == 0) {
+      AccountGetMetadataResult result = response.getResult();
+      System.out.println(JSON.toJSONString(result, true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ## Asset Service
 
@@ -1166,7 +1166,7 @@ Asset Servicess follow the ATP 1.0 protocol, and Account Service provide an asse
 
 - **Method call**
 
-`AssetGetInfoResponse getInfo(AssetGetInfoRequest);`
+  `AssetGetInfoResponse getInfo(AssetGetInfoRequest);`
 
 - **Request parameters**
 
@@ -1195,22 +1195,22 @@ Asset Servicess follow the ATP 1.0 protocol, and Account Service provide an asse
 
 - **Example**
 
-```java
-// Initialize request parameters
-AssetGetInfoRequest request = new AssetGetInfoRequest();
-request.setAddress("buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw");
-request.setIssuer("buQBjJD1BSJ7nzAbzdTenAhpFjmxRVEEtmxH");
-request.setCode("HNC");
+   ```java
+   // Initialize request parameters
+   AssetGetInfoRequest request = new AssetGetInfoRequest();
+   request.setAddress("buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw");
+   request.setIssuer("buQBjJD1BSJ7nzAbzdTenAhpFjmxRVEEtmxH");
+   request.setCode("HNC");
 
-// Call the getInfo interface
-AssetGetInfoResponse response = sdk.getAssetService().getInfo(request);
-if (response.getErrorCode() == 0) {
-    AssetGetInfoResult result = response.getResult();
-    System.out.println(JSON.toJSONString(result, true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the getInfo interface
+   AssetGetInfoResponse response = sdk.getAssetService().getInfo(request);
+   if (response.getErrorCode() == 0) {
+      AssetGetInfoResult result = response.getResult();
+      System.out.println(JSON.toJSONString(result, true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ## Contract Service
 
@@ -1224,45 +1224,45 @@ Contract Service provide contract-related interfaces and currently have four int
 
 - **Method call**
 
-`ContractCheckValidResponse checkValid(ContractCheckValidRequest)`
+  `ContractCheckValidResponse checkValid(ContractCheckValidRequest)`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-contractAddress     |   String     |  Contract account address to be tested
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   contractAddress     |   String     |  Contract account address to be tested
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-isValid     |   Boolean     |  Whether the response data is valid   
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   isValid     |   Boolean     |  Whether the response data is valid   
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR|11038|ContractAddress is not a contract account
-SYSTEM_ERROR |   20000     |  System error 
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
+   REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+   CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR|11038|ContractAddress is not a contract account
+   SYSTEM_ERROR |   20000     |  System error 
 
 - **Example**
 
-```java
-// Initialize request parameters
-ContractCheckValidRequest request = new ContractCheckValidRequest();
-request.setContractAddress("buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea");
+   ```java
+   // Initialize request parameters
+   ContractCheckValidRequest request = new ContractCheckValidRequest();
+   request.setContractAddress("buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea");
 
-// Call the checkValid interface
-ContractCheckValidResponse response = sdk.getContractService().checkValid(request);
-if (response.getErrorCode() == 0) {
-    ContractCheckValidResult result = response.getResult();
-    System.out.println(result.getValid());
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the checkValid interface
+   ContractCheckValidResponse response = sdk.getContractService().checkValid(request);
+   if (response.getErrorCode() == 0) {
+      ContractCheckValidResult result = response.getResult();
+      System.out.println(result.getValid());
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getInfo
 
@@ -1272,7 +1272,7 @@ if (response.getErrorCode() == 0) {
 
 - **Method call**
 
-`ContractGetInfoResponse getInfo (ContractGetInfoRequest);`
+  `ContractGetInfoResponse getInfo (ContractGetInfoRequest);`
 
 - **Request parameters**
 
@@ -1299,66 +1299,66 @@ if (response.getErrorCode() == 0) {
 
 - **Example**
 
-```java
-// Initialize request parameters
-ContractGetInfoRequest request = new ContractGetInfoRequest();
-request.setContractAddress("buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea");
+   ```java
+   // Initialize request parameters
+   ContractGetInfoRequest request = new ContractGetInfoRequest();
+   request.setContractAddress("buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea");
 
-// Call the getInfo interface
-ContractGetInfoResponse response = sdk.getContractService().getInfo(request);
-if (response.getErrorCode() == 0) {
-    System.out.println(JSON.toJSONString(response.getResult(), true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the getInfo interface
+   ContractGetInfoResponse response = sdk.getContractService().getInfo(request);
+   if (response.getErrorCode() == 0) {
+      System.out.println(JSON.toJSONString(response.getResult(), true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getAddress
 
 - **Interface description**
 
-The `getAddress` interface is used to query the contract address.
+  The `getAddress` interface is used to query the contract address.
 
 - **Method call**
 
-`ContractGetAddressResponse getInfo (ContractGetAddressRequest);`
+  `ContractGetAddressResponse getInfo (ContractGetAddressRequest);`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-hash     |   String     |  The hash used to create a contract transaction   
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   hash     |   String     |  The hash used to create a contract transaction   
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-contractAddressList|List<[ContractAddressInfo](#contractaddressinfo)>|Contract address list
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   contractAddressList|List<[ContractAddressInfo](#contractaddressinfo)>|Contract address list
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_HASH_ERROR|11055|Invalid transaction hash
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR|20000|System error
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_HASH_ERROR|11055|Invalid transaction hash
+   CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+   REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+   SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```java
-// Initialize request parameters
-ContractGetAddressRequest request = new ContractGetAddressRequest();
-request.setHash("44246c5ba1b8b835a5cbc29bdc9454cdb9a9d049870e41227f2dcfbcf7a07689");
+   ```java
+   // Initialize request parameters
+   ContractGetAddressRequest request = new ContractGetAddressRequest();
+   request.setHash("44246c5ba1b8b835a5cbc29bdc9454cdb9a9d049870e41227f2dcfbcf7a07689");
 
-// Call the getAddress interface
-ContractGetAddressResponse response = sdk.getContractService().getAddress(request);
-if (response.getErrorCode() == 0) {
-System.out.println(JSON.toJSONString(response.getResult(), true));
-} else {
-System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the getAddress interface
+   ContractGetAddressResponse response = sdk.getContractService().getAddress(request);
+   if (response.getErrorCode() == 0) {
+   System.out.println(JSON.toJSONString(response.getResult(), true));
+   } else {
+   System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### call 
 
@@ -1368,7 +1368,7 @@ System.out.println("error: " + response.getErrorDesc());
 
 - **Method call**
 
-`ContractCallesponse call(ContractCallRequest);`
+  `ContractCallesponse call(ContractCallRequest);`
 
 - **Request parameters**
 
@@ -1407,22 +1407,22 @@ System.out.println("error: " + response.getErrorDesc());
 
 - **Example**
 
-```java 
-// Initialize request parameters
-ContractCallRequest request = new ContractCallRequest();
-request.setCode("\"use strict\";log(undefined);function query() { getBalance(thisAddress); }");
-request.setFeeLimit(1000000000L);
-request.setOptType(2);
+   ```java 
+   // Initialize request parameters
+   ContractCallRequest request = new ContractCallRequest();
+   request.setCode("\"use strict\";log(undefined);function query() { getBalance(thisAddress); }");
+   request.setFeeLimit(1000000000L);
+   request.setOptType(2);
 
-// Call the call interface
-ContractCallResponse response = sdk.getContractService().call(request);
-if (response.getErrorCode() == 0) {
-    ContractCallResult result = response.getResult();
-    System.out.println(JSON.toJSONString(result, true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the call interface
+   ContractCallResponse response = sdk.getContractService().call(request);
+   if (response.getErrorCode() == 0) {
+      ContractCallResult result = response.getResult();
+      System.out.println(JSON.toJSONString(result, true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ## Block Service
 
@@ -1436,7 +1436,7 @@ Block Service provide block-related interfaces. There are currently 11 interface
 
 - **Method call**
 
-`BlockGetNumberResponse getNumber();`
+  `BlockGetNumberResponse getNumber();`
 
 - **Response data**
 
@@ -1454,15 +1454,15 @@ Block Service provide block-related interfaces. There are currently 11 interface
 
 - **Example**
 
-```java 
-// Call the getNumber interface
-BlockGetNumberResponse response = sdk.getBlockService().getNumber();
-if(0 == response.getErrorCode()){
-	System.out.println(JSON.toJSONString(response.getResult(), true));
-}else{
-	System.out.println("error: " + response.getErrorDesc());
-}
-```
+   ```java 
+   // Call the getNumber interface
+   BlockGetNumberResponse response = sdk.getBlockService().getNumber();
+   if(0 == response.getErrorCode()){
+      System.out.println(JSON.toJSONString(response.getResult(), true));
+   }else{
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### checkStatus
 
@@ -1472,32 +1472,32 @@ if(0 == response.getErrorCode()){
 
 - **Method call**
 
-`BlockCheckStatusResponse checkStatus();`
+  `BlockCheckStatusResponse checkStatus();`
 
 - **Response data**
 
-Parameter      |     Type     |        Description       |
------------ | ------------ | ---------------- |
-isSynchronous    |   Boolean     |  Whether the block is synchronized  |
+   Parameter      |     Type     |        Description       |
+   ----------- | ------------ | ---------------- |
+   isSynchronous    |   Boolean     |  Whether the block is synchronized  |
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   |
------------  | ----------- | -------- |
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+   Error Message      |     Error Code     |        Description   |
+   -----------  | ----------- | -------- |
+   CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+   SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```java
-// Call the checkStatus
-BlockCheckStatusResponse response = sdk.getBlockService().checkStatus();
-if(0 == response.getErrorCode()){
-	System.out.println(JSON.toJSONString(response.getResult(), true));
-}else{
-	System.out.println("error: " + response.getErrorDesc());
-}
-```
+   ```java
+   // Call the checkStatus
+   BlockCheckStatusResponse response = sdk.getBlockService().checkStatus();
+   if(0 == response.getErrorCode()){
+      System.out.println(JSON.toJSONString(response.getResult(), true));
+   }else{
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getTransactions
 
@@ -1533,20 +1533,20 @@ if(0 == response.getErrorCode()){
 
 - **Example**
 
-```java 
-// Initialize request parameters
-Long blockNumber = 617247L;
-BlockGetTransactionsRequest request = new BlockGetTransactionsRequest();
-request.setBlockNumber(blockNumber);
+   ```java 
+   // Initialize request parameters
+   Long blockNumber = 617247L;
+   BlockGetTransactionsRequest request = new BlockGetTransactionsRequest();
+   request.setBlockNumber(blockNumber);
 
-// Call the getTransactions interface
-BlockGetTransactionsResponse response = sdk.getBlockService().getTransactions(request);
-if(0 == response.getErrorCode()){
-    System.out.println(JSON.toJSONString(response.getResult(), true));
-}else{
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the getTransactions interface
+   BlockGetTransactionsResponse response = sdk.getBlockService().getTransactions(request);
+   if(0 == response.getErrorCode()){
+      System.out.println(JSON.toJSONString(response.getResult(), true));
+   }else{
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getInfo
 
@@ -1556,7 +1556,7 @@ if(0 == response.getErrorCode()){
 
 - **Method call**
 
-`BlockGetInfoResponse getInfo(BlockGetInfoRequest);`
+  `BlockGetInfoResponse getInfo(BlockGetInfoRequest);`
 
 - **Request parameters**
 
@@ -1584,20 +1584,20 @@ if(0 == response.getErrorCode()){
 
 - **Example**
 
-```java 
-// Initialize request parameters
-BlockGetInfoRequest request = new BlockGetInfoRequest();
-request.setBlockNumber(629743L);
+   ```java 
+   // Initialize request parameters
+   BlockGetInfoRequest request = new BlockGetInfoRequest();
+   request.setBlockNumber(629743L);
 
-// Call the getInfo interface
-BlockGetInfoResponse response = sdk.getBlockService().getInfo(request);
-if (response.getErrorCode() == 0) {
-    BlockGetInfoResult result = response.getResult();
-    System.out.println(JSON.toJSONString(result, true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the getInfo interface
+   BlockGetInfoResponse response = sdk.getBlockService().getInfo(request);
+   if (response.getErrorCode() == 0) {
+      BlockGetInfoResult result = response.getResult();
+      System.out.println(JSON.toJSONString(result, true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getLatestInfo
 
@@ -1607,7 +1607,7 @@ if (response.getErrorCode() == 0) {
 
 - **Method call**
 
-`BlockGetLatestInfoResponse getLatestInfo();`
+  `BlockGetLatestInfoResponse getLatestInfo();`
 
 - **Response data**
 
@@ -1628,16 +1628,7 @@ if (response.getErrorCode() == 0) {
 
 - **Example**
 
-```java
-// Call the getLatestInfo interface
-BlockGetLatestInfoResponse response = sdk.getBlockService().getLatestInfo();
-if (response.getErrorCode() == 0) {
-    BlockGetLatestInfoResult result = response.getResult();
-    System.out.println(JSON.toJSONString(result, true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+ 
 
 ### getValidators
 
@@ -1647,7 +1638,7 @@ if (response.getErrorCode() == 0) {
 
 - **Method call**
 
-`BlockGetValidatorsResponse getValidators(BlockGetValidatorsRequest);`
+  `BlockGetValidatorsResponse getValidators(BlockGetValidatorsRequest);`
 
 - **Request parameters**
 
@@ -1672,20 +1663,20 @@ if (response.getErrorCode() == 0) {
 
 - **Example**
 
-```java
-// Initialize request parameters
-BlockGetValidatorsRequest request = new BlockGetValidatorsRequest();
-request.setBlockNumber(629743L);
+   ```java
+   // Initialize request parameters
+   BlockGetValidatorsRequest request = new BlockGetValidatorsRequest();
+   request.setBlockNumber(629743L);
 
-// Call the getValidators interface
-BlockGetValidatorsResponse response = sdk.getBlockService().getValidators(request);
-if (response.getErrorCode() == 0) {
-    BlockGetValidatorsResult result = response.getResult();
-    System.out.println(JSON.toJSONString(result, true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the getValidators interface
+   BlockGetValidatorsResponse response = sdk.getBlockService().getValidators(request);
+   if (response.getErrorCode() == 0) {
+      BlockGetValidatorsResult result = response.getResult();
+      System.out.println(JSON.toJSONString(result, true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getLatestValidators
 
@@ -1695,7 +1686,7 @@ if (response.getErrorCode() == 0) {
 
 - **Method call**
 
-`BlockGetLatestValidatorsResponse getLatestValidators();`
+  `BlockGetLatestValidatorsResponse getLatestValidators();`
 
 - **Response data**
 
@@ -1712,16 +1703,16 @@ if (response.getErrorCode() == 0) {
 
 - **Example**
 
-```java
-// Call the getLatestValidators interface
-BlockGetLatestValidatorsResponse response = sdk.getBlockService().getLatestValidators();
-if (response.getErrorCode() == 0) {
-    BlockGetLatestValidatorsResult result = response.getResult();
-    System.out.println(JSON.toJSONString(result, true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   ```java
+   // Call the getLatestValidators interface
+   BlockGetLatestValidatorsResponse response = sdk.getBlockService().getLatestValidators();
+   if (response.getErrorCode() == 0) {
+      BlockGetLatestValidatorsResult result = response.getResult();
+      System.out.println(JSON.toJSONString(result, true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getReward
 
@@ -1731,7 +1722,7 @@ if (response.getErrorCode() == 0) {
 
 - **Method call**
 
-`BlockGetRewardResponse getReward(BlockGetRewardRequest);`
+  `BlockGetRewardResponse getReward(BlockGetRewardRequest);`
 
 - **Request parameters**
 
@@ -1758,20 +1749,20 @@ if (response.getErrorCode() == 0) {
 
 - **Example**
 
-```java
-// Initialize request parameters
-BlockGetRewardRequest request = new BlockGetRewardRequest();
-request.setBlockNumber(629743L);
+   ```java
+   // Initialize request parameters
+   BlockGetRewardRequest request = new BlockGetRewardRequest();
+   request.setBlockNumber(629743L);
 
-// Call the getReward interface
-BlockGetRewardResponse response = sdk.getBlockService().getReward(request);
-if (response.getErrorCode() == 0) {
-    BlockGetRewardResult result = response.getResult();
-    System.out.println(JSON.toJSONString(result, true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the getReward interface
+   BlockGetRewardResponse response = sdk.getBlockService().getReward(request);
+   if (response.getErrorCode() == 0) {
+      BlockGetRewardResult result = response.getResult();
+      System.out.println(JSON.toJSONString(result, true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getLatestReward
 
@@ -1781,7 +1772,7 @@ if (response.getErrorCode() == 0) {
 
 - **Method call**
 
-`BlockGetLatestRewardResponse getLatestReward();`
+  `BlockGetLatestRewardResponse getLatestReward();`
 
 - **Response data**
 
@@ -1799,16 +1790,16 @@ if (response.getErrorCode() == 0) {
 
 - **Example**
 
-```java 
-// Call the getLatestReward interface
-BlockGetLatestRewardResponse response = sdk.getBlockService().getLatestReward();
-if (response.getErrorCode() == 0) {
-    BlockGetLatestRewardResult result = response.getResult();
-    System.out.println(JSON.toJSONString(result, true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   ```java 
+   // Call the getLatestReward interface
+   BlockGetLatestRewardResponse response = sdk.getBlockService().getLatestReward();
+   if (response.getErrorCode() == 0) {
+      BlockGetLatestRewardResult result = response.getResult();
+      System.out.println(JSON.toJSONString(result, true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getFees
 
@@ -1818,7 +1809,7 @@ if (response.getErrorCode() == 0) {
 
 - **Method call**
 
-`BlockGetFeesResponse getFees(BlockGetFeesRequest);`
+  `BlockGetFeesResponse getFees(BlockGetFeesRequest);`
 
 - **Request parameters**
 
@@ -1843,19 +1834,19 @@ if (response.getErrorCode() == 0) {
 
 - **Example**
 
-```java 
-// Initialize request parameters
-BlockGetFeesRequest request = new BlockGetFeesRequest();
-request.setBlockNumber(629743L);
+   ```java 
+   // Initialize request parameters
+   BlockGetFeesRequest request = new BlockGetFeesRequest();
+   request.setBlockNumber(629743L);
 
-// Call the getFees interface
-BlockGetFeesResponse response = sdk.getBlockService().getFees(request);
-if (response.getErrorCode() == 0) {
-    System.out.println(JSON.toJSONString(response.getResult(), true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   // Call the getFees interface
+   BlockGetFeesResponse response = sdk.getBlockService().getFees(request);
+   if (response.getErrorCode() == 0) {
+      System.out.println(JSON.toJSONString(response.getResult(), true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 ### getLatestFees
 
@@ -1865,7 +1856,7 @@ if (response.getErrorCode() == 0) {
 
 - **Method call**
 
-`BlockGetLatestFeesResponse getLatestFees();`
+  `BlockGetLatestFeesResponse getLatestFees();`
 
 - **Response data**
 
@@ -1882,15 +1873,15 @@ if (response.getErrorCode() == 0) {
 
 - **Example**
 
-```java
-// Call the getLatestFees interface
-BlockGetLatestFeesResponse response = sdk.getBlockService().getLatestFees();
-if (response.getErrorCode() == 0) {
-    System.out.println(JSON.toJSONString(response.getResult(), true));
-} else {
-    System.out.println("error: " + response.getErrorDesc());
-}
-```
+   ```java
+   // Call the getLatestFees interface
+   BlockGetLatestFeesResponse response = sdk.getBlockService().getLatestFees();
+   if (response.getErrorCode() == 0) {
+      System.out.println(JSON.toJSONString(response.getResult(), true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
 
 
 

@@ -261,7 +261,7 @@ Transaction Service provide transaction-related interfaces and currently have fi
 
 - **Method call**
 
-`TransactionBuildBlobResponse *) buildBlob : (TransactionBuildBlobRequest *) transactionBuildBlobRequest;`
+  `TransactionBuildBlobResponse *) buildBlob : (TransactionBuildBlobRequest *) transactionBuildBlobRequest;`
 
 - **Request parameters**
 
@@ -333,39 +333,39 @@ Transaction Service provide transaction-related interfaces and currently have fi
 
 - **Example**
 
-```objc
-// Initialize variables
-NSString* senderAddresss = @"buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea";
-NSString* destAddress = @"buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
-int64_t buAmount = [Tools BU2MO : 10.9];
-int64_t gasPrice = 1000;
-int64_t feeLimit = [Tools BU2MO : 0.01];
-int64_t nonce = 1;
+    ```objc
+    // Initialize variables
+    NSString* senderAddresss = @"buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea";
+    NSString* destAddress = @"buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
+    int64_t buAmount = [Tools BU2MO : 10.9];
+    int64_t gasPrice = 1000;
+    int64_t feeLimit = [Tools BU2MO : 0.01];
+    int64_t nonce = 1;
 
-// Build BUSendOperation
-BUSendOperation *operation = [BUSendOperation new];
-[operation setSourceAddress: senderAddresss];
-[operation setDestAddress: destAddress];
-[operation setAmount: buAmount];
+    // Build BUSendOperation
+    BUSendOperation *operation = [BUSendOperation new];
+    [operation setSourceAddress: senderAddresss];
+    [operation setDestAddress: destAddress];
+    [operation setAmount: buAmount];
 
-// Initialize request parameters
-TransactionBuildBlobRequest *buildBlobRequest = [TransactionBuildBlobRequest new];
-[buildBlobRequest setSourceAddress : senderAddresss];
-[buildBlobRequest setNonce : nonce];
-[buildBlobRequest setGasPrice : gasPrice];
-[buildBlobRequest setFeeLimit : feeLimit];
-[buildBlobRequest addOperation : operation];
+    // Initialize request parameters
+    TransactionBuildBlobRequest *buildBlobRequest = [TransactionBuildBlobRequest new];
+    [buildBlobRequest setSourceAddress : senderAddresss];
+    [buildBlobRequest setNonce : nonce];
+    [buildBlobRequest setGasPrice : gasPrice];
+    [buildBlobRequest setFeeLimit : feeLimit];
+    [buildBlobRequest addOperation : operation];
 
-// Call the buildBlob interface
-TransactionService *transactionServer = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getTransactionService];
-TransactionBuildBlobResponse *buildBlobResponse = [transactionServer buildBlob : buildBlobRequest];
-if (buildBlobResponse.errorCode == 0) {
-    NSLog(@"blob: %@, hash: %@", buildBlobResponse.result.transactionBlob, buildBlobResponse.result.transactionHash);
-} else {
-    NSLog(@"error: %@", buildBlobResponse.errorDesc);
-    return;
-}
-```
+    // Call the buildBlob interface
+    TransactionService *transactionServer = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getTransactionService];
+    TransactionBuildBlobResponse *buildBlobResponse = [transactionServer buildBlob : buildBlobRequest];
+    if (buildBlobResponse.errorCode == 0) {
+        NSLog(@"blob: %@, hash: %@", buildBlobResponse.result.transactionBlob, buildBlobResponse.result.transactionHash);
+    } else {
+        NSLog(@"error: %@", buildBlobResponse.errorDesc);
+        return;
+    }
+    ```
 
 ### evaluateFee
 
@@ -375,72 +375,72 @@ if (buildBlobResponse.errorCode == 0) {
 
 - **Method call**
 
-`TransactionEvaluateFeeResponse *) evaluateFee : (TransactionEvaluateFeeRequest *) transactionEvaluateFeeRequest;`
+  `TransactionEvaluateFeeResponse *) evaluateFee : (TransactionEvaluateFeeRequest *) transactionEvaluateFeeRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-sourceAddress|NSString*|Required, the source account address initiating the operation
-nonce|int64_t|Required, transaction serial number to be initiated, size limit [1, max(int64)]
-operation|NSArray<BaseOperation *> *|Required, list of operations to be committed which cannot be empty
-signtureNumber|int32_t|Optional, the number of people to sign, the default is 1, size limit [1, max(int32)]
-ceilLedgerSeq|int64_t|Optional, set a value which will be combined with the current block height to restrict transactions. If transactions do not complete within the set value plus the current block height, the transactions fail. The value you set must be greater than 0. If the value is set to 0, no limit is set.
-metadata|NSString*|Optional, note
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    sourceAddress|NSString*|Required, the source account address initiating the operation
+    nonce|int64_t|Required, transaction serial number to be initiated, size limit [1, max(int64)]
+    operation|NSArray<BaseOperation *> *|Required, list of operations to be committed which cannot be empty
+    signtureNumber|int32_t|Optional, the number of people to sign, the default is 1, size limit [1, max(int32)]
+    ceilLedgerSeq|int64_t|Optional, set a value which will be combined with the current block height to restrict transactions. If transactions do not complete within the set value plus the current block height, the transactions fail. The value you set must be greater than 0. If the value is set to 0, no limit is set.
+    metadata|NSString*|Optional, note
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-txs     |   NSArray<[TestTx](#testtx) *> *     |  Evaluation transaction set
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    txs     |   NSArray<[TestTx](#testtx) *> *     |  Evaluation transaction set
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
-INVALID_NONCE_ERROR|11045|Nonce must be between 1 and max(int64)
-OPERATIONS_EMPTY_ERROR|11051|Operations cannot be empty
-OPERATIONS_ONE_ERROR|11053|One of the operations cannot be resolved
-INVALID_SIGNATURENUMBER_ERROR|11054|SignagureNumber must be between 1 and max(int32)
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
+    INVALID_NONCE_ERROR|11045|Nonce must be between 1 and max(int64)
+    OPERATIONS_EMPTY_ERROR|11051|Operations cannot be empty
+    OPERATIONS_ONE_ERROR|11053|One of the operations cannot be resolved
+    INVALID_SIGNATURENUMBER_ERROR|11054|SignagureNumber must be between 1 and max(int32)
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-// Initialize variables
-NSString* senderAddresss = @"buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea";
-NSString* destAddress = @"buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
-int64_t buAmount = [Tools BU2MO : 10.9];
-int64_t gasPrice = 1000;
-int64_t feeLimit = [Tools BU2MO : 0.01];
-int64_t nonce = 1;
+    ```objc
+    // Initialize variables
+    NSString* senderAddresss = @"buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea";
+    NSString* destAddress = @"buQsurH1M4rjLkfjzkxR9KXJ6jSu2r9xBNEw";
+    int64_t buAmount = [Tools BU2MO : 10.9];
+    int64_t gasPrice = 1000;
+    int64_t feeLimit = [Tools BU2MO : 0.01];
+    int64_t nonce = 1;
 
-// Build BUSendOperation
-BUSendOperation *operation = [BUSendOperation new];
-[operation setSourceAddress: senderAddresss];
-[operation setDestAddress: destAddress];
-[operation setAmount: buAmount];
+    // Build BUSendOperation
+    BUSendOperation *operation = [BUSendOperation new];
+    [operation setSourceAddress: senderAddresss];
+    [operation setDestAddress: destAddress];
+    [operation setAmount: buAmount];
 
-// Initialize request parameters for transaction evaluation
-TransactionEvaluateFeeRequest *request = [TransactionEvaluateFeeRequest new];
-[request addOperation : buSendOperation];
-[request setSourceAddress : senderAddresss];
-[request setNonce : nonce];
-[request setSignatureNumber : 1];
-[request setMetadata : @"evaluate fees"];
+    // Initialize request parameters for transaction evaluation
+    TransactionEvaluateFeeRequest *request = [TransactionEvaluateFeeRequest new];
+    [request addOperation : buSendOperation];
+    [request setSourceAddress : senderAddresss];
+    [request setNonce : nonce];
+    [request setSignatureNumber : 1];
+    [request setMetadata : @"evaluate fees"];
 
-// Call the evaluateFee interface
-TransactionService *transactionServer = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getTransactionService];
-TransactionEvaluateFeeResponse* response = [transactionServer evaluateFee : request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    // Call the evaluateFee interface
+    TransactionService *transactionServer = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getTransactionService];
+    TransactionEvaluateFeeResponse* response = [transactionServer evaluateFee : request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ### sign
 
@@ -450,52 +450,52 @@ else {
 
 - **Method call**
 
-`TransactionSignResponse *) sign : (TransactionSignRequest *) transactionSignRequest;`
+  `TransactionSignResponse *) sign : (TransactionSignRequest *) transactionSignRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blob|NSString*|Required, pending transaction blob to be signed
-privateKeys|NSArray<NSString *> *|Required, private key list
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blob|NSString*|Required, pending transaction blob to be signed
+    privateKeys|NSArray<NSString *> *|Required, private key list
 
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-signatures|[SignatureInfo](#signatureinfo)*| Signed data list
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    signatures|[SignatureInfo](#signatureinfo)*| Signed data list
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_BLOB_ERROR|11056|Invalid blob
-PRIVATEKEY_NULL_ERROR|11057|PrivateKeys cannot be empty
-PRIVATEKEY_ONE_ERROR|11058|One of privateKeys is invalid
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_BLOB_ERROR|11056|Invalid blob
+    PRIVATEKEY_NULL_ERROR|11057|PrivateKeys cannot be empty
+    PRIVATEKEY_ONE_ERROR|11058|One of privateKeys is invalid
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-// Initialize request parameters
-NSString* issuePrivateKey = @"privbyQCRp7DLqKtRFCqKQJr81TurTqG6UKXMMtGAmPG3abcM9XHjWvq";
-NSString* transactionBlob = @"0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704";
-TransactionSignRequest *signRequest = [TransactionSignRequest new];
-[signRequest setBlob : transactionBlob];
-[signRequest addPrivateKey : issuePrivateKey];
+    ```objc
+    // Initialize request parameters
+    NSString* issuePrivateKey = @"privbyQCRp7DLqKtRFCqKQJr81TurTqG6UKXMMtGAmPG3abcM9XHjWvq";
+    NSString* transactionBlob = @"0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704";
+    TransactionSignRequest *signRequest = [TransactionSignRequest new];
+    [signRequest setBlob : transactionBlob];
+    [signRequest addPrivateKey : issuePrivateKey];
 
-// Call the sign interface
-TransactionService *transactionServer = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getTransactionService];
-TransactionSignResponse * signResponse = [transactionServer sign : signRequest];
-if (signResponse.errorCode == 0) {
-    NSLog(@"sign response: %@", [signResponse yy_modelToJSONString]);
-} else {
-    NSLog(@"error: %@", signResponse.errorDesc);
-    return;
-}
-```
+    // Call the sign interface
+    TransactionService *transactionServer = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getTransactionService];
+    TransactionSignResponse * signResponse = [transactionServer sign : signRequest];
+    if (signResponse.errorCode == 0) {
+        NSLog(@"sign response: %@", [signResponse yy_modelToJSONString]);
+    } else {
+        NSLog(@"error: %@", signResponse.errorDesc);
+        return;
+    }
+    ```
 
 ### submit
 
@@ -505,50 +505,50 @@ if (signResponse.errorCode == 0) {
 
 - **Method call**
 
-`TransactionSubmitResponse *) submit : (TransactionSubmitRequest *) transactionSubmitRequest;`
+  `TransactionSubmitResponse *) submit : (TransactionSubmitRequest *) transactionSubmitRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blob|NSString*|Required, transaction blob
-signature|[SignatureInfo](#signatureinfo)|Required, signature list
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blob|NSString*|Required, transaction blob
+    signature|[SignatureInfo](#signatureinfo)|Required, signature list
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-hash|NSString*|Transaction hash
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    hash|NSString*|Transaction hash
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_BLOB_ERROR|11056|Invalid blob
-SIGNATURE_EMPTY_ERROR|11067|The signatures cannot be empty
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_BLOB_ERROR|11056|Invalid blob
+    SIGNATURE_EMPTY_ERROR|11067|The signatures cannot be empty
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-// Initialize request parameters
-NSString* transactionBlob = @"0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704";
-SignatureInfo *signature = [SignatureInfo new];
-signature.signData = @"D2B5E3045F2C1B7D363D4F58C1858C30ABBBB0F41E4B2E18AF680553CA9C3689078E215C097086E47A4393BCA715C7A5D2C180D8750F35C6798944F79CC5000A";
-signature.publicKey = @"b0011765082a9352e04678ef38d38046dc01306edef676547456c0c23e270aaed7ffe9e31477";
-TransactionSubmitRequest *submitRequest = [TransactionSubmitRequest new];
-[submitRequest setTransactionBlob : transactionBlob];
-[submitRequest addSignature : signature];
+    ```objc
+    // Initialize request parameters
+    NSString* transactionBlob = @"0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704";
+    SignatureInfo *signature = [SignatureInfo new];
+    signature.signData = @"D2B5E3045F2C1B7D363D4F58C1858C30ABBBB0F41E4B2E18AF680553CA9C3689078E215C097086E47A4393BCA715C7A5D2C180D8750F35C6798944F79CC5000A";
+    signature.publicKey = @"b0011765082a9352e04678ef38d38046dc01306edef676547456c0c23e270aaed7ffe9e31477";
+    TransactionSubmitRequest *submitRequest = [TransactionSubmitRequest new];
+    [submitRequest setTransactionBlob : transactionBlob];
+    [submitRequest addSignature : signature];
 
-// Call the submit interface
-TransactionSubmitResponse *submitResponse = [transactionServer submit : submitRequest];
-if (submitResponse.errorCode == 0) {
-    NSLog(@"submit response: %@", [submitResponse yy_modelToJSONString]);
-} else {
-    NSLog(@"error: %@", submitResponse.errorDesc);
-}
-```
+    // Call the submit interface
+    TransactionSubmitResponse *submitResponse = [transactionServer submit : submitRequest];
+    if (submitResponse.errorCode == 0) {
+        NSLog(@"submit response: %@", [submitResponse yy_modelToJSONString]);
+    } else {
+        NSLog(@"error: %@", submitResponse.errorDesc);
+    }
+    ```
 
 ### getInfo
 
@@ -558,47 +558,47 @@ if (submitResponse.errorCode == 0) {
 
 - **Method call**
 
-`TransactionGetInfoResponse *) getInfo : (TransactionGetInfoRequest *) transactionGetInfoRequest;`
+  `TransactionGetInfoResponse *) getInfo : (TransactionGetInfoRequest *) transactionGetInfoRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-hash|NSString*|Transaction hash
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    hash|NSString*|Transaction hash
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-totalCount|int64_t|Total number of transactions returned
-transactions|NSArray<[TransactionHistory](#transactionhistory) *> *|Transaction content
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    totalCount|int64_t|Total number of transactions returned
+    transactions|NSArray<[TransactionHistory](#transactionhistory) *> *|Transaction content
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_HASH_ERROR|11055|Invalid transaction hash
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_HASH_ERROR|11055|Invalid transaction hash
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-// Initialize request parameters
-TransactionGetInfoRequest *request = [TransactionGetInfoRequest new];
-[request setHash: @"389d53e55929c997d22f25d3757b088e2e869403ac0f2d13712ba877762b3d45"];
+    ```objc
+    // Initialize request parameters
+    TransactionGetInfoRequest *request = [TransactionGetInfoRequest new];
+    [request setHash: @"389d53e55929c997d22f25d3757b088e2e869403ac0f2d13712ba877762b3d45"];
 
-// Call the getInfo interface
-TransactionService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getTransactionService];
-TransactionGetInfoResponse *response = [service getInfo: request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    // Call the getInfo interface
+    TransactionService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getTransactionService];
+    TransactionGetInfoResponse *response = [service getInfo: request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ## Operations
 
@@ -609,10 +609,10 @@ Operations refer to the things that are to be done in a transaction, and the ope
 
 BaseOperation is the base class for all operations in the buildBlob interface. The following table describes BaseOperation:
 
-   Member    |     Type  |        Description                           
-   ------------- | -------- | ----------------------------------   
-   sourceAddress |   String |  Optional, source account address of the operation
-   metadata      |   String |  Optional, note
+Member    |     Type  |        Description                           
+------------- | -------- | ----------------------------------   
+sourceAddress |   String |  Optional, source account address of the operation
+metadata      |   String |  Optional, note
 
 ### AccountActivateOperation
 
@@ -838,43 +838,43 @@ Account Service provide account-related interfaces, which include six interfaces
 
 - **Method call**
 
-`(AccountCheckValidResponse *) checkValid : (AccountCheckValidRequest *) accountCheckValidRequest;`
+  `(AccountCheckValidResponse *) checkValid : (AccountCheckValidRequest *) accountCheckValidRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   NSString*     |  Required, the account address to be checked on the blockchain
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    address     |   NSString*     |  Required, the account address to be checked on the blockchain
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-isValid     |   BOOL     |  Whether the response data is valid   
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    isValid     |   BOOL     |  Whether the response data is valid   
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR |   20000     |  System error 
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR |   20000     |  System error 
 
 - **Example**
 
-```objc
-// Initialize request parameters
-AccountService *accountService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAccountService];
-AccountCheckValidRequest *request = [AccountCheckValidRequest new];
-[request setAddress:@"buQnnUEBREw2hB6pWHGPzwanX7d28xk6KVcp"];
+    ```objc
+    // Initialize request parameters
+    AccountService *accountService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAccountService];
+    AccountCheckValidRequest *request = [AccountCheckValidRequest new];
+    [request setAddress:@"buQnnUEBREw2hB6pWHGPzwanX7d28xk6KVcp"];
 
-// Call the checkValid interface
-AccountCheckValidResponse *response = [accountService checkValid: nil];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-} else {
-    NSLog(@"%@", response.errorDesc);
-}
-```
+    // Call the checkValid interface
+    AccountCheckValidResponse *response = [accountService checkValid: nil];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    } else {
+        NSLog(@"%@", response.errorDesc);
+    }
+    ```
 
 ### create
 - **Interface description**
@@ -883,33 +883,33 @@ if (response.errorCode == 0) {
 
 - **Method call**
 
-`(AccountCreateResponse *) create;`
+  `(AccountCreateResponse *) create;`
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
     privateKey   |   NSString *     |  Private key
     publicKey   |   NSString *     |  Public key
     address   |   NSString *     |  Address
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-SYSTEM_ERROR |   20000     |  System error 
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    SYSTEM_ERROR |   20000     |  System error 
 
 - **Example**
 
-```objc
-AccountService *accountService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAccountService];
-AccountCreateResponse *response = [accountService create];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-} else {
-    NSLog(@"%@", response.errorDesc);
-}
-```
+    ```objc
+    AccountService *accountService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAccountService];
+    AccountCreateResponse *response = [accountService create];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    } else {
+        NSLog(@"%@", response.errorDesc);
+    }
+    ```
 
 ### getInfo
 
@@ -919,49 +919,49 @@ if (response.errorCode == 0) {
 
 - **Method call**
 
-`(AccountGetInfoResponse *) getInfo : (AccountGetInfoRequest *) accountGetInfoRequest;`
+  `(AccountGetInfoResponse *) getInfo : (AccountGetInfoRequest *) accountGetInfoRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   NSString*     |  Required, the account address to be queried on the blockchain  
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    address     |   NSString*     |  Required, the account address to be queried on the blockchain  
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
---------- | ------------- | ---------------- 
-	address	  |    NSString*     |    Account address
-	balance	  |    int64_t       |    Account balance, unit is MO, 1 BU = 10^8 MO, the account balance must be > 0
-	nonce	  |    int64_t       |    Account transaction serial number must be greater than 0
-	priv	  | [Priv](#priv)* |    Account privilege
+    Parameter      |     Type     |        Description       
+    --------- | ------------- | ---------------- 
+    address	  |    NSString*     |    Account address
+    balance	  |    int64_t       |    Account balance, unit is MO, 1 BU = 10^8 MO, the account balance must be > 0
+    nonce	  |    int64_t       |    Account transaction serial number must be greater than 0
+    priv	  | [Priv](#priv)* |    Account privilege
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR| 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-SYSTEM_ERROR |   20000     |  System error 
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_ADDRESS_ERROR| 11006 | Invalid address
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+    SYSTEM_ERROR |   20000     |  System error 
 
 - **Example**
 
-```objc
-// Initialize request parameters
-NSString *address = @"buQnnUEBREw2hB6pWHGPzwanX7d28xk6KVcp";
-AccountService *accountService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAccountService];
-AccountGetInfoRequest *request = [AccountGetInfoRequest new];
-[request setAddress : address];
+    ```objc
+    // Initialize request parameters
+    NSString *address = @"buQnnUEBREw2hB6pWHGPzwanX7d28xk6KVcp";
+    AccountService *accountService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAccountService];
+    AccountGetInfoRequest *request = [AccountGetInfoRequest new];
+    [request setAddress : address];
 
-// Call the getInfo interface
-AccountGetInfoResponse *response = [accountService getInfo : request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-} else {
-    NSLog(@"%@", response.errorDesc);
-}
-```
+    // Call the getInfo interface
+    AccountGetInfoResponse *response = [accountService getInfo : request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    } else {
+        NSLog(@"%@", response.errorDesc);
+    }
+    ```
 
 ### getNonce
 
@@ -971,46 +971,46 @@ if (response.errorCode == 0) {
 
 - **Method call**
 
-`(AccountGetNonceResponse *) getNonce : (AccountGetNonceRequest *) accountGetNonceRequest;`
+  `(AccountGetNonceResponse *) getNonce : (AccountGetNonceRequest *) accountGetNonceRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   NSString*     |  Required, the account address to be queried on the blockchain
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    address     |   NSString*     |  Required, the account address to be queried on the blockchain
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-nonce       |   int64_t       |  Account transaction serial number
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    nonce       |   int64_t       |  Account transaction serial number
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR| 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-SYSTEM_ERROR |   20000     |  System error 
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_ADDRESS_ERROR| 11006 | Invalid address
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+    SYSTEM_ERROR |   20000     |  System error 
 
 - **Example**
 
-```objc
-// Initialize request parameters
-NSString *address = @"buQnnUEBREw2hB6pWHGPzwanX7d28xk6KVcp";
-AccountService *accountService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAccountService];
-AccountGetNonceRequest * request = [AccountGetNonceRequest new];
-[request setAddress : address];
+    ```objc
+    // Initialize request parameters
+    NSString *address = @"buQnnUEBREw2hB6pWHGPzwanX7d28xk6KVcp";
+    AccountService *accountService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAccountService];
+    AccountGetNonceRequest * request = [AccountGetNonceRequest new];
+    [request setAddress : address];
 
-// Call the getNonce interface
-AccountGetNonceResponse *response = [accountService getNonce : request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-} else {
-    NSLog(@"%@", response.errorDesc);
-}
-```
+    // Call the getNonce interface
+    AccountGetNonceResponse *response = [accountService getNonce : request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    } else {
+        NSLog(@"%@", response.errorDesc);
+    }
+    ```
 
 ### getBalance
 
@@ -1020,46 +1020,46 @@ if (response.errorCode == 0) {
 
 - **Method call**
 
-`(AccountGetBalanceResponse *) getBalance : (AccountGetBalanceRequest *) accountGetBalanceRequest;`
+  `(AccountGetBalanceResponse *) getBalance : (AccountGetBalanceRequest *) accountGetBalanceRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   NSString*     |  Required, the account address to be queried on the blockchain
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    address     |   NSString*     |  Required, the account address to be queried on the blockchain
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-balance     |   int64_t       |  BU balance, unit MO, 1 BU = 10^8 MO
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    balance     |   int64_t       |  BU balance, unit MO, 1 BU = 10^8 MO
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR| 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-SYSTEM_ERROR |   20000     |  System error 
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_ADDRESS_ERROR| 11006 | Invalid address
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+    SYSTEM_ERROR |   20000     |  System error 
 
 - **Example**
 
-```objc
-// Initialize request parameters
-NSString *address = @"buQnnUEBREw2hB6pWHGPzwanX7d28xk6KVcp";
-AccountService *accountService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAccountService];
-AccountGetBalanceRequest * request = [AccountGetBalanceRequest new];
-[request setAddress : address];
+    ```objc
+    // Initialize request parameters
+    NSString *address = @"buQnnUEBREw2hB6pWHGPzwanX7d28xk6KVcp";
+    AccountService *accountService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAccountService];
+    AccountGetBalanceRequest * request = [AccountGetBalanceRequest new];
+    [request setAddress : address];
 
-// Call the getBalance interface
-AccountGetBalanceResponse *response = [accountService getBalance : request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-} else {
-    NSLog(@"%@", response.errorDesc);
-}
-```
+    // Call the getBalance interface
+    AccountGetBalanceResponse *response = [accountService getBalance : request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    } else {
+        NSLog(@"%@", response.errorDesc);
+    }
+    ```
 
 ### getAssets
 
@@ -1069,48 +1069,48 @@ if (response.errorCode == 0) {
 
 - **Method call**
 
-`(AccountGetAssetsResponse *) getAssets : (AccountGetAssetsRequest *) accountGetAssetsRequest;`
+  `(AccountGetAssetsResponse *) getAssets : (AccountGetAssetsRequest *) accountGetAssetsRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-address     |   NSString*     |  Required, the account address to be queried
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    address     |   NSString*     |  Required, the account address to be queried
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-asset	    | NSArray<[AssetInfo](#assetinfo) *> * |Account asset
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    asset	    | NSArray<[AssetInfo](#assetinfo) *> * |Account asset
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR| 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-NO_ASSET_ERROR|11009|The account does not have the asset
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_ADDRESS_ERROR| 11006 | Invalid address
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+    NO_ASSET_ERROR|11009|The account does not have the asset
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-// Initialize request parameters
-NSString *address = @"buQhP94E8FjWDF3zfsxjqVQDeBypvzMrB3y3";
-AccountService *accountService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAccountService];
-AccountGetAssetsRequest * request = [AccountGetAssetsRequest new];
-[request setAddress : address];
+    ```objc
+    // Initialize request parameters
+    NSString *address = @"buQhP94E8FjWDF3zfsxjqVQDeBypvzMrB3y3";
+    AccountService *accountService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAccountService];
+    AccountGetAssetsRequest * request = [AccountGetAssetsRequest new];
+    [request setAddress : address];
 
-// Call the getAssets interface
-AccountGetAssetsResponse *response = [accountService getAssets : request];
-if (response.errorCode == 0) {
-    //AssetInfo *assetInfo = [response.result.assets objectAtIndex : 0];
-    //NSLog(@"%@, %@", assetInfo.key.code, assetInfo.key.issuer);
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-} else {
-    NSLog(@"%@", response.errorDesc);
-}
-```
+    // Call the getAssets interface
+    AccountGetAssetsResponse *response = [accountService getAssets : request];
+    if (response.errorCode == 0) {
+        //AssetInfo *assetInfo = [response.result.assets objectAtIndex : 0];
+        //NSLog(@"%@, %@", assetInfo.key.code, assetInfo.key.issuer);
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    } else {
+        NSLog(@"%@", response.errorDesc);
+    }
+    ```
 
 ### getMetadata
 
@@ -1120,52 +1120,52 @@ if (response.errorCode == 0) {
 
 - **Method call**
 
-`AccountGetMetadataResponse *) getMetadata : (AccountGetMetadataRequest *) accountGetMetadataRequest;`
+  `AccountGetMetadataResponse *) getMetadata : (AccountGetMetadataRequest *) accountGetMetadataRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
--------- | -------- | ---------------- 
-address  |  NSString*  |  Required, the account address to be queried  
-key      |  NSString*  |  Optional, metadata keyword, length limit [1, 1024]
+    Parameter      |     Type     |        Description       
+    -------- | -------- | ---------------- 
+    address  |  NSString*  |  Required, the account address to be queried  
+    key      |  NSString*  |  Optional, metadata keyword, length limit [1, 1024]
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ----------- | ---------------- 
-metadata    |[MetadataInfo](#metadatainfo)*   |  Account
+    Parameter      |     Type     |        Description       
+    ----------- | ----------- | ---------------- 
+    metadata    |[MetadataInfo](#metadatainfo)*   |  Account
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_ADDRESS_ERROR | 11006 | Invalid address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR | 11007 | Failed to connect to the network
-NO_METADATA_ERROR|11010|The account does not have the metadata
-INVALID_DATAKEY_ERROR | 11011 | The length of key must be between 1 and 1024
-SYSTEM_ERROR | 20000| System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_ADDRESS_ERROR | 11006 | Invalid address
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR | 11007 | Failed to connect to the network
+    NO_METADATA_ERROR|11010|The account does not have the metadata
+    INVALID_DATAKEY_ERROR | 11011 | The length of key must be between 1 and 1024
+    SYSTEM_ERROR | 20000| System error
 
 
 - **Example**
 
-```objc
-// Initialize request parameters
-NSString *address = @"buQhP94E8FjWDF3zfsxjqVQDeBypvzMrB3y3";
-AccountService *accountService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAccountService];
-AccountGetMetadataRequest * request = [AccountGetMetadataRequest new];
-[request setAddress : address];
+    ```objc
+    // Initialize request parameters
+    NSString *address = @"buQhP94E8FjWDF3zfsxjqVQDeBypvzMrB3y3";
+    AccountService *accountService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAccountService];
+    AccountGetMetadataRequest * request = [AccountGetMetadataRequest new];
+    [request setAddress : address];
 
-// Call the getMetadata interface
-AccountGetMetadataResponse *response = [accountService getMetadata : request];
-if (response.errorCode == 0) {
-    //MetadataInfo *metadataInfo = [response.result.metadatas objectAtIndex:0];
-    //NSLog(@"%@, %@. %lld", metadataInfo.key, metadataInfo.value, metadataInfo.version);
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-} else {
-    NSLog(@"%@", response.errorDesc);
-}
-```
+    // Call the getMetadata interface
+    AccountGetMetadataResponse *response = [accountService getMetadata : request];
+    if (response.errorCode == 0) {
+        //MetadataInfo *metadataInfo = [response.result.metadatas objectAtIndex:0];
+        //NSLog(@"%@, %@. %lld", metadataInfo.key, metadataInfo.value, metadataInfo.version);
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    } else {
+        NSLog(@"%@", response.errorDesc);
+    }
+    ```
 
 ## Asset Service
 
@@ -1179,7 +1179,7 @@ Asset Service follow the ATP 1.0 protocol, and Account Service provide an asset-
 
 - **Method call**
 
-`AssetGetInfoResponse *) getInfo : (AssetGetInfoRequest *) assetGetRequest;`
+  `AssetGetInfoResponse *) getInfo : (AssetGetInfoRequest *) assetGetRequest;`
 
 - **Request parameters**
 
@@ -1208,25 +1208,25 @@ Asset Service follow the ATP 1.0 protocol, and Account Service provide an asset-
 
 - **Example**
 
-```objc
-// Initialize request parameters
-NSString *address = @"buQhP94E8FjWDF3zfsxjqVQDeBypvzMrB3y3";
-NSString *code = @"TST";
-NSString *issuer = @"buQhP94E8FjWDF3zfsxjqVQDeBypvzMrB3y3";
-AssetGetInfoRequest *request = [AssetGetInfoRequest new];
-[request setAddress : address];
-[request setCode : code];
-[request setIssuer : issuer];
+    ```objc
+    // Initialize request parameters
+    NSString *address = @"buQhP94E8FjWDF3zfsxjqVQDeBypvzMrB3y3";
+    NSString *code = @"TST";
+    NSString *issuer = @"buQhP94E8FjWDF3zfsxjqVQDeBypvzMrB3y3";
+    AssetGetInfoRequest *request = [AssetGetInfoRequest new];
+    [request setAddress : address];
+    [request setCode : code];
+    [request setIssuer : issuer];
 
-// Call the getInfo interface
-AssetService *assetService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAssetService];
-AssetGetInfoResponse *response = [assetService getInfo : request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-} else {
-    NSLog(@"%@", response.errorDesc);
-}
-```
+    // Call the getInfo interface
+    AssetService *assetService = [[[SDK sharedInstance] setUrl:@"http://seed1.bumotest.io:26002"] getAssetService];
+    AssetGetInfoResponse *response = [assetService getInfo : request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    } else {
+        NSLog(@"%@", response.errorDesc);
+    }
+    ```
 
 ## Contract Service
 
@@ -1240,45 +1240,45 @@ Contract Service provide contract-related interfaces and currently have four int
 
 - **Method call**
 
-`ContractCheckValidResponse *) checkValid : (ContractCheckValidRequest *) contractCheckValidRequest;`
+  `ContractCheckValidResponse *) checkValid : (ContractCheckValidRequest *) contractCheckValidRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-contractAddress     |   NSString*     |  Contract account address to be tested
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    contractAddress     |   NSString*     |  Contract account address to be tested
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-isValid     |   BOOL     |  Whether the response data is valid   
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    isValid     |   BOOL     |  Whether the response data is valid   
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR |   20000     |  System error 
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR |   20000     |  System error 
 
 - **Example**
 
-```objc
-// Initialize request parameters
-ContractCheckValidRequest *request = [ContractCheckValidRequest new];
-[request setContractAddress: @"buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea"];
+    ```objc
+    // Initialize request parameters
+    ContractCheckValidRequest *request = [ContractCheckValidRequest new];
+    [request setContractAddress: @"buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea"];
 
-// Call the checkValid interface
-ContractService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getContractService];
-ContractCheckValidResponse *response = [service checkValid: request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    // Call the checkValid interface
+    ContractService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getContractService];
+    ContractCheckValidResponse *response = [service checkValid: request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ### getInfo
 
@@ -1288,48 +1288,48 @@ else {
 
 - **Method call**
 
-`ContractGetInfoResponse *) getInfo : (ContractGetInfoRequest *) contractGetInfoRequest;`
+  `ContractGetInfoResponse *) getInfo : (ContractGetInfoRequest *) contractGetInfoRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-contractAddress     |   NSString*     |  Contract account address to be queried   
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    contractAddress     |   NSString*     |  Contract account address to be queried   
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-contract|[ContractInfo](#contractinfo)*|Contract info
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    contract|[ContractInfo](#contractinfo)*|Contract info
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
-CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR|11038|contractAddress is not a contract account
-NO_SUCH_TOKEN_ERROR|11030|No such token
-GET_TOKEN_INFO_ERROR|11066|Failed to get token info
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
+    CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR|11038|contractAddress is not a contract account
+    NO_SUCH_TOKEN_ERROR|11030|No such token
+    GET_TOKEN_INFO_ERROR|11066|Failed to get token info
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-// Initialize request parameters
-ContractGetInfoRequest *request = [ContractGetInfoRequest new];
-[request setContractAddress: @"buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea"];
+    ```objc
+    // Initialize request parameters
+    ContractGetInfoRequest *request = [ContractGetInfoRequest new];
+    [request setContractAddress: @"buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea"];
 
-// Call the getInfo interface
-ContractService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getContractService];
-ContractGetInfoResponse *response = [service getInfo: request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    // Call the getInfo interface
+    ContractService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getContractService];
+    ContractGetInfoResponse *response = [service getInfo: request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ### getAddress
 
@@ -1339,46 +1339,46 @@ The `getAddress` interface is used to query the contract address.
 
 - **Method call**
 
-`ContractGetAddressResponse *) getAddress : (ContractGetAddressRequest *) contractGetAddressRequest;`
+  `ContractGetAddressResponse *) getAddress : (ContractGetAddressRequest *) contractGetAddressRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-hash     |   NSString*     |  The hash used to create a contract transaction   
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    hash     |   NSString*     |  The hash used to create a contract transaction   
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-contractAddressList|NSArray<[ContractAddressInfo](#contractaddressinfo) *> *|Contract address list
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    contractAddressList|NSArray<[ContractAddressInfo](#contractaddressinfo) *> *|Contract address list
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_HASH_ERROR|11055|Invalid transaction hash
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_HASH_ERROR|11055|Invalid transaction hash
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-// Initialize request parameters
-ContractGetAddressRequest *request = [ContractGetAddressRequest new];
-[request setHash: @"44246c5ba1b8b835a5cbc29bdc9454cdb9a9d049870e41227f2dcfbcf7a07689"];
+    ```objc
+    // Initialize request parameters
+    ContractGetAddressRequest *request = [ContractGetAddressRequest new];
+    [request setHash: @"44246c5ba1b8b835a5cbc29bdc9454cdb9a9d049870e41227f2dcfbcf7a07689"];
 
-// Call the getAddress interface
-ContractService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getContractService];
-ContractGetAddressResponse *response = [service getAddress: request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    // Call the getAddress interface
+    ContractService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getContractService];
+    ContractGetAddressResponse *response = [service getAddress: request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ### call 
 
@@ -1388,62 +1388,62 @@ else {
 
 - **Method call**
 
-`ContractCallResponse *) call : (ContractCallRequest *) contractCallRequest;`
+  `ContractCallResponse *) call : (ContractCallRequest *) contractCallRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-sourceAddress|NSString*|Optional, the account address to trigger the contract
-contractAddress|NSString*|Optional, the contract account address and code cannot be empty at the same time
-code|NSString*|Optional, the contract code and contractAddress cannot be empty at the same time, length limit [1, 64]
-input|NSString*|Optional, input parameter for the contract
-contractBalance|int64_t|Optional, the initial BU balance given to the contract, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)]
-optType|int32_t|Required, 0: Call the read/write interface of the contract init, 1: Call the read/write interface of the contract main, 2: Call the read-only interface query
-feeLimit|int64_t|Minimum fee required for the transaction, size limit [1, max(int64)]
-gasPrice|int64_t|Transaction fuel price, size limit [1000, max(int64)]
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    sourceAddress|NSString*|Optional, the account address to trigger the contract
+    contractAddress|NSString*|Optional, the contract account address and code cannot be empty at the same time
+    code|NSString*|Optional, the contract code and contractAddress cannot be empty at the same time, length limit [1, 64]
+    input|NSString*|Optional, input parameter for the contract
+    contractBalance|int64_t|Optional, the initial BU balance given to the contract, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)]
+    optType|int32_t|Required, 0: Call the read/write interface of the contract init, 1: Call the read/write interface of the contract main, 2: Call the read-only interface query
+    feeLimit|int64_t|Minimum fee required for the transaction, size limit [1, max(int64)]
+    gasPrice|int64_t|Transaction fuel price, size limit [1000, max(int64)]
 
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-logs|JSONObject|Log information
-queryRets|JSONArray|Query the result set
-stat|[ContractStat](#contractstat)*|Contract resource occupancy
-txs|NSArray<[TransactionEnvs](#transactionenvs) *> *|Transaction set
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    logs|JSONObject|Log information
+    queryRets|JSONArray|Query the result set
+    stat|[ContractStat](#contractstat)*|Contract resource occupancy
+    txs|NSArray<[TransactionEnvs](#transactionenvs) *> *|Transaction set
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
-INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
-CONTRACTADDRESS_CODE_BOTH_NULL_ERROR|11063|ContractAddress and code cannot be empty at the same time
-INVALID_OPTTYPE_ERROR|11064|OptType must be between 0 and 2
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
+    INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
+    CONTRACTADDRESS_CODE_BOTH_NULL_ERROR|11063|ContractAddress and code cannot be empty at the same time
+    INVALID_OPTTYPE_ERROR|11064|OptType must be between 0 and 2
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-// Initialize request parameters
-ContractCallRequest *request = [ContractCallRequest new];
-[request setCode : @"\"use strict\";log(undefined);function query() { getBalance(thisAddress); }"];
-[request setFeeLimit : 1000000000];
-[request setOptType : 2];
+    ```objc
+    // Initialize request parameters
+    ContractCallRequest *request = [ContractCallRequest new];
+    [request setCode : @"\"use strict\";log(undefined);function query() { getBalance(thisAddress); }"];
+    [request setFeeLimit : 1000000000];
+    [request setOptType : 2];
 
-// Call the call interface
-ContractService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getContractService];
-ContractCallResponse *response = [service call : request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    // Call the call interface
+    ContractService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getContractService];
+    ContractCallResponse *response = [service call : request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 
 ## Block service
@@ -1458,33 +1458,33 @@ Block service provide block-related interfaces. There are currently 11 interface
 
 - **Method call**
 
-`BlockGetNumberResponse *) getNumber;`
+  `BlockGetNumberResponse *) getNumber;`
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockNumber|int64_t|The latest block height,corresponding to the underlying field sequence
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockNumber|int64_t|The latest block height,corresponding to the underlying field sequence
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
-BlockGetNumberResponse *response = [service getNumber];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    ```objc
+    BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
+    BlockGetNumberResponse *response = [service getNumber];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ### checkStatus
 
@@ -1494,34 +1494,34 @@ else {
 
 - **Method call**
 
-`BlockCheckStatusResponse *) checkStatus;`
+  `BlockCheckStatusResponse *) checkStatus;`
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-isSynchronous    |   BOOL     |  Whether the block is synchronized  
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    isSynchronous    |   BOOL     |  Whether the block is synchronized  
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-// Call the checkStatus
-BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
-BlockCheckStatusResponse *response = [service checkStatus];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    ```objc
+    // Call the checkStatus
+    BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
+    BlockCheckStatusResponse *response = [service checkStatus];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ### getTransactions
 
@@ -1535,43 +1535,43 @@ else {
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockNumber|int64_t|Required, the height of the block to be queried must be greater than 0
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockNumber|int64_t|Required, the height of the block to be queried must be greater than 0
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-totalCount|int64_t|Total number of transactions returned
-transactions|NSArray<[TransactionHistory](#transactionhistory) *> *|Transaction content
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    totalCount|int64_t|Total number of transactions returned
+    transactions|NSArray<[TransactionHistory](#transactionhistory) *> *|Transaction content
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-// Initialize request parameters
-BlockGetTransactionsRequest *request = [BlockGetTransactionsRequest new];
-[request setBlockNumber: 617247];
+    ```objc
+    // Initialize request parameters
+    BlockGetTransactionsRequest *request = [BlockGetTransactionsRequest new];
+    [request setBlockNumber: 617247];
 
-// Call the getTransactions interface
-BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
-BlockGetTransactionsResponse *response = [service getTransactions: request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    // Call the getTransactions interface
+    BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
+    BlockGetTransactionsResponse *response = [service getTransactions: request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ### getInfo
 
@@ -1581,49 +1581,49 @@ else {
 
 - **Method call**
 
-`BlockGetInfoResponse *) getInfo : (BlockGetInfoRequest *) blockGetInfoRequest;`
+  `BlockGetInfoResponse *) getInfo : (BlockGetInfoRequest *) blockGetInfoRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockNumber|int64_t|Required, the height of the block to be queried
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockNumber|int64_t|Required, the height of the block to be queried
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-closeTime|int64_t|Block closure time
-number|int64_t|Block height
-txCount|int64_t|Total transactions amount
-version|NSString*|Block version
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    closeTime|int64_t|Block closure time
+    number|int64_t|Block height
+    txCount|int64_t|Total transactions amount
+    version|NSString*|Block version
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-// Initialize request parameters
-BlockGetInfoRequest *request = [BlockGetInfoRequest new];
-[request setBlockNumber: 617247];
+    ```objc
+    // Initialize request parameters
+    BlockGetInfoRequest *request = [BlockGetInfoRequest new];
+    [request setBlockNumber: 617247];
 
-// Call the getInfo interface
-BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
-BlockGetInfoResponse *response = [service getInfo: request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    // Call the getInfo interface
+    BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
+    BlockGetInfoResponse *response = [service getInfo: request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ### getLatestInfo
 
@@ -1633,37 +1633,37 @@ else {
 
 - **Method call**
 
-`BlockGetLatestInfoResponse *) getLatestInfo;`
+  `BlockGetLatestInfoResponse *) getLatestInfo;`
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-closeTime|int64_t|Block closure time
-number|int64_t|Block height,corresponding to the underlying field seq
-txCount|int64_t|Total transactions amount
-version|NSString*|Block version
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    closeTime|int64_t|Block closure time
+    number|int64_t|Block height,corresponding to the underlying field seq
+    txCount|int64_t|Total transactions amount
+    version|NSString*|Block version
 
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
-BlockGetLatestInfoResponse *response = [service getLatestInfo];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    ```objc
+    BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
+    BlockGetLatestInfoResponse *response = [service getLatestInfo];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ### getValidators
 
@@ -1673,46 +1673,46 @@ else {
 
 - **Method call**
 
-`BlockGetValidatorsResponse *) getValidators : (BlockGetValidatorsRequest *) blockGetValidatorsRequest;`
+  `BlockGetValidatorsResponse *) getValidators : (BlockGetValidatorsRequest *) blockGetValidatorsRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockNumber|int64_t|Required, the height of the block to be queried must be greater than 0
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockNumber|int64_t|Required, the height of the block to be queried must be greater than 0
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-validators|NSArray<[ValidatorInfo](#validatorinfo) *> *|Validators list
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    validators|NSArray<[ValidatorInfo](#validatorinfo) *> *|Validators list
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-// Initialize request parameters
-BlockGetValidatorsRequest *request = [BlockGetValidatorsRequest new];
-[request setBlockNumber: 617247];
+    ```objc
+    // Initialize request parameters
+    BlockGetValidatorsRequest *request = [BlockGetValidatorsRequest new];
+    [request setBlockNumber: 617247];
 
-// Call the getValidators interface
-BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
-BlockGetValidatorsResponse *response = [service getValidators: request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    // Call the getValidators interface
+    BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
+    BlockGetValidatorsResponse *response = [service getValidators: request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ### getLatestValidators
 
@@ -1722,33 +1722,33 @@ else {
 
 - **Method call**
 
-`BlockGetLatestValidatorsResponse *) getLatestValidators;`
+  `BlockGetLatestValidatorsResponse *) getLatestValidators;`
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-validators|NSArray<[ValidatorInfo](#validatorinfo) *> *|Validators list
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    validators|NSArray<[ValidatorInfo](#validatorinfo) *> *|Validators list
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
-BlockGetLatestValidatorsResponse *response = [service getLatestValidators];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    ```objc
+    BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
+    BlockGetLatestValidatorsResponse *response = [service getLatestValidators];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ### getReward
 
@@ -1758,47 +1758,47 @@ else {
 
 - **Method call**
 
-`BlockGetRewardResponse *) getReward : (BlockGetRewardRequest *) blockGetRewardRequest;`
+  `BlockGetRewardResponse *) getReward : (BlockGetRewardRequest *) blockGetRewardRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockNumber|int64_t|Required, the height of the block to be queried must be greater than 0
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockNumber|int64_t|Required, the height of the block to be queried must be greater than 0
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockReward|int64_t|Block rewards
-validatorsReward|NSArray<[ValidatorReward](#validatorreward) *> *|Validator rewards
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockReward|int64_t|Block rewards
+    validatorsReward|NSArray<[ValidatorReward](#validatorreward) *> *|Validator rewards
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-// Initialize request parameters
-BlockGetRewardRequest *request = [BlockGetRewardRequest new];
-[request setBlockNumber: 617247];
+    ```objc
+    // Initialize request parameters
+    BlockGetRewardRequest *request = [BlockGetRewardRequest new];
+    [request setBlockNumber: 617247];
 
-// Call the getReward interface
-BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
-BlockGetRewardResponse *response = [service getReward: request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    // Call the getReward interface
+    BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
+    BlockGetRewardResponse *response = [service getReward: request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ### getLatestReward
 
@@ -1808,34 +1808,34 @@ else {
 
 - **Method call**
 
-`BlockGetLatestRewardResponse *) getLatestReward;`
+  `BlockGetLatestRewardResponse *) getLatestReward;`
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockReward|int64_t|Block rewards
-validatorsReward|NSArray<[ValidatorReward](#validatorreward) *> *|Validator rewards
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockReward|int64_t|Block rewards
+    validatorsReward|NSArray<[ValidatorReward](#validatorreward) *> *|Validator rewards
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
-BlockGetLatestRewardResponse *response = [service getLatestReward];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    ```objc
+    BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
+    BlockGetLatestRewardResponse *response = [service getLatestReward];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ### getFees
 
@@ -1845,46 +1845,46 @@ else {
 
 - **Method call**
 
-`BlockGetFeesResponse *) getFees : (BlockGetFeesRequest *) blockGetFeesRequest;`
+  `BlockGetFeesResponse *) getFees : (BlockGetFeesRequest *) blockGetFeesRequest;`
 
 - **Request parameters**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-blockNumber|int64_t|Required, the height of the block to be queried must be greater than 0
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    blockNumber|int64_t|Required, the height of the block to be queried must be greater than 0
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-fees|[Fees](#fees)*|Fees
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    fees|[Fees](#fees)*|Fees
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    INVALID_BLOCKNUMBER_ERROR|11060|BlockNumber must bigger than 0
+    REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-// Initialize request parameters
-BlockGetFeesRequest *request = [BlockGetFeesRequest new];
-[request setBlockNumber: 617247];
+    ```objc
+    // Initialize request parameters
+    BlockGetFeesRequest *request = [BlockGetFeesRequest new];
+    [request setBlockNumber: 617247];
 
-// Call the getFees interface
-BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
-BlockGetFeesResponse *response = [service getFees: request];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    // Call the getFees interface
+    BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
+    BlockGetFeesResponse *response = [service getFees: request];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
 
 ### getLatestFees
 
@@ -1894,33 +1894,34 @@ else {
 
 - **Method call**
 
-`BlockGetLatestFeesResponse *) getLatestFees;`
+  `BlockGetLatestFeesResponse *) getLatestFees;`
 
 - **Response data**
 
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-fees|[Fees](#fees)*|Fees
+    Parameter      |     Type     |        Description       
+    ----------- | ------------ | ---------------- 
+    fees|[Fees](#fees)*|Fees
 
 - **Error code**
 
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
+    Error Message      |     Error Code     |        Description   
+    -----------  | ----------- | -------- 
+    CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+    SYSTEM_ERROR|20000|System error
 
 - **Example**
 
-```objc
-BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
-BlockGetLatestFeesResponse *response = [service getLatestFees];
-if (response.errorCode == 0) {
-    NSLog(@"%@", [response.result yy_modelToJSONString]);
-}
-else {
-    NSLog(@"error: %@", response.errorDesc);
-}
-```
+    ```objc
+    BlockService *service = [[[SDK sharedInstance] setUrl: @"http://seed1.bumotest.io:26002"] getBlockService];
+    BlockGetLatestFeesResponse *response = [service getLatestFees];
+    if (response.errorCode == 0) {
+        NSLog(@"%@", [response.result yy_modelToJSONString]);
+    }
+    else {
+        NSLog(@"error: %@", response.errorDesc);
+    }
+    ```
+
 ## Data Object
 #### Priv
 
@@ -1990,16 +1991,16 @@ operationIndex|int32_t|The subscript of the operation
 
 Member       |     Type     |       Description      
 ----------- | ------------ | ---------------- 
-  applyTime|int64_t|Receipt time
-  memoryUsage|int64_t|Memory footprint
-  stackUsage|int64_t|Stack occupancy
-  step|int64_t|Steps needed
+applyTime|int64_t|Receipt time
+memoryUsage|int64_t|Memory footprint
+stackUsage|int64_t|Stack occupancy
+step|int64_t|Steps needed
 
 #### TransactionEnvs
 
 Member       |     Type     |       Description      
 ----------- | ------------ | ---------------- 
-  transactionEnv|[TransactionEnv](#transactionenv)*|Transaction
+transactionEnv|[TransactionEnv](#transactionenv)*|Transaction
 
 #### TransactionEnv
 
@@ -2168,8 +2169,8 @@ plegeCoinAmount|int64_t|Validators deposit
 
 Member       |     Type     |       Description       
 ----------- | ------------ | ---------------- 
-  validator|NSString*|Validator address
-  reward|int64_t|Validator reward
+validator|NSString*|Validator address
+reward|int64_t|Validator reward
 
 #### Fees
 

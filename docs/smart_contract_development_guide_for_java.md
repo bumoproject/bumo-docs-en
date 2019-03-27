@@ -547,7 +547,7 @@ This example mainly implements contract triggering function. Watch the demo: [Tr
 
 The asset issuer `buQYLtRq4j3eqbjVNGYkKYo3sLBqW3TQH2xH` is assigned to himself 20000 CGO on BuChain through the smart contract account `buQcEk2dpUv6uoXjAqisVRyP1bBSeWUHCtF2`, and transfers 10000 CGO to another account `buQXPeTjT173kagZ7j8NWAPJAgJCpJHFdyc7`.
 
-The specific implementation process in this scenario includes: [Creating SDK Instances-2](#creating-sdk-instances-2), [Obtaining the Serial Number of the Asset Issuer Account-2](#pbtaining-the-serial-number-of-the-asset-issuer-account-2), [Assembling CGO Allocation and CGO Transfer](#assembling-cgo-allocation-and-cgo-transfer), :[Serializing Transactions-2](#serializing-transactions-2), [Signing Transactions-2](#signing-transactions-2), [Sending Transactions-2](#sending-transactions-2), and [Querying whether the Transaction Was Executed Successfully-2](#querying-whether-the-transaction-was-executed-successfully-2).
+The specific implementation process in this scenario includes: [Creating SDK Instances-2](#creating-sdk-instances-2), [Obtaining the Serial Number of the Asset Issuer Account-2](#pbtaining-the-serial-number-of-the-asset-issuer-account-2), [Assembling CGO Allocation and CGO Transfer](#assembling-cgo-allocation-and-cgo-transfer), [Serializing Transactions-2](#serializing-transactions-2), [Signing Transactions-2](#signing-transactions-2), [Sending Transactions-2](#sending-transactions-2), and [Querying whether the Transaction Was Executed Successfully-2](#querying-whether-the-transaction-was-executed-successfully-2).
 
 ### Creating SDK Instances-2
 
