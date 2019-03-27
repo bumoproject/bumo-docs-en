@@ -19,7 +19,7 @@ This section introduces three Java-based smart contract development scenarios, a
 - [Scenario Two](#scenario-two) mainly implements contract triggering function. 
 - [Scenario Three](#scenario-three) mainly implements contract query function. 
 
-The scenarios are based on the smart contract code that follows the CTP 1.0 protocol. The code comes from [contractBasedToken.js](https://github.com/bumoproject/bumo/blob/master/src/ledger/contractBasedToken.js).
+The scenarios are based on the smart contract code that follows the CTP 1.0 protocol. The code comes from [contractBasedToken.js](https://github.com/bumoproject/bumo/blob/master/src/contract/contractBasedToken.js).
 
 ```javascript
 'use strict';
