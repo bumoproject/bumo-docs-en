@@ -24,9 +24,9 @@ This section details the format of the request parameters and response data.
 
 ### Request Parameters
 
-The class name of the request parameter of the interface is composed of **Service Name** + **Method Name** + **Request**. For example, the request parameter format of the [getInfo](#getinfo) interface in Account Services is `AccountGetInfoRequest`.
+The class name of the request parameter of the interface is composed of **Service Name** + **Method Name** + **Request**. For example, the request parameter format of the [getInfo](#getinfo) interface in Account Service is `AccountGetInfoRequest`.
 
-The member of the request parameter is the member of the input parameter of each interface. For example, if the input parameter of the [getInfo](#getinfo) interface in Account Services is address, the complete structure of the request parameters of the interface is as follows:
+The member of the request parameter is the member of the input parameter of each interface. For example, if the input parameter of the [getInfo](#getinfo) interface in Account Service is address, the complete structure of the request parameters of the interface is as follows:
 ```go
 type AccountGetInfoRequest struct {
 address string
@@ -35,7 +35,7 @@ address string
 
 ### Response Data
 
-The class name of the response data of the interface is composed of **Service Name** + **Method Name** + **Response**. For example, the response data format of the [getNonce](#getnonce) interface in Account Services is `AccountGetNonceResponse`.
+The class name of the response data of the interface is composed of **Service Name** + **Method Name** + **Response**. For example, the response data format of the [getNonce](#getnonce) interface in Account Service is `AccountGetNonceResponse`.
 
 The members of the response data include error codes, error descriptions, and return results. For example, the members of the response data of the [getInfo](#getinfo) interface in Assets Services are as follows:
 ```go
@@ -49,7 +49,7 @@ type AccountGetInfoResponse struct {
 **Note**: 
 - errorCode: **error code**. 0 means no error, greater than 0 means there is an error.
 - errorDesc: Error description.
-- result: Return the result. A structure whose class name is Service **Service Name** + **Method Name** + **Result**, whose members are members of the return value of each interface. For example, the result class name of the [getNonce](#getnonce) interface in Account Services is `AccountGetNonceResult`, and the member has a nonce. The complete structure is as follows:
+- result: Return the result. A structure whose class name is Service **Service Name** + **Method Name** + **Result**, whose members are members of the return value of each interface. For example, the result class name of the [getNonce](#getnonce) interface in Account Service is `AccountGetNonceResult`, and the member has a nonce. The complete structure is as follows:
 
 ```go
 type AccountGetNonceResult struct {
@@ -59,7 +59,7 @@ type AccountGetNonceResult struct {
 
 ## Usage
 
-This section describes the process of using the SDK. First you need to generate the SDK implementation and then call the interface of the corresponding service. Services include [account service](#account-service), [asset service](#asset-service), [contract service](#contract-service), [transaction service](#transaction-service), and [block service](#block-service). Interfaces are classified into [generating public-private keys and address](#generating-public-private-keys-and-address), [checking Validity](#Cchecking-validity), [querying](#querying), and [broadcasting transaction](broadcasting).
+This section describes the process of using the SDK. First you need to generate the SDK implementation and then call the interface of the corresponding service. Services include [Account Service](#account-service), [Asset Service](#asset-service), [Contract Service](#contract-service), [Transaction Service](#transaction-service), and [Block Service](#block-service). Interfaces are classified into [Generating Public-Private Keys and Addresse](#generating-public-private-keys-and-addresse), [Checking Validity](#checking-validity), [Querying](#querying), and [Groadcasting Transaction](#broadcasting-transactions).
 
 ### Importing Packagings
 
@@ -122,11 +122,11 @@ resData := testSdk.Account.GetInfo(reqData)
 ### Broadcasting Transactions
 Broadcasting transactions refers to the initiation of a transaction by means of broadcasting. The broadcast transaction consists of the following steps:
 
-1. [Obtaining the nonce value of the account](#obtaining-the-nonce-value-of-the)
-2. [Building operation](#building-operation)
-3. [Serializing transaction](#serializing)
-4. [Signing transaction](#signing)
-5. [Commiting transactions](#commitings)
+1. [Obtaining the Nonce Value of the account](#obtaining-the-nonce-value-of-the-account)
+2. [Building Operations](#building-operations)
+3. [Serializing Transactions](#serializing-transactions)
+4. [Signing Transactions](#signing-transactions)
+5. [Submitting Transactions](#submitting-transactions)
 
 #### Obtaining the nonce value of the account
 
@@ -142,7 +142,7 @@ resData := testSdk.Account.GetNonce(reqData)
 
 #### Building operation
 
-The operation refers to some of the actions that are done in the transaction to facilitate serialization of transactions and evaluation of fees. For more details, see [Operations List](#operations-list). For example, to build an operation to send BU (`BUSendOperation`), the specific interface call is as follows:
+The operation refers to some of the actions that are done in the transaction to facilitate serialization of transactions and evaluation of fees. For more details, see [Operations](#operations). For example, to build an operation to send BU (`BUSendOperation`), the specific interface call is as follows:
 ```go 
 var buSendOperation model.BUSendOperation
 buSendOperation.Init()
@@ -194,679 +194,13 @@ reqData.SetSignatures(resDataSign.Result.Signatures)
 resDataSubmit := testSdk.Transaction.Submit(reqData)
 ```
 
-## Account Service
-
-Account Service provide account-related interfaces, which include six interfaces: `CheckValid`, `GetInfo`, `GetNonce`, `GetBalance`, `GetAssets`, and `GetMetadata`.
-
-### CheckValid
-
-- **Interface description**
-
-   The `create` interface in account service can generate private key, public key and address of an new account.
-
-- **Calling method**
-
-```go
-CheckValid(model.AccountCheckValidRequest) model.AccountCheckValidResponse;
-```
-
-- **Request parameters**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   address     |   String     |  Required, the account address to be checked on the blockchain
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   isValid     | Boolean |  Whether the response data is valid   
-
-- **Error code**
-
-   Error Message      |     Error Code     |        Description   
-   -----------  | ----------- | -------- 
-   SYSTEM_ERROR |   20000     |  System error 
-
-- **Example**
-
-```go
-var reqData model.AccountCheckValidRequest
-address := "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
-reqData.SetAddress(address)
-resData := testSdk.Account.CheckValid(reqData)
-if resData.ErrorCode == 0 {
-  fmt.Println(resData.Result.IsValid)
-}
-```
-
-### GetInfo
-
-- **Interface description**
-
-   The getInfo interface is used to obtain the specified account information.
-
-- **Calling method**
-
-`GetInfo(model.AccountGetInfoRequest) model.AccountGetInfoResponse;`
-
-- **Request parameters**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   address     |   String     |  Required, the account address to be queried on the blockchain 
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   --------- | ------------- | ---------------- 
-   address	  |    String     |    Account address       
-   balance	  |    int64       |    Account balance, unit is MO, 1 BU = 10^8 MO, the account balance must be > 0
-   nonce	  |    int64       |    Account transaction serial number must be greater than 0
-   priv	  | [Priv](#priv) |    Account privilege
-
-- **Error code**
-
-   Error Message      |     Error Code     |        Description   
-   -----------  | ----------- | -------- 
-   INVALID_ADDRESS_ERROR| 11006 | Invalid address
-   CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-   SYSTEM_ERROR |   20000     |  System error 
-
-- **Example**
-
-```go 
-var reqData model.AccountGetInfoRequest
-var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
-reqData.SetAddress(address)
-resData := testSdk.Account.GetInfo(reqData)
-if resData.ErrorCode == 0 {
-  data, _ := json.Marshal(resData.Result)
-  fmt.Println("Info:", string(data))
-}
-```
-
-### GetNonce
-
-- **Interface description**
-
-   The `getNonce` interface is used to obtain the nonce value of the specified account.
-
-- **Calling method**
-
-`GetNonce(model.AccountGetNonceRequest)model.AccountGetNonceResponse;`
-
-- **Request parameters**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   address     |   String     |  Required, the account address to be queried on the blockchain 
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   nonce       |   int64       |  Account transaction serial number
-
-- **Error code**
-
-   Error Message      |     Error Code     |        Description   
-   -----------  | ----------- | -------- 
-   INVALID_ADDRESS_ERROR| 11006 | Invalid address
-   CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-   SYSTEM_ERROR |   20000     |  System error 
-
-- **Example**
-
-```go
-var reqData model.AccountGetNonceRequest
-var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
-reqData.SetAddress(address)
-if resData.ErrorCode == 0 {
-  fmt.Println(resData.Result.Nonce)
-}
-```
-
-### GetBalance
-
-- **Interface description**
-
-   The `getBalance` interface is used to obtain the BU balance of the specified account.
-
-- **Calling method**
-
-`GetBalance(model.AccountGetBalanceRequest)model.AccountGetBalanceResponse;`
-
-- **Request parameters**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   address     |   String     |  Required, the account address to be queried on the blockchain 
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   balance     |   int64       | BU balance, unit MO, 1 BU = 10^8 MO
-
-- **Error code**
-
-   Error Message      |     Error Code     |        Description   
-   -----------  | ----------- | -------- 
-   INVALID_ADDRESS_ERROR| 11006 | Invalid address
-   CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-   SYSTEM_ERROR |   20000     |  System error 
-
-- **Example**
-
-```go
-var reqData model.AccountGetBalanceRequest
-var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
-reqData.SetAddress(address)
-resData := testSdk.Account.GetBalance(reqData)
-if resData.ErrorCode == 0 {
-  fmt.Println("Balance", resData.Result.Balance)
-}
-```
-
-### GetAssets
-
-- **Interface description**
-
-   The `getAssets` interface is used to get all the asset information of the specified account.
-
-- **Calling method**
-
-`GetAssets(model.AccountGetAssetsRequest)model.AccountGetAssetsResponse;`
-
-- **Request parameters**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   address     |   String     |  Required, the account address to be queried   
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   asset	    | `[]`[AssetInfo](#assetinfo) |Account asset
-
-- **Error code**
-
-   Error Message      |     Error Code     |        Description   
-   -----------  | ----------- | -------- 
-   INVALID_ADDRESS_ERROR| 11006 | Invalid address
-   CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
-   NO_ASSET_ERROR|11009|The account does not have the asset
-   SYSTEM_ERROR|20000|System error
-
-- **Example**
-
-```go
-var reqData model.AccountGetAssetsRequest
-var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
-reqData.SetAddress(address)
-resData := testSdk.Account.GetAssets(reqData)
-if resData.ErrorCode == 0 {
-  data, _ := json.Marshal(resData.Result.Assets)
-  fmt.Println("Assets:", string(data))
-}
-```
-
-### GetMetadata
-
-- **Interface description**
-
-   The `getMetadata` interface is used to obtain the metadata information of the specified account.
-
-- **Calling method**
-
-`GetMetadata(model.AccountGetMetadataRequest)model.AccountGetMetadataResponse;`
-
-- **Request parameters**
-
-   Parameter      |     Type     |        Description       
-   -------- | -------- | ---------------- 
-   address  |  String  |  Required, the account address to be queried  
-   key      |  String  |  Optional, metadata keyword, length limit [1, 1024]
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ----------- | ---------------- 
-   metadata    |`[]`[Metadata](#metadata)   | Account metadata
-
-- **Error code**
-
-   Error Message      |     Error Code     |        Description   
-   -----------  | ----------- | -------- 
-   INVALID_ADDRESS_ERROR | 11006 | Invalid address
-   CONNECTNETWORK_ERROR | 11007 | Failed to connect to the network
-   NO_METADATA_ERROR|11010|The account does not have the metadata
-   INVALID_DATAKEY_ERROR | 11011 | The length of key must be between 1 and 1024
-   SYSTEM_ERROR | 20000| System error
-
-
-- **Example**
-
-```go
-var reqData model.AccountGetMetadataRequest
-var address string = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo"
-reqData.SetAddress(address)
-resData := testSdk.Account.GetMetadata(reqData)
-if resData.ErrorCode == 0 {
-  data, _ := json.Marshal(resData.Result.Metadatas)
-  fmt.Println("Metadatas:", string(data))
-}
-```
-
-## Asset Service
-
-Asset Services follow the ATP 1.0 protocol, and Account Services provide an asset-related interface. Currently there is one interface: `GetInfo`.
-
-### getInfo
-
-- **Interface description**
-
-   The `getInfo` interface is used to obtain the specified asset information of the specified account.
-
-- **Calling method**
-
-`GetInfo(model.AssetGetInfoRequest) model.AssetGetInfoResponse;`
-
-- **Request parameters**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   address     |   String    |  Required, the account address to be queried
-   code        |   String    |  Required, asset code, length limit [1, 64]
-   issuer      |   String    |  Required, the account address for issuing assets
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   asset	    | `[]`[AssetInfo](#assetinfo) |Account asset   
-
-- **Error code**
-
-   Error Message      |     Error Code     |        Description   
-   -----------  | ----------- | -------- 
-   INVALID_ADDRESS_ERROR|11006|Invalid address
-   CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-   INVALID_ASSET_CODE_ERROR|11023|The length of asset code must be between 1 and 64
-   INVALID_ISSUER_ADDRESS_ERROR|11027|Invalid issuer address
-   SYSTEM_ERROR|20000|System error
-
-- **Example**
-
-```go
-var reqData model.AssetGetInfoRequest
-var address string = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo"
-reqData.SetAddress(address)
-reqData.SetIssuer("buQnc3AGCo6ycWJCce516MDbPHKjK7ywwkuo")
-reqData.SetCode("HNC")
-resData := testSdk.Token.Asset.GetInfo(reqData)
-if resData.ErrorCode == 0 {
-  data, _ := json.Marshal(resData.Result.Assets)
-  fmt.Println("Assets:", string(data))
-}
-```
-
-## Contract Service
-
-Contract Service provide contract-related interfaces and currently have four interfaces: `CheckValid`, `GetInfo`, `GetAddress`, and `Call`.
-
-### checkValid
-
-- **Interface description**
-
-   The `checkValid` interface is used to check the validity of the contract account.
-
-- **Calling method**
-
-`CheckValid(reqData model.ContractCheckValidRequest) model.ContractCheckValidResponse;`
-
-- **Request parameters**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   contractAddress     |   String     |  Contract account address to be tested
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   isValid     |   Boolean     |  Whether the response data is valid   
-
-- **Error code**
-
-   Error Message      |     Error Code     |        Description   
-   -----------  | ----------- | -------- 
-   INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
-   CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR|11038|ContractAddress is not a contract account
-   SYSTEM_ERROR |   20000     |  System error 
-
-- **Example**
-
-```go
-var reqData model.ContractCheckValidRequest
-var address string = "buQXmYrmqt6ohcKtLFKgWFSZ5CjYKaSzaMjT"
-reqData.SetAddress(address)
-resData := testSdk.Contract.CheckValid(reqData)
-if resData.ErrorCode != 0 {
-    t.Errorf(resData.ErrorDesc)
-} else {
-    t.Log("Test_Contract_CheckValid succeed", resData.Result)
-}
-```
-
-### getInfo
-
-- **Interface description**
-
-   The `getInfo` interface is used to query the contract code.
-
-- **Calling method**
-
-`GetInfo(model.ContractGetInfoRequest) model.ContractGetInfoResponse;`
-
-- **Request parameters**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   contractAddress     |   String     |  Contract account address to be queried   
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   contract|[ContractInfo](#contractinfo)|Contract info
-
-- **Error code**
-
-   Error Message      |     Error Code     |        Description   
-   -----------  | ----------- | -------- 
-   INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
-   CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR|11038|contractAddress is not a contract account
-   NO_SUCH_TOKEN_ERROR|11030|No such token
-   GET_TOKEN_INFO_ERROR|11066|Failed to get token info
-   SYSTEM_ERROR|20000|System error
-
-- **Example**
-
-```go
-var reqData model.ContractGetInfoRequest
-var address string = "buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea"
-reqData.SetAddress(address)
-resData := testSdk.Contract.GetInfo(reqData)
-if resData.ErrorCode == 0 {
-  data, _ := json.Marshal(resData.Result.Contract)
-  fmt.Println("Contract:", string(data))
-}
-```
-
-### getAddress
-
-- **Interface description**
-
-The `getAddress` interface is used to query the contract address.
-
-- **Calling method**
-
-`GetAddress(reqData model.ContractGetAddressRequest) model.ContractGetAddressResponse;`
-
-- **Request parameters**
-
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-hash     |   String     |  The hash used to create a contract transaction   
-
-- **Response data**
-
-Parameter      |     Type     |        Description       
------------ | ------------ | ---------------- 
-contractAddressList|List<[ContractAddressInfo](#contractaddressinfo)>|Contract address list
-
-- **Error code**
-
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_HASH_ERROR|11055|Invalid transaction hash
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
-
-- **Example**
-
-```go
-// Initialize request parameters
-var reqData model.ContractGetAddressRequest();
-reqData.SetAddress("44246c5ba1b8b835a5cbc29bdc9454cdb9a9d049870e41227f2dcfbcf7a07689");
-
-resData := sdk.Contract.GetAddress(reqData);
-if resData.ErrorCode == 0 {
-  fmt.Println("Address:", resData.Result.Address);
-}
-```
-
-### Call 
-
-- **Interface description**
-
-   The `call` interface is used to debug the contract code.
-
-- **Calling method**
-
-`Call(reqData model.ContractCallRequest) model.ContractCallResponse;`
-
-- **Request parameters**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   sourceAddress|String|Optional, the account address to trigger the contract
-   contractAddress|String|Optional, the contract account address and code cannot be empty at the same time
-   code|String|Optional, the contract code and contractAddress cannot be empty at the same time, length limit [1, 64]
-   input|String|Optional, input parameter for the contract
-   contractBalance|int64|Optional, the initial BU balance given to the contract, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)]
-   optType|Integer|Required, 0: Call the read/write interface of the contract init, 1: Call the read/write interface of the contract main, 2: Call the read-only interface query
-   feeLimit|int64|Minimum fee required for the transaction, size limit [1, max(int64)]
-   gasPrice|int64|Transaction fuel price, size limit [1000, max(int64)]
-
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   logs|JSONObject|Log information
-   queryRets|JSONArray|Query the result set
-   stat|[ContractStat](#contractstat)|Contract resource occupancy
-   txs|`[]`[TransactionEnvs](#transactionenvs)|Transaction set
-
-- **Error code**
-
-   Error Message      |     Error Code     |        Description   
-   -----------  | ----------- | -------- 
-   INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
-   INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
-   CONTRACTADDRESS_CODE_BOTH_NULL_ERROR|11063|ContractAddress and code cannot be empty at the same time
-   INVALID_OPTTYPE_ERROR|11064|OptType must be between 0 and 2
-   CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-   SYSTEM_ERROR|20000|System error
-
-- **Example**
-
-```go 
-var reqData model.ContractCallRequest
-var contractAddress string = "buQXmYrmqt6ohcKtLFKgWFSZ5CjYKaSzaMjT"
-var feeLimit int64 = 1000000
-var gasPrice int64 = 1000
-var contractBalance string = "100000000000"
-var input string = "input"
-var optType int64 = 2
-var code string = "HNC"
-
-reqData.SetContractAddress(contractAddress)
-reqData.SetContractBalance(contractBalance)
-reqData.SetFeeLimit(feeLimit)
-reqData.SetGasPrice(gasPrice)
-reqData.SetInput(input)
-reqData.SetOptType(optType)
-reqData.SetCode(code)
-resData := testSdk.Contract.Call(reqData)
-
-if resData.ErrorCode != 0 {
-    t.Errorf(resData.ErrorDesc)
-} else {
-    t.Log("Test_Contract_Call succeed", resData.Result)
-}
-```
-
 ## Transaction Service
 
 Transaction Service provide transaction-related interfaces and currently have five interfaces: `BuildBlob`, `EvaluateFee`, `sign`, `Submit`, and `GetInfo`.
 
-**Note**: 
-
-Before you can call buildBlob, you need to build some operations (details for [Operations List](#operators-list)). There are 16 operations: `AccountActivateOperation`, `AccountSetMetadataOperation`,  `AccountSetPrivilegeOperation`,  `AssetIssueOperation`,  `AssetSendOperation`,  `BUSendOperation`,  `ContractCreateOperation`,  `ContractInvokeByAssetOperation`,  `ContractInvokeByBUOperation`, and `LogCreateOperation`.
-
-### Operations List
-
-- **BaseOperation**
-
-BaseOperation is the base class for all operations in the buildBlob interface. The following table describes BaseOperation:
-
-   Member    |     Type  |        Description                           
-   ------------- | -------- | ----------------------------------   
-   sourceAddress |   String |  Optional, source account address of the operation
-   metadata      |   String |  Optional, note
-
-- **AccountActivateOperation**
-
-AccountActivateOperation inherits from BaseOperation, and feeLimit is currently fixed at 0.01 BU (2018.07.26).
-
-Member    |     Type  |        Description                           
-------------- | -------- | ---------------------------------- 
-sourceAddress |   String |  Optional, source account address of the operation 
-destAddress   |   String |  Required, target account address
-initBalance   |   int64   |  Required, initialize the asset, unit MO, 1 BU = 10^8 MO, size (0, max(int64)] 
-metadata|String|Optional, note
-
-- **AccountSetMetadataOperation**
-
-AccountSetMetadataOperation is inherited from BaseOperation, and feeLimit is currently fixed at 0.01 BU (2018.07.26).
-
-Member    |     Type  |        Description                         
-------------- | --------- | ------------------------------- 
-sourceAddress |   String |  Optional, source account address of the operation
-key           |   String  |  Required, metadata keyword, length limit [1, 1024]
-value         |   String  |  Required, metadata content, length limit [0, 256000]
-version       |   int64    |  Optional, metadata version
-deleteFlag    |   Boolean |  Optional, whether to delete metadata
-metadata|String|Optional, note           
-
-- **AccountSetPrivilegeOperation**
-
-AccountSetPrivilegeOperation inherits from BaseOperation, and feeLimit is currently fixed at 0.01 BU (2018.07.26).
-
-Member    |     Type  |        Description               
-------------- | --------- | --------------------------
-sourceAddress |   String |  Optional, source account address of the operation
-masterWeight|String|	Optional, account weight, size limit [0,max(uint32)]
-signers|`[]`[Signer](#signer)|Optional, signer weight list
-txThreshold|String|Optional, transaction threshold, size limit [0, max(int64)]
-typeThreshold|`[]`[TypeThreshold](#typethreshold)|Optional, specify transaction threshold
-metadata|String|Optional, note
-
-- **AssetIssueOperation**
-
-AssetIssueOperation inherits from BaseOperation, and feeLimit is currently fixed at 50.01 BU (2018.07.26).
-
-Member    |     Type  |        Description             
-------------- | --------- | ------------------------
-sourceAddress|String|Optional, source account address of the operation
-code|String|Required, asset code, length limit [1, 64]
-assetAmount|int64|Required, asset code, length limit [0, max(int64)]
-metadata|String|Optional, note
-
-- **AssetSendOperation**
-
-AssetSendOperation inherits from BaseOperation, and feeLimit is currently fixed at 0.01 BU (2018.07.26).
-
-**Note**: If the destination account is not activated, the activation account operation must be invoked first.
-
-Member    |     Type  |        Description            
-------------- | --------- | ----------------------
-sourceAddress|String|Optional, source account address of the operation
-destAddress|String|Required, target account address
-code|String|Required, asset code, length limit [1, 64]
-issuer|String|Required, the account address for issuing assets
-assetAmount|int64|Required, asset amount, size limit [0, max(int64)]
-metadata|String|Optional, note
-
-- **BUSendOperation**
-
-BUSendOperation inherits from BaseOperation, and feeLimit is currently fixed at 0.01 BU (2018.07.26).
-
-Member    |     Type  |        Description          
-------------- | --------- | ---------------------
-sourceAddress|String|Optional, source account address of the operation
-destAddress|String|Required, target account address
-buAmount|int64|Required, asset code, length limit [0, max(int64)]
-metadata|String|Optional, note
-
-- **ContractCreateOperation**
-
-ContractCreateOperation inherits from BaseOperation, and feeLimit is currently fixed at 10.01 BU (2018.07.26).
-
-Member    |     Type  |        Description          
-------------- | --------- | ---------------------
-sourceAddress|String|Optional, source account address of the operation
-initBalance|int64|Required, initial asset for contract account, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)]
-type|Integer|Optional, the language of the contract, the default is 
-payload|String|Required, contract code for the corresponding language
-initInput|String|Optional, the input parameters of the init method in the contract code
-metadata|String|Optional, note
-
-- **ContractInvokeByAssetOperation**
-
-ContractInvokeByAssetOperation inherits from BaseOperation. FeeLimit requires to add fees according to the execution of the transaction in the contract. First, the transaction fee is initiated. At present the fee (2018.07.26) is 0.01BU, and then the transaction in the contract also requires the transaction initiator to add the transaction fees.
-
-**Note**: If the destination account is not activated, the activation account operation must be invoked first.
-
-Member    |     Type  |        Description          
-------------- | --------- | ---------------------
-sourceAddress|String|Optional, source account address of the operation
-contractAddress|String|Required, contract account address
-code|String|Optional, asset code, length limit [0, 1024]; when it is empty, only the contract is triggered
-issuer|String|Optional, the account address issuing assets; when it is null, only trigger the contract
-assetAmount|int64|Optional, asset quantity, size limit [0, max(int64)], when it is 0, only trigger the contract
-input|String|Optional, the input parameter of the main() method for the contract to be triggered
-metadata|String|Optional, metadata
-
-- **ContractInvokeByBUOperation**
-
-ContractInvokeByBUOperation inherits from BaseOperation. FeeLimit requires to add fees according to the execution of the transaction in the contract. First, the transaction fee is initiated. At present the fee (2018.07.26) is 0.01BU, and then the transaction in the contract also requires the transaction initiator to add the transaction fees.
-
-Member    |     Type  |        Description          
-------------- | --------- | ---------------------
-sourceAddress|String|Optional, source account address of the operation
-contractAddress|String|Required, contract account address
-buAmount|int64|Optional, number of asset issues, size limit [0, max(int64)], when it is 0 only triggers the contract
-input|String|Optional, the input parameter of the main() method for the contract to be triggered
-metadata|String|Optional, note
-
-- **LogCreateOperation**
-
-LogCreateOperation inherits from BaseOperation, and feeLimit is currently fixed at 0.01 BU (2018.07.26).
-
-Member    |     Type  |        Description          
-------------- | --------- | ---------------------
-sourceAddress|String|Optional, source account address of the operation
-topic|String|Required, Log theme，length limit [1, 128]
-datas|`[]`String|Required, Log content，length limit of each string [1, 1024]
-metadata|String|Optional, note
-
 ### buildBlob
+
+> **Note:** Before you call **buildBlob**, you shold make some operations, details for [Operations](#operations).
 
 - **Interface description**
 
@@ -1172,6 +506,759 @@ resData := testSdk.Transaction.GetInfo(reqData)
 if resData.ErrorCode == 0 {
     data, _ := json.Marshal(resData.Result)
     fmt.Println("info:", string(data)
+}
+```
+
+## Operations
+
+Operations refer to the things that are to be done in a transaction, and the operations that need to be built before the operations are to be built. At present, there are 10 kinds of operations, which include [AccountActivateOperation](#accountactivateoperation)、[AccountSetMetadataOperation](#accountsetmetadataoperation)、 [AccountSetPrivilegeOperation](#accountsetprivilegeoperation)、 [AssetIssueOperation](#assetissueoperation)、 [AssetSendOperation](#assetsendoperation)、 [BUSendOperation](#busendoperation)、 [ContractCreateOperation](#contractcreateoperation)、 [ContractInvokeByAssetOperation](#contractinvokebyassetoperation)、 [ContractInvokeByBUOperation](#contractinvokebybuoperation)、 [LogCreateOperation](#logcreateoperation).
+
+
+**BaseOperation**
+
+BaseOperation is the base class for all operations in the buildBlob interface. The following table describes BaseOperation:
+
+   Member    |     Type  |        Description                           
+   ------------- | -------- | ----------------------------------   
+   sourceAddress |   String |  Optional, source account address of the operation
+   metadata      |   String |  Optional, note
+
+### AccountActivateOperation
+
+- Function
+
+  This operation is used to activate an account. AccountActivateOperation inherits from BaseOperation.
+
+- Fee
+
+  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
+
+- Member
+
+   Member    |     Type  |        Description                           
+   ------------- | -------- | ---------------------------------- 
+   sourceAddress |   String |  Optional, source account address of the operation 
+   destAddress   |   String |  Required, target account address
+   initBalance   |   Long   |  Required, initialize the asset, unit MO, 1 BU = 10^8 MO, size (0, Long.MAX_VALUE] 
+   metadata|String|Optional, note
+
+### AccountSetMetadataOperation
+
+- Function
+
+  This operation is used to set the metadata of an account. AccountSetMetadataOperation inherits from BaseOperation.
+
+- Fee
+
+  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
+
+- Member
+
+   Member    |     Type  |        Description                         
+   ------------- | --------- | ------------------------------- 
+   sourceAddress |   String |  Optional, source account address of the operation
+   key           |   String  |  Required, metadata keyword, length limit [1, 1024]
+   value         |   String  |  Required, metadata content, length limit [0, 256000]
+   version       |   Long    |  Optional, metadata version
+   deleteFlag    |   Boolean |  Optional, whether to delete metadata
+   metadata|String|Optional, note           
+
+### AccountSetPrivilegeOperation
+
+- Function
+
+  This operation is used to set the privilege of an account. AccountSetPrivilegeOperation inherits from BaseOperation.
+
+- Fee
+
+  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
+
+- Member
+
+   Member    |     Type  |        Description               
+   ------------- | --------- | --------------------------
+   sourceAddress |   String |  Optional, source account address of the operation
+   masterWeight|String|	Optional, account weight, size limit [0, (Integer.MAX_VALUE * 2L + 1)]
+   signers|[Signer](#signer)[]|Optional, signer weight list
+   txThreshold|String|Optional, transaction threshold, size limit [0, Long.MAX_VALUE]
+   typeThreshold|[TypeThreshold](#typethreshold)[]|Optional, specify transaction threshold
+   metadata|String|Optional, note
+
+### AssetIssueOperation
+
+- Function
+
+  This operation is used to issue assets. AssetIssueOperation inherits from BaseOperation.
+
+- Fee
+
+  FeeLimit is currently fixed at 50.01 BU (2018.07.26).
+
+- Member
+
+   Member    |     Type  |        Description             
+   ------------- | --------- | ------------------------
+   sourceAddress|String|Optional, source account address of the operation
+   code|String|Required, asset code, length limit [1, 64]
+   assetAmount|Long|Required, asset code, length limit [0, Long.MAX_VALUE]
+   metadata|String|Optional, note
+
+### AssetSendOperation
+
+> **Note**: If the destination account is not activated, the activation account operation must be invoked first.
+
+- Function
+
+  This operation is used to send assets. AssetSendOperation inherits from BaseOperation.
+
+- Fee
+
+  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
+
+- Member
+
+   Member    |     Type  |        Description            
+   ------------- | --------- | ----------------------
+   sourceAddress|String|Optional, source account address of the operation
+   destAddress|String|Required, target account address
+   code|String|Required, asset code, length limit [1, 64]
+   issuer|String|Required, the account address for issuing assets
+   assetAmount|Long|Required, asset amount, size limit [0, Long.MAX_VALUE]
+   metadata|String|Optional, note
+
+### BUSendOperation
+
+> **Note**: If the destination account is not activated, this operation will activate this account.
+
+- Function
+
+  This operation is used to send BUs. BUSendOperation inherits from BaseOperation.
+
+- Fee
+
+  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
+
+- Member
+
+   Member    |     Type  |        Description          
+   ------------- | --------- | ---------------------
+   sourceAddress|String|Optional, source account address of the operation
+   destAddress|String|Required, target account address
+   buAmount|Long|Required, asset code, length limit [0, Long.MAX_VALUE]
+   metadata|String|Optional, note
+
+### ContractCreateOperation
+
+- Function
+
+  This operation is used to create a contract. ContractCreateOperation inherits from BaseOperation.
+
+- Fee
+
+  FeeLimit is currently fixed at 10.01 BU (2018.07.26).
+
+- Member
+
+   Member    |     Type  |        Description          
+   ------------- | --------- | ---------------------
+   sourceAddress|String|Optional, source account address of the operation
+   initBalance|Long|Required, initial asset for contract account, unit MO, 1 BU = 10^8 MO, size limit [1, Long.MAX_VALUE]
+   type|Integer|Optional, the language of the contract, the default is 
+   payload|String|Required, contract code for the corresponding language
+   initInput|String|Optional, the input parameters of the init method in the contract code
+   metadata|String|Optional, note
+
+### ContractInvokeByAssetOperation
+
+> **Note**: If the destination account is not activated, the activation account operation must be invoked first.
+
+- Function
+
+  This operation is used to send assets and invoke a contract. ContractInvokeByAssetOperation inherits from BaseOperation.
+
+- Fee
+
+  FeeLimit requires to add fees according to the execution of the transaction in the contract. First, the transaction fee is initiated. At present the fee (2018.07.26) is 0.01BU, and then the transaction in the contract also requires the transaction initiator to add the transaction fees.
+
+- Member
+
+   Member    |     Type  |        Description          
+   ------------- | --------- | ---------------------
+   sourceAddress|String|Optional, source account address of the operation
+   contractAddress|String|Required, contract account address
+   code|String|Optional, asset code, length limit [0, 1024]; when it is empty, only the contract is triggered
+   issuer|String|Optional, the account address issuing assets; when it is null, only trigger the contract
+   assetAmount|Long|Optional, asset amount, size limit[0, Long.MAX_VALUE]when it is 0, only trigger the contract
+   input|String|Optional, the input parameter of the main() method for the contract to be triggered
+   metadata|String|Optional, note
+
+### ContractInvokeByBUOperation
+
+> **Note**: If the destination account is not a contract and it is not activated, this operation will activate this account.
+
+- Function
+
+  This operation is used to send BUs and invoke an contract. ContractInvokeByBUOperation inherits from BaseOperation.
+
+- Fee
+
+  FeeLimit requires to add fees according to the execution of the transaction in the contract. First, the transaction fee is initiated. At present the fee (2018.07.26) is 0.01BU, and then the transaction in the contract also requires the transaction initiator to add the transaction fees.
+
+- Member
+
+   Member    |     Type  |        Description          
+   ------------- | --------- | ---------------------
+   sourceAddress|String|Optional, source account address of the operation
+   contractAddress|String|Required, contract account address
+   buAmount|Long|Optional, number of asset issues, size limit [0, Long.MAX_VALUE], when it is 0 only triggers the contract
+   input|String|Optional, the input parameter of the main() method for the contract to be triggered
+   metadata|String|Optional, note
+
+### LogCreateOperation
+
+- Function
+
+  This operation is used to record a log. LogCreateOperation inherits from BaseOperation.
+
+- Fee
+
+  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
+
+- Member
+
+   Member    |     Type  |        Description          
+   ------------- | --------- | ---------------------
+   sourceAddress|String|Optional, source account address of the operation
+   topic|String|Required, Log theme，length limit [1, 128]
+   datas|List<String>|Required, Log content，length limit of each string [1, 1024]
+   metadata|String|Optional, note
+
+
+
+## Account Service
+
+Account Service provide account-related interfaces, which include six interfaces: `CheckValid`, `GetInfo`, `GetNonce`, `GetBalance`, `GetAssets`, and `GetMetadata`.
+
+### CheckValid
+
+- **Interface description**
+
+   The `create` interface in account service can generate private key, public key and address of an new account.
+
+- **Calling method**
+
+```go
+CheckValid(model.AccountCheckValidRequest) model.AccountCheckValidResponse;
+```
+
+- **Request parameters**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   address     |   String     |  Required, the account address to be checked on the blockchain
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   isValid     | Boolean |  Whether the response data is valid   
+
+- **Error code**
+
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   SYSTEM_ERROR |   20000     |  System error 
+
+- **Example**
+
+```go
+var reqData model.AccountCheckValidRequest
+address := "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
+reqData.SetAddress(address)
+resData := testSdk.Account.CheckValid(reqData)
+if resData.ErrorCode == 0 {
+  fmt.Println(resData.Result.IsValid)
+}
+```
+
+### GetInfo
+
+- **Interface description**
+
+   The getInfo interface is used to obtain the specified account information.
+
+- **Calling method**
+
+`GetInfo(model.AccountGetInfoRequest) model.AccountGetInfoResponse;`
+
+- **Request parameters**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   address     |   String     |  Required, the account address to be queried on the blockchain 
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   --------- | ------------- | ---------------- 
+   address	  |    String     |    Account address       
+   balance	  |    int64       |    Account balance, unit is MO, 1 BU = 10^8 MO, the account balance must be > 0
+   nonce	  |    int64       |    Account transaction serial number must be greater than 0
+   priv	  | [Priv](#priv) |    Account privilege
+
+- **Error code**
+
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_ADDRESS_ERROR| 11006 | Invalid address
+   CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+   SYSTEM_ERROR |   20000     |  System error 
+
+- **Example**
+
+```go 
+var reqData model.AccountGetInfoRequest
+var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
+reqData.SetAddress(address)
+resData := testSdk.Account.GetInfo(reqData)
+if resData.ErrorCode == 0 {
+  data, _ := json.Marshal(resData.Result)
+  fmt.Println("Info:", string(data))
+}
+```
+
+### GetNonce
+
+- **Interface description**
+
+   The `getNonce` interface is used to obtain the nonce value of the specified account.
+
+- **Calling method**
+
+`GetNonce(model.AccountGetNonceRequest)model.AccountGetNonceResponse;`
+
+- **Request parameters**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   address     |   String     |  Required, the account address to be queried on the blockchain 
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   nonce       |   int64       |  Account transaction serial number
+
+- **Error code**
+
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_ADDRESS_ERROR| 11006 | Invalid address
+   CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+   SYSTEM_ERROR |   20000     |  System error 
+
+- **Example**
+
+```go
+var reqData model.AccountGetNonceRequest
+var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
+reqData.SetAddress(address)
+if resData.ErrorCode == 0 {
+  fmt.Println(resData.Result.Nonce)
+}
+```
+
+### GetBalance
+
+- **Interface description**
+
+   The `getBalance` interface is used to obtain the BU balance of the specified account.
+
+- **Calling method**
+
+`GetBalance(model.AccountGetBalanceRequest)model.AccountGetBalanceResponse;`
+
+- **Request parameters**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   address     |   String     |  Required, the account address to be queried on the blockchain 
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   balance     |   int64       | BU balance, unit MO, 1 BU = 10^8 MO
+
+- **Error code**
+
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_ADDRESS_ERROR| 11006 | Invalid address
+   CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+   SYSTEM_ERROR |   20000     |  System error 
+
+- **Example**
+
+```go
+var reqData model.AccountGetBalanceRequest
+var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
+reqData.SetAddress(address)
+resData := testSdk.Account.GetBalance(reqData)
+if resData.ErrorCode == 0 {
+  fmt.Println("Balance", resData.Result.Balance)
+}
+```
+
+### GetAssets
+
+- **Interface description**
+
+   The `getAssets` interface is used to get all the asset information of the specified account.
+
+- **Calling method**
+
+`GetAssets(model.AccountGetAssetsRequest)model.AccountGetAssetsResponse;`
+
+- **Request parameters**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   address     |   String     |  Required, the account address to be queried   
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   asset	    | `[]`[AssetInfo](#assetinfo) |Account asset
+
+- **Error code**
+
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_ADDRESS_ERROR| 11006 | Invalid address
+   CONNECTNETWORK_ERROR| 11007| Failed to connect to the network
+   NO_ASSET_ERROR|11009|The account does not have the asset
+   SYSTEM_ERROR|20000|System error
+
+- **Example**
+
+```go
+var reqData model.AccountGetAssetsRequest
+var address string = "buQtfFxpQP9JCFgmu4WBojBbEnVyQGaJDgGn"
+reqData.SetAddress(address)
+resData := testSdk.Account.GetAssets(reqData)
+if resData.ErrorCode == 0 {
+  data, _ := json.Marshal(resData.Result.Assets)
+  fmt.Println("Assets:", string(data))
+}
+```
+
+### GetMetadata
+
+- **Interface description**
+
+   The `getMetadata` interface is used to obtain the metadata information of the specified account.
+
+- **Calling method**
+
+`GetMetadata(model.AccountGetMetadataRequest)model.AccountGetMetadataResponse;`
+
+- **Request parameters**
+
+   Parameter      |     Type     |        Description       
+   -------- | -------- | ---------------- 
+   address  |  String  |  Required, the account address to be queried  
+   key      |  String  |  Optional, metadata keyword, length limit [1, 1024]
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ----------- | ---------------- 
+   metadata    |`[]`[Metadata](#metadata)   | Account metadata
+
+- **Error code**
+
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_ADDRESS_ERROR | 11006 | Invalid address
+   CONNECTNETWORK_ERROR | 11007 | Failed to connect to the network
+   NO_METADATA_ERROR|11010|The account does not have the metadata
+   INVALID_DATAKEY_ERROR | 11011 | The length of key must be between 1 and 1024
+   SYSTEM_ERROR | 20000| System error
+
+
+- **Example**
+
+```go
+var reqData model.AccountGetMetadataRequest
+var address string = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo"
+reqData.SetAddress(address)
+resData := testSdk.Account.GetMetadata(reqData)
+if resData.ErrorCode == 0 {
+  data, _ := json.Marshal(resData.Result.Metadatas)
+  fmt.Println("Metadatas:", string(data))
+}
+```
+
+## Asset Service
+
+Asset Service follow the ATP 1.0 protocol, and Account Service provide an asset-related interface. Currently there is one interface: `GetInfo`.
+
+### getInfo
+
+- **Interface description**
+
+   The `getInfo` interface is used to obtain the specified asset information of the specified account.
+
+- **Calling method**
+
+`GetInfo(model.AssetGetInfoRequest) model.AssetGetInfoResponse;`
+
+- **Request parameters**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   address     |   String    |  Required, the account address to be queried
+   code        |   String    |  Required, asset code, length limit [1, 64]
+   issuer      |   String    |  Required, the account address for issuing assets
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   asset	    | `[]`[AssetInfo](#assetinfo) |Account asset   
+
+- **Error code**
+
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_ADDRESS_ERROR|11006|Invalid address
+   CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+   INVALID_ASSET_CODE_ERROR|11023|The length of asset code must be between 1 and 64
+   INVALID_ISSUER_ADDRESS_ERROR|11027|Invalid issuer address
+   SYSTEM_ERROR|20000|System error
+
+- **Example**
+
+```go
+var reqData model.AssetGetInfoRequest
+var address string = "buQemmMwmRQY1JkcU7w3nhruoX5N3j6C29uo"
+reqData.SetAddress(address)
+reqData.SetIssuer("buQnc3AGCo6ycWJCce516MDbPHKjK7ywwkuo")
+reqData.SetCode("HNC")
+resData := testSdk.Token.Asset.GetInfo(reqData)
+if resData.ErrorCode == 0 {
+  data, _ := json.Marshal(resData.Result.Assets)
+  fmt.Println("Assets:", string(data))
+}
+```
+
+## Contract Service
+
+Contract Service provide contract-related interfaces and currently have four interfaces: `CheckValid`, `GetInfo`, `GetAddress`, and `Call`.
+
+### checkValid
+
+- **Interface description**
+
+   The `checkValid` interface is used to check the validity of the contract account.
+
+- **Calling method**
+
+`CheckValid(reqData model.ContractCheckValidRequest) model.ContractCheckValidResponse;`
+
+- **Request parameters**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   contractAddress     |   String     |  Contract account address to be tested
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   isValid     |   Boolean     |  Whether the response data is valid   
+
+- **Error code**
+
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
+   CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR|11038|ContractAddress is not a contract account
+   SYSTEM_ERROR |   20000     |  System error 
+
+- **Example**
+
+```go
+var reqData model.ContractCheckValidRequest
+var address string = "buQXmYrmqt6ohcKtLFKgWFSZ5CjYKaSzaMjT"
+reqData.SetAddress(address)
+resData := testSdk.Contract.CheckValid(reqData)
+if resData.ErrorCode != 0 {
+    t.Errorf(resData.ErrorDesc)
+} else {
+    t.Log("Test_Contract_CheckValid succeed", resData.Result)
+}
+```
+
+### getInfo
+
+- **Interface description**
+
+   The `getInfo` interface is used to query the contract code.
+
+- **Calling method**
+
+`GetInfo(model.ContractGetInfoRequest) model.ContractGetInfoResponse;`
+
+- **Request parameters**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   contractAddress     |   String     |  Contract account address to be queried   
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   contract|[ContractInfo](#contractinfo)|Contract info
+
+- **Error code**
+
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
+   CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR|11038|contractAddress is not a contract account
+   NO_SUCH_TOKEN_ERROR|11030|No such token
+   GET_TOKEN_INFO_ERROR|11066|Failed to get token info
+   SYSTEM_ERROR|20000|System error
+
+- **Example**
+
+```go
+var reqData model.ContractGetInfoRequest
+var address string = "buQfnVYgXuMo3rvCEpKA6SfRrDpaz8D8A9Ea"
+reqData.SetAddress(address)
+resData := testSdk.Contract.GetInfo(reqData)
+if resData.ErrorCode == 0 {
+  data, _ := json.Marshal(resData.Result.Contract)
+  fmt.Println("Contract:", string(data))
+}
+```
+
+### getAddress
+
+- **Interface description**
+
+The `getAddress` interface is used to query the contract address.
+
+- **Calling method**
+
+`GetAddress(reqData model.ContractGetAddressRequest) model.ContractGetAddressResponse;`
+
+- **Request parameters**
+
+Parameter      |     Type     |        Description       
+----------- | ------------ | ---------------- 
+hash     |   String     |  The hash used to create a contract transaction   
+
+- **Response data**
+
+Parameter      |     Type     |        Description       
+----------- | ------------ | ---------------- 
+contractAddressList|List<[ContractAddressInfo](#contractaddressinfo)>|Contract address list
+
+- **Error code**
+
+Error Message      |     Error Code     |        Description   
+-----------  | ----------- | -------- 
+INVALID_HASH_ERROR|11055|Invalid transaction hash
+CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+SYSTEM_ERROR|20000|System error
+
+- **Example**
+
+```go
+// Initialize request parameters
+var reqData model.ContractGetAddressRequest();
+reqData.SetAddress("44246c5ba1b8b835a5cbc29bdc9454cdb9a9d049870e41227f2dcfbcf7a07689");
+
+resData := sdk.Contract.GetAddress(reqData);
+if resData.ErrorCode == 0 {
+  fmt.Println("Address:", resData.Result.Address);
+}
+```
+
+### Call 
+
+- **Interface description**
+
+   The `call` interface is used to debug the contract code.
+
+- **Calling method**
+
+`Call(reqData model.ContractCallRequest) model.ContractCallResponse;`
+
+- **Request parameters**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   sourceAddress|String|Optional, the account address to trigger the contract
+   contractAddress|String|Optional, the contract account address and code cannot be empty at the same time
+   code|String|Optional, the contract code and contractAddress cannot be empty at the same time, length limit [1, 64]
+   input|String|Optional, input parameter for the contract
+   contractBalance|int64|Optional, the initial BU balance given to the contract, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)]
+   optType|Integer|Required, 0: Call the read/write interface of the contract init, 1: Call the read/write interface of the contract main, 2: Call the read-only interface query
+   feeLimit|int64|Minimum fee required for the transaction, size limit [1, max(int64)]
+   gasPrice|int64|Transaction fuel price, size limit [1000, max(int64)]
+
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   logs|JSONObject|Log information
+   queryRets|JSONArray|Query the result set
+   stat|[ContractStat](#contractstat)|Contract resource occupancy
+   txs|`[]`[TransactionEnvs](#transactionenvs)|Transaction set
+
+- **Error code**
+
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
+   INVALID_CONTRACTADDRESS_ERROR|11037|Invalid contract address
+   CONTRACTADDRESS_CODE_BOTH_NULL_ERROR|11063|ContractAddress and code cannot be empty at the same time
+   INVALID_OPTTYPE_ERROR|11064|OptType must be between 0 and 2
+   CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+   SYSTEM_ERROR|20000|System error
+
+- **Example**
+
+```go 
+var reqData model.ContractCallRequest
+var contractAddress string = "buQXmYrmqt6ohcKtLFKgWFSZ5CjYKaSzaMjT"
+var feeLimit int64 = 1000000
+var gasPrice int64 = 1000
+var contractBalance string = "100000000000"
+var input string = "input"
+var optType int64 = 2
+var code string = "HNC"
+
+reqData.SetContractAddress(contractAddress)
+reqData.SetContractBalance(contractBalance)
+reqData.SetFeeLimit(feeLimit)
+reqData.SetGasPrice(gasPrice)
+reqData.SetInput(input)
+reqData.SetOptType(optType)
+reqData.SetCode(code)
+resData := testSdk.Contract.Call(reqData)
+
+if resData.ErrorCode != 0 {
+    t.Errorf(resData.ErrorDesc)
+} else {
+    t.Log("Test_Contract_Call succeed", resData.Result)
 }
 ```
 

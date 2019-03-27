@@ -18,7 +18,7 @@ The following is the default page of the contract editor, `CodeMach Editor`. Thi
 
 - **Area 2** is the code editing area, and the contract code can be edited in this area.
 
-- **Area 3** is the information area, and the current user's account address and the number of available BUs are displayed here. When it prompts that BUs are insufficient, click the **Refresh** button next to it to get 100BUs again. You can set smart contract parameters at **Deploy the contract**, where parameters are passed in for the specified method. Once the contract parameters have been set, click the **Deploy** button below to generate the contract. The - - **Contractinformation** shows the return information displayed after the smart contract is executed.
+- **Area 3** is the information area, and the current user's account address and the number of available BUs are displayed here. When it prompts that BUs are insufficient, click the **Refresh** button next to it to get 100BUs again. You can set smart contract parameters at **Deploy the contract**, where parameters are passed in for the specified method. Once the contract parameters have been set, click the **Deploy** button below to generate the contract. The **Contractinformation** shows the return information displayed after the smart contract is executed.
 
 - **Area 4** is the console area. After the smart contract is executed, relevant information such as contract address and transaction hash will be displayed here. If an error occurs during the execution, an error message will be returned to the console area.
 

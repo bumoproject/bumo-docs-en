@@ -45,7 +45,7 @@ The response data of the interfaces are JavaScript object, and the following is 
 
 ## Usage
 
-This section describes the process of using the SDK. First you need to generate the SDK implementation and then call the interface of the corresponding service. Services include [account service](#account-service), [asset service](#asset-service), [contract service](#contract-service), [transaction service](#transaction-service), and [block service](#block-service). Interfaces are classified into [generating public-private keys and address](#generating-public-private-keys-and-address), [checking Validity](#Cchecking-validity), [querying](#querying), and [broadcasting transaction](broadcasting).
+This section describes the process of using the SDK. First you need to generate the SDK implementation and then call the interface of the corresponding service. Services include [Account Service](#account-service), [Asset Service](#asset-service), [Contract Service](#contract-service), [Transaction Service](#transaction-service), and [Block Service](#block-service). Interfaces are classified into [Querying](#querying), and [Groadcasting Transaction](#broadcasting-transactions).
 
 ### Generating SDK Instance
 
@@ -82,11 +82,11 @@ sdk.account.getInfo(address).then(info=> {
 ### Broadcasting Transactions
 Broadcasting transactions refers to the initiation of a transaction by means of broadcasting. The broadcast transaction consists of the following steps:
 
-1. [Obtaining the nonce value of the account](#obtaining-the-nonce-value-of-the)
-2. [Building operations](#building-operations)
-3. [Serializing transactions](#serializings)
-4. [Signing transactions](#signings)
-5. [Commiting transactions](#commitings)
+1. [Obtaining the Nonce Value of the account](#obtaining-the-nonce-value-of-the-account)
+2. [Building Operations](#building-operations)
+3. [Serializing Transactions](#serializing-transactions)
+4. [Signing Transactions](#signing-transactions)
+5. [Submitting Transactions](#submitting-transactions)
 
 #### Obtaining the Nonce Value of the Account
 
@@ -109,7 +109,7 @@ sdk.account.getNonce(address).then(info => {
 
 #### Building Operations
 
-The operation refers to some of the actions that are done in the transaction to facilitate serialization of transactions and evaluation of fees. For more details, see [Operations List](#operations-list). For example, to build an operation to send BU (`BUSendOperation`), the specific interface call is as follows:
+The operation refers to some of the actions that are done in the transaction to facilitate serialization of transactions and evaluation of fees. For more details, see [Operations](#operations). For example, to build an operation to send BU (`BUSendOperation`), the specific interface call is as follows:
 ```js
 const destAddress = 'buQWESXjdgXSFFajEZfkwi5H4fuAyTGgzkje';
 
@@ -160,9 +160,668 @@ sdk.transaction.submit({
 });
 ```
 
-## Account Services
+## Transaction Service
 
-Account Services provide account-related interfaces, which include six interfaces: `create`,`checkValid`, `getInfo`, `getNonce`, `getBalance`, `getAssets`, and `getMetadata`.
+Transaction Service provide transaction-related interfaces and currently have five interfaces: `buildBlob`, `evaluateFee`, `sign`, `submit`, and `getInfo`.
+
+### buildBlob
+
+> **Note:** Before you call **buildBlob**, you shold make some operations, details for [Operations](#operations).
+
+- **Interface description**
+
+   The `buildBlob` interface is used to serialize transactions and generate transaction blob strings for network transmission.
+
+- **Method call**
+
+`sdk.transaction.buildBlob(args);`
+
+- **Request parameters**
+
+   Args is of Object type, which contains the following parameters:
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   sourceAddress|String|Required, the source account address initiating the operation
+   nonce|String|Required, the transaction serial number to be initiated, add 1 in the function, size limit [1, max(int64)], and it cannot start with 0.
+   gasPrice|String|Required, transaction gas price, unit MO, 1 BU = 10^8 MO, size limit [1000, max(int64)], and it cannot start with 0.
+   feeLimit|String|Required, the minimum fees required for the transaction, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)], and it cannot start with 0.
+   operation|BaseOperation[]|Required, list of operations to be committed which cannot be empty
+   ceilLedgerSeq|String|Optional, set a value which will be combined with the current block height to restrict transactions. If transactions do not complete within the set value plus the current block height, the transactions fail. The value you set must be greater than 0. If the value is set to 0, no limit is set., and it cannot start with 0.
+   metadata|String|Optional, note
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   transactionBlob|String|Serialized transaction hex string
+   hash|String|Transaction hash
+
+- **Error code**
+
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
+   INVALID_NONCE_ERROR|11048|Nonce must be between 1 and max(int64)
+   INVALID_NONCE_ERROR|11048|Nonce must be between 1 and max(int64)
+   INVALID_ GASPRICE_ERROR|11049|GasPrice must be between 1000 and max(int64)
+   INVALID_FEELIMIT_ERROR|11050|FeeLimit must be between 1 and max(int64)
+   OPERATIONS_EMPTY_ERROR|11051|Operations cannot be empty
+   INVALID_CEILLEDGERSEQ_ERROR|11052|CeilLedgerSeq must be equal to or greater than 0
+   OPERATIONS_ONE_ERROR|11053|One of the operations cannot be resolved
+   SYSTEM_ERROR|20000|System error
+
+- **Example**
+
+```js
+const args = {
+ sourceAddress,
+ gasPrice,
+ feeLimit,
+ nonce,
+ operations: [ sendBuOperation ],
+ metadata: '6f68206d79207478',
+};
+const blobInfo = sdk.transaction.buildBlob(args);
+```
+
+### evaluateFee
+
+- **Interface description**
+
+   The `evaluateFee` interface implements the cost estimate for the transaction.
+
+- **Method call**
+
+`sdk.transaction.evaluateFee(args)`
+
+- **Request parameters**
+
+   Args is of Object type, which contains the following parameters:
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   sourceAddress|String|Required, the source account address initiating the operation
+   nonce|String|Required, transaction serial number to be initiated, size limit [1, max(int64)]
+   operation|Array|Required, list of operations to be committed which cannot be empty
+   signtureNumber|Integer|Optional, the number of people to sign, the default is 1, size limit [1, max(int32)]
+   ceilLedgerSeq|String|Optional, set a value which will be combined with the current block height to restrict transactions. If transactions do not complete within the set value plus the current block height, the transactions fail. The value you set must be greater than 0. If the value is set to 0, no limit is set.
+   metadata|String|Optional, note
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+    feeLimit | String | Transaction fees 
+   gasPrice | String | Transaction gas price 
+
+- **Error code**
+
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
+    INVALID_ARGUMENTS           | 15016      | Arguments of the function are invalid 
+   SYSTEM_ERROR|20000|System error
+
+- **Example**
+
+```js
+const args = {
+       sourceAddress: 'buQswSaKDACkrFsnP1wcVsLAUzXQsemauEjf',
+       nonce: '101',
+       operations: [sendBuOperation],
+       signtureNumber: '1',
+       metadata: '54657374206576616c756174696f6e20666565',
+};
+
+sdk.transaction.evaluateFee(args).then(data => {
+ console.log(data);
+});
+
+```
+
+### sign
+
+- **Interface description**
+
+   The `sign` interface is used to implement the signature of the transaction.
+
+- **Method call**
+
+```js
+sdk.transaction.sign(args);
+```
+
+- **Request parameters**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   blob|String|Required, pending transaction blob to be signed
+   privateKeys|Array|Required, private key list
+
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   signatures|Array<[Signature](#signature)>|Signed data list
+
+- **Error code**
+
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_BLOB_ERROR|11056|Invalid blob
+   PRIVATEKEY_NULL_ERROR|11057|PrivateKeys cannot be empty
+   PRIVATEKEY_ONE_ERROR|11058|One of privateKeys is invalid
+   SYSTEM_ERROR|20000|System error
+
+- **Example**
+
+```js
+const signatureInfo = sdk.transaction.sign({
+       privateKeys: [ 'privbyQCRp7DLqKtRFCqKQJr81TurTqG6UKXMMtGAmPG3abcM9XHjWvq' ],
+       blob: '0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704'
+});
+
+console.log(signatureInfo);
+```
+
+### submit
+
+- **Interface description**
+
+   The `submit` interface is used to implement the submission of the transaction.
+
+- **Method call**
+
+`sdk.transaction.submit(args);`
+
+- **Request parameters**
+
+   Args is of Object type, which contains the following parameters:
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+    blob|String|Required, transaction blob
+    signature|Array<[Signature](#signature)>|Required, signature list
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   hash|String|Transaction hash
+
+- **Error code**
+
+   Error Message      |     Error Code     |        Description   
+   -----------  | ----------- | -------- 
+   INVALID_BLOB_ERROR|11056|Invalid blob
+    INVALID_SIGNATURE_ERROR | 15027      | Invalid signature 
+   SYSTEM_ERROR|20000|System error
+
+- **Example**
+
+```js
+const args = {
+  blob: '0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704',
+  signature: {
+     signData: 'D2B5E3045F2C1B7D363D4F58C1858C30ABBBB0F41E4B2E18AF680553CA9C3689078E215C097086E47A4393BCA715C7A5D2C180D8750F35C6798944F79CC5000A',
+     publicKey: 'b0011765082a9352e04678ef38d38046dc01306edef676547456c0c23e270aaed7ffe9e31477'
+  },
+
+let transactionInfo = yield sdk.transaction.submit(args);
+```
+
+### getInfo
+
+- **Interface description**
+
+   The `getInfo` interface is used to implement query transactions based on transaction hashes.
+
+- **Method call**
+
+`sdk.transaction.getInfo(hash);`
+
+- **Request parameters**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   hash|String|Transaction hash
+
+- **Response data**
+
+   Parameter      |     Type     |        Description       
+   ----------- | ------------ | ---------------- 
+   totalCount|String|Total number of transactions returned
+   transactions|Array<[TransactionHistory](#transactionhistory)>|Transaction content
+
+- **Error code**
+
+Error Message      |     Error Code     |        Description   
+-----------  | ----------- | -------- 
+INVALID_HASH_ERROR|11055|Invalid transaction hash
+REQUEST_NULL_ERROR|12001|Request parameter cannot be null
+CONNECTNETWORK_ERROR|11007|Failed to connect to the network
+SYSTEM_ERROR|20000|System error
+INVALID_REQUEST_ERROR|17004|Request is invalid
+
+- **Example**
+
+```js
+const hash = '1653f54fbba1134f7e35acee49592a7c29384da10f2f629c9a214f6e54747705';
+sdk.transaction.getInfo(hash).then(data => {
+ console.log(data);
+})
+```
+
+## Operations
+
+Operations refer to the things that are to be done in a transaction, and the operations that need to be built before the operations are to be built. At present, there are 10 kinds of operations, which include [Activating Account](#activating-account)、[Setting Account Metadata](#setting-account-metadata)、 [Setting Account Priviledge](#setting-account-priviledge)、 [Sendding BU](#sending-bu)、 [Issuing Asset](#issuing-asset)、 [Paying Asset](#paying-asset)、 [Creating Contract](#creating-contract)、 [Invoking Contract by Paying Assets](#invoking-contract-by-paying-assets)、 [Invoking Contract By Sending BU](#invoking-contract-by-sending-bu)、 [Recording Log](#recording-log).
+
+### Activating Account
+
+- **Fee**
+
+   FeeLimit is currently fixed at 0.01 BU (2018.07.26).
+
+- **Method call**
+
+`sdk.operation.accountActivateOperation(args);`
+
+- **Request parameters**
+
+  Args is of Object type, which contains the following parameters:
+
+  | Parameter      |     Type     |        Description                                                         |
+  | ------------- | ------ | ------------------------------------------------------------ |
+  | sourceAddress | String | Optional, the account address to trigger the contract                                       |
+  | destAddress   | String | Required, target account address                      |
+  | initBalance   | String | Required, initialize the asset, includes only numbers and cannot start with 0, size [1, max(int64)], unit MO |
+  | metadata      | String | Optional, note                                                   |
+
+- **Response data**
+
+  | Parameter      |     Type     |        Description               |
+  | --------- | ----------------------- | ------------------ |
+  | operation | [Operation](#operation) | Object of AccountActivateOperation |
+
+- **Error code**
+
+  | Error Message      |     Error Code     |        Description                                         |
+  | ------------------------------------- | ---------- | -------------------------------------------- |
+  | INVALID_SOURCEADDRESS_ERROR           | 11002      | Invalid sourceAddress                        |
+  | INVALID_DESTADDRESS_ERROR             | 11003      | Invalid destAddress                          |
+  | INVALID_INITBALANCE_ERROR             | 11004      | InitBalance must be between 1 and max(int64) |
+  | SOURCEADDRESS_EQUAL_DESTADDRESS_ERROR | 11005      | SourceAddress cannot be equal to destAddress |
+  | INVALID_METADATA_ERROR                | 15028      | Invalid metadata                             |
+  | SYSTEM_ERROR                          | 20000      | System error                                 |
+
+### Setting Account Metadata
+
+- **Fee**
+
+  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
+
+- **Method call**
+
+`sdk.operation.accountSetMetadataOperation(args);`
+
+- **Request parameters**
+
+  Args is of Object type, which contains the following parameters:
+
+  | Parameter      |     Type     |        Description                                  |
+  | ---------- | ------- | ------------------------------------- |
+  | key        | String  | Required, metadata keyword, length limit [1, 1024] |
+  | value      | String  | Optional, metadata content, length limit [0, 256K]   |
+  | version    | String  | Optional, metadata version                  |
+  | deleteFlag | Boolean | Optional, whether to delete metadata                |
+  | metadata   | String  | Optional, note                            |
+
+- **Response data**
+
+  | Parameter      |     Type     |        Description                       |
+  | --------- | ----------------------- | -------------------------- |
+  | operation | [Operation](#operation) | Object of AccountSetMetadataOperation |
+
+- **Error code**
+
+  | Error Message      |     Error Code     |        Description                                             |
+  | --------------------------- | ---------- | ------------------------------------------------ |
+  | INVALID_SOURCEADDRESS_ERROR | 11002      | Invalid sourceAddress                            |
+  | INVALID_DATAKEY_ERROR       | 11011      | The length of key must be between 1 and 1024     |
+  | INVALID_DATAVALUE_ERROR     | 11012      | The length of value must be between 0 and 256000 |
+  | INVALID_DATAVERSION_ERROR   | 11013      | The version must be equal to or greater than 0   |
+  | SYSTEM_ERROR                | 20000      | System error                                     |
+
+### Setting Account Priviledge
+
+- **Fee**
+
+  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
+
+- **Method call**
+
+`sdk.operation.accountSetPrivilegeOperation(args);`
+
+- **Request parameters**
+
+  Args is of Object type, which contains the following parameters:
+
+  | Parameter      |     Type     |        Description                                         |
+  | ------------- | -------------------------------------- | -------------------------------------------- |
+  | sourceAddress | String                                 | Optional, source account address of the operation                         |
+  | masterWeight  | String                                 | Optional, account weight, size limit [0, max(uint32)] |
+  | signers       | [Array<Signer](#signer)>               | Optional, signer weight list                         |
+  | txThreshold   | String                                 | Optional, transaction threshold, size limit [0, max(int64)]      |
+  | typeThreshold | Array<[TypeThreshold](#typethreshold)> | Optional, specify transaction threshold                       |
+  | metadata      | String                                 | Optional, note                                   |
+
+- **Response data**
+
+  | Parameter      |     Type     |        Description                   |
+  | --------- | ----------------------- | ---------------------- |
+  | operation | [Operation](#operation) | Object of AccountSetPrivilegeOperation |
+
+- **Error code**
+
+  | Error Message      |     Error Code     |        Description                                            |
+  | ---------------------------- | ---------- | ----------------------------------------------- |
+  | INVALID_SOURCEADDRESS_ERROR  | 11002      | Invalid sourceAddress                           |
+  | INVALID_MASTERWEIGHT_ERROR   | 11015      | MasterWeight must be between 0 and max(uint32)  |
+  | INVALID_SIGNER_ADDRESS_ERROR | 11016      | Invalid signer address                          |
+  | INVALID_SIGNER_WEIGHT_ERROR  | 11017      | Signer weight must be between 0 and max(uint32) |
+  | INVALID_TX_THRESHOLD_ERROR   | 11018      | TxThreshold must be between 0 and max(int64)    |
+  | INVALID_OPERATION_TYPE_ERROR | 11019      | The type of typeThreshold is invalid            |
+  | INVALID_TYPE_THRESHOLD_ERROR | 11020      | TypeThreshold must be between 0 and max(int64)  |
+  | SYSTEM_ERROR                 | 20000      | System error                                    |
+
+### Sending BU
+
+> **Note**: If the destination account is not activated, this operation will activate this account.
+
+- **Fee**
+
+  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
+
+- **Method call**
+
+`sdk.operation.buSendOperation(args);`
+
+- **Request parameters**
+
+  Args is of Object type, which contains the following parameters:
+
+  | Parameter      |     Type     |        Description                                                         |
+  | ------------- | ------ | ------------------------------------------------------------ |
+  | sourceAddress | String | Optional, source account address of the operation                                         |
+  | destAddress   | String | Required, target account address                      |
+  | buAmount      | String | Required, amount of asset issued, size limit [0,max(int64)] string of only numbers, cannot starts with 0 |
+  | metadata      | String | Optional, note                                                   |
+
+- **Response data**
+
+  | Parameter      |     Type     |        Description             |
+  | --------- | ----------------------- | ---------------- |
+  | operation | [Operation](#operation) | Object of BUSendOperation |
+
+- **Error code**
+
+  | Error Message      |     Error Code     |        Description                                         |
+  | ------------------------------------- | ---------- | -------------------------------------------- |
+  | INVALID_SOURCEADDRESS_ERROR           | 11002      | Invalid sourceAddress                        |
+  | INVALID_DESTADDRESS_ERROR             | 11003      | Invalid destAddress                          |
+  | SOURCEADDRESS_EQUAL_DESTADDRESS_ERROR | 11005      | SourceAddress cannot be equal to destAddress |
+  | INVALID_BU_AMOUNT_ERROR               | 11026      | BuAmount must be between 1 and max(int64)    |
+  | INVALID_ISSUER_ADDRESS_ERROR          | 11027      | Invalid issuer address                       |
+  | SYSTEM_ERROR                          | 20000      | System error                                 |
+
+### Issuing Asset
+
+- **Fee**
+
+  FeeLimit is currently fixed at 50.01 BU (2018.07.26).
+
+- **Method call**
+
+`sdk.operation.assetIssueOperation(args);`
+
+- **Request parameters**
+
+  Args is of Object type, which contains the following parameters:
+
+  | Parameter      |     Type     |        Description                                        |
+  | ------------- | ------ | ------------------------------------------- |
+  | sourceAddress | String | Optional, source account address of the operation                        |
+  | code          | String | Required, asset code, length limit [1, 64]             |
+  | assetAmount   | String | Required, asset amount, size limit [0, max(int64)], string of only numbers and cannot starts with 0 |
+  | metadata      | String | Optional, note                                  |
+
+- **Response data**
+
+  | Parameter      |     Type     |        Description               |
+  | --------- | ----------------------- | ------------------ |
+  | operation | [Operation](#operation) | Object of TokenIssueOperation |
+
+- **Error code**
+
+  | Error Message      |     Error Code     |        Description                                         |
+  | --------------------------- | ---------- | -------------------------------------------- |
+  | INVALID_SOURCEADDRESS_ERROR | 11002      | Invalid sourceAddress                        |
+  | INVALID_ASSET_CODE_ERROR    | 11023      | The length of key must be between 1 and 64   |
+  | INVALID_ASSET_AMOUNT_ERROR  | 11024      | AssetAmount must be between 1 and max(int64) |
+  | SYSTEM_ERROR                | 20000      | System error                                 |
+
+### Paying Asset
+
+> **Note**: If the destination account is not activated, the activation account operation must be invoked first.
+
+- **Fee**
+
+  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
+
+- **Method call**
+
+`sdk.operation.assetSendOperation(args);`
+
+- **Request parameters**
+
+  Args is of Object type, which contains the following parameters:
+
+  | Parameter      |     Type     |        Description                                          |
+  | ------------- | ------ | --------------------------------------------- |
+  | sourceAddress | String | Optional, source account address of the operation                          |
+  | destAddress   | String | Required, target account address       |
+  | code          | String | Required, asset code, length limit [1, 64]               |
+  | issuer        | String | Required, the account address for issuing assets                        |
+  | assetAmount   | String | Required, asset amount, size limit [0, max(int64)], string of only numbers and cannot starts with 0 |
+  | metadata      | String | Optional, note                                    |
+
+- **Response data**
+
+  | Parameter      |     Type     |        Description               |
+  | --------- | ----------------------- | ------------------ |
+  | operation | [Operation](#operation) | Object of TokenTransferOperation |
+
+- **Error code**
+
+  | Error Message      |     Error Code     |        Description                                         |
+  | ------------------------------------- | ---------- | -------------------------------------------- |
+  | INVALID_SOURCEADDRESS_ERROR           | 11002      | Invalid sourceAddress                        |
+  | INVALID_DESTADDRESS_ERROR             | 11003      | Invalid destAddress                          |
+  | SOURCEADDRESS_EQUAL_DESTADDRESS_ERROR | 11005      | SourceAddress cannot be equal to destAddress |
+  | INVALID_ASSET_CODE_ERROR              | 11023      | The length of key must be between 1 and 64   |
+  | INVALID_ASSET_AMOUNT_ERROR            | 11024      | AssetAmount must be between 1 and max(int64) |
+  | INVALID_ISSUER_ADDRESS_ERROR          | 11027      | Invalid issuer address                       |
+  | SYSTEM_ERROR                          | 20000      | System error                                 |
+
+### Creating Contract
+
+- **Fee**
+
+  FeeLimit is currently fixed at 10.01 BU (2018.07.26).
+
+- **Method call**
+
+`sdk.operation.contractCreateOperation(args);`
+
+- **Request parameters**
+
+  Args is of Object type, which contains the following parameters:
+
+  | Parameter      |     Type     |        Description                                                         |
+  | ------------- | ------- | ------------------------------------------------------------ |
+  | sourceAddress | String  | Optional, source account address of the operation                                         |
+  | initBalance   | String  | Required, initial asset for contract account, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)] |
+  | type          | Integer | Optional, the language of the contract, the default is                                     |
+  | payload       | String  | Required, contract code for the corresponding language                                     |
+  | initInput     | String  | Optional, the input parameters of the init method in the contract code                               |
+  | metadata      | String  | Optional, note                                                   |
+
+- **Response data**
+
+  | Parameter      |     Type     |        Description               |
+  | --------- | ----------------------- | ------------------ |
+  | operation | [Operation](#operation) | Object of ContractCreateOperation |
+
+- **Error code**
+
+  | Error Message      |     Error Code     |        Description                                      |
+  | ----------------------------------------- | ---------- | ----------------------------------------- |
+  | INVALID_SOURCEADDRESS_ERROR               | 11002      | Invalid sourceAddress                     |
+  | INVALID_CONTRACTADDRESS_ERROR             | 11037      | Invalid contract address                  |
+  | CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR | 11038      | ContractAddress is not a contract account |
+  |                                           |            |                                           |
+  | SYSTEM_ERROR                              | 20000      | System error                              |
+
+### Invoking Contract by Paying Assets
+
+**Note**：If the contract account does not exist, the contract account must be created first.
+
+- **Fee**
+
+  FeeLimit requires to add fees according to the execution of the transaction in the contract. First, the transaction fee is initiated. At present the fee (2018.07.26) is 0.01BU, and then the transaction in the contract also requires the transaction initiator to add the transaction fees.
+
+- **Method call**
+
+`sdk.operation.contractInvokeByAssetOperation(args);`
+
+- **Request parameters**
+
+  Args is of Object type, which contains the following parameters:
+
+  | Parameter      |     Type     |        Description                                                         |
+  | --------------- | ------ | ------------------------------------------------------------ |
+  | sourceAddress   | String | Optional, source account address of the operation                                         |
+  | contractAddress | String | Required, contract account address                                           |
+  | code            | String | Optional, asset code, length limit [0, 1024]; when it is empty, only the contract is triggered        |
+  | issuer          | String | Optional, the account address issuing assets; when it is null, only trigger the contract                 |
+  | assetAmount     | String | Optional, asset amount, size limit[0, max(int64)], when it is 0, only the contract is triggered. It cannot start with 0. |
+  | input           | String | Optional, the input parameter of the main() method for the contract to be triggered                               |
+  | metadata        | String | Optional, note                                                   |
+
+- **Response data**
+
+  | Parameter      |     Type     |        Description                       |
+  | --------- | ----------------------- | -------------------------- |
+  | operation | [Operation](#operation) | Object of ContractInvokeByAssetOperation |
+
+- **Error code**
+
+  | Error Message      |     Error Code     |        Description                                              |
+  | ----------------------------------------- | ---------- | ------------------------------------------------- |
+  | INVALID_SOURCEADDRESS_ERROR               | 11002      | Invalid sourceAddress                             |
+  | INVALID_INITBALANCE_ERROR                 | 11004      | InitBalance must be between 1 and max(int64)      |
+  | PAYLOAD_EMPTY_ERROR                       | 11044      | Payload must be a non-empty string                |
+  | SOURCEADDRESS_EQUAL_CONTRACTADDRESS_ERROR | 11040      | SourceAddress cannot be equal to contractAddress  |
+  | INVALID_ASSET_CODE_ERROR                  | 11023      | The length of asset code must be between 0 and 64 |
+  | INVALID_CONTRACT_ASSET_AMOUNT_ERROR       | 15031      | AssetAmount must be between 0 and max(int64)      |
+  | INVALID_ISSUER_ADDRESS_ERROR              | 11027      | Invalid issuer address                            |
+  | INVALID_INPUT_ERROR                       | 15029      | Invalid input                                     |
+  | SYSTEM_ERROR                              | 20000      | System error                                      |
+
+### Invoking Contract By Sending BU
+
+> **Note**: If the destination account is not a contract and it is not activated, this operation will activate this account.
+
+- **Fee**
+
+  FeeLimit requires to add fees according to the execution of the transaction in the contract. First, the transaction fee is initiated. At present the fee (2018.07.26) is 0.01BU, and then the transaction in the contract also requires the transaction initiator to add the transaction fees.
+
+- **Method call**
+
+`sdk.operation.contractInvokeByBUOperation(args);`
+
+- **Request parameters**
+
+  Args is of Object type, which contains the following parameters:
+
+  | Parameter      |     Type     |        Description                                                         |
+  | --------------- | ------ | ------------------------------------------------------------ |
+  | sourceAddress   | String | Optional, source account address of the operation                                         |
+  | contractAddress | String | Required, contract account address                                           |
+  | buAmount        | String | Optional, number of asset issues, size limit [0, max(int64)], when it is 0 only triggers the contract |
+  | input           | String | Optional, the input parameter of the main() method for the contract to be triggered                               |
+  | metadata        | String | Optional, note                                                   |
+
+- **Response data**
+
+  | Parameter      |     Type     |        Description                     |
+  | --------- | ----------------------- | ------------------------ |
+  | operation | [Operation](#operation) | Object of ContractInvokeByBUOperation |
+
+- **Error code**
+
+  | Error Message      |     Error Code     |        Description                                             |
+  | ----------------------------------------- | ---------- | ------------------------------------------------ |
+  | INVALID_SOURCEADDRESS_ERROR               | 11002      | Invalid sourceAddress                            |
+  | INVALID_CONTRACTADDRESS_ERROR             | 11037      | Invalid contract address                         |
+  | CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR | 11038      | ContractAddress is not a contract account        |
+  | SOURCEADDRESS_EQUAL_CONTRACTADDRESS_ERROR | 11040      | SourceAddress cannot be equal to contractAddress |
+  | INVALID_CONTRACT_BU_AMOUNT_ERROR          | 15030      | BuAmount must be between 0 and max(int64)        |
+  | INVALID_INPUT_ERROR                       | 15029      | Invalid input                                    |
+  | SYSTEM_ERROR                              | 20000      | System error                                     |
+
+### Recording Log
+
+- **Fee**
+
+  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
+
+- **Method call**
+
+`sdk.operation.logCreateOperation(args);`
+
+- **Request parameters**
+
+  Args is of Object type, which contains the following parameters:
+
+  | Parameter      |     Type     |        Description                                        |
+  | ------------- | ------------ | ------------------------------------------- |
+  | sourceAddress | String       | Optional, source account address of the operation                        |
+  | topic         | String       | Required, Log theme，length limit [1, 128]            |
+  | datas         | List<String> | Required, Log content，length limit of each string [1, 1024] |
+  | metadata      | String       | Optional, note                                  |
+
+- **Response data**
+
+  | Parameter      |     Type     |        Description           |
+  | --------- | ----------------------- | -------------- |
+  | operation | [Operation](#operation) | LogCreateOperation |
+
+- **Error code**
+
+  | Error Message      |     Error Code     |        Description                                           |
+  | --------------------------- | ---------- | ---------------------------------------------- |
+  | INVALID_SOURCEADDRESS_ERROR | 11002      | Invalid sourceAddress                          |
+  | INVALID_LOG_TOPIC_ERROR     | 11045      | The length of key must be between 1 and 128    |
+  | INVALID_LOG_DATA_ERROR      | 11046      | The length of value must be between 1 and 1024 |
+  | SYSTEM_ERROR                | 20000      | System error                                   |
+
+
+## Account Service
+
+Account Service provide account-related interfaces, which include six interfaces: `create`,`checkValid`, `getInfo`, `getNonce`, `getBalance`, `getAssets`, and `getMetadata`.
 
 ### create
 
@@ -455,9 +1114,9 @@ sdk.account.getMetadata(args).then(result => {
 });
 ```
 
-## Asset Services
+## Asset Service
 
-Asset Services follow the ATP 1.0 protocol, and Account Services provide an asset-related interface. Currently there is one interface: `getInfo`.
+Asset Service follow the ATP 1.0 protocol, and Account Service provide an asset-related interface. Currently there is one interface: `getInfo`.
 
 ### getInfo
 
@@ -510,9 +1169,9 @@ sdk.token.asset.getInfo(args).then(data => {
 });
 ```
 
-## Contract Services
+## Contract Service
 
-Contract Services provide contract-related interfaces and currently have four interfaces: `checkValid`, `getInfo`, `getAddress`, and `call`.
+Contract Service provide contract-related interfaces and currently have four interfaces: `checkValid`, `getInfo`, `getAddress`, and `call`.
 
 ### checkValid
 
@@ -701,657 +1360,6 @@ sdk.contract.call(args).then(result => {
 });
 ```
 
-## Transaction Services
-
-Transaction Services provide transaction-related interfaces and currently have five interfaces: `buildBlob`, `evaluateFee`, `sign`, `submit`, and `getInfo`.
-
-**Note**: 
-
-Before you can call buildBlob, you need to build some operations (details for [Operations List](#operators-list)), including [Activate Account](#activate), [Set Account Metadata](#set-metadata), [Set Account Priviledge](#set-priviledge), [Send BU](#send-bu), [Issue Asset](#issue), [Pay Asset](#pay), [Create Contract](#create), [Invoke Contract By Paying Asset](#invoke-by-paying), [Invoke Contract By Send BU](#invoke-by-send-bu), and [Record Log](#record-log).
-
-### Operations List
-
-#### Activate Account
-
-- **Fee**
-
-   FeeLimit is currently fixed at 0.01 BU (2018.07.26).
-
-- **Method call**
-
-`sdk.operation.accountActivateOperation(args);`
-
-- **Request parameters**
-
-  Args is of Object type, which contains the following parameters:
-
-  | Parameter      |     Type     |        Description                                                         |
-  | ------------- | ------ | ------------------------------------------------------------ |
-  | sourceAddress | String | Optional, the account address to trigger the contract                                       |
-  | destAddress   | String | Required, target account address                      |
-  | initBalance   | String | Required, initialize the asset, includes only numbers and cannot start with 0, size [1, max(int64)], unit MO |
-  | metadata      | String | Optional, note                                                   |
-
-- **Response data**
-
-  | Parameter      |     Type     |        Description               |
-  | --------- | ----------------------- | ------------------ |
-  | operation | [Operation](#operation) | Object of AccountActivateOperation |
-
-- **Error code**
-
-  | Error Message      |     Error Code     |        Description                                         |
-  | ------------------------------------- | ---------- | -------------------------------------------- |
-  | INVALID_SOURCEADDRESS_ERROR           | 11002      | Invalid sourceAddress                        |
-  | INVALID_DESTADDRESS_ERROR             | 11003      | Invalid destAddress                          |
-  | INVALID_INITBALANCE_ERROR             | 11004      | InitBalance must be between 1 and max(int64) |
-  | SOURCEADDRESS_EQUAL_DESTADDRESS_ERROR | 11005      | SourceAddress cannot be equal to destAddress |
-  | INVALID_METADATA_ERROR                | 15028      | Invalid metadata                             |
-  | SYSTEM_ERROR                          | 20000      | System error                                 |
-
-#### Set Account Metadata
-
-- **Fee**
-
-  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
-
-- **Method call**
-
-`sdk.operation.accountSetMetadataOperation(args);`
-
-- **Request parameters**
-
-  Args is of Object type, which contains the following parameters:
-
-  | Parameter      |     Type     |        Description                                  |
-  | ---------- | ------- | ------------------------------------- |
-  | key        | String  | Required, metadata keyword, length limit [1, 1024] |
-  | value      | String  | Optional, metadata content, length limit [0, 256K]   |
-  | version    | String  | Optional, metadata version                  |
-  | deleteFlag | Boolean | Optional, whether to delete metadata                |
-  | metadata   | String  | Optional, note                            |
-
-- **Response data**
-
-  | Parameter      |     Type     |        Description                       |
-  | --------- | ----------------------- | -------------------------- |
-  | operation | [Operation](#operation) | Object of AccountSetMetadataOperation |
-
-- **Error code**
-
-  | Error Message      |     Error Code     |        Description                                             |
-  | --------------------------- | ---------- | ------------------------------------------------ |
-  | INVALID_SOURCEADDRESS_ERROR | 11002      | Invalid sourceAddress                            |
-  | INVALID_DATAKEY_ERROR       | 11011      | The length of key must be between 1 and 1024     |
-  | INVALID_DATAVALUE_ERROR     | 11012      | The length of value must be between 0 and 256000 |
-  | INVALID_DATAVERSION_ERROR   | 11013      | The version must be equal to or greater than 0   |
-  | SYSTEM_ERROR                | 20000      | System error                                     |
-
-#### Set Account Priviledge
-
-- **Fee**
-
-  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
-
-- **Method call**
-
-`sdk.operation.accountSetPrivilegeOperation(args);`
-
-- **Request parameters**
-
-  Args is of Object type, which contains the following parameters:
-
-  | Parameter      |     Type     |        Description                                         |
-  | ------------- | -------------------------------------- | -------------------------------------------- |
-  | sourceAddress | String                                 | Optional, source account address of the operation                         |
-  | masterWeight  | String                                 | Optional, account weight, size limit [0, max(uint32)] |
-  | signers       | [Array<Signer](#signer)>               | Optional, signer weight list                         |
-  | txThreshold   | String                                 | Optional, transaction threshold, size limit [0, max(int64)]      |
-  | typeThreshold | Array<[TypeThreshold](#typethreshold)> | Optional, specify transaction threshold                       |
-  | metadata      | String                                 | Optional, note                                   |
-
-- **Response data**
-
-  | Parameter      |     Type     |        Description                   |
-  | --------- | ----------------------- | ---------------------- |
-  | operation | [Operation](#operation) | Object of AccountSetPrivilegeOperation |
-
-- **Error code**
-
-  | Error Message      |     Error Code     |        Description                                            |
-  | ---------------------------- | ---------- | ----------------------------------------------- |
-  | INVALID_SOURCEADDRESS_ERROR  | 11002      | Invalid sourceAddress                           |
-  | INVALID_MASTERWEIGHT_ERROR   | 11015      | MasterWeight must be between 0 and max(uint32)  |
-  | INVALID_SIGNER_ADDRESS_ERROR | 11016      | Invalid signer address                          |
-  | INVALID_SIGNER_WEIGHT_ERROR  | 11017      | Signer weight must be between 0 and max(uint32) |
-  | INVALID_TX_THRESHOLD_ERROR   | 11018      | TxThreshold must be between 0 and max(int64)    |
-  | INVALID_OPERATION_TYPE_ERROR | 11019      | The type of typeThreshold is invalid            |
-  | INVALID_TYPE_THRESHOLD_ERROR | 11020      | TypeThreshold must be between 0 and max(int64)  |
-  | SYSTEM_ERROR                 | 20000      | System error                                    |
-
-#### Send BU
-
-- **Fee**
-
-  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
-
-- **Method call**
-
-`sdk.operation.buSendOperation(args);`
-
-- **Request parameters**
-
-  Args is of Object type, which contains the following parameters:
-
-  | Parameter      |     Type     |        Description                                                         |
-  | ------------- | ------ | ------------------------------------------------------------ |
-  | sourceAddress | String | Optional, source account address of the operation                                         |
-  | destAddress   | String | Required, target account address                      |
-  | buAmount      | String | Required, amount of asset issued, size limit [0,max(int64)] string of only numbers, cannot starts with 0 |
-  | metadata      | String | Optional, note                                                   |
-
-- **Response data**
-
-  | Parameter      |     Type     |        Description             |
-  | --------- | ----------------------- | ---------------- |
-  | operation | [Operation](#operation) | Object of BUSendOperation |
-
-- **Error code**
-
-  | Error Message      |     Error Code     |        Description                                         |
-  | ------------------------------------- | ---------- | -------------------------------------------- |
-  | INVALID_SOURCEADDRESS_ERROR           | 11002      | Invalid sourceAddress                        |
-  | INVALID_DESTADDRESS_ERROR             | 11003      | Invalid destAddress                          |
-  | SOURCEADDRESS_EQUAL_DESTADDRESS_ERROR | 11005      | SourceAddress cannot be equal to destAddress |
-  | INVALID_BU_AMOUNT_ERROR               | 11026      | BuAmount must be between 1 and max(int64)    |
-  | INVALID_ISSUER_ADDRESS_ERROR          | 11027      | Invalid issuer address                       |
-  | SYSTEM_ERROR                          | 20000      | System error                                 |
-
-#### Issue Asset
-
-- **Fee**
-
-  FeeLimit is currently fixed at 50.01 BU (2018.07.26).
-
-- **Method call**
-
-`sdk.operation.assetIssueOperation(args);`
-
-- **Request parameters**
-
-  Args is of Object type, which contains the following parameters:
-
-  | Parameter      |     Type     |        Description                                        |
-  | ------------- | ------ | ------------------------------------------- |
-  | sourceAddress | String | Optional, source account address of the operation                        |
-  | code          | String | Required, asset code, length limit [1, 64]             |
-  | assetAmount   | String | Required, asset amount, size limit [0, max(int64)], string of only numbers and cannot starts with 0 |
-  | metadata      | String | Optional, note                                  |
-
-- **Response data**
-
-  | Parameter      |     Type     |        Description               |
-  | --------- | ----------------------- | ------------------ |
-  | operation | [Operation](#operation) | Object of TokenIssueOperation |
-
-- **Error code**
-
-  | Error Message      |     Error Code     |        Description                                         |
-  | --------------------------- | ---------- | -------------------------------------------- |
-  | INVALID_SOURCEADDRESS_ERROR | 11002      | Invalid sourceAddress                        |
-  | INVALID_ASSET_CODE_ERROR    | 11023      | The length of key must be between 1 and 64   |
-  | INVALID_ASSET_AMOUNT_ERROR  | 11024      | AssetAmount must be between 1 and max(int64) |
-  | SYSTEM_ERROR                | 20000      | System error                                 |
-
-#### Pay Asset
-
-- **Fee**
-
-  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
-
-- **Method call**
-
-`sdk.operation.assetSendOperation(args);`
-
-- **Request parameters**
-
-  Args is of Object type, which contains the following parameters:
-
-  | Parameter      |     Type     |        Description                                          |
-  | ------------- | ------ | --------------------------------------------- |
-  | sourceAddress | String | Optional, source account address of the operation                          |
-  | destAddress   | String | Required, target account address       |
-  | code          | String | Required, asset code, length limit [1, 64]               |
-  | issuer        | String | Required, the account address for issuing assets                        |
-  | assetAmount   | String | Required, asset amount, size limit [0, max(int64)], string of only numbers and cannot starts with 0 |
-  | metadata      | String | Optional, note                                    |
-
-- **Response data**
-
-  | Parameter      |     Type     |        Description               |
-  | --------- | ----------------------- | ------------------ |
-  | operation | [Operation](#operation) | Object of TokenTransferOperation |
-
-- **Error code**
-
-  | Error Message      |     Error Code     |        Description                                         |
-  | ------------------------------------- | ---------- | -------------------------------------------- |
-  | INVALID_SOURCEADDRESS_ERROR           | 11002      | Invalid sourceAddress                        |
-  | INVALID_DESTADDRESS_ERROR             | 11003      | Invalid destAddress                          |
-  | SOURCEADDRESS_EQUAL_DESTADDRESS_ERROR | 11005      | SourceAddress cannot be equal to destAddress |
-  | INVALID_ASSET_CODE_ERROR              | 11023      | The length of key must be between 1 and 64   |
-  | INVALID_ASSET_AMOUNT_ERROR            | 11024      | AssetAmount must be between 1 and max(int64) |
-  | INVALID_ISSUER_ADDRESS_ERROR          | 11027      | Invalid issuer address                       |
-  | SYSTEM_ERROR                          | 20000      | System error                                 |
-
-#### Creating Contracts
-
-- **Fee**
-
-  FeeLimit is currently fixed at 10.01 BU (2018.07.26).
-
-- **Method call**
-
-`sdk.operation.contractCreateOperation(args);`
-
-- **Request parameters**
-
-  Args is of Object type, which contains the following parameters:
-
-  | Parameter      |     Type     |        Description                                                         |
-  | ------------- | ------- | ------------------------------------------------------------ |
-  | sourceAddress | String  | Optional, source account address of the operation                                         |
-  | initBalance   | String  | Required, initial asset for contract account, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)] |
-  | type          | Integer | Optional, the language of the contract, the default is                                     |
-  | payload       | String  | Required, contract code for the corresponding language                                     |
-  | initInput     | String  | Optional, the input parameters of the init method in the contract code                               |
-  | metadata      | String  | Optional, note                                                   |
-
-- **Response data**
-
-  | Parameter      |     Type     |        Description               |
-  | --------- | ----------------------- | ------------------ |
-  | operation | [Operation](#operation) | Object of ContractCreateOperation |
-
-- **Error code**
-
-  | Error Message      |     Error Code     |        Description                                      |
-  | ----------------------------------------- | ---------- | ----------------------------------------- |
-  | INVALID_SOURCEADDRESS_ERROR               | 11002      | Invalid sourceAddress                     |
-  | INVALID_CONTRACTADDRESS_ERROR             | 11037      | Invalid contract address                  |
-  | CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR | 11038      | ContractAddress is not a contract account |
-  |                                           |            |                                           |
-  | SYSTEM_ERROR                              | 20000      | System error                              |
-
-#### Invoking Contracts by Paying Assets
-
-**Note**：If the contract account does not exist, the contract account must be created first.
-
-- **Fee**
-
-  FeeLimit requires to add fees according to the execution of the transaction in the contract. First, the transaction fee is initiated. At present the fee (2018.07.26) is 0.01BU, and then the transaction in the contract also requires the transaction initiator to add the transaction fees.
-
-- **Method call**
-
-`sdk.operation.contractInvokeByAssetOperation(args);`
-
-- **Request parameters**
-
-  Args is of Object type, which contains the following parameters:
-
-  | Parameter      |     Type     |        Description                                                         |
-  | --------------- | ------ | ------------------------------------------------------------ |
-  | sourceAddress   | String | Optional, source account address of the operation                                         |
-  | contractAddress | String | Required, contract account address                                           |
-  | code            | String | Optional, asset code, length limit [0, 1024]; when it is empty, only the contract is triggered        |
-  | issuer          | String | Optional, the account address issuing assets; when it is null, only trigger the contract                 |
-  | assetAmount     | String | Optional, asset amount, size limit[0, max(int64)], when it is 0, only the contract is triggered. It cannot start with 0. |
-  | input           | String | Optional, the input parameter of the main() method for the contract to be triggered                               |
-  | metadata        | String | Optional, note                                                   |
-
-- **Response data**
-
-  | Parameter      |     Type     |        Description                       |
-  | --------- | ----------------------- | -------------------------- |
-  | operation | [Operation](#operation) | Object of ContractInvokeByAssetOperation |
-
-- **Error code**
-
-  | Error Message      |     Error Code     |        Description                                              |
-  | ----------------------------------------- | ---------- | ------------------------------------------------- |
-  | INVALID_SOURCEADDRESS_ERROR               | 11002      | Invalid sourceAddress                             |
-  | INVALID_INITBALANCE_ERROR                 | 11004      | InitBalance must be between 1 and max(int64)      |
-  | PAYLOAD_EMPTY_ERROR                       | 11044      | Payload must be a non-empty string                |
-  | SOURCEADDRESS_EQUAL_CONTRACTADDRESS_ERROR | 11040      | SourceAddress cannot be equal to contractAddress  |
-  | INVALID_ASSET_CODE_ERROR                  | 11023      | The length of asset code must be between 0 and 64 |
-  | INVALID_CONTRACT_ASSET_AMOUNT_ERROR       | 15031      | AssetAmount must be between 0 and max(int64)      |
-  | INVALID_ISSUER_ADDRESS_ERROR              | 11027      | Invalid issuer address                            |
-  | INVALID_INPUT_ERROR                       | 15029      | Invalid input                                     |
-  | SYSTEM_ERROR                              | 20000      | System error                                      |
-
-#### Invoking Contracts By Sending BU
-
-- **Fee**
-
-  FeeLimit requires to add fees according to the execution of the transaction in the contract. First, the transaction fee is initiated. At present the fee (2018.07.26) is 0.01BU, and then the transaction in the contract also requires the transaction initiator to add the transaction fees.
-
-- **Method call**
-
-`sdk.operation.contractInvokeByBUOperation(args);`
-
-- **Request parameters**
-
-  Args is of Object type, which contains the following parameters:
-
-  | Parameter      |     Type     |        Description                                                         |
-  | --------------- | ------ | ------------------------------------------------------------ |
-  | sourceAddress   | String | Optional, source account address of the operation                                         |
-  | contractAddress | String | Required, contract account address                                           |
-  | buAmount        | String | Optional, number of asset issues, size limit [0, max(int64)], when it is 0 only triggers the contract |
-  | input           | String | Optional, the input parameter of the main() method for the contract to be triggered                               |
-  | metadata        | String | Optional, note                                                   |
-
-- **Response data**
-
-  | Parameter      |     Type     |        Description                     |
-  | --------- | ----------------------- | ------------------------ |
-  | operation | [Operation](#operation) | Object of ContractInvokeByBUOperation |
-
-- **Error code**
-
-  | Error Message      |     Error Code     |        Description                                             |
-  | ----------------------------------------- | ---------- | ------------------------------------------------ |
-  | INVALID_SOURCEADDRESS_ERROR               | 11002      | Invalid sourceAddress                            |
-  | INVALID_CONTRACTADDRESS_ERROR             | 11037      | Invalid contract address                         |
-  | CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR | 11038      | ContractAddress is not a contract account        |
-  | SOURCEADDRESS_EQUAL_CONTRACTADDRESS_ERROR | 11040      | SourceAddress cannot be equal to contractAddress |
-  | INVALID_CONTRACT_BU_AMOUNT_ERROR          | 15030      | BuAmount must be between 0 and max(int64)        |
-  | INVALID_INPUT_ERROR                       | 15029      | Invalid input                                    |
-  | SYSTEM_ERROR                              | 20000      | System error                                     |
-
-#### Record Log
-
-- **Fee**
-
-  FeeLimit is currently fixed at 0.01 BU (2018.07.26).
-
-- **Method call**
-
-`sdk.operation.logCreateOperation(args);`
-
-- **Request parameters**
-
-  Args is of Object type, which contains the following parameters:
-
-  | Parameter      |     Type     |        Description                                        |
-  | ------------- | ------------ | ------------------------------------------- |
-  | sourceAddress | String       | Optional, source account address of the operation                        |
-  | topic         | String       | Required, Log theme，length limit [1, 128]            |
-  | datas         | List<String> | Required, Log content，length limit of each string [1, 1024] |
-  | metadata      | String       | Optional, note                                  |
-
-- **Response data**
-
-  | Parameter      |     Type     |        Description           |
-  | --------- | ----------------------- | -------------- |
-  | operation | [Operation](#operation) | LogCreateOperation |
-
-- **Error code**
-
-  | Error Message      |     Error Code     |        Description                                           |
-  | --------------------------- | ---------- | ---------------------------------------------- |
-  | INVALID_SOURCEADDRESS_ERROR | 11002      | Invalid sourceAddress                          |
-  | INVALID_LOG_TOPIC_ERROR     | 11045      | The length of key must be between 1 and 128    |
-  | INVALID_LOG_DATA_ERROR      | 11046      | The length of value must be between 1 and 1024 |
-  | SYSTEM_ERROR                | 20000      | System error                                   |
-
-### buildBlob
-
-- **Interface description**
-
-   The `buildBlob` interface is used to serialize transactions and generate transaction blob strings for network transmission.
-
-- **Method call**
-
-`sdk.transaction.buildBlob(args);`
-
-- **Request parameters**
-
-   Args is of Object type, which contains the following parameters:
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   sourceAddress|String|Required, the source account address initiating the operation
-   nonce|String|Required, the transaction serial number to be initiated, add 1 in the function, size limit [1, max(int64)], and it cannot start with 0.
-   gasPrice|String|Required, transaction gas price, unit MO, 1 BU = 10^8 MO, size limit [1000, max(int64)], and it cannot start with 0.
-   feeLimit|String|Required, the minimum fees required for the transaction, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)], and it cannot start with 0.
-   operation|BaseOperation[]|Required, list of operations to be committed which cannot be empty
-   ceilLedgerSeq|String|Optional, set a value which will be combined with the current block height to restrict transactions. If transactions do not complete within the set value plus the current block height, the transactions fail. The value you set must be greater than 0. If the value is set to 0, no limit is set., and it cannot start with 0.
-   metadata|String|Optional, note
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   transactionBlob|String|Serialized transaction hex string
-   hash|String|Transaction hash
-
-- **Error code**
-
-   Error Message      |     Error Code     |        Description   
-   -----------  | ----------- | -------- 
-   INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
-   INVALID_NONCE_ERROR|11048|Nonce must be between 1 and max(int64)
-   INVALID_NONCE_ERROR|11048|Nonce must be between 1 and max(int64)
-   INVALID_ GASPRICE_ERROR|11049|GasPrice must be between 1000 and max(int64)
-   INVALID_FEELIMIT_ERROR|11050|FeeLimit must be between 1 and max(int64)
-   OPERATIONS_EMPTY_ERROR|11051|Operations cannot be empty
-   INVALID_CEILLEDGERSEQ_ERROR|11052|CeilLedgerSeq must be equal to or greater than 0
-   OPERATIONS_ONE_ERROR|11053|One of the operations cannot be resolved
-   SYSTEM_ERROR|20000|System error
-
-- **Example**
-
-```js
-const args = {
- sourceAddress,
- gasPrice,
- feeLimit,
- nonce,
- operations: [ sendBuOperation ],
- metadata: '6f68206d79207478',
-};
-const blobInfo = sdk.transaction.buildBlob(args);
-```
-
-### evaluateFee
-
-- **Interface description**
-
-   The `evaluateFee` interface implements the cost estimate for the transaction.
-
-- **Method call**
-
-`sdk.transaction.evaluateFee(args)`
-
-- **Request parameters**
-
-   Args is of Object type, which contains the following parameters:
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   sourceAddress|String|Required, the source account address initiating the operation
-   nonce|String|Required, transaction serial number to be initiated, size limit [1, max(int64)]
-   operation|Array|Required, list of operations to be committed which cannot be empty
-   signtureNumber|Integer|Optional, the number of people to sign, the default is 1, size limit [1, max(int32)]
-   ceilLedgerSeq|String|Optional, set a value which will be combined with the current block height to restrict transactions. If transactions do not complete within the set value plus the current block height, the transactions fail. The value you set must be greater than 0. If the value is set to 0, no limit is set.
-   metadata|String|Optional, note
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-    feeLimit | String | Transaction fees 
-   gasPrice | String | Transaction gas price 
-
-- **Error code**
-
-   Error Message      |     Error Code     |        Description   
-   -----------  | ----------- | -------- 
-   INVALID_SOURCEADDRESS_ERROR|11002|Invalid sourceAddress
-    INVALID_ARGUMENTS           | 15016      | Arguments of the function are invalid 
-   SYSTEM_ERROR|20000|System error
-
-- **Example**
-
-```js
-const args = {
-       sourceAddress: 'buQswSaKDACkrFsnP1wcVsLAUzXQsemauEjf',
-       nonce: '101',
-       operations: [sendBuOperation],
-       signtureNumber: '1',
-       metadata: '54657374206576616c756174696f6e20666565',
-};
-
-sdk.transaction.evaluateFee(args).then(data => {
- console.log(data);
-});
-
-```
-
-### sign
-
-- **Interface description**
-
-   The `sign` interface is used to implement the signature of the transaction.
-
-- **Method call**
-
-```js
-sdk.transaction.sign(args);
-```
-
-- **Request parameters**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   blob|String|Required, pending transaction blob to be signed
-   privateKeys|Array|Required, private key list
-
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   signatures|Array<[Signature](#signature)>|Signed data list
-
-- **Error code**
-
-   Error Message      |     Error Code     |        Description   
-   -----------  | ----------- | -------- 
-   INVALID_BLOB_ERROR|11056|Invalid blob
-   PRIVATEKEY_NULL_ERROR|11057|PrivateKeys cannot be empty
-   PRIVATEKEY_ONE_ERROR|11058|One of privateKeys is invalid
-   SYSTEM_ERROR|20000|System error
-
-- **Example**
-
-```js
-const signatureInfo = sdk.transaction.sign({
-       privateKeys: [ 'privbyQCRp7DLqKtRFCqKQJr81TurTqG6UKXMMtGAmPG3abcM9XHjWvq' ],
-       blob: '0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704'
-});
-
-console.log(signatureInfo);
-```
-
-### submit
-
-- **Interface description**
-
-   The `submit` interface is used to implement the submission of the transaction.
-
-- **Method call**
-
-`sdk.transaction.submit(args);`
-
-- **Request parameters**
-
-   Args is of Object type, which contains the following parameters:
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-    blob|String|Required, transaction blob
-    signature|Array<[Signature](#signature)>|Required, signature list
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   hash|String|Transaction hash
-
-- **Error code**
-
-   Error Message      |     Error Code     |        Description   
-   -----------  | ----------- | -------- 
-   INVALID_BLOB_ERROR|11056|Invalid blob
-    INVALID_SIGNATURE_ERROR | 15027      | Invalid signature 
-   SYSTEM_ERROR|20000|System error
-
-- **Example**
-
-```js
-const args = {
-  blob: '0A246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370102118C0843D20E8073A56080712246275516E6E5545425245773268423670574847507A77616E5837643238786B364B566370522C0A24627551426A4A443142534A376E7A41627A6454656E416870466A6D7852564545746D78481080A9E08704',
-  signature: {
-     signData: 'D2B5E3045F2C1B7D363D4F58C1858C30ABBBB0F41E4B2E18AF680553CA9C3689078E215C097086E47A4393BCA715C7A5D2C180D8750F35C6798944F79CC5000A',
-     publicKey: 'b0011765082a9352e04678ef38d38046dc01306edef676547456c0c23e270aaed7ffe9e31477'
-  },
-
-let transactionInfo = yield sdk.transaction.submit(args);
-```
-
-### getInfo
-
-- **Interface description**
-
-   The `getInfo` interface is used to implement query transactions based on transaction hashes.
-
-- **Method call**
-
-`sdk.transaction.getInfo(hash);`
-
-- **Request parameters**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   hash|String|Transaction hash
-
-- **Response data**
-
-   Parameter      |     Type     |        Description       
-   ----------- | ------------ | ---------------- 
-   totalCount|String|Total number of transactions returned
-   transactions|Array<[TransactionHistory](#transactionhistory)>|Transaction content
-
-- **Error code**
-
-Error Message      |     Error Code     |        Description   
------------  | ----------- | -------- 
-INVALID_HASH_ERROR|11055|Invalid transaction hash
-REQUEST_NULL_ERROR|12001|Request parameter cannot be null
-CONNECTNETWORK_ERROR|11007|Failed to connect to the network
-SYSTEM_ERROR|20000|System error
-INVALID_REQUEST_ERROR|17004|Request is invalid
-
-- **Example**
-
-```js
-const hash = '1653f54fbba1134f7e35acee49592a7c29384da10f2f629c9a214f6e54747705';
-sdk.transaction.getInfo(hash).then(data => {
- console.log(data);
-})
-```
 
 ## Block service
 

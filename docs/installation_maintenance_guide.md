@@ -162,7 +162,7 @@ The BUMO node can be installed after the compilation is finished. You must compl
     make install
     ```
 
-  <img src="docs/assets/compile_installed.png" style= "margin-left: 20px">
+  <img src="/docs/assets/compile_installed.png" style= "margin-left: 20px">
 
   > **Note**: 
   >   - By default, the service is installed in the /usr/local/buchain/ directory.

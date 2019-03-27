@@ -6,8 +6,8 @@
     "tagline": "Public Blockchain for Ubiquitous Value Transfer",
     "docs": {
       "api_http": {
-        "title": "BUMO HTTP/Restful",
-        "sidebar_label": "HTTP/Restful"
+        "title": "BUMO HTTP",
+        "sidebar_label": "HTTP"
       },
       "api_websocket": {
         "title": "BUMO Websocket",
@@ -130,8 +130,8 @@
         "sidebar_label": "Tool Application Scenario"
       },
       "version-1.0.0.10-api_http": {
-        "title": "BUMO HTTP/Restful",
-        "sidebar_label": "HTTP/Restful"
+        "title": "BUMO HTTP",
+        "sidebar_label": "HTTP"
       },
       "version-1.0.0.10-api_websocket": {
         "title": "BUMO Websocket",
