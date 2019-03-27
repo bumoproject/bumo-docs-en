@@ -61,7 +61,7 @@ The members of the response data include error codes, error descriptions, and re
 
 ## Usage
 
-This section describes the process of using the SDK. First you need to generate the SDK implementation and then call the interface of the corresponding service. Services include [Account Service](#account-service), [Asset Service](#asset-service), [Contract Service](#contract-service), [Transaction Service](#transaction-service), and [Block Service](#block-service). Interfaces are classified into [Generating Public-Private Keys and Addresse](#generating-public-private-keys-and-addresse), [Checking Validity](#checking-validity), [Querying](#querying), and [Groadcasting Transaction](#broadcasting-transactions).
+This section describes the process of using the SDK. First you need to generate the SDK implementation and then call the interface of the corresponding service. Services include [Account Service](#account-service), [Asset Service](#asset-service), [Contract Service](#contract-service), [Transaction Service](#transaction-service), and [Block Service](#block-service). Interfaces are classified into [Generating Public-Private Keys and Addresses](#generating-public-private-keys-and-addresses), [Checking Validity](#checking-validity), [Querying](#querying), and [Groadcasting Transaction](#broadcasting-transactions).
 
 ### Generating SDK Instance
 
@@ -85,7 +85,7 @@ SDKConfigure *sdkConfigure = [SDKConfigure new];
 
 SDK *sdk = [[[SDK sharedInstance] setUrl: url] setConfigure: sdkConfigure];
 ```
-### Generating Public-Private Keys and Addresse
+### Generating Public-Private Keys and Addresses
 
 The public-private key address interface is used to generate the public key, private key, and address for the account on the BuChain. This can be achieved by 
 directly calling the `create` interface of account service. The specific call is as follows:

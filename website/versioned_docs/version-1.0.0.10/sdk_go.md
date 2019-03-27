@@ -60,7 +60,7 @@ type AccountGetNonceResult struct {
 
 ## Usage
 
-This section describes the process of using the SDK. First you need to generate the SDK implementation and then call the interface of the corresponding service. Services include [Account Service](#account-service), [Asset Service](#asset-service), [Contract Service](#contract-service), [Transaction Service](#transaction-service), and [Block Service](#block-service). Interfaces are classified into [Generating Public-Private Keys and Addresse](#generating-public-private-keys-and-addresse), [Checking Validity](#checking-validity), [Querying](#querying), and [Groadcasting Transaction](#broadcasting-transactions).
+This section describes the process of using the SDK. First you need to generate the SDK implementation and then call the interface of the corresponding service. Services include [Account Service](#account-service), [Asset Service](#asset-service), [Contract Service](#contract-service), [Transaction Service](#transaction-service), and [Block Service](#block-service). Interfaces are classified into [Generating Public-Private Keys and Addresses](#generating-public-private-keys-and-addresses), [Checking Validity](#checking-validity), [Querying](#querying), and [Groadcasting Transaction](#broadcasting-transactions).
 
 ### Importing Packagings
 
