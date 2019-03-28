@@ -1,6 +1,6 @@
 ---
 id: atp_10
-title: BUMO ATP 10
+title: BUMO ATP 10 Protocol
 sidebar_label: ATP 10
 ---
 

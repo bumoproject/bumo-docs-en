@@ -732,7 +732,7 @@ This section describes some default variables involved in the development proces
 
 - **Example**
 
-  An account A submits a transaction tx0, and the 0-th (count from 0) operation is transferring assets to a contract account (calling the contract). Then trigger Index is 0.
+  An account A submits a transaction tx0, and the 0-th (count from 0) operation is transferring assets to a contract account (calling the contract). Then triggerIndex is 0.
 
   ```JavaScript
   let bar = triggerIndex;

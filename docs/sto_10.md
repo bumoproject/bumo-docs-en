@@ -1,6 +1,6 @@
 ---
 id: sto_10
-title: BUMO STO 10
+title: BUMO STO 10 Protocol
 sidebar_label: STO 10
 ---
 
@@ -37,8 +37,8 @@ value: {
 - name: The token name.
 - symbol:The token symbol.
 - decimals: The decimals of the token.
-- totalSupply: The total amount of tokens issued. Let us take token A as an example, 10000 tokens have been issued and the decimals are 8, totalSupply=10^decimals*. The result is 1000000000000.
-- scheduledTotalSupply: The total amount of tokens to be issued. 0 means no limit on circulation, and greater than 0 means a limited total issuance. Its value is equal to 10^decimals* planned circulation. Take Token A as an example, the total planned issuance is 10,000, the decimals are 8, scheduledTotalSuppl = 10 ^ 8 * 10000. The result is 1000000000000. 
+- totalSupply: The total amount of tokens issued. Let us take token A as an example, 10000 tokens have been issued and the decimals are 8, totalSupply=10^decimals*totalSupply. The result is 1000000000000.
+- scheduledTotalSupply: The total amount of tokens to be issued. 0 means no limit on circulation, and greater than 0 means a limited total issuance. Its value is equal to 10^decimals*scheduledTotalSupply. Take Token A as an example, the total planned issuance is 10000, the decimals are 8, scheduledTotalSuppl = 10 ^ 8 * 10000. The result is 1000000000000. 
 - owner: The owner of the token.
 
 ### Attributes and Restraints of Tranche 
@@ -152,7 +152,7 @@ tlog(topic,args...);
 
 ## Functions
 
-BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), [setDocument](#setdocument), [getDocument](#getdocument), [createTranche](#createtranche), [balanceOf](#balanceof), [balanceOfTranche](#balanceoftranche), [tranchesOf](#tranchesof), [transferWithData](#transferwithdata), [transferFromWithData](#transferfromwithdata), [transferFromToTranche](#transferfromtotranche), [transferTranche](#transfertranche), [transferToTranche](#transfertotranche), [transfersToTranche](#transferstotranche)[isControllable](#iscontrollable), [controllerTransfer](#controllertransfer), [controllerRedeem](#controllerredeem), [authorizeOperator](#authorizeoperator),[revokeOperator](#revokeoperator), [authorizeOperatorForTranche](#authorizeoperatorfortranche), [revokeOperatorForTranche](#revokeoperatorfortranche), [isOperator](#isoperator), [isOperatorForTranche](#isoperatorfortranche), [operatorTransferTranche](#operatortransfertranche), [operatorRedeemTranche](#operatorredeemtranche), [isIssuable](#isissuable)[issue](#issue), [issueToTranche](#issuetotranche), [redeem](#redeem), [redeemFrom](#redeemfrom), [redeemTranche](#redeemtranche), [redeemFromTranche](#redeemfromtranche), [canTransfer](#cantransfer), [canTransferTranche](#cantransfertranche), [canTransferToTranche](#cantransfertotranche)、[transfer](#transfer), [transferFrom](#transferfrom), [approve](#approve), [approveTranche](#approvetranche), [allowance](#allowance), and [allowanceForTranche](#allowancefortranche).
+BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), [setDocument](#setdocument), [getDocument](#getdocument), [createTranche](#createtranche), [balanceOf](#balanceof), [balanceOfTranche](#balanceoftranche), [tranchesOf](#tranchesof), [transferWithData](#transferwithdata), [transferFromWithData](#transferfromwithdata), [transferFromToTranche](#transferfromtotranche), [transferTranche](#transfertranche), [transferToTranche](#transfertotranche), [transfersToTranche](#transferstotranche)、[isControllable](#iscontrollable), [controllerTransfer](#controllertransfer), [controllerRedeem](#controllerredeem), [authorizeOperator](#authorizeoperator),[revokeOperator](#revokeoperator), [authorizeOperatorForTranche](#authorizeoperatorfortranche), [revokeOperatorForTranche](#revokeoperatorfortranche), [isOperator](#isoperator), [isOperatorForTranche](#isoperatorfortranche), [operatorTransferTranche](#operatortransfertranche), [operatorRedeemTranche](#operatorredeemtranche), [isIssuable](#isissuable)、[issue](#issue), [issueToTranche](#issuetotranche), [redeem](#redeem), [redeemFrom](#redeemfrom), [redeemTranche](#redeemtranche), [redeemFromTranche](#redeemfromtranche), [canTransfer](#cantransfer), [canTransferTranche](#cantransfertranche), [canTransferToTranche](#cantransfertotranche)、[transfer](#transfer), [transferFrom](#transferfrom), [approve](#approve), [approveTranche](#approvetranche), [allowance](#allowance), and [allowanceForTranche](#allowancefortranche).
 
 
 ### tokenInfo
@@ -1943,7 +1943,7 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
     - description: The description for the token and the range is [1,64k].
     - decimals: The token symbol, which indicates the supported decimal places, and the range is [0,8].
     - nowSupply: The current circulation of the token, with a range [0, 2^63-1]. Its value is equal to 10^decimals* circulation. If you are currently issuing a token with a quantity of 10000 and the decimal places are 8, then nowSupply = 10 ^ 8 * 10000, and the result is 1000000000000.
-    - scheduledTotalSupply: The total amount of tokens to be issued and the range is [0,2^63-1]. 0 means no limit on circulation, and greater than 0 means a limited ssuance. Its value is equal to 10^decimals* scheduled circulation. If you are issuing 10,000 tokens, the decimals are 8, scheduledTotalSuppl = 10 ^ 8 * 10000. The result is 1000000000000. 
+    - scheduledTotalSupply: The total amount of tokens to be issued and the range is [0,2^63-1]. 0 means no limit on circulation, and greater than 0 means a limited ssuance. Its value is equal to 10^decimals* scheduled circulation. If you are issuing 10000 tokens, the decimals are 8, scheduledTotalSuppl = 10 ^ 8 * 10000. The result is 1000000000000. 
     - icon: base64 bit encoding, icon file size is less than 32k, 200*200 pixels are recommended.
     - controllers: The controller list of the token, which is the list of regulators.
     ```

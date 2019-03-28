@@ -612,8 +612,8 @@ BaseOperation is the base class for all operations in the buildBlob interface. T
 
 Member    |     Type  |        Description                           
 ------------- | -------- | ----------------------------------   
-sourceAddress |   String |  Optional, source account address of the operation
-metadata      |   String |  Optional, note
+sourceAddress | NSString* |  Optional, source account address of the operation
+metadata      | NSString* |  Optional, note
 
 ### AccountActivateOperation
 
@@ -629,10 +629,10 @@ metadata      |   String |  Optional, note
 
    Member    |     Type  |        Description                           
    ------------- | -------- | ---------------------------------- 
-   sourceAddress |   String |  Optional, source account address of the operation 
-   destAddress   |   String |  Required, target account address
-   initBalance   |   Long   |  Required, initialize the asset, unit MO, 1 BU = 10^8 MO, size (0, Long.MAX_VALUE] 
-   metadata|String|Optional, note
+   sourceAddress | NSString* |  Optional, source account address of the operation 
+   destAddress   | NSString* |  Required, target account address
+   initBalance   |   int64   | Required, initialize the asset, unit MO, 1 BU = 10^8 MO, size (0, max(int64)] 
+   metadata|NSString*|Optional, note
 
 ### AccountSetMetadataOperation
 
@@ -648,12 +648,12 @@ metadata      |   String |  Optional, note
 
    Member    |     Type  |        Description                         
    ------------- | --------- | ------------------------------- 
-   sourceAddress |   String |  Optional, source account address of the operation
-   key           |   String  |  Required, metadata keyword, length limit [1, 1024]
-   value         |   String  |  Required, metadata content, length limit [0, 256000]
-   version       |   Long    |  Optional, metadata version
+   sourceAddress | NSString* |  Optional, source account address of the operation
+   key           | NSString*  |  Required, metadata keyword, length limit [1, 1024]
+   value         | NSString*  |  Required, metadata content, length limit [0, 256000]
+   version       |   int64   |  Optional, metadata version
    deleteFlag    |   Boolean |  Optional, whether to delete metadata
-   metadata|String|Optional, note           
+   metadata|NSString*|Optional, note           
 
 ### AccountSetPrivilegeOperation
 
@@ -669,12 +669,12 @@ metadata      |   String |  Optional, note
 
    Member    |     Type  |        Description               
    ------------- | --------- | --------------------------
-   sourceAddress |   String |  Optional, source account address of the operation
-   masterWeight|String|	Optional, account weight, size limit [0, (Integer.MAX_VALUE * 2L + 1)]
-   signers|[Signer](#signer)[]|Optional, signer weight list
-   txThreshold|String|Optional, transaction threshold, size limit [0, Long.MAX_VALUE]
+   sourceAddress | NSString* |  Optional, source account address of the operation
+   masterWeight|NSString*| Optional, account weight, size limit [0, max(UINT32)] 
+   signers|[SignerInfo](#signerinfo)[]|Optional, signer weight list
+   txThreshold|NSString*|Optional, transaction threshold, size limit (0, max(int64)]
    typeThreshold|[TypeThreshold](#typethreshold)[]|Optional, specify transaction threshold
-   metadata|String|Optional, note
+   metadata|NSString*|Optional, note
 
 ### AssetIssueOperation
 
@@ -690,10 +690,10 @@ metadata      |   String |  Optional, note
 
    Member    |     Type  |        Description             
    ------------- | --------- | ------------------------
-   sourceAddress|String|Optional, source account address of the operation
-   code|String|Required, asset code, length limit [1, 64]
-   assetAmount|Long|Required, asset code, length limit [0, Long.MAX_VALUE]
-   metadata|String|Optional, note
+   sourceAddress|NSString*|Optional, source account address of the operation
+   code|NSString*|Required, asset code, length limit [1, 64]
+   assetAmount|int64|Required, asset code, length limit (0, max(int64)]
+   metadata|NSString*|Optional, note
 
 ### AssetSendOperation
 
@@ -711,12 +711,12 @@ metadata      |   String |  Optional, note
 
    Member    |     Type  |        Description            
    ------------- | --------- | ----------------------
-   sourceAddress|String|Optional, source account address of the operation
-   destAddress|String|Required, target account address
-   code|String|Required, asset code, length limit [1, 64]
-   issuer|String|Required, the account address for issuing assets
-   assetAmount|Long|Required, asset amount, size limit [0, Long.MAX_VALUE]
-   metadata|String|Optional, note
+   sourceAddress|NSString*|Optional, source account address of the operation
+   destAddress|NSString*|Required, target account address
+   code|NSString*|Required, asset code, length limit [1, 64]
+   issuer|NSString*|Required, the account address for issuing assets
+   assetAmount|int64|Required, asset amount, size limit (0, max(int64)]
+   metadata|NSString*|Optional, note
 
 ### BUSendOperation
 
@@ -734,10 +734,10 @@ metadata      |   String |  Optional, note
 
    Member    |     Type  |        Description          
    ------------- | --------- | ---------------------
-   sourceAddress|String|Optional, source account address of the operation
-   destAddress|String|Required, target account address
-   buAmount|Long|Required, asset code, length limit [0, Long.MAX_VALUE]
-   metadata|String|Optional, note
+   sourceAddress|NSString*|Optional, source account address of the operation
+   destAddress|NSString*|Required, target account address
+   buAmount|int64|Required, asset code, length limit (0, max(int64)]
+   metadata|NSString*|Optional, note
 
 ### ContractCreateOperation
 
@@ -753,12 +753,12 @@ metadata      |   String |  Optional, note
 
    Member    |     Type  |        Description          
    ------------- | --------- | ---------------------
-   sourceAddress|String|Optional, source account address of the operation
-   initBalance|Long|Required, initial asset for contract account, unit MO, 1 BU = 10^8 MO, size limit [1, Long.MAX_VALUE]
+   sourceAddress|NSString*|Optional, source account address of the operation
+   initBalance|int64|Required, initial asset for contract account, unit MO, 1 BU = 10^8 MO, size limit [1, int64]
    type|Integer|Optional, the language of the contract, the default is 
-   payload|String|Required, contract code for the corresponding language
-   initInput|String|Optional, the input parameters of the init method in the contract code
-   metadata|String|Optional, note
+   payload|NSString*|Required, contract code for the corresponding language
+   initInput|NSString*|Optional, the input parameters of the init method in the contract code
+   metadata|NSString*|Optional, note
 
 ### ContractInvokeByAssetOperation
 
@@ -776,13 +776,13 @@ metadata      |   String |  Optional, note
 
    Member    |     Type  |        Description          
    ------------- | --------- | ---------------------
-   sourceAddress|String|Optional, source account address of the operation
-   contractAddress|String|Required, contract account address
-   code|String|Optional, asset code, length limit [0, 1024]; when it is empty, only the contract is triggered
-   issuer|String|Optional, the account address issuing assets; when it is null, only trigger the contract
-   assetAmount|Long|Optional, asset amount, size limit[0, Long.MAX_VALUE]when it is 0, only trigger the contract
-   input|String|Optional, the input parameter of the main() method for the contract to be triggered
-   metadata|String|Optional, note
+   sourceAddress|NSString*|Optional, source account address of the operation
+   contractAddress|NSString*|Required, contract account address
+   code|NSString*|Optional, asset code, length limit [0, 1024]; when it is empty, only the contract is triggered
+   issuer|NSString*|Optional, the account address issuing assets; when it is null, only trigger the contract
+   assetAmount|int64|Optional, asset amount, size limit(0, max(int64)]when it is 0, only trigger the contract
+   input|NSString*|Optional, the input parameter of the main() method for the contract to be triggered
+   metadata|NSString*|Optional, note
 
 ### ContractInvokeByBUOperation
 
@@ -800,11 +800,11 @@ metadata      |   String |  Optional, note
 
    Member    |     Type  |        Description          
    ------------- | --------- | ---------------------
-   sourceAddress|String|Optional, source account address of the operation
-   contractAddress|String|Required, contract account address
-   buAmount|Long|Optional, number of asset issues, size limit [0, Long.MAX_VALUE], when it is 0 only triggers the contract
-   input|String|Optional, the input parameter of the main() method for the contract to be triggered
-   metadata|String|Optional, note
+   sourceAddress|NSString*|Optional, source account address of the operation
+   contractAddress|NSString*|Required, contract account address
+   buAmount|int64|Optional, number of asset issues, size limit (0, max(int64)], when it is 0 only triggers the contract
+   input|NSString*|Optional, the input parameter of the main() method for the contract to be triggered
+   metadata|NSString*|Optional, note
 
 ### LogCreateOperation
 
@@ -820,10 +820,10 @@ metadata      |   String |  Optional, note
 
    Member    |     Type  |        Description          
    ------------- | --------- | ---------------------
-   sourceAddress|String|Optional, source account address of the operation
-   topic|String|Required, Log theme，length limit [1, 128]
+   sourceAddress|NSString*|Optional, source account address of the operation
+   topic|NSString*|Required, Log theme，length limit [1, 128]
    datas|List<String>|Required, Log content，length limit of each string [1, 1024]
-   metadata|String|Optional, note
+   metadata|NSString*|Optional, note
 
 
 
@@ -2109,7 +2109,7 @@ deleteFlag|boolean|Whether to delete metadata
 Member       |     Type     |       Description      
 ----------- | ------------ | ---------------- 
 masterWeight|NSString*|Account weight, size limit [0, max(uint32)]
-signers|NSArray<[Signer](#signer) *> *|Signer weight list
+signers|NSArray<[SignerInfo](#signerinfo) *> *|Signer weight list
 txThreshold|NSString*|Transaction threshold, size limit [0, max(int64)]
 typeThreshold|[TypeThreshold](#typethreshold)*|Threshold for specified transaction type
 

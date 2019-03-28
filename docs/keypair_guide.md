@@ -1,7 +1,7 @@
 ---
 id: keypair_guide
 title: BUMO Keypair Guide
-sidebar_label: Keypair Guide
+sidebar_label: Keypair
 ---
 
 ## Overview

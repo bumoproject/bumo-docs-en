@@ -1,7 +1,7 @@
 ---
 id: legal_evidence_development_guide_for_java
 title: BUMO Legal Evidence Development Guide for Java
-sidebar_label: Legal Evidence Development Guide for Java
+sidebar_label: Legal Evidence Development for Java
 ---
 
 ## Introduction to BUMO Development

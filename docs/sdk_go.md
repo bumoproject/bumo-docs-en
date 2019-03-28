@@ -140,7 +140,7 @@ reqData.SetAddress(address)
 resData := testSdk.Account.GetNonce(reqData)
 ```
 
-#### Building operation
+#### Building operations
 
 The operation refers to some of the actions that are done in the transaction to facilitate serialization of transactions and evaluation of fees. For more details, see [Operations](#operations). For example, to build an operation to send BU (`BUSendOperation`), the specific interface call is as follows:
 ```go 
@@ -168,7 +168,7 @@ resDataBlob := testSdk.Transaction.BuildBlob(reqDataBlob)
 }
 ```
 
-#### Signing transaction
+#### Signing transactions
 
 The `signature transaction` interface is used by the transaction initiator to sign the transaction using the private key of the account. The transactionBlob is obtained from the interface called. For interface details, see [sign](#sign), which calls as follows:
 ```go
@@ -182,7 +182,7 @@ resDataSign := testSdk.Transaction.Sign(reqData)
 }
 ```
 
-#### Submitting transaction
+#### Submitting transactions
 
 The `submit interface` is used to send a transaction request to the BU blockchain, triggering the execution of the transaction. transactionBlob and signResult are obtained from the interfaces called. For interface details, see [submit](#submit), which calls as follows:
 ```go
@@ -535,7 +535,7 @@ metadata      |   String |  Optional, note
    ------------- | -------- | ---------------------------------- 
    sourceAddress |   String |  Optional, source account address of the operation 
    destAddress   |   String |  Required, target account address
-   initBalance   |   Long   |  Required, initialize the asset, unit MO, 1 BU = 10^8 MO, size (0, Long.MAX_VALUE] 
+   initBalance   |   int64   |  Required, initialize the asset, unit MO, 1 BU = 10^8 MO, size (0, max(int64)] 
    metadata|String|Optional, note
 
 ### AccountSetMetadataOperation
@@ -555,7 +555,7 @@ metadata      |   String |  Optional, note
    sourceAddress |   String |  Optional, source account address of the operation
    key           |   String  |  Required, metadata keyword, length limit [1, 1024]
    value         |   String  |  Required, metadata content, length limit [0, 256000]
-   version       |   Long    |  Optional, metadata version
+   version       |   int64    |  Optional, metadata version
    deleteFlag    |   Boolean |  Optional, whether to delete metadata
    metadata|String|Optional, note           
 
@@ -574,9 +574,9 @@ metadata      |   String |  Optional, note
    Member    |     Type  |        Description               
    ------------- | --------- | --------------------------
    sourceAddress |   String |  Optional, source account address of the operation
-   masterWeight|String|	Optional, account weight, size limit [0, (Integer.MAX_VALUE * 2L + 1)]
+   masterWeight|String|	Optional, account weight, size limit [0, max(uint32)]
    signers|[Signer](#signer)[]|Optional, signer weight list
-   txThreshold|String|Optional, transaction threshold, size limit [0, Long.MAX_VALUE]
+   txThreshold|String|Optional, transaction threshold, size limit [0, max(int64)]
    typeThreshold|[TypeThreshold](#typethreshold)[]|Optional, specify transaction threshold
    metadata|String|Optional, note
 
@@ -596,7 +596,7 @@ metadata      |   String |  Optional, note
    ------------- | --------- | ------------------------
    sourceAddress|String|Optional, source account address of the operation
    code|String|Required, asset code, length limit [1, 64]
-   assetAmount|Long|Required, asset code, length limit [0, Long.MAX_VALUE]
+   assetAmount|int64|Required, asset code, length limit [0, max(int64)]
    metadata|String|Optional, note
 
 ### AssetSendOperation
@@ -619,7 +619,7 @@ metadata      |   String |  Optional, note
    destAddress|String|Required, target account address
    code|String|Required, asset code, length limit [1, 64]
    issuer|String|Required, the account address for issuing assets
-   assetAmount|Long|Required, asset amount, size limit [0, Long.MAX_VALUE]
+   assetAmount|int64|Required, asset amount, size limit [0, max(int64)]
    metadata|String|Optional, note
 
 ### BUSendOperation
@@ -640,7 +640,7 @@ metadata      |   String |  Optional, note
    ------------- | --------- | ---------------------
    sourceAddress|String|Optional, source account address of the operation
    destAddress|String|Required, target account address
-   buAmount|Long|Required, asset code, length limit [0, Long.MAX_VALUE]
+   buAmount|int64|Required, asset code, length limit [0, max(int64)]
    metadata|String|Optional, note
 
 ### ContractCreateOperation
@@ -658,7 +658,7 @@ metadata      |   String |  Optional, note
    Member    |     Type  |        Description          
    ------------- | --------- | ---------------------
    sourceAddress|String|Optional, source account address of the operation
-   initBalance|Long|Required, initial asset for contract account, unit MO, 1 BU = 10^8 MO, size limit [1, Long.MAX_VALUE]
+   initBalance|int64|Required, initial asset for contract account, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)]
    type|Integer|Optional, the language of the contract, the default is 
    payload|String|Required, contract code for the corresponding language
    initInput|String|Optional, the input parameters of the init method in the contract code
@@ -684,7 +684,7 @@ metadata      |   String |  Optional, note
    contractAddress|String|Required, contract account address
    code|String|Optional, asset code, length limit [0, 1024]; when it is empty, only the contract is triggered
    issuer|String|Optional, the account address issuing assets; when it is null, only trigger the contract
-   assetAmount|Long|Optional, asset amount, size limit[0, Long.MAX_VALUE]when it is 0, only trigger the contract
+   assetAmount|int64|Optional, asset amount, size limit[0, max(int64)]when it is 0, only trigger the contract
    input|String|Optional, the input parameter of the main() method for the contract to be triggered
    metadata|String|Optional, note
 
@@ -706,7 +706,7 @@ metadata      |   String |  Optional, note
    ------------- | --------- | ---------------------
    sourceAddress|String|Optional, source account address of the operation
    contractAddress|String|Required, contract account address
-   buAmount|Long|Optional, number of asset issues, size limit [0, Long.MAX_VALUE], when it is 0 only triggers the contract
+   buAmount|int64|Optional, number of asset issues, size limit [0, max(int64)], when it is 0 only triggers the contract
    input|String|Optional, the input parameter of the main() method for the contract to be triggered
    metadata|String|Optional, note
 

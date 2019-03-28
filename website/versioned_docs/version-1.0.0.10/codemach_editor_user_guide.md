@@ -1,7 +1,7 @@
 ---
 id: version-1.0.0.10-codemach_editor_user_guide
 title: BUMO CodeMach Editor User Guide
-sidebar_label: CodeMach Editor User Guide
+sidebar_label: CodeMach Editor
 original_id: codemach_editor_user_guide
 ---
 

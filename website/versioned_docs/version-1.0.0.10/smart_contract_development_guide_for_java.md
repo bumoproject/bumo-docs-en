@@ -1,7 +1,7 @@
 ---
 id: version-1.0.0.10-smart_contract_development_guide_for_java
 title: BUMO Smart Contract Development Guide for Java
-sidebar_label: Smart Contract Development Guide for Java
+sidebar_label: Smart Contract Development for Java
 original_id: smart_contract_development_guide_for_java
 ---
 
@@ -192,19 +192,19 @@ Based on CTP 1.0, an asset issuer issues smart contract tokens, the total amount
 | decimals    | Yes       | 8               | Precision    |
 | totalSupply | Yes       | 1000000000      | total amount |
 
-The specific execution process of this scenario includes [Validating Code Validity](#validating-code-validity), [Compressing Text](#compressing-text), [Creating SDK Instances-1](#creating-sdk-instances-1), [Creating the Asset Issuer Account](#creating-the-asset-issuer-account), [Activating the Asset Issuer Account](#activating-the-asset-issue-account), :[Obtaining the Serial Number of the Asset Issuer Account-1](obtaining-the-serial-number-of-the-asset-issuer-account-1), [Assembling the Creation of the Contract Account and the CGO Token Issuance](#assembling-the-creation-of-the-contract-account-and-the-cgo-token-issuance), [Serializing the Transaction-1](#serializing-the-transaction-1), [Signing the Transaction-1](#signing-the-transaction-1), [Sending the Transaction-1](#sending-the-transaction-1), and [Querying Whether the Transaction Was Executed Successfully-1](#querying-whether-the-transaction-was-executed-successfully-1).
+The specific execution process of this scenario includes [Validating Code Validity](#validating-code-validity), [Compressing Text](#compressing-text), [Creating SDK Instances-1](#creating-sdk-instances-1), [Creating the Asset Issuer Account](#creating-the-asset-issuer-account), [Activating the Asset Issuer Account](#activating-the-asset-issuer-account), [Obtaining the Serial Number of the Asset Issuer Account-1](#obtaining-the-serial-number-of-the-asset-issuer-account-1), [Assembling the Creation of the Contract Account and the CGO Token Issuance](#assembling-the-creation-of-the-contract-account-and-the-cgo-token-issuance), [Serializing the Transaction-1](#serializing-the-transaction-1), [Signing the Transaction-1](#signing-the-transaction-1), [Sending the Transaction-1](#sending-the-transaction-1), and [Querying Whether the Transaction Was Executed Successfully-1](#querying-whether-the-transaction-was-executed-successfully-1).
 
 ### Validating Code Validity
 
 Open the online detection page: [bumo-jslint](http://jslint.bumocdn.com/ ), copy the above smart contract code into the edit box, and click the **JSLint** button.
 If there is a warning that the background is red, there is a problem with the syntax, as shown below:
 <img src="/docs/assets/warnings.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 If there is no syntax problem, the following information is displayed.
 
 <img src="/docs/assets/nowarnings.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 
 ### Compressing Text
@@ -213,7 +213,7 @@ If there is no syntax problem, the following information is displayed.
 Open the online text compression page:  [tool from the third party](https://jsmin.51240.com/) , copy the verified smart contract code to the edit box on the page, then click the **Compress** button to copy the compressed string, as shown below:
 
 <img src="/docs/assets/compressedString.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 ### Creating SDK Instances-1
 
@@ -466,12 +466,12 @@ The result returned after the transaction is sent only indicates whether the tra
 In the BUMO blockchain browser, query the above hash. [The main network](https://explorer.bumo.io) and [the test network](https://explorer.bumotest.io). The operation is as follows:
 
 <img src="/docs/assets/BUExplorer1.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 Result:
 
 <img src="/docs/assets/BUResult1.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 
 #### Querying by Calling the Interface-1
@@ -503,7 +503,7 @@ Return value:
 | 0      | Successful operation                                         |
 | 1      | Inner service defect                                         |
 | 2      | Parameters error                                             |
-| 3      | Objects already exist, such as repeated transactions***      |
+| 3      | Objects already exist, such as repeated transactions      |
 | 4      | Objects do not exist, such as null account, transactions and blocks etc. |
 | 5      | Transactions expired. It means the transaction has been removed from the buffer, but it still has probability to be executed. |
 | 7      | Math calculation is overflown                                |
@@ -522,7 +522,7 @@ Return value:
 | 102    | The target account already exists                            |
 | 103    | Accounts do not exist                                        |
 | 104    | Low reserve in the account                                   |
-| 105    | Amount of assets exceeds the limitation*** ( int64 )         |
+| 105    | Amount of assets exceeds the limitation ( int64 )         |
 | 106    | Insufficient initial reserve for account creation            |
 | 111    | Low transaction fee                                          |
 | 114    | TX buffer is full                                            |
@@ -548,7 +548,7 @@ This example mainly implements contract triggering function. Watch the demo: [Tr
 
 The asset issuer `buQYLtRq4j3eqbjVNGYkKYo3sLBqW3TQH2xH` is assigned to himself 20000 CGO on BuChain through the smart contract account `buQcEk2dpUv6uoXjAqisVRyP1bBSeWUHCtF2`, and transfers 10000 CGO to another account `buQXPeTjT173kagZ7j8NWAPJAgJCpJHFdyc7`.
 
-The specific implementation process in this scenario includes: [Creating SDK Instances-2](#creating-sdk-instances-2), [Obtaining the Serial Number of the Asset Issuer Account-2](#pbtaining-the-serial-number-of-the-asset-issuer-account-2), [Assembling CGO Allocation and CGO Transfer](#assembling-cgo-allocation-and-cgo-transfer), [Serializing Transactions-2](#serializing-transactions-2), [Signing Transactions-2](#signing-transactions-2), [Sending Transactions-2](#sending-transactions-2), and [Querying whether the Transaction Was Executed Successfully-2](#querying-whether-the-transaction-was-executed-successfully-2).
+The specific implementation process in this scenario includes: [Creating SDK Instances-2](#creating-sdk-instances-2), [Obtaining the Serial Number of the Asset Issuer Account-2](#obtaining-the-serial-number-of-the-asset-issuer-account-2), [Assembling CGO Allocation and CGO Transfer](#assembling-cgo-allocation-and-cgo-transfer), [Serializing Transactions-2](#serializing-transactions-2), [Signing Transactions-2](#signing-transactions-2), [Sending Transactions-2](#sending-transactions-2), and [Querying whether the Transaction Was Executed Successfully-2](#querying-whether-the-transaction-was-executed-successfully-2).
 
 ### Creating SDK Instances-2
 
@@ -767,12 +767,12 @@ In the BUMO blockchain browser, query the above hash. [The main network](https:/
 
 
 <img src="/docs/assets/BUExplorer2.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 Result:
 
 <img src="/docs/assets/BUResult2.png"
-     style= "margin-left: 20px">
+​     style= "margin-left: 20px">
 
 #### Querying by Calling the Interface-2
 
@@ -803,7 +803,7 @@ Return value:
 | 0      | Successful operation                                         |
 | 1      | Inner service defect                                         |
 | 2      | Parameters error                                             |
-| 3      | Objects already exist, such as repeated transactions***      |
+| 3      | Objects already exist, such as repeated transactions      |
 | 4      | Objects do not exist, such as null account, transactions and blocks etc. |
 | 5      | Transactions expired. It means the transaction has been removed from the buffer, but it still has probability to be executed. |
 | 7      | Math calculation is overflown                                |
@@ -822,7 +822,7 @@ Return value:
 | 102    | The target account already exists                            |
 | 103    | Accounts do not exist                                        |
 | 104    | Low reserve in the account                                   |
-| 105    | Amount of assets exceeds the limitation*** ( int64 )         |
+| 105    | Amount of assets exceeds the limitation ( int64 )         |
 | 106    | Insufficient initial reserve for account creation            |
 | 111    | Low transaction fee                                          |
 | 114    | TX buffer is full                                            |

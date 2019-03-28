@@ -1,8 +1,8 @@
 ---
-id: version-1.0.0.10-sdk_ios
-title: BUMO IOS SDK
-sidebar_label: IOS
-original_id: sdk_ios
+id: version-1.0.0.10-dex_10
+title: BUMO DEX 10 Protocol
+sidebar_label: DEX 10
+original_id: dex_10
 ---
 
 ## Introduction

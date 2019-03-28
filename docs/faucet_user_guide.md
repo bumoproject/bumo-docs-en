@@ -1,7 +1,7 @@
 ---
 id: faucet_user_guide
 title: BUMO Faucet User Guide
-sidebar_label: Faucet User Guide
+sidebar_label: Faucet
 ---
 
 Faucet is a web-based application for you to get test BUs. You can get 100 test BUs by entering your test account address. You can get BUs for the same account multiple times, but frequent requests are not suggested. You can use the beta version of Faucet by entering https://faucet.bumotest.io/ on a browser. The following steps show you how to get test BUs:

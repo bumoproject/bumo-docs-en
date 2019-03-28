@@ -1,7 +1,7 @@
 ---
 id: quick_wallet_user_guide
 title: BUMO Quick Wallet User Guide
-sidebar_label: Quick Wallet User Guide
+sidebar_label: Quick Wallet
 ---
 
 ## Introduction

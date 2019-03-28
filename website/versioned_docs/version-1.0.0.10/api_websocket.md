@@ -89,7 +89,7 @@ BUMO Blockchain offers websocket API. You can find the`"wsserver"` objecct in th
     | Keyword         | Type   | Description                                                  |
     | --------------- | ------ | ------------------------------------------------------------ |
     | source_address  | string | The source account of the transaction, which is the account of the transaction initiator. When the transaction is successful, the nonce field of the source account will be automatically incremented by 1. The nonce in the account number is the number of transactions executed by this account |
-    | nonce           | int64  | Its value must be equal to the current nonce+1 of the source account of the transaction, which is designed to prevent replay attacks. If you want to know how to query the nonce of an account, you can refer to the [getAccount](../api_http#getAccount) interface in HTTP. If the account queried does not display the nonce value, the current nonce of the account is 0. |
+    | nonce           | int64  | Its value must be equal to the current nonce+1 of the source account of the transaction, which is designed to prevent replay attacks. If you want to know how to query the nonce of an account, you can refer to the [getAccount](../api_http#getaccount) interface in HTTP. If the account queried does not display the nonce value, the current nonce of the account is 0. |
     | fee_limit       | int64  | The maximum fee that can be accepted for this transaction. The transaction will first charge a fee based on this fee. If the transaction is executed successfully, the actual cost will be charged, otherwise the fee for this field will be charged. The unit is MO, 1 BU = 10^8 MO |
     | gas_price       | int64  | It is used to calculate the handling fee for each operation and also involved in the calculation of the transaction byte fee. The unit is MO, 1 BU = 10^8 MO |
     | ceil_ledger_seq | int64  | Optional, the block height restriction for this transaction, which is also an advanced feature |
@@ -237,7 +237,7 @@ message OperationCreateAccount{
 
 - Query
 
-  The account information is queried through the [getAccount](../api_http#getAccount) interface in HTTP.
+  The account information is queried through the [getAccount](../api_http#getaccount) interface in HTTP.
 
 
 
@@ -256,7 +256,7 @@ message OperationCreateAccount{
     | tx_threshold  | int64  | The threshold for initiating a transaction below which it is not possible to initiate a transaction. |
 
 - Query
-  - The account information is queried through the [getAccount](../api_http#getAccount) interface in HTTP.
+  - The account information is queried through the [getAccount](../api_http#getaccount) interface in HTTP.
   - Query with the [getTransactionHistory](../api_http#gettransactionhistory) interface in HTTP, and the result is as follows:
 
     ```protobuf

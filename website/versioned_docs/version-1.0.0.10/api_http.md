@@ -1553,7 +1553,7 @@ Signing signatures is to sign the value of `transaction_blob` in [getTransaction
 
 ### Submitting Transaction Data
 
- According to the signature data obtained by the [`transaction_blob` and [signature] (#signature) obtained by [getTransactionBlob](#gettransactionblob), the json format of the body in the [submitTransaction](#submittransaction) interface is generated as follows:
+ According to the signature data obtained by the [`transaction_blob` and [signature](#signature) obtained by [getTransactionBlob](#gettransactionblob), the json format of the body in the [submitTransaction](#submittransaction) interface is generated as follows:
 
 ```json
 {

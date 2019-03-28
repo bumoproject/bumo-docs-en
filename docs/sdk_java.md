@@ -1627,6 +1627,18 @@ Block Service provide block-related interfaces. There are currently 11 interface
 
 - **Example**
 
+   ```java
+   // 调用getLatestInfo接口
+   BlockGetLatestInfoResponse response = sdk.getBlockService().getLatestInfo();
+   if (response.getErrorCode() == 0) {
+      BlockGetLatestInfoResult result = response.getResult();
+      System.out.println(JSON.toJSONString(result, true));
+   } else {
+      System.out.println("error: " + response.getErrorDesc());
+   }
+   ```
+
+
  
 
 ### getValidators

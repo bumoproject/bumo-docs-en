@@ -1,6 +1,6 @@
 ---
 id: version-1.0.0.10-atp_20
-title: BUMO ATP 20
+title: BUMO ATP 20 Protocol
 sidebar_label: ATP 20
 original_id: atp_20
 ---

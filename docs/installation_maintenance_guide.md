@@ -463,7 +463,7 @@ You must complete following steps to install Homebrew:
     ```
     
 
-  <img src="/docs/assets/add_start_command.png" style= "margin-left: 20px">
+  <img src="/docs/assets/download_bumo_back2.png" style= "margin-left: 20px">
 
   > **Note**: The bumo/ directory will be created automatically during the BUMO source code being downloaded, and the source code file will be stored in this directory.
 

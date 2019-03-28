@@ -1,7 +1,7 @@
 ---
 id: version-1.0.0.10-faucet_user_guide
 title: BUMO Faucet User Guide
-sidebar_label: Faucet User Guide
+sidebar_label: Faucet
 original_id: faucet_user_guide
 ---
 

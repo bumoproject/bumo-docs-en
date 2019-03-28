@@ -1,6 +1,6 @@
 ---
 id: version-1.0.0.10-atp_30
-title: BUMO ATP 30
+title: BUMO ATP 30 Protocol
 sidebar_label: ATP 30
 original_id: atp_30
 ---
@@ -554,7 +554,7 @@ Functions in the BUMO ATP 30 protocol include [issue](#issue), [totalSupply](#to
 - Function:
 
   ```js
-  function symbol(tokenId)
+  function symbol()
   ```
 
 - Return value:

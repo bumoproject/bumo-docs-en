@@ -62,7 +62,7 @@ class AccountGetNonceResponse {
 
 ```php
 class AccountGetNonceResult {
-	$nonce; // long
+	$nonce; // int64
 }
 ```
 
@@ -282,11 +282,11 @@ Transaction Service provide transaction-related interfaces and currently have fi
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
     sourceAddress|String|Required, the source account address initiating the operation
-    nonce|Long|Required, the transaction serial number to be initiated, add 1 in the function, size limit [1, max(int64)]
-    gasPrice|Long|Required, transaction gas price, unit MO, 1 BU = 10^8 MO, size limit [1000, max(int64)]
-    feeLimit|Long|Required, the minimum fees required for the transaction, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)]
+    nonce|int64|Required, the transaction serial number to be initiated, add 1 in the function, size limit [1, max(int64)]
+    gasPrice|int64|Required, transaction gas price, unit MO, 1 BU = 10^8 MO, size limit [1000, max(int64)]
+    feeLimit|int64|Required, the minimum fees required for the transaction, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)]
     operation|BaseOperation[]|Required, list of operations to be committed which cannot be empty
-    ceilLedgerSeq|long|Optional, set a value which will be combined with the current block height to restrict transactions. If transactions do not complete within the set value plus the current block height, the transactions fail. The value you set must be greater than 0. If the value is set to 0, no limit is set.
+    ceilLedgerSeq|int64|Optional, set a value which will be combined with the current block height to restrict transactions. If transactions do not complete within the set value plus the current block height, the transactions fail. The value you set must be greater than 0. If the value is set to 0, no limit is set.
     metadata|String|Optional, note
 
 - **Response data**
@@ -411,10 +411,10 @@ Transaction Service provide transaction-related interfaces and currently have fi
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ----------------  
     sourceAddress|String|Required, the source account address initiating the operation|
-    nonce|Long|Required, transaction serial number to be initiated, size limit [1, max(int64)]|
+    nonce|int64|Required, transaction serial number to be initiated, size limit [1, max(int64)]|
     operation|BaseOperation[]|Required, list of operations to be committed which cannot be empty|
     signtureNumber|Integer|Optional, the number of people to sign, the default is 1, size limit [1, max(uint32)]|
-    ceilLedgerSeq|Long|Optional, set a value which will be combined with the current block height to restrict transactions. If transactions do not complete within the set value plus the current block height, the transactions fail. The value you set must be greater than 0. If the value is set to 0, no limit is set.|
+    ceilLedgerSeq|int64|Optional, set a value which will be combined with the current block height to restrict transactions. If transactions do not complete within the set value plus the current block height, the transactions fail. The value you set must be greater than 0. If the value is set to 0, no limit is set.|
     metadata|String|Optional, note|
 
 - **Response data**
@@ -623,7 +623,7 @@ Transaction Service provide transaction-related interfaces and currently have fi
 
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
-    totalCount|Long|Total number of transactions returned
+    totalCount|int64|Total number of transactions returned
     transactions|[TransactionHistory](#transactionhistory)[]|Transaction content
 
 - **Error code**
@@ -683,7 +683,7 @@ metadata      |   String |  Optional, note
    ------------- | -------- | ---------------------------------- 
    sourceAddress |   String |  Optional, source account address of the operation 
    destAddress   |   String |  Required, target account address
-   initBalance   |   Long   |  Required, initialize the asset, unit MO, 1 BU = 10^8 MO, size (0, Long.MAX_VALUE] 
+   initBalance   |   int64   |  Required, initialize the asset, unit MO, 1 BU = 10^8 MO, size (0, max(int64)] 
    metadata|String|Optional, note
 
 ### AccountSetMetadataOperation
@@ -703,7 +703,7 @@ metadata      |   String |  Optional, note
    sourceAddress |   String |  Optional, source account address of the operation
    key           |   String  |  Required, metadata keyword, length limit [1, 1024]
    value         |   String  |  Required, metadata content, length limit [0, 256000]
-   version       |   Long    |  Optional, metadata version
+   version       |   int64    |  Optional, metadata version
    deleteFlag    |   Boolean |  Optional, whether to delete metadata
    metadata|String|Optional, note           
 
@@ -722,9 +722,9 @@ metadata      |   String |  Optional, note
    Member    |     Type  |        Description               
    ------------- | --------- | --------------------------
    sourceAddress |   String |  Optional, source account address of the operation
-   masterWeight|String|	Optional, account weight, size limit [0, (Integer.MAX_VALUE * 2L + 1)]
+   masterWeight|String|	Optional, account weight, size limit [0, max(uint32)]
    signers|[Signer](#signer)[]|Optional, signer weight list
-   txThreshold|String|Optional, transaction threshold, size limit [0, Long.MAX_VALUE]
+   txThreshold|String|Optional, transaction threshold, size limit [0, max(int64)]
    typeThreshold|[TypeThreshold](#typethreshold)[]|Optional, specify transaction threshold
    metadata|String|Optional, note
 
@@ -744,7 +744,7 @@ metadata      |   String |  Optional, note
    ------------- | --------- | ------------------------
    sourceAddress|String|Optional, source account address of the operation
    code|String|Required, asset code, length limit [1, 64]
-   assetAmount|Long|Required, asset code, length limit [0, Long.MAX_VALUE]
+   assetAmount|int64|Required, asset code, length limit [0, max(int64)]
    metadata|String|Optional, note
 
 ### AssetSendOperation
@@ -767,7 +767,7 @@ metadata      |   String |  Optional, note
    destAddress|String|Required, target account address
    code|String|Required, asset code, length limit [1, 64]
    issuer|String|Required, the account address for issuing assets
-   assetAmount|Long|Required, asset amount, size limit [0, Long.MAX_VALUE]
+   assetAmount|int64|Required, asset amount, size limit [0, max(int64)]
    metadata|String|Optional, note
 
 ### BUSendOperation
@@ -788,7 +788,7 @@ metadata      |   String |  Optional, note
    ------------- | --------- | ---------------------
    sourceAddress|String|Optional, source account address of the operation
    destAddress|String|Required, target account address
-   buAmount|Long|Required, asset code, length limit [0, Long.MAX_VALUE]
+   buAmount|int64|Required, asset code, length limit [0, max(int64)]
    metadata|String|Optional, note
 
 ### ContractCreateOperation
@@ -806,7 +806,7 @@ metadata      |   String |  Optional, note
    Member    |     Type  |        Description          
    ------------- | --------- | ---------------------
    sourceAddress|String|Optional, source account address of the operation
-   initBalance|Long|Required, initial asset for contract account, unit MO, 1 BU = 10^8 MO, size limit [1, Long.MAX_VALUE]
+   initBalance|int64|Required, initial asset for contract account, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)]
    type|Integer|Optional, the language of the contract, the default is 
    payload|String|Required, contract code for the corresponding language
    initInput|String|Optional, the input parameters of the init method in the contract code
@@ -832,7 +832,7 @@ metadata      |   String |  Optional, note
    contractAddress|String|Required, contract account address
    code|String|Optional, asset code, length limit [0, 1024]; when it is empty, only the contract is triggered
    issuer|String|Optional, the account address issuing assets; when it is null, only trigger the contract
-   assetAmount|Long|Optional, asset amount, size limit[0, Long.MAX_VALUE]when it is 0, only trigger the contract
+   assetAmount|int64|Optional, asset amount, size limit[0, max(int64)]when it is 0, only trigger the contract
    input|String|Optional, the input parameter of the main() method for the contract to be triggered
    metadata|String|Optional, note
 
@@ -854,7 +854,7 @@ metadata      |   String |  Optional, note
    ------------- | --------- | ---------------------
    sourceAddress|String|Optional, source account address of the operation
    contractAddress|String|Required, contract account address
-   buAmount|Long|Optional, number of asset issues, size limit [0, Long.MAX_VALUE], when it is 0 only triggers the contract
+   buAmount|int64|Optional, number of asset issues, size limit [0, max(int64)], when it is 0 only triggers the contract
    input|String|Optional, the input parameter of the main() method for the contract to be triggered
    metadata|String|Optional, note
 
@@ -963,8 +963,8 @@ Account Service provide account-related interfaces, which include six interfaces
     Parameter      |     Type     |        Description       
     --------- | ------------- | ---------------- 
     address	  |    String     |    Account address
-    balance	  |    Long       |    Account balance, unit is MO, 1 BU = 10^8 MO, the account balance must be > 0
-    nonce	  |    Long       |    Account transaction serial number must be greater than 0
+    balance	  |    int64       |    Account balance, unit is MO, 1 BU = 10^8 MO, the account balance must be > 0
+    nonce	  |    int64       |    Account transaction serial number must be greater than 0
     priv	  | [Priv](#priv) |    Account privilege
 
 - **Error code**
@@ -1022,7 +1022,7 @@ Account Service provide account-related interfaces, which include six interfaces
 
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
-    nonce       |   Long       |  Account transaction serial number
+    nonce       |   int64       |  Account transaction serial number
 
 - **Error code**
 
@@ -1078,7 +1078,7 @@ Account Service provide account-related interfaces, which include six interfaces
 
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
-    balance     |   Long       |  BU balance, unit MO, 1 BU = 10^8 MO
+    balance     |   int64       |  BU balance, unit MO, 1 BU = 10^8 MO
 
 - **Error code**
 
@@ -1492,8 +1492,8 @@ The `getAddress` interface is used to query the contract address.
     input|String|Optional, input parameter for the contract
     contractBalance|String|Optional, the initial BU balance given to the contract, unit MO, 1 BU = 10^8 MO, size limit [1, max(int64)]
     optType|Integer|Required, 0: Call the read/write interface of the contract init, 1: Call the read/write interface of the contract main, 2: Call the read-only interface query
-    feeLimit|Long|Minimum fee required for the transaction, size limit [1, max(int64)]
-    gasPrice|Long|Transaction fuel price, size limit [1000, max(int64)]
+    feeLimit|int64|Minimum fee required for the transaction, size limit [1, max(int64)]
+    gasPrice|int64|Transaction fuel price, size limit [1000, max(int64)]
 
 
 - **Response data**
@@ -1566,7 +1566,7 @@ Block service provide block-related interfaces. There are currently 11 interface
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
     header|BlockHeader|Block head
-    blockNumber|Long|The latest block height,corresponding to the underlying field sequence
+    blockNumber|int64|The latest block height,corresponding to the underlying field sequence
 
 - **Error code**
 
@@ -1649,13 +1649,13 @@ Block service provide block-related interfaces. There are currently 11 interface
 
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
-    blockNumber|Long|Required, the height of the block to be queried must be greater than 0
+    blockNumber|int64|Required, the height of the block to be queried must be greater than 0
 
 - **Response data**
 
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
-    totalCount|Long|Total number of transactions returned
+    totalCount|int64|Total number of transactions returned
     transactions|[TransactionHistory](#transactionhistory)[]|Transaction content
 
 - **Error code**
@@ -1706,15 +1706,15 @@ Block service provide block-related interfaces. There are currently 11 interface
 
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
-    blockNumber|Long|Required, the height of the block to be queried
+    blockNumber|int64|Required, the height of the block to be queried
 
 - **Response data**
 
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
-    closeTime|Long|Block closure time
-    number|Long|Block height
-    txCount|Long|Total transactions amount
+    closeTime|int64|Block closure time
+    number|int64|Block height
+    txCount|int64|Total transactions amount
     version|String|Block version
 
 - **Error code**
@@ -1764,9 +1764,9 @@ Block service provide block-related interfaces. There are currently 11 interface
 
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
-    closeTime|Long|Block closure time
-    number|Long|Block height,corresponding to the underlying field seq
-    txCount|Long|Total transactions amount
+    closeTime|int64|Block closure time
+    number|int64|Block height,corresponding to the underlying field seq
+    txCount|int64|Total transactions amount
     version|String|Block version
 
 
@@ -1811,7 +1811,7 @@ Block service provide block-related interfaces. There are currently 11 interface
 
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
-    blockNumber|Long|Required, the height of the block to be queried must be greater than 0
+    blockNumber|int64|Required, the height of the block to be queried must be greater than 0
 
 - **Response data**
 
@@ -1909,13 +1909,13 @@ Block service provide block-related interfaces. There are currently 11 interface
 
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
-    blockNumber|Long|Required, the height of the block to be queried must be greater than 0
+    blockNumber|int64|Required, the height of the block to be queried must be greater than 0
 
 - **Response data**
 
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
-    blockReward|Long|Block rewards
+    blockReward|int64|Block rewards
     validatorsReward|[ValidatorReward](#validatorreward)[]|Validator rewards
 
 
@@ -1966,7 +1966,7 @@ Block service provide block-related interfaces. There are currently 11 interface
 
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
-    blockReward|Long|Block rewards
+    blockReward|int64|Block rewards
     validatorsReward|[ValidatorReward](#validatorreward)[]|Validator rewards
 
 - **Error code**
@@ -2010,7 +2010,7 @@ Block service provide block-related interfaces. There are currently 11 interface
 
     Parameter      |     Type     |        Description       
     ----------- | ------------ | ---------------- 
-    blockNumber|Long|Required, the height of the block to be queried must be greater than 0
+    blockNumber|int64|Required, the height of the block to be queried must be greater than 0
 
 - **Response data**
 
@@ -2090,7 +2090,7 @@ Block service provide block-related interfaces. There are currently 11 interface
 #### Priv
 Member       |     Type     |       Description       
 -----------  | ------------ | ---------------- 
-masterWeight |	 Long	    | Account weight, size limit [0, max(uint32)] 
+masterWeight |	 int64	    | Account weight, size limit [0, max(uint32)] 
 signers	     |[Signer](#signer)[]|   Signer weight list
 threshold	 |[Threshold](#threshold)|	Threshold
 
@@ -2098,26 +2098,26 @@ threshold	 |[Threshold](#threshold)|	Threshold
 Member       |     Type     |       Description       
 -----------  | ------------ | ---------------- 
 address	     |   String	    |   The account address of the signer on the blockchain
-weight	     |   Long	    | Signer weight, size limit [0, max(uint32)] 
+weight	     |   int64	    | Signer weight, size limit [0, max(uint32)] 
 
 #### Threshold
 Member       |     Type     |       Description       
 -----------  | ------------ | ---------------- 
-txThreshold	 |    Long	    | Transaction default threshold, size limit [0, max(int64)] 
+txThreshold	 |    int64	    | Transaction default threshold, size limit [0, max(int64)] 
 typeThresholds|[TypeThreshold](#typethreshold)[]|Thresholds for different types of transactions
 
 #### TypeThreshold
 Member       |     Type     |       Description       
 -----------  | ------------ | ---------------- 
-type         |    Long	    |    The operation type must be greater than 0
-threshold    |    Long      | Threshold, size limit [0, max(int64)] 
+type         |    int64	    |    The operation type must be greater than 0
+threshold    |    int64      | Threshold, size limit [0, max(int64)] 
 
 #### AssetInfo
 
 Member       |     Type     |       Description      
 ----------- | ------------ | ---------------- 
 key       | [Key](#key)  | Unique identifier for asset
-assetAmount    | Long        | Amount of assets
+assetAmount    | int64        | Amount of assets
 
 #### Key
 
@@ -2131,7 +2131,7 @@ Member       |     Type     |       Description
 ----------- | ----------- | ---------------- 
 key         |  String     |  Metadata keyword
 value       |  String     |  Metadata content
-version     |  Long      |  Metadata version
+version     |  int64      |  Metadata version
 
 #### ContractInfo
 
@@ -2151,10 +2151,10 @@ operationIndex|Integer|The subscript of the operation
 
 Member       |     Type     |       Description      
 ----------- | ------------ | ---------------- |
-applyTime|Long|Receipt time
-memoryUsage|Long|Memory footprint
-stackUsage|Long|Stack occupancy
-step|Long|Steps needed
+applyTime|int64|Receipt time
+memoryUsage|int64|Memory footprint
+stackUsage|int64|Stack occupancy
+step|int64|Steps needed
 
 #### TransactionEnvs
 
@@ -2174,9 +2174,9 @@ trigger|[ContractTrigger](#contracttrigger)|Contract trigger
 Member       |     Type     |       Description      
 ----------- | ------------ | ---------------- 
 sourceAddress|String|The source account address initiating the transaction
-feeLimit|Long|Minimum fees required for the transaction
-gasPrice|Long|Transaction fuel price
-nonce|Long|Transaction serial number
+feeLimit|int64|Minimum fees required for the transaction
+gasPrice|int64|Transaction fuel price
+nonce|int64|Transaction serial number
 operations|[Operation](#operation)[]|Operations list
 
 #### ContractTrigger
@@ -2213,7 +2213,7 @@ destAddress|String|Target account address
 contract|[Contract](#contract)|Contract info
 priv|[Priv](#priv)|Account privilege
 metadata|[MetadataInfo](#metadatainfo)[]|Account
-initBalance|Long|Account assets, unit MO, 1 BU = 10^8 MO
+initBalance|int64|Account assets, unit MO, 1 BU = 10^8 MO
 initInput|String|The input parameter for the init function of the contract
 
 #### Contract
@@ -2229,14 +2229,14 @@ Member       |     Type     |       Description
 ----------- | ------------ | ---------------- 
 key|String|Metadata keyword
 value|String|Metadata content
-version|Long|Metadata version
+version|int64|Metadata version
 
 #### OperationIssueAsset
 
 Member       |     Type     |       Description      
 ----------- | ------------ | ---------------- 
 code|String|Asset code
-assetAmount|Long|Amount of assets
+assetAmount|int64|Amount of assets
 
 #### OperationPayAsset
 
@@ -2251,7 +2251,7 @@ input|String|Input parameters for the main function of the contract
 Member       |     Type     |       Description      
 ----------- | ------------ | ---------------- 
 destAddress|String|The target account address to which the asset is transferred
-buAmount|Long|BU amounts to be transferred
+buAmount|int64|BU amounts to be transferred
 input|String|Input parameters for the main function of the contract
 
 #### OperationSetMetadata
@@ -2260,7 +2260,7 @@ Member       |     Type     |       Description
 ----------- | ------------ | ---------------- 
 key|String|Metadata keyword
 value|String|Metadata content
-version|Long|Metadata version
+version|int64|Metadata version
 deleteFlag|boolean|Whether to delete metadata
 
 #### OperationSetPrivilege
@@ -2294,50 +2294,50 @@ transactionFees|[TransactionFees](#transactionfees)|Transaction fees
 #### TransactionFees
 Member       |     Type     |       Description    
 ----------- | ------------ | ---------------- 
-feeLimit|Long|Minimum fees required for the transaction
-gasPrice|Long|Transaction fuel price
+feeLimit|int64|Minimum fees required for the transaction
+gasPrice|int64|Transaction fuel price
 
 #### Signature
 
 Member       |     Type     |       Description       
 ----------- | ------------ | ---------------- 
-signData|Long|Signed data
-publicKey|Long|Public key
+signData|int64|Signed data
+publicKey|int64|Public key
 
 #### TransactionHistory
 
 Member       |     Type     |       Description       
 ----------- | ------------ | ---------------- 
 actualFee|String|Actual transaction cost
-closeTime|Long|Transaction closure time
-errorCode|Long|Transaction error code
+closeTime|int64|Transaction closure time
+errorCode|int64|Transaction error code
 errorDesc|String|Transaction description
 hash|String|Transaction hash
-ledgerSeq|Long|Block serial number
+ledgerSeq|int64|Block serial number
 transaction|[TransactionInfo](#transactioninfo)|List of transaction contents
 signatures|[Signature](#signature)[]|Signature list
-txSize|Long|Transaction size
+txSize|int64|Transaction size
 
 #### ValidatorInfo
 
 Member       |     Type     |       Description       
 ----------- | ------------ | ---------------- 
 address|String|Consensus node address
-plegeCoinAmount|Long|Validators deposit
+plegeCoinAmount|int64|Validators deposit
 
 #### ValidatorReward
 
 Member       |     Type     |       Description       
 ----------- | ------------ | ---------------- 
 validator|String|Validator address
-reward|Long|Validator reward
+reward|int64|Validator reward
 
 #### Fees
 
 Member       |     Type     |       Description       
 ----------- | ------------ | ---------------- 
-baseReserve|Long|Minimum asset limit for the account
-gasPrice|Long|Transaction fuel price, unit MO, 1 BU = 10^8 MO
+baseReserve|int64|Minimum asset limit for the account
+gasPrice|int64|Transaction fuel price, unit MO, 1 BU = 10^8 MO
 
 ## Error Code
 

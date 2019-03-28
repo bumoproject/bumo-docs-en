@@ -1,7 +1,7 @@
 ---
 id: version-1.0.0.10-integration_guide_for_exchanges
 title: BUMO Integration Guide for Exchanges
-sidebar_label: Integration Guide for Exchanges
+sidebar_label: Integration for Exchanges
 original_id: integration_guide_for_exchanges
 ---
 
@@ -331,8 +331,8 @@ data.
 
 You can visit the following links to query blockchain data:
 
--  Testnet: http://explorer.bumotest.io
--  Mainnet: http://explorer.bumo.io
+-  Testnet: https://explorer.bumotest.io
+-  Mainnet: https://explorer.bumo.io
 
 ## BUMO Wallet
 

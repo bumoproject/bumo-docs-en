@@ -1,6 +1,6 @@
 ---
 id: atp_20
-title: BUMO ATP 20
+title: BUMO ATP 20 Protocol
 sidebar_label: ATP 20
 ---
 

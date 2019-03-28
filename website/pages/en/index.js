@@ -274,7 +274,7 @@ class Index extends React.Component {
           },
           {
             url: `${baseUrl}docs/api_websocket`,
-            label: 'Websockt'
+            label: 'Websocket'
           }
         ]
       },
@@ -310,19 +310,19 @@ class Index extends React.Component {
         linkList: [
           {
             url: `${baseUrl}docs/integration_guide_for_exchanges`,
-            label: 'Integration Guide for Exchanges'
+            label: 'Integration for Exchanges'
           },
           {
             url: `${baseUrl}docs/asset_issuance_development_guide_for_java`,
-            label: 'Asset Issuance Development Guide for Java'
+            label: 'Asset Issuance Development for Java'
           },
           {
             url: `${baseUrl}docs/legal_evidence_development_guide_for_java`,
-            label: 'Legal Evidence Development Guide for Java'
+            label: 'Legal Evidence Development for Java'
           },
           {
             url: `${baseUrl}docs/smart_contract_development_guide_for_java`,
-            label: 'Smart Contract Development Guide for Java'
+            label: 'Smart Contract Development for Java'
           }
         ]
       },
@@ -332,11 +332,11 @@ class Index extends React.Component {
         linkList: [
           {
             url: `${baseUrl}docs/quick_wallet_user_guide`,
-            label: 'Quick Wallet User Guide'
+            label: 'Quick Wallet'
           },
           {
             url: `${baseUrl}docs/bupocket_user_guide`,
-            label: 'BU Pocket User Guide'
+            label: 'BU Pocket APP'
           }
         ]
       },

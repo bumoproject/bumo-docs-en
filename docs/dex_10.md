@@ -1,6 +1,6 @@
 ---
 id: dex_10
-title: BUMO DEX 10
+title: BUMO DEX 10 Protocol
 sidebar_label: DEX 10
 ---
 

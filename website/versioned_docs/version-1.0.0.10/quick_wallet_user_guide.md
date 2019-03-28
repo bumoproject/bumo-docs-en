@@ -1,7 +1,7 @@
 ---
 id: version-1.0.0.10-quick_wallet_user_guide
 title: BUMO Quick Wallet User Guide
-sidebar_label: Quick Wallet User Guide
+sidebar_label: Quick Wallet
 original_id: quick_wallet_user_guide
 ---
 

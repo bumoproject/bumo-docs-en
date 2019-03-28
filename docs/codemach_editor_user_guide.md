@@ -1,7 +1,7 @@
 ---
 id: codemach_editor_user_guide
 title: BUMO CodeMach Editor User Guide
-sidebar_label: CodeMach Editor User Guide
+sidebar_label: CodeMach Editor
 ---
 
 ## Introduction
