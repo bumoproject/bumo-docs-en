@@ -18,9 +18,8 @@ The following figure shows Keypair Generator. Click the **Simplified Chinese/Eng
 
 <img src="/docs/assets/keypairgenerator_1.png" style= "margin-left: 20px">
 
-Click the **Generator** button to directly generate a random account address and private key. 
+Click the **Generator** button to directly generate a random account address and private key.  Specific use steps can refer to [Keypair Guide](../keypair_guide).
 
 <img src="/docs/assets/keypairgenerator_2.png" style= "margin-left: 20px">
-
 
 **Attention**: The generated private key must be backed up and saved. Once lost, your BUs are likely to be stolen by others.
