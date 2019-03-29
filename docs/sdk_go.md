@@ -152,7 +152,7 @@ buSendOperation.SetAmount(amount)
 buSendOperation.SetDestAddress(address)
 ```
 
-#### Serializing transaction
+#### Serializing transactions
 
 The `transaction serialization` interface is used to serialize transactions and generate transaction blob strings for network transmission. The nonce value and operation are obtained from the interface called. For interface details, see [buildBlob](#buildblob), which calls as follows:
 ```go 
@@ -1419,7 +1419,7 @@ Block service provide block-related interfaces. There are currently 11 interface
 
 - **Interface description**
 
-   The `getLatestInfo` interface is used to get the latest block information.
+   The `getLatest` interface is used to get the latest block information.
 
 - **Calling method**
 
@@ -2015,4 +2015,3 @@ CONNECTN_BLOCKCHAIN_ERROR|19999|Failed to connect to the blockchain
 SYSTEM_ERROR|20000|System error
 GET_ENCPUBLICKEY_ERROR|14000|The function ‘GetEncPublicKey’ failed
 SIGN_ERROR|14001|The function ‘Sign’ failed
-||

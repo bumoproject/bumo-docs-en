@@ -510,7 +510,7 @@ Operations refer to the things that are to be done in a transaction, and the ope
   | ------------- | -------------------------------------- | -------------------------------------------- |
   | sourceAddress | String                                 | Optional, source account address of the operation                         |
   | masterWeight  | String                                 | Optional, account weight, size limit [0, max(uint32)] |
-  | signers       | [Array<Signer](#signer)>               | Optional, signer weight list                         |
+  | signers       | Array<[Signer](#signer)>              | Optional, signer weight list                         |
   | txThreshold   | String                                 | Optional, transaction threshold, size limit [0, max(int64)]      |
   | typeThreshold | Array<[TypeThreshold](#typethreshold)> | Optional, specify transaction threshold                       |
   | metadata      | String                                 | Optional, note                                   |
@@ -689,7 +689,6 @@ Operations refer to the things that are to be done in a transaction, and the ope
   | INVALID_SOURCEADDRESS_ERROR               | 11002      | Invalid sourceAddress                     |
   | INVALID_CONTRACTADDRESS_ERROR             | 11037      | Invalid contract address                  |
   | CONTRACTADDRESS_NOT_CONTRACTACCOUNT_ERROR | 11038      | ContractAddress is not a contract account |
-  |                                           |            |                                           |
   | SYSTEM_ERROR                              | 20000      | System error                              |
 
 ### Invoking Contract by Paying Assets
@@ -1156,8 +1155,6 @@ Asset Service follow the ATP 1.0 protocol, and Account Service provide an asset-
          code: 'TST',
          issuer: 'buQnnUEBREw2hB6pWHGPzwanX7d28xk6KVcp',
    };
-   ```
-
 
    sdk.token.asset.getInfo(args).then(data => {
    console.log(data);
@@ -1374,7 +1371,6 @@ Block service provide block-related interfaces. There are currently 11 interface
 
    Parameter      |     Type     |        Description       
    ----------- | ------------ | ---------------- 
-   header|[BlockHeader](#blockheader)|Block head
    blockNumber|String|The latest block height,corresponding to the underlying field sequence
 
 - **Error code**

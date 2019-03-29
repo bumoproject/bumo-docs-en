@@ -782,6 +782,8 @@ BUMO ATP 20 Protocol includes the following functions: [tokenInfo](#tokeninfo), 
 
     Topic: The method name, here is 'transfersToTranche'.
 
+    sender: The account address to call the contract.
+
     fromTranche: The tranche id of the party to pay tokens.
 
     toTranche: The tranche id of the party to receive tokens.
