@@ -1,7 +1,8 @@
 ---
-id: syntax_in_smart_contract
+id: version-1.2.0-syntax_in_smart_contract
 title: Syntax in BUMO smart contract
 sidebar_label: Syntax
+original_id: syntax_in_smart_contract
 ---
 
 ## Overview

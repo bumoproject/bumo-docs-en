@@ -221,6 +221,10 @@ class Index extends React.Component {
             label: 'Introduction'
           },
           {
+            url: `${baseUrl}docs/contract_new_interfaces`,
+            label: 'New Interfaces'
+          },
+          {
             url: `${baseUrl}docs/syntax_in_smart_contract`,
             label: 'Syntax'
           },

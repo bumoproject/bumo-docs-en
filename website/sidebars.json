@@ -7,6 +7,7 @@
     ],
     "Smart Contract": [
       "introduction_to_smart_contract",
+      "contract_new_interfaces",
       "syntax_in_smart_contract",
       "codemach_editor_user_guide"
     ],

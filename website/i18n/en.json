@@ -42,7 +42,7 @@
         "sidebar_label": "Smart Contract(Hello World)"
       },
       "contract_new_interfaces": {
-        "title": "BUMO Smart Contract New Interfaces",
+        "title": "BUMO Smart Contract Development (New Interfaces)",
         "sidebar_label": "New Interfaces"
       },
       "dex_10": {
@@ -248,6 +248,18 @@
       "version-1.0.0.10-tool_application_scenario": {
         "title": "BUMO Tool Application Scenario",
         "sidebar_label": "Tool Application Scenario"
+      },
+      "version-1.2.0-contract_new_interfaces": {
+        "title": "BUMO Smart Contract Development (New Interfaces)",
+        "sidebar_label": "New Interfaces"
+      },
+      "version-1.2.0-introduction_to_smart_contract": {
+        "title": "Introduction to BUMO smart contract",
+        "sidebar_label": "Introduction"
+      },
+      "version-1.2.0-syntax_in_smart_contract": {
+        "title": "Syntax in BUMO smart contract",
+        "sidebar_label": "Syntax"
       }
     },
     "links": {
