@@ -9,7 +9,7 @@ original_id: introduction_to_smart_contract
 
 
 
-> **Attention: ** Recommend a [New Smart Contract Interfaces](../contract_new_interfaces) for development.
+> **Attention:** Recommend a [New Smart Contract Interfaces](../contract_new_interfaces) for development.
 
 
 

@@ -8,7 +8,7 @@ sidebar_label: Introduction
 
 
 
-> **Attention: ** Recommend a [New Smart Contract Interfaces](../contract_new_interfaces) for development.
+> **Attention:** Recommend a [New Smart Contract Interfaces](../contract_new_interfaces) for development.
 
 
 
