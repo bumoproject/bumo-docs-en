@@ -674,7 +674,7 @@ This section introduces some variables of the Chain object, respectively [Chain.
 
 ### Chain.msg
 
-A message is the information that triggers the execution of a smart contract in a transaction. During the execution of the triggered contract, the transaction information will not be changed and the message will change. For example, when calling `contractCall`, `contractQuery` in a contract, the message will change.
+A message is the information that triggers the execution of a smart contract in a transaction. During the execution of the triggered contract, the transaction information will not be changed and the message will change. For example, when calling [Chain.contractCall](#chaincontractcall)，[Chain.contractQuery](#chaincontractquery) in a contract, the message will change.
 
 
 
@@ -734,7 +734,7 @@ A message is the information that triggers the execution of a smart contract in 
 
 - Variable description
   
-   The nonce value of the initiator in this transaction, ie the nonce value of the `Chain.msg.initiator` account.
+   The nonce value of the initiator in this transaction, ie the nonce value of the [Chain.msg.initiator](#chainmsginitiator) account.
 
 
 
