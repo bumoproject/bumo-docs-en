@@ -545,7 +545,7 @@ Chain.load(metadata_key);
   - contractAddress: The address of the contract to be called
   - input：Input parameter.
 
-  The Chain.contractQuery function will call the query interface of the contract.
+  The `Chain.contractQuery` function will call the `query` interface of the contract.
 
 - Example
 
@@ -576,7 +576,7 @@ Chain.load(metadata_key);
   - code: The contract code, in string.
   - input：The initiation parameter of the init function.
 
-  The Chain.contractCreate function create contracts.
+  The `Chain.contractCreate` function create contracts.
 
 - Example
 
