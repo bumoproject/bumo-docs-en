@@ -377,7 +377,7 @@ This chapter mainly introduces some functions involved in the development proces
   let ret = int64Sub('12345678912345', 1);
   /*
     Authority: Read-Only
-    return, Successfully->value in type string, such as'123456789123464'; failed->exceptions
+    return, Successfully->value in type string, such as'12345678912344'; failed->exceptions
   */
   ```
 

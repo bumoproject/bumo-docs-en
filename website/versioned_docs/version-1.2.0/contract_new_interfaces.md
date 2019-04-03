@@ -134,7 +134,7 @@ Chain.load(metadata_key);
 
 - Description
 
- Store the metadata information of the contract account.
+  Store the metadata information of the contract account.
 
 - Function call
 
@@ -517,7 +517,7 @@ Chain.load(metadata_key);
   - amount: The amount of the asset.
   - input：Input parameter.
 
- The `Chain.contractCall` function triggers the `main` function entry of the contract to be called.
+  The `Chain.contractCall` function triggers the `main` function entry of the contract to be called.
 
 - Example
 
@@ -546,7 +546,7 @@ Chain.load(metadata_key);
   - contractAddress: The address of the contract to be called
   - input：Input parameter.
 
- The Chain.contractQuery function will call the query interface of the contract.
+  The Chain.contractQuery function will call the query interface of the contract.
 
 - Example
 
@@ -593,7 +593,7 @@ Chain.load(metadata_key);
 
 ## Variables of the Chain Object
 
-This section introduces some variables of the Chain object, respectively [Chain.block](#chainblock), [Chain.tx](#chaintx) , [Chain.msg](#chainmsg)) related variables and [Chain.thisAddress](#chainthisaddress). The variables of the block information include [Chain.block.timestamp](#chainblocktimestamp), [Chain.block.number](#chainblocknumber). Variables for transaction information include [Chain.tx.initiator](#chaintxinitiator), [Chain.tx.sender](#chaintxsender), [Chain.tx.gasPrice](#chaintxgasprice), [Chain.tx.hash](#chaintxhash), [chain.tx.feeLimit](#chaintxfeelimit). The variables of the message include [Chain.msg.initiator](#chainmsginitiator), [Chain.msg.sender](#chainmsgsender), [Chain.msg.coinAmount](#chainmsgcoinamount ), [Chain.msg.asset](#chainmsgasset), [Chain.msg.nonce](#chainmsgnonce), [Chain.msg.operationIndex](#chainmsgoperationindex).
+This section introduces some variables of the Chain object, respectively [Chain.block](#chainblock), [Chain.tx](#chaintx) , [Chain.msg](#chainmsg) related variables and [Chain.thisAddress](#chainthisaddress). The variables of the block information include [Chain.block.timestamp](#chainblocktimestamp), [Chain.block.number](#chainblocknumber). Variables for transaction information include [Chain.tx.initiator](#chaintxinitiator), [Chain.tx.sender](#chaintxsender), [Chain.tx.gasPrice](#chaintxgasprice), [Chain.tx.hash](#chaintxhash), [chain.tx.feeLimit](#chaintxfeelimit). The variables of the message include [Chain.msg.initiator](#chainmsginitiator), [Chain.msg.sender](#chainmsgsender), [Chain.msg.coinAmount](#chainmsgcoinamount ), [Chain.msg.asset](#chainmsgasset), [Chain.msg.nonce](#chainmsgnonce), [Chain.msg.operationIndex](#chainmsgoperationindex).
 
 ### Chain.block
 
@@ -611,13 +611,15 @@ This section introduces some variables of the Chain object, respectively [Chain.
 
 - Variable description
 
-The height of the block where the current transaction is executed.
+  The height of the block where the current transaction is executed.
 
 
 
 ### Chain.tx
 
-The transaction information signed by the user at the time of the transaction.
+- Variable description
+
+  The transaction information signed by the user at the time of the transaction.
 
 
 
@@ -626,6 +628,7 @@ The transaction information signed by the user at the time of the transaction.
 - Variable description
 
   The original originator of the transaction, that is the fee payer of the transaction.
+
 
 
 #### Chain.tx.sender
@@ -762,9 +765,8 @@ A message is the information that triggers the execution of a smart contract in 
 - Example
 
   For example, the account x initiates a transaction to call contract Y. During this execution, the value is the address of the contract account Y.
-  
-  ```text
 
+  ```js
   let bar = Chain.msg.thisAddress;
   /*
    The value of bar is the account address of the contract Y.
@@ -775,7 +777,7 @@ A message is the information that triggers the execution of a smart contract in 
 
 ## Methods of the Utils Object
 
-This section describes some of the methods of the Chain object, including [Utils.log](#utilslog), [Utils.stoI64Check](#utilsstoi64check), [Utils.int64Add](#utilsint64add), [Utils.int64Sub ](#utilsint64sub), [Utils.int64Mul](#utilsint64mul), [Utils.int64Mod](#utilsint64mod), and [Utils.int64Div](#utilsint64div).
+This section describes some of the methods of the Utils object, including [Utils.log](#utilslog), [Utils.stoI64Check](#utilsstoi64check), [Utils.int64Add](#utilsint64add), [Utils.int64Sub ](#utilsint64sub), [Utils.int64Mul](#utilsint64mul), [Utils.int64Mod](#utilsint64mod), [Utils.int64Div](#utilsint64div), [Utils.int64Compare](#utilsint64compare), [Utils.assert](#utilsassert), [Utils.sha256](#utilssha256), [Utils.ecVerify](#utilsecverify), [Utils.toBaseUnit](#utilstobaseunit), [Utils.addressCheck](#utilsaddresscheck) and [Utils.toAddress](#utilstoaddress).
 
 ### Utils.log
 
@@ -879,7 +881,7 @@ This section describes some of the methods of the Chain object, including [Utils
   let ret = Utils.int64Sub('12345678912345', 1);
   /*
     Permission: Read-only
-    Return value: Return a string such as '123456789123464' if it succeeds, or throw an exception if it fails.
+    Return value: Return a string such as '12345678912344' if it succeeds, or throw an exception if it fails.
   */
   ```
 
@@ -993,7 +995,9 @@ This section describes some of the methods of the Chain object, including [Utils
 
 - Return value
 
- 1: left value is greater than right value, 0: left value equals to right value, -1: left value less than right value.
+   1: left value is greater than right value, 0: left value equals to right value, -1: left value less than right value.
+
+
 
 ### Utils.assert
 
