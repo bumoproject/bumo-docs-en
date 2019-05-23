@@ -123,13 +123,13 @@ The applicant for validating node needs to provide the following authentic and v
 
 5. Token account address: the initiator of margin when applying for becoming a validating node, the blockchain address associated with Token-related operations (additional margin, reward, withdrawal of margin, etc.) belong to the token account address.
 
-6. It is suggested not to have the validating node address consistent with the Token account address. It is recommended to generate a new address on the server as the validating node address. Even if the server is stolen, it will not affect the security of the token account address.
+It is suggested not to have the validating node address consistent with the Token account address. It is recommended to generate a new address on the server as the validating node address. Even if the server is stolen, it will not affect the security of the token account address.
 
-7. Reward ratio for voting: the applicant for the validating node can customize the reward ratio for voters in the application process to encourage more users to vote for it. After the voting starts, the reward ratio can be adjusted too.
+6. Reward ratio for voting: the applicant for the validating node can customize the reward ratio for voters in the application process to encourage more users to vote for it. After the voting starts, the reward ratio can be adjusted too.
 
-8. Node sponsoring plan: operating plan, contribution commitment, budgetary expenses, and submission of a complete BUMO sponsoring plan is helpful to the success of the node election.
+7. Node sponsoring plan: operating plan, contribution commitment, budgetary expenses, and submission of a complete BUMO sponsoring plan is helpful to the success of the node election.
 
-9. Hardware requirements
+8. Hardware requirements
 
 As a commercial-grade public chain, BUMO supports cross-platform deployment and is stable on mainstream systems such as Windows, Linux, and MacOS which are built on general-purpose x86 architecture servers. Candidates need to provide information such as physical hardware address, hardware configuration, bandwidth, and operating system.
 
@@ -278,7 +278,7 @@ Candidate ecological nodes| Reward received by candidate ecological nodes = (blo
 
 ### When to Release Rewards
 
-Release Time of Node Reward: Reward clearing at 01:00 on each Natural Day, Singapore Time (GMT+08:00) and then the reward is issued to the token account address of the campaign node.
+Release Time of Node Reward: Reward clearing on each Natural Day, Singapore Time (GMT+08:00) and then the reward is issued to the token account address of the campaign node.
 
 The reward to sponsors of node co-funding and the node reward are issued concurrently, which may be slightly delayed due to technical reasons. 
 
