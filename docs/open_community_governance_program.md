@@ -355,7 +355,7 @@ Disputes arising from the operation of the BUMO Community Governance Program are
 
 1. The QR code to download BU Pocket
 
-<img src="/docs/assets/bu_pocket.png" style= "margin-left: 20px"; "width: 100px";>
+<img src="/docs/assets/bu_pocket.png" style= "margin-left: 20px; width: 100px; height:100px">
 
 2. The QR code used on WeChat for the assistant of BUMO
 
