@@ -10,6 +10,9 @@
 .nav-footer .copyright{
   color: #fff;
 }
+.nav-footer .copyright a{
+  display: none;
+}
 
 /* 公共header样式重置 */
 .fixedHeaderContainer{

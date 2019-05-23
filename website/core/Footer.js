@@ -97,7 +97,11 @@ class Footer extends React.Component {
           />
         </a>
         */}
-        <section className="copyright">{this.props.config.copyright}</section>
+        <section className="copyright">
+          <span>{this.props.config.copyright}</span>
+          <script type="text/javascript" src="https://s23.cnzz.com/z_stat.php?id=1277638179&web_id=1277638179"></script>
+          <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? "https://" : "http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1277638179'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s23.cnzz.com/z_stat.php%3Fid%3D1277638179' type='text/javascript'%3E%3C/script%3E"));</script>
+        </section>
       </footer>
     );
   }
