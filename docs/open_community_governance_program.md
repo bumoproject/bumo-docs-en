@@ -143,6 +143,7 @@ Mac	|MAC OS X 10.11.4 or later
 
 
 The minimum hardware requirements are shown in the following table:
+
 Item|	Value
 -------|-------
 CPU	|8 cores
