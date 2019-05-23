@@ -68,7 +68,7 @@ Committee | The node committee is formed by the super nodes. After the campaign 
 
 **Node Co-funding**: The applicant for an ecological node can initiate “node co-funding” to get support from other users and communities, jointly building an ecological node. The validating node does not support co-funding mode.
 
-**Margin of Co-funding** The initiator of the node co-funding project needs to transfer in a certain amount of BUs as the co-funding margin. The co-funding margin is frozen during the node co-funding and campaign. In this state, the co-funding margin cannot be traded and used until the campaign node gives up qualification for campaign or voluntarily withdraws from the node co-funding project.
+**Margin of Co-funding**: The initiator of the node co-funding project needs to transfer in a certain amount of BUs as the co-funding margin. The co-funding margin is frozen during the node co-funding and campaign. In this state, the co-funding margin cannot be traded and used until the campaign node gives up qualification for campaign or voluntarily withdraws from the node co-funding project.
 
 **Address of Margin**：When nodes apply for super nodes, each node needs to transfer the required margin to this address. The BUs in this address are frozen, and the address is made public.
 
