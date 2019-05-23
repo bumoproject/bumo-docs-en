@@ -1,7 +1,7 @@
 ---
-id: open_community_governance_initiative
-title: BUMO Open Community Governance Initiative
-sidebar_label: BUMO Open Community Governance Initiative
+id: open_community_governance_program
+title: BUMO Open Community Governance Program
+sidebar_label: BUMO Open Community Governance Program
 ---
 
 ## Overview
@@ -13,15 +13,15 @@ As the next-generation commercial public chain - BUMO has always been committed 
 
 ### Purpose
 
-After running on the main network for one year, it is proved the technology of BUMO is stable and the ecosystem is developing in an orderly manner. The BUMO Foundation plans to upgrade the BUMO public chain governance by launching the community governance initiative where community participants can campaign for super nodes and form the highest governance body of the BUMO public chain – the Node Governance Committee. The Community Governance Initiative is an open ecological program embracing the entire industry participation, and truly delegates the governance right of BUMO public chain to the community.
+After running on the main network for one year, it is proved the technology of BUMO is stable and the ecosystem is developing in an orderly manner. The BUMO Foundation plans to upgrade the BUMO public chain governance by launching the community governance program where community participants can campaign for super nodes and form the highest governance body of the BUMO public chain – the Node Governance Committee. The Community Governance Program is an open ecological program embracing the entire industry participation, and truly delegates the governance right of BUMO public chain to the community.
 
 After the upgrade is completed, together with the mainchain-childchain (Orbits) and mainchain-mainchain (Canel) framework upgrade for the network layer of BUMO, and the second layer of BUMO Digital Everything Framework (DeF) for commercial applications and related ATP 60 agreement release, the ecosystem of BUMO will form a closed loop. BUMO will be the container of token economy for the decentralized community, helping commercial applications to complete business model innovations with a brand new value Internet by the ecological support of technology, services and economic models.
 
-This Community Governance Initiative includes two types of nodes, which are validating nodes and ecological nodes. The validating nodes belong to the physical nodes, participate in the BU Firework consensus and block packaging, and are the infrastructure in the BUMO ecosystem. The ecological nodes are virtual nodes that help BUMO build an ecosystem with their social or public influence. The Community Governance Initiative is going to select 19 validating nodes and 21 ecological nodes. The vote will be launched in the community, and the whole voting process is fair and transparent. Everyone in the community can participate this vote and benefit from it.
+This Community Governance Program includes two types of nodes, which are validating nodes and ecological nodes. The validating nodes belong to the physical nodes, participate in the BU Firework consensus and block packaging, and are the infrastructure in the BUMO ecosystem. The ecological nodes are virtual nodes that help BUMO build an ecosystem with their social or public influence. The Community Governance Program is going to select 19 validating nodes and 21 ecological nodes. The vote will be launched in the community, and the whole voting process is fair and transparent. Everyone in the community can participate this vote and benefit from it.
 
-The BUMO public chain ecosystem is completely open and autonomous, seamlessly connecting the physical world to the blockchain digital world. Once selected as a super node, you can be authorized by the BUMO community to engage in BUMO's business and community development activities. Under the governance rules of the tokenized economy, there are incentives to engage in various activities. For example, you can submit a Development Plan Proposal, and receive support from the BUMO Ecosystem, the Community Fund, the Node Governance Committee and other resources from the community after your proposal is approved. Community Governance Initiative regularly campaigns for the highest governance body of the BUMO public chain – the Node Governance Committee.
+The BUMO public chain ecosystem is completely open and autonomous, seamlessly connecting the physical world to the blockchain digital world. Once selected as a super node, you can be authorized by the BUMO community to engage in BUMO's business and community development activities. Under the governance rules of the tokenized economy, there are incentives to engage in various activities. For example, you can submit a Development Plan Proposal, and receive support from the BUMO Ecosystem, the Community Fund, the Node Governance Committee and other resources from the community after your proposal is approved. Community Governance Program regularly campaigns for the highest governance body of the BUMO public chain – the Node Governance Committee.
 
-BUMO has always believed that blockchain technology will profoundly change the social collaboration. The BUMO public chain itself also breaks the boundaries of traditional business organization governance, explores a new approach to community governance, and truly delegates governance right to the community. The Community Governance Initiative is the embodiment and sublimation of the BUMO ecological consensus, and is the first step in building a large-scale BUMO business ecosystem.
+BUMO has always believed that blockchain technology will profoundly change the social collaboration. The BUMO public chain itself also breaks the boundaries of traditional business organization governance, explores a new approach to community governance, and truly delegates governance right to the community. The Community Governance Program is the embodiment and sublimation of the BUMO ecological consensus, and is the first step in building a large-scale BUMO business ecosystem.
 
 ### Current Plan
 
@@ -29,7 +29,7 @@ BUMO launches the Community Governance Campaign in the hope of breaking the perf
 
 Time     | Outline | Task
 ----------|---------|---------
-2019.5.26 |Registration| Open the application channel for campaign nodes, officially launch the Community Governance Initiative, and invite global partners to participate
+2019.5.26 |Registration| Open the application channel for campaign nodes, officially launch the Community Governance Program, and invite global partners to participate
 2019.7.1 | Release nodes| The first batch of campaign nodes is officially announced
 2019.7.10 | Start voting | The campaign officially begins, and the voting channel is opened simultaneously
 2019.7.28 | Form the node committee | Convene the first "Node Governance Committee" meeting
@@ -39,7 +39,7 @@ Time     | Outline | Task
 
 ### Description of Roles 
 
-There are four roles in the BUMO Community Governance Initiative: Super nodes (validating nodes and ecological nodes), users, foundation, and committee. The specific description is in the following table:
+There are four roles in the BUMO Community Governance Program: Super nodes (validating nodes and ecological nodes), users, foundation, and committee. The specific description is in the following table:
 
 Role     | Description | Number
 -------- |------|-------
@@ -48,7 +48,7 @@ Campaign nodes | Campaign nodes consist of the validating campaign node set and 
 Validating nodes | Validating nodes are physical nodes for BUfirework consensus and block packaging | 19
 Ecological nodes| Ecological nodes are virtual nodes for building the BUMO ecosystem with their social or public influence| 21
 Users | Holders of the token, who have accounts on the BUMO chain and are eligible to campaign, vote, and sponsor node co-funding projects |
-Foundation| The BUMO Foundation, the initiator of this event, will transfer the highest authority of the BUMO public chain to the Node Committee after this event, and has the final right to interpret the rules related to this initiative during the implementation of this initiative
+Foundation| The BUMO Foundation, the initiator of this event, will transfer the highest authority of the BUMO public chain to the Node Committee after this event, and has the final right to interpret the rules related to this program during the implementation of this program
 Committee | The node committee is formed by the super nodes. After the campaign is completed, the top 3 validating nodes and the top 2 ecological nodes form the node committee. Later, the BUMO Node Committee replaces the BUMO Foundation as the highest governing authority for the BUMO public chain ecosystem|
 
 
@@ -77,12 +77,12 @@ Committee | The node committee is formed by the super nodes. After the campaign 
 
 The BUMO super nodes enjoy the most benefits in the public BUMO chain ecosystem and they are also responsible for the expansion of the community and vitality of the ecology and the promotion of business related to BU.
 
-The Community Governance Initiative is mainly for organizations and individuals with mature business modes. Participating in the node campaign requires strength and influence to gain the recognition and trust of all ecological participants. By setting up a barrier to entry for the campaign, the Foundation will pick out teams or individuals who are truly capable and willing to serve the BUMO community.
+The Community Governance Program is mainly for organizations and individuals with mature business modes. Participating in the node campaign requires strength and influence to gain the recognition and trust of all ecological participants. By setting up a barrier to entry for the campaign, the Foundation will pick out teams or individuals who are truly capable and willing to serve the BUMO community.
 
 
 #### Requirements for Application
 
-Organizations or individuals interested in participating in the Community Governance Initiative are free to participate in the election of validating nodes or ecological nodes. The following conditions must be met for the campaign:
+Organizations or individuals interested in participating in the Community Governance Program are free to participate in the election of validating nodes or ecological nodes. The following conditions must be met for the campaign:
 
 **Requirement for Margin**
 
@@ -155,7 +155,7 @@ Network	|50 MB
 
 As virtual nodes, the ecological nodes build the BUMO ecology with social or public influence. The top 21 nodes in the ecological campaign set enjoy the ecological nodes reward, and the nodes ranked 22-100 in the ecological nodes campaign set enjoy the reward for candidate ecological nodes. The ecological nodes can participate in the election after raising enough margin through co-funding. 
 
-The applicant for ecological node or the initiator of node co-funding needs to provide the following authentic and valid qualification materials on the BUMO Community Governance Initiative registration page (the node applicant downloads the qualification attachment on the prompt page of success transfer after transferring in the campaign margin, and submits the completed electronic qualification form to Supernode@bumo.io).
+The applicant for ecological node or the initiator of node co-funding needs to provide the following authentic and valid qualification materials on the BUMO Community Governance Program registration page (the node applicant downloads the qualification attachment on the prompt page of success transfer after transferring in the campaign margin, and submits the completed electronic qualification form to Supernode@bumo.io).
 
 1. Basic information of the node: node name, node LOGO, campaign slogan, and introduction to the node to help users quickly know and select campaign nodes to vote.
 
@@ -170,7 +170,7 @@ The applicant for ecological node or the initiator of node co-funding needs to p
 
 ##### Node Co-funding
 
-If the tokens held by the applicant for ecological node cannot individually meet the entry threshold of the Community Governance Initiative, the applicant can meet the entry threshold of the Community Governance Initiative by initiating node co-funding to obtain support from other personnel. The organization or individual that initiates the node co-funding project needs to transfer at least 1,000,000 BUs to the foundation's publicly announced address of margin as the node co-funding margin. In addition to the information required to be submitted by the regular node, the following information should be provided:
+If the tokens held by the applicant for ecological node cannot individually meet the entry threshold of the Community Governance Program, the applicant can meet the entry threshold of the Community Governance Program by initiating node co-funding to obtain support from other personnel. The organization or individual that initiates the node co-funding project needs to transfer at least 1,000,000 BUs to the foundation's publicly announced address of margin as the node co-funding margin. In addition to the information required to be submitted by the regular node, the following information should be provided:
 
 1. The node co-funding needs to clearly explain the purpose of launching the project, which is convenient for users to provide support.
 
@@ -184,9 +184,9 @@ After the Super Nodes Campaign related website goes online, the eligible organiz
 
 #### Node Application and Information Release
 
-After the application for a super node is approved, the campaign participants can query their own organization or personal information in the Community Governance Initiative page of the official website of BUMO.
+After the application for a super node is approved, the campaign participants can query their own organization or personal information in the Community Governance Program page of the official website of BUMO.
 
-The BUMO Foundation will release the campaign information of the contestants on the Community Governance Initiative page of the official website of BUMO. The BUMO Foundation will work together with media resources to timely release relevant news and reports on registration and voting and conduct exclusive interviews with institutions or individuals. 
+The BUMO Foundation will release the campaign information of the contestants on the Community Governance Program page of the official website of BUMO. The BUMO Foundation will work together with media resources to timely release relevant news and reports on registration and voting and conduct exclusive interviews with institutions or individuals. 
 
 #### Modification to Node Information
 
@@ -337,17 +337,17 @@ The formula about how much rewards a user can receive in the rewards for voting 
 
 ### Protection to Node Information
 
-For any material submitted by applicants participating in the BUMO Community Governance Initiative, the BUMO Foundation will only use it to confirm the applications’ qualifications and rewards. These materials will not be exposed to the third party or used for other purposes, except the required information that needs to be announced during the campaign or disclosed according to law.
+For any material submitted by applicants participating in the BUMO Community Governance Program, the BUMO Foundation will only use it to confirm the applications’ qualifications and rewards. These materials will not be exposed to the third party or used for other purposes, except the required information that needs to be announced during the campaign or disclosed according to law.
 
 ### Modification to Node Operation Rules
 
-The BUMO Community Governance Initiative is initiated by the BUMO Foundation. The node campaign and operating rules are developed by the BUMO Foundation, and the BUMO Foundation has the right to interpret the rules accordingly.
+The BUMO Community Governance Program is initiated by the BUMO Foundation. The node campaign and operating rules are developed by the BUMO Foundation, and the BUMO Foundation has the right to interpret the rules accordingly.
 
-After the Community Governance Initiative is completed, the top 3 validating nodes and the top 2 ecological nodes will form the Node Committee. The BUMO Node Committee replaces the BUMO Foundation as the highest authority for the BUMO Public Chain Ecosystem. All decisions must be approved by at least 3/5 nodes of the committee.
+After the Community Governance Program is completed, the top 3 validating nodes and the top 2 ecological nodes will form the Node Committee. The BUMO Node Committee replaces the BUMO Foundation as the highest authority for the BUMO Public Chain Ecosystem. All decisions must be approved by at least 3/5 nodes of the committee.
 
 ### Legal Jurisdiction
 
-Disputes arising from the operation of the BUMO Community Governance Initiative are governed by the laws of Singapore and are determined by the Singapore Arbitration Body.
+Disputes arising from the operation of the BUMO Community Governance Program are governed by the laws of Singapore and are determined by the Singapore Arbitration Body.
 
 ### Other Information
 
