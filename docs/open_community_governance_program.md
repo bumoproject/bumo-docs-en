@@ -359,7 +359,7 @@ Disputes arising from the operation of the BUMO Community Governance Program are
 
 2. The QR code used on WeChat for the assistant of BUMO
 
-<img src="/docs/assets/.png" style= "margin-left: 20px">
+<img src="/docs/assets/assistant.png" style= "margin-left: 20px">
 
 3. The working mailbox of the BUMO Foundation: Supernode@bumo.io
 
