@@ -224,15 +224,15 @@ The main steps for selecting a consensus node are as follows:
 
 Any account with a network node can apply to become a candidate consensus node by transferring some BU to the DPOS contract as a deposit. After the committee has voted to review, which you can refer to [Committee Approved Vote](#committee-approved-vote), it can become a formal candidate consensus node. But whether it can become a consensus node is determined according to the total number of votes obtained in a certain period.
 
-- The applicant transfers some BU to the DPOS contract as a deposit. See the development document '[Transferring BU Assets] (#transferring-bu-assets)'). If the user withdraws, the deposit will be locked for 30 days. After the lockout period is expired, apply to withdraw again. the contract will return the deposit to the application account. See [Withdrawal of Candidate Consensus Nodes](#withdrawal-of-candidate-consensus-nodes) for details.
-- The input field of the 'transfer currency' operation is filled with `{ "method": "apply", "params":{"role":"validator", "pool":" this field is filled in the address to receive rewards for voting", "ratio ":" this field is filled in with the reward ratio for voting", "node": "this field is filled in with the physical address"}}`, and pay attention to the use of escape characters.
+- The applicant transfers some BU to the DPOS contract as a deposit. See the development document '[Transferring BU Assets](../api_http#transferring-bu-assets)'). If the user withdraws, the deposit will be locked for 30 days. After the lockout period is expired, apply to withdraw again. the contract will return the deposit to the application account. See [Withdrawal of Candidate Consensus Nodes](#withdrawal-of-candidate-consensus-nodes) for details.
+- The input field of the 'transferring BU assets' operation is filled with `{ "method": "apply", "params":{"role":"validator", "pool":" this field is filled in the address to receive rewards for voting", "ratio ":" this field is filled in with the reward ratio for voting", "node": "this field is filled in with the physical address"}}`, and pay attention to the use of escape characters.
 
-|Parameter|Description
-|:--- | ---
-|role | The role applied for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section; here is the consensus node role.
-|pool | The address to receive rewards for voting. If the parameter is not provided, the default is the applicant’s address.
-|ratio | The distribution ratio of rewards of voting. The value is the numerator of the percentage, such as 80, which means that 80% of the block rewards will be transferred to the address specified by the pool parameter, and then the pool address assigns the rewards to the supporters of the current node. If the parameter is not provided, the default is 0.
-|node| The node address, which is the address of the actual physical node participating in the BuChain consensus and block generation. In order to ensure the security of the account funds, when the user applies for the consensus node, the fund address and the node address are separated.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| role      | The role applied for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section; here is the consensus node role. |
+| pool      | The address to receive rewards for voting. If the parameter is not provided, the default is the applicant’s address. |
+| ratio     | The distribution ratio of rewards of voting. The value is the numerator of the percentage, such as 80, which means that 80% of the block rewards will be transferred to the address specified by the pool parameter, and then the pool address assigns the rewards to the supporters of the current node. If the parameter is not provided, the default is 0. |
+| node      | The node address, which is the address of the actual physical node participating in the BuChain consensus and block generation. In order to ensure the security of the account funds, when the user applies for the consensus node, the fund address and the node address are separated. |
 
 >Example
 
@@ -261,11 +261,11 @@ After the application is successful, the candidate consensus node information ca
 
 The candidate consensus node or the candidate ecological node may pledge additional deposit to increase its own equity ranking. The additional amount must be an integral multiple of the configuration value of `vote_unit` in the [Configuration of Election](#configuration-of-election), otherwise the operation to pledge additional deposit will be rejected.
 
-- The input field of the `transfer currency` operation is filled with `{ "method" : "append", "params":{"role":"validator"}}`, and pay attention to the use of escape characters.
+- The input field of the `transferring BU assets` operation is filled with `{ "method" : "append", "params":{"role":"validator"}}`, and pay attention to the use of escape characters.
 
-|Parameter|Description
-|:--- | ---
-|role | The role applied for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section (committee does not need pledge); here is the consensus node role.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| role      | The role applied for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section (committee does not need pledge); here is the consensus node role. |
 
 >Example
 
@@ -290,11 +290,11 @@ The candidate consensus node or the candidate ecological node may pledge additio
 The fund address and node address of the consensus node are separate. In order to facilitate the online update and upgrade of the consensus node, the consensus node or the candidate consensus node can call this interface to modify the node address.
 
 - Transfer 0 BU to the DPOS contract.
-- The input field of the 'transfer currency' operation is filled with `{ "method" : "setNodeAddress", "params" : { "address" : "new node address is filled here"} }`, and pay attention to the use of escape characters.
+- The input field of the 'transferring BU assets' operation is filled with `{ "method" : "setNodeAddress", "params" : { "address" : "new node address is filled here"} }`, and pay attention to the use of escape characters.
 
-|Parameter|Description
-|:--- | ---
-|address | The new node address, which is used to replace the node that currently performs block generation.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| address   | The new node address, which is used to replace the node that currently performs block generation. |
 
 >Example
 
@@ -319,13 +319,13 @@ The fund address and node address of the consensus node are separate. In order t
 The super node calls this interface to change the address used to distributing rewards and the reward ratio.
 
 - Transfer 0 BU to the DPOS contract.
-- The input field of the `transfer currency` operation is filled with `{ "method" : "setVoteDividend", "params":{"role": "the role type of the super node is filled in here", "pool":" this field is filled in the address for distributing rewards", "ratio": " this field is filled in the reward ratio"}}`, and pay attention to the use of escape characters.
+- The input field of the `transferring BU assets` operation is filled with `{ "method" : "setVoteDividend", "params":{"role": "the role type of the super node is filled in here", "pool":" this field is filled in the address for distributing rewards", "ratio": " this field is filled in the reward ratio"}}`, and pay attention to the use of escape characters.
 
-|Parameter|Description
-|:--- | ---
-|role | The role of applied for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, but it cannot be the committee.
-|pool | The address to distribute voting rewards.
-|ratio | The reward ratio for voting. The value is the numerator of the percentage, such as 80, which means that 80% of the block reward will be transferred to the address specified by the pool parameter, and then the pool address assigns the rewards to the supporters of the current node.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| role      | The role of applied for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, but it cannot be the committee. |
+| pool      | The address to distribute voting rewards.                    |
+| ratio     | The reward ratio for voting. The value is the numerator of the percentage, such as 80, which means that 80% of the block reward will be transferred to the address specified by the pool parameter, and then the pool address assigns the rewards to the supporters of the current node. |
 
 >Example
 
@@ -354,12 +354,12 @@ The super node calls this interface to change the address used to distributing r
 - The user can vote for multiple candidate addresses, and the number of candidate consensus nodes that can be voted depends on the size of the candidate consensus node set and the user's account balance.
 - Repeated voting on the same address is regarded as an increase in voting.
 - The number of votes and the additional deposit must be an integral multiple of the value configured in `vote_unit` in [Configuration of Election](#configuration-of-election).
-- The input field of the `transfer currency` operation is filled with `{ "method" : "vote", "params" : { "role":"validator", "address" : " the candidate consensus node address is filled in "} }`, and pay attention to the use of escape characters.
+- The input field of the `transferring BU assets` operation is filled with `{ "method" : "vote", "params" : { "role":"validator", "address" : " the candidate consensus node address is filled in "} }`, and pay attention to the use of escape characters.
 
-|Parameter|Description
-|:--- | --- 
-|role | The role of the node voted for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the consensus node role.
-|address| The address voted for.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| role      | The role of the node voted for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the consensus node role. |
+| address   | The address voted for.                                       |
 
 >Example: Vote for a specified candidate consensus node
 
@@ -383,13 +383,13 @@ The super node calls this interface to change the address used to distributing r
 ### Withdrawing Votes
 
 - Transfer 0 BU to the DPOS contract account.
-- The input field of the `transfer currency` operation is filled with `{ "method" : "unVote", "params" : { "role":"validator", "address" : " the candidate consensus node address is filled in "} }`, and pay attention to the use of escape characters.
+- The input field of the `transferring BU assets` operation is filled with `{ "method" : "unVote", "params" : { "role":"validator", "address" : " the candidate consensus node address is filled in "} }`, and pay attention to the use of escape characters.
 - The voting information is recorded in the contract and can be queried by using the `getVoteInfo` interface.
 
-|Parameter|Description
-|:--- | --- 
-|role | The role of the voter. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the consensus node role.
-|address|  The address voted for.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| role      | The role of the voter. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the consensus node role. |
+| address   | The address voted for.                                       |
 
 ```json
   "pay_coin" :
@@ -415,11 +415,11 @@ The super node calls this interface to change the address used to distributing r
   2. After the lockout period is over, it enters the second step, and the withdrawal request can be sent again. At this time, the lockout period is over, and the DPOS contract account returns the deposit to the account.
 
 - Transfer 0 BU to the DPOS contract account.
-- The input field of the `transfer asset` or `transfer currency` operation is filled with `{ "method":"withdraw", "params" :{ "role":"validator" }}`, and pay attention to the use of escape characters.
+- The input field of the `transfer asset` or `transferring BU assets` operation is filled with `{ "method":"withdraw", "params" :{ "role":"validator" }}`, and pay attention to the use of escape characters.
 
-|Parameter| Description
-|:--- | ---
-|role |  The role of the withdrawer. The parameter value must be one of the values ​​listed in the [User Roles](#user-roles) section, and here is the consensus node role.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| role      | The role of the withdrawer. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the consensus node role. |
 
 >Example
 
@@ -443,13 +443,13 @@ The super node calls this interface to change the address used to distributing r
 If a consensus node finds that another consensus node is a malicious node, or is no longer suitable as a consensus node, it can apply to abolish the malicious node. After launching the ‘Abolition of Malicious Node’ proposal, the committee needs to vote to decide whether to abolish the node.
 
 - The proposer transfers 0 BU to the DPOS contract account.
-- The input field of the `transfer asset` or `transfer currency` operation is filled with `{ "method" : "abolish", "params" : { "role":"validator", "address" : "the malicious consensus node address is filled in here ", "proof": " the reason for abolishing this consensus node is filled in here"} }`, and pay attention to the use of escape characters.
+- The input field of the `transfer asset` or `transferring BU assets` operation is filled with `{ "method" : "abolish", "params" : { "role":"validator", "address" : "the malicious consensus node address is filled in here ", "proof": " the reason for abolishing this consensus node is filled in here"} }`, and pay attention to the use of escape characters.
 
-|Parameter| Description
-|:--- | ---
-|role |  The role of the abolished node. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the consensus node role.
-|address|  The address of the one that is abolished.
-|proof|  The reason to abolish.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| role      | The role of the abolished node. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the consensus node role. |
+| address   | The address of the one that is abolished.                    |
+| proof     | The reason to abolish.                                       |
 
 >Example
 
@@ -531,11 +531,11 @@ The user can view related information by providing specified parameters to the q
 
 #### Querying the Voting Information of Consensus Nodes for Users
 
-|Parameter| Description
-|:--- | --- 
-|voter |  The address for voter. If the user queries their own voting information, the address can be omitted.
-|role|  The role of the one voted for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the consensus node.
-|candidate|  The address voted for.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| voter     | The address for voter. If the user queries their own voting information, the address can be omitted. |
+| role      | The role of the one voted for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the consensus node. |
+| candidate | The address voted for.                                       |
 
 >Example
 
@@ -571,11 +571,11 @@ The user can view related information by providing specified parameters to the q
 
 #### Querying Application Information of Consensus Nodes
 
-|Parameter| Description
-|:--- | ---
-|operate | The proposal action. The parameter value must be one of the values ​​listed in the [Proposal Actions](#proposal-actions) section, and here is the application action.
-|item|  The proposed item. The parameter value must be one of the values listed in the [User Roles](#user-roles) section or the [Configuration of Election](#Configuration-of-election) section, and here is the consensus node role.
-|address| The address of the applicant. 
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| operate   | The proposal action. The parameter value must be one of the values listed in the [Proposal Actions](#proposal-actions) section, and here is the application action. |
+| item      | The proposed item. The parameter value must be one of the values listed in the [User Roles](#user-roles) section or the [Configuration of Election](#Configuration-of-election) section, and here is the consensus node role. |
+| address   | The address of the applicant.                                |
 
 >Example
 
@@ -601,13 +601,13 @@ The user can view related information by providing specified parameters to the q
 
 >Result
 
-|Parameter|Type|Description
-|:--- | --- |---
-|proposal | string |  The proposal.
-|pledge| string |The deposit pledged.
-|expiration| number | The expiry date.
-|ballot| array | The vote list by the committee members who support this proposal.
-|passTime| number | During the committee reviewing the proposal, this field is not available if it fails the review.
+| Parameter  | Type   | Description                                                  |
+| ---------- | ------ | ------------------------------------------------------------ |
+| proposal   | string | The proposal.                                                |
+| pledge     | string | The deposit pledged.                                         |
+| expiration | number | The expiry date.                                             |
+| ballot     | array  | The vote list by the committee members who support this proposal. |
+| passTime   | number | During the committee reviewing the proposal, this field is not available if it fails the review. |
 
 ```json
 {
@@ -620,11 +620,11 @@ The user can view related information by providing specified parameters to the q
 
 #### Querying the Specified Proposal to Abolish the Malicious Node
 
-|Parameter| Description
-|:--- | ---
-|operate |  The proposal action. The parameter value must be one of the values listed in the [Proposal Actions](#proposal-actions) section, and here is the abolishing action.
-|item|  The proposed item. The parameter value must be one of the values listed in the [User Roles](#user-roles) section or the [Configuration of Election](#configuration-of-election) section, and here is the consensus node role.
-|address|  The address of the one abolished.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| operate   | The proposal action. The parameter value must be one of the values listed in the [Proposal Actions](#proposal-actions) section, and here is the abolishing action. |
+| item      | The proposed item. The parameter value must be one of the values listed in the [User Roles](#user-roles) section or the [Configuration of Election](#configuration-of-election) section, and here is the consensus node role. |
+| address   | The address of the one abolished.                            |
 
 >Example
 
@@ -650,13 +650,13 @@ The user can view related information by providing specified parameters to the q
 
 >Result
 
-|Parameter|Type|Description
-|:--- | --- |--- 
-|proposal | string |  The proposal.
-|informer| string |The address of the informant.
-|reason| string | The reason to report.
-|expiration| number | The expiry date.
-|ballot| array | The vote list by the committee members who support this proposal.
+| Parameter  | Type   | Description                                                  |
+| ---------- | ------ | ------------------------------------------------------------ |
+| proposal   | string | The proposal.                                                |
+| informer   | string | The address of the informant.                                |
+| reason     | string | The reason to report.                                        |
+| expiration | number | The expiry date.                                             |
+| ballot     | array  | The vote list by the committee members who support this proposal. |
 
 ```json
 {
@@ -690,11 +690,11 @@ Before the initialization, the committee members need to be made public in the c
 #### Applying to Join the Committee
 
 - The user transfers 0 BU to the DPOS contract and applies to become a new member. To become a new member, you need to be approved by the current committee. Refer to [Committee Approved Vote](#committee-approved-vote).
-- The input field of the `transfer currency` operation is filled with { "method" : "apply", "params" : {"role":"committee"}}, and pay attention to the use of escape characters.
+- The input field of the `transferring BU assets` operation is filled with `{ "method" : "apply", "params" : {"role":"committee"}}`, and pay attention to the use of escape characters.
 
-|Parameter| Description
-|:--- | ---
-|role |  The role applied for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the committee member.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| role      | The role applied for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the committee member. |
 
 >Example
 
@@ -719,13 +719,13 @@ After the application is successful, you can query the candidate consensus node 
 
 - Proposals that need to be reviewed and approved by the committee include: candidate consensus nodes, participation or withdrawal of candidate ecological nodes and new committee members, and configuration updates. After the majority of the committee members approve the proposal, it will be executed. See the `pass_rate` configuration item in [Configuration of Election](#configuration-of-election). When reviewing the vote, you need to specify the proposal action type, the proposer role, and the address of the one proposed. If the review is a configuration update proposal, use the proposal's [Configuration of Election](#configuration-of-election) item instead of the role, the proposer address instead of the address of the one proposed (the update configuration proposal does not have one that is proposed).
 - The committee members transfer 0 BU to the DPOS contract account.
-- The input field of the `transfer currency` operation is filled with `{ "method":"approve", "params" : {"item": "committee", "address": "the address to be included or revoked is filled in here", " Operate": "the proposal type is filled in here"} }`, and pay attention to the use of escape characters. 
+- The input field of the `transferring BU assets` operation is filled with `{ "method":"approve", "params" : {"item": "committee", "address": "the address to be included or revoked is filled in here", " Operate": "the proposal type is filled in here"} }`, and pay attention to the use of escape characters. 
 
-|Parameter| Description
-|:--- | ---
-|operate |  The proposal action. The parameter value must be one of the values listed in the [Proposal Actions](#proposal-actions) section, and here is the application action.
-|item| The proposed item. The parameter value must be one of the values listed in the [User Roles](#user-roles) section or the [Configuration of Election](#configuration-of-election) section, and here is the committee member role.
-|address| The address of the applicant.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| operate   | The proposal action. The parameter value must be one of the values listed in the [Proposal Actions](http://typora-app/TypeMark/index.html#proposal-actions) section, and here is the application action. |
+| item      | The proposed item. The parameter value must be one of the values listed in the [User Roles](#user-roles) section or the [Configuration of Election](#configuration-of-election) section, and here is the committee member role. |
+| address   | The address of the applicant.                                |
 
 >Example
 
@@ -750,12 +750,12 @@ After the application is successful, you can query the candidate consensus node 
 #### Withdrawal of Committee Members
 
 - Transfer 0 BU to the DPOS contract account.
-- The input field of the `transfer asset` or `transfer currency` operation is filled with `{ "method":"withdraw", "params" : {"role":"committee"} }`, and pay attention to the use of escape characters.
+- The input field of the `transfer asset` or `transferring BU assets` operation is filled with `{ "method":"withdraw", "params" : {"role":"committee"} }`, and pay attention to the use of escape characters.
 - If committee members voluntarily withdraw, no approval is needed.
 
-|Parameter| Description
-|:--- | ---
-|role |  The role of the withdrawer. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the committee member.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| role      | The role of the withdrawer. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the committee member. |
 
 >Example
 
@@ -812,13 +812,13 @@ The user can view the related information by providing the specified parameters 
 
 - Committee members transfer 0 BU to the DPOS contract account.
 - Committee members can propose to update a parameter, which only requires you to fill in the parameter that needs to be updated in the configuration.
-- The input field of the `transfer asset` or `transfer currency` operation is filled with { "method" : "configure", "params" : { "item" :"kol_min_pledge", "value": " the minimum deposit for ecological node is filled in here "} }, and pay attention to the use of escape characters.
+- The input field of the `transfer asset` or `transferring BU assets` operation is filled with` { "method" : "configure", "params" : { "item" :"kol_min_pledge", "value": " the minimum deposit for ecological node is filled in here "} }`, and pay attention to the use of escape characters.
 
-|Parameter| Description
-|:--- | ---
-|method | Call the specified function inside the contract, and here is **configure**.
-|item   | The configuration item of the proposal. The parameter value must be one of the values listed in the [Configuration of Election](#configuration-of-election) section, and here is the minimum deposit of the ecological node.
-|value  | The value of the configuration item to be modified.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| method    | Call the specified function inside the contract, and here is **configure**. |
+| item      | The configuration item of the proposal. The parameter value must be one of the values listed in the [Configuration of Election](#configuration-of-election) section, and here is the minimum deposit of the ecological node. |
+| value     | The value of the configuration item to be modified.          |
 
 >Example
 
@@ -876,13 +876,13 @@ The development of the public chain ecology is inseparable from the active commu
 Any user account can transfer some BU to the DPOS contract as a deposit to apply for a candidate ecological node. Only after the application is passed by the committee in a valid period can it be added to ecological node list. Refer to [Committee Approved Vote](#committee-approved-vote) . Whether it can become a formal ecological node is determined by the total number of votes cast by users in a certain period.
 
 - The applicant transfers some BU to the DPOS contract as a deposit which can be recovered by the `recovery deposit` operation. See the development document [Transferring BU Assets] (#transferring-bu-assets).
-- The input field of the `transfer currency` operation is filled with `{ "method" : "apply", "params":{"role":"kol", "pool":" the address to distribute voting rewards is filled in here", "ratio ":" the reward distribution ratio for voting is filled in here "}}`, and pay attention to the use of escape characters.
+- The input field of the `transferring BU assets` operation is filled with `{ "method" : "apply", "params":{"role":"kol", "pool":" the address to distribute voting rewards is filled in here", "ratio ":" the reward distribution ratio for voting is filled in here "}}`, and pay attention to the use of escape characters.
 
-|Parameter| Description
-|:--- | ---
-|role | The role applied for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the consensus node role.
-|pool | The address to distribute voting rewards. If the parameter is not provided, the default is the applicant’s address.
-|ratio | The reward ratio for voting. The value is a numerator of the percentage, such as 80, which means that 80% of the block reward will be transferred to the address specified by the `pool` parameter, and then the pool address assigns the reward to the supporters of the current node. If the parameter is not provided, the default is 0.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| role      | The role applied for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the consensus node role. |
+| pool      | The address to distribute voting rewards. If the parameter is not provided, the default is the applicant’s address. |
+| ratio     | The reward ratio for voting. The value is a numerator of the percentage, such as 80, which means that 80% of the block reward will be transferred to the address specified by the `pool` parameter, and then the pool address assigns the reward to the supporters of the current node. If the parameter is not provided, the default is 0. |
 
 >Example
 
@@ -910,11 +910,12 @@ After the application is successful, the candidate ecological node information c
   1. The first step is to apply for withdrawal. After the application is successful, the node address is deleted in the candidate node set, and the deposit enters the lockout period, and the lockout period is 30 days.
   2. After the lockout period is over, it enters to the second step, and the withdrawal request can be sent again. At this time, the lockout period has passed, and the DPOS contract account returns the deposit to the account.
 - Transfer 0 BU to the DPOS contract account.
-- The input field of the `transfer asset` or `transfer currency` operation is filled with `{ "method":"withdraw", "params" : {"role":"kol"}}`, and pay attention to the use of escape characters.
+- The input field of the `transfer asset` or `transferring BU assets` operation is filled with `{ "method":"withdraw", "params" : {"role":"kol"}}`, and pay attention to the use of escape characters.
 
-|Parameter| Description
-|:--- | ---
-|role | The role of the withdrawer. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the ecological node.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| role      | The role of the withdrawer. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the ecological node. |
+
 >Example
 
 ```json
@@ -937,14 +938,14 @@ After the application is successful, the candidate ecological node information c
 - The user can vote for multiple candidate ecological nodes, and the number of candidate ecological nodes that can be voted depends on the size of the candidate ecological node set and the user's account balance.
 - Repeated voting on the same address is regarded as an increase in voting.
 - The number of votes and the additional deposit must be an integral multiple of the `vote_unit` value configured in [Configuration of Election](#configuration-of-election).
-- The input field of the `transfer currency` operation is filled with `{ "method":"vote", "params" : {"role":"kol", "address": " the address of the candidate ecological node is filled in here"}} `, and pay attention to the use of escape characters.
+- The input field of the `transferring BU assets` operation is filled with `{ "method":"vote", "params" : {"role":"kol", "address": " the address of the candidate ecological node is filled in here"}} `, and pay attention to the use of escape characters.
 
 >Casting Votes
 
-|Parameter| Description
-|:--- | ---
-|role | The role of the one voted for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the ecological node role.
-|address| The address of the one voted for.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| role      | The role of the one voted for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the ecological node role. |
+| address   | The address of the one voted for.                            |
 
 ```json
   "pay_coin" :
@@ -963,10 +964,10 @@ After the application is successful, the candidate ecological node information c
 
 >Withdrawing Votes
 
-|Parameter| Description
-|:--- | ---
-|role | The role of the one voted for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the ecological node role.
-|address| The address voted for.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| role      | The role of the one voted for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the ecological node role. |
+| address   | The address voted for.                                       |
 
 ```json
   "pay_coin" :
@@ -985,11 +986,11 @@ After the application is successful, the candidate ecological node information c
 
 #### Querying Application for Ecological Nodes
 
-|Parameter| Description
-|:--- | ---
-|operate | The proposal action. The parameter value must be one of the values listed in the [Proposal Actions](#proposal-actions) section, and here is the application action.
-|item| The proposed item. The parameter value must be one of the values listed in the [User Roles](#user-roles) section or the [Configuration of Election](#configuration-of-election) section, and here is the ecological node role.
-|address|The address of the applicant.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| operate   | The proposal action. The parameter value must be one of the values listed in the [Proposal Actions](#proposal-actions) section, and here is the application action. |
+| item      | The proposed item. The parameter value must be one of the values listed in the [User Roles](#user-roles) section or the [Configuration of Election](#configuration-of-election) section, and here is the ecological node role. |
+| address   | The address of the applicant.                                |
 
 >Example
 
@@ -1022,11 +1023,11 @@ After the application is successful, the candidate ecological node information c
 
 ### Querying Ecological Nodes Voted by Users
 
-|Parameter| Description
-|:--- | ---
-|voter | The address of the voter. If the user queries their own voting information, it can be omitted.
-|role| The role of the one voted for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the ecological node.
-|candidate|The address of the one voted for.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| voter     | The address of the voter. If the user queries their own voting information, it can be omitted. |
+| role      | The role of the one voted for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the ecological node. |
+| candidate | The address of the one voted for.                            |
 
 >Example
 
@@ -1165,11 +1166,11 @@ The reward list is stored in the form of key-value
 
 - Any user calling this interface can receive a block reward for the specified address set. If the receiving address is not in the reward list, the address will not receive the reward.
 - Transfer 0BU to the DPOS contract.
-- The input field of the `transfer asset` or `transfer currency` operation is filled with `{ "method":"extract", "params":{"list":[the address set for extracting rewards is filled in here]}}, and pay attention to the use of escape characters.
+- The input field of the `transfer asset` or `transferring BU assets` operation is filled with `{ "method":"extract", "params":{"list":[the address set for extracting rewards is filled in here]}}`, and pay attention to the use of escape characters.
 
-|Parameter| Description
-|:--- | ---
-|list | The list to receive rewards. It is an array. The number of addresses to receive rewards cannot exceed 100. If the parameters are not provided, receive the reward of the contract trigger by default.
+| Parameter | Description                                                  |
+| --------- | ------------------------------------------------------------ |
+| list      | The list to receive rewards. It is an array. The number of addresses to receive rewards cannot exceed 100. If the parameters are not provided, receive the reward of the contract trigger by default. |
 
 >Extract rewards
 
@@ -1197,7 +1198,7 @@ The reward list is stored in the form of key-value
 For all types of expired proposals (including application for consensus nodes, ecological nodes, committee members, withdrawals and abolitions, and all types of proposals to update configuration of election), any user can trigger this interface to clean up the expired proposal.
 
 - Transfer 0BU to the DPOS contract.
-- The input field of the `transfer currency` operation is filled with `{ "method":"clean", "params" : {"item": " the proposal item is filled in here", "address": "the address of the proposer the proposed ", "operate": " the proposal type is filled in here"} }`, and pay attention to the use of escape characters.
+- The input field of the `transferring BU assets` operation is filled with `{ "method":"clean", "params" : {"item": " the proposal item is filled in here", "address": "the address of the proposer the proposed ", "operate": " the proposal type is filled in here"} }`, and pay attention to the use of escape characters.
 - If the overdue proposal to be cleared is the application proposal or the withdrawal proposal, and the proposal involves a deposit, the deposit will be refunded to the account when the proposal is cleared.
 
 >Example
