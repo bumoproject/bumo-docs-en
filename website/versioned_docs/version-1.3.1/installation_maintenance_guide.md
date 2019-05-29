@@ -1,7 +1,8 @@
 ---
-id: installation_maintenance_guide
+id: version-1.3.1-installation_maintenance_guide
 title: BUMO Installation and Maintenance Guide
 sidebar_label: Installation and Maintenance Guide
+original_id: installation_maintenance_guide
 ---
 
 ## Overview

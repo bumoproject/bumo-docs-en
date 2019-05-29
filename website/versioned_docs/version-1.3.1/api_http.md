@@ -1,7 +1,8 @@
 ---
-id: api_http
+id: version-1.3.1-api_http
 title: BUMO HTTP
 sidebar_label: HTTP
+original_id: api_http
 ---
 
 ## Overview

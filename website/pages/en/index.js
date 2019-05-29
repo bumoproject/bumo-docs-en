@@ -213,6 +213,76 @@ class Index extends React.Component {
     
     const featureArray = [
       {
+        image: `${baseUrl}img/index/api.png`,
+        name: 'API',
+        linkList: [
+          {
+            url: `${baseUrl}docs/keypair_guide`,
+            label: 'Keypair'
+          },
+          {
+            url: `${baseUrl}docs/api_http`,
+            label: 'HTTP'
+          },
+          {
+            url: `${baseUrl}docs/api_websocket`,
+            label: 'Websocket'
+          }
+        ]
+      },
+      {
+        image: `${baseUrl}img/index/sdk.png`,
+        name: 'SDK',
+        linkList: [
+          {
+            url: `${baseUrl}docs/sdk_java`,
+            label: 'JAVA'
+          },
+          {
+            url: `${baseUrl}docs/sdk_nodejs`,
+            label: 'Node.js'
+          },
+          {
+            url: `${baseUrl}docs/sdk_go`,
+            label: 'GO'
+          },
+          {
+            url: `${baseUrl}docs/sdk_php`,
+            label: 'PHP'
+          },
+          {
+            url: `${baseUrl}docs/sdk_ios`,
+            label: 'IOS'
+          }
+        ]
+      },
+      {
+        image: `${baseUrl}img/index/docs.png`,
+        name: 'Development Guide',
+        linkList: [
+          {
+            url: `${baseUrl}docs/installation_maintenance_guide`,
+            label: 'Installation and Maintenance'
+          },
+          {
+            url: `${baseUrl}docs/integration_guide_for_exchanges`,
+            label: 'Integration for Exchanges'
+          },
+          {
+            url: `${baseUrl}docs/asset_issuance_development_guide_for_java`,
+            label: 'Asset Issuance Development for Java'
+          },
+          {
+            url: `${baseUrl}docs/legal_evidence_development_guide_for_java`,
+            label: 'Legal Evidence Development for Java'
+          },
+          {
+            url: `${baseUrl}docs/smart_contract_development_guide_for_java`,
+            label: 'Smart Contract Development for Java'
+          }
+        ]
+      },
+      {
         image: `${baseUrl}img/index/contract.png`,
         name: 'Smart Contract',
         linkList: [
@@ -265,68 +335,12 @@ class Index extends React.Component {
         ]
       },
       {
-        image: `${baseUrl}img/index/api.png`,
-        name: 'API',
+        image: `${baseUrl}img/index/community.png`,
+        name: 'Community',
         linkList: [
           {
-            url: `${baseUrl}docs/keypair_guide`,
-            label: 'Keypair'
-          },
-          {
-            url: `${baseUrl}docs/api_http`,
-            label: 'HTTP'
-          },
-          {
-            url: `${baseUrl}docs/api_websocket`,
-            label: 'Websocket'
-          }
-        ]
-      },
-      {
-        image: `${baseUrl}img/index/sdk.png`,
-        name: 'SDK',
-        linkList: [
-          {
-            url: `${baseUrl}docs/sdk_java`,
-            label: 'JAVA'
-          },
-          {
-            url: `${baseUrl}docs/sdk_nodejs`,
-            label: 'Node.js'
-          },
-          {
-            url: `${baseUrl}docs/sdk_go`,
-            label: 'GO'
-          },
-          {
-            url: `${baseUrl}docs/sdk_php`,
-            label: 'PHP'
-          },
-          {
-            url: `${baseUrl}docs/sdk_ios`,
-            label: 'IOS'
-          }
-        ]
-      },
-      {
-        image: `${baseUrl}img/index/docs.png`,
-        name: 'Development Guide',
-        linkList: [
-          {
-            url: `${baseUrl}docs/integration_guide_for_exchanges`,
-            label: 'Integration for Exchanges'
-          },
-          {
-            url: `${baseUrl}docs/asset_issuance_development_guide_for_java`,
-            label: 'Asset Issuance Development for Java'
-          },
-          {
-            url: `${baseUrl}docs/legal_evidence_development_guide_for_java`,
-            label: 'Legal Evidence Development for Java'
-          },
-          {
-            url: `${baseUrl}docs/smart_contract_development_guide_for_java`,
-            label: 'Smart Contract Development for Java'
+            url: `${baseUrl}docs/open_community_governance_program`,
+            label: 'Open Community Governance Program'
           }
         ]
       },

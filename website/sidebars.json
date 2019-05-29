@@ -2,22 +2,8 @@
   "docs": {
     "Get Started": [
       "introduction_to_bumo",
-      "installation_maintenance_guide",
+      "installation_for_synchronous_node",
       "contract_hello_world"
-    ],
-    "Smart Contract": [
-      "introduction_to_smart_contract",
-      "contract_new_interfaces",
-      "syntax_in_smart_contract",
-      "codemach_editor_user_guide"
-    ],
-    "BEPs Protocol": [
-      "introduction_to_beps",
-      "atp_10",
-      "atp_20",
-      "atp_30",
-      "sto_10",
-      "dex_10"
     ],
     "API": [
       "keypair_guide",
@@ -32,10 +18,29 @@
       "sdk_ios"
     ],
     "Development Guide": [
+      "installation_maintenance_guide",
       "integration_guide_for_exchanges",
       "asset_issuance_development_guide_for_java",
       "legal_evidence_development_guide_for_java",
       "smart_contract_development_guide_for_java"
+    ],
+    "Smart Contract": [
+      "introduction_to_smart_contract",
+      "contract_new_interfaces",
+      "syntax_in_smart_contract",
+      "codemach_editor_user_guide"
+    ],
+    "BEPs Protocol": [
+      "introduction_to_beps",
+      "atp_10",
+      "atp_20",
+      "atp_30",
+      "sto_10",
+      "dex_10",
+      "dpos_10"
+    ],
+    "Community": [
+      "open_community_governance_program"
     ],
     "Wallet": [
       "quick_wallet_user_guide",

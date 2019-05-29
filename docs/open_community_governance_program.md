@@ -41,15 +41,15 @@ Time     | Outline | Task
 
 There are four roles in the BUMO Community Governance Program: Super nodes (validating nodes and ecological nodes), users, foundation, and committee. The specific description is in the following table:
 
-Role     | Description | Number
--------- |------|-------
-Super nodes | Super nodes consist of validating nodes and ecological nodes | 
-Campaign nodes | Campaign nodes consist of the validating campaign node set and the ecological campaign node set | 
-Validating nodes | Validating nodes are physical nodes for BUfirework consensus and block packaging | 19
-Ecological nodes| Ecological nodes are virtual nodes for building the BUMO ecosystem with their social or public influence| 21
-Users | Holders of the token, who have accounts on the BUMO chain and are eligible to campaign, vote, and sponsor node co-funding projects |
-Foundation| The BUMO Foundation, the initiator of this event, will transfer the highest authority of the BUMO public chain to the Node Committee after this event, and has the final right to interpret the rules related to this program during the implementation of this program
-Committee | The node committee is formed by the super nodes. After the campaign is completed, the top 3 validating nodes and the top 2 ecological nodes form the node committee. Later, the BUMO Node Committee replaces the BUMO Foundation as the highest governing authority for the BUMO public chain ecosystem|
+Role     | Description 
+-------- |------
+Super nodes | Super nodes consist of validating nodes and <br />ecological nodes 
+Campaign nodes | Campaign nodes consist of the validating <br />campaign node set and the ecological campaign <br />node set 
+Validating nodes | Validating nodes are physical nodes for BUfirework <br />consensus and block packaging, the number is 19 
+Ecological nodes| Ecological nodes are virtual nodes for building the <br />BUMO ecosystem with their social or public influence, <br />the number is 21 
+Users | Holders of the token, who have accounts on the <br />BUMO chain and are eligible to campaign, vote, <br />and sponsor node co-funding projects 
+Foundation| The BUMO Foundation, the initiator of this event, <br />will transfer the highest authority of the BUMO <br />public chain to the Node Committee after this event, <br />and has the final right to interpret the rules related <br />to this program during the implementation of this program 
+Committee | The node committee is formed by the super nodes. <br />After the campaign is completed, the top 3 validating <br />nodes and the top 2 ecological nodes form the node <br />committee. Later, the BUMO Node Committee replaces <br />the BUMO Foundation as the highest governing authority <br />for the BUMO public chain ecosystem 
 
 
 ### Glossary
