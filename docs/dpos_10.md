@@ -875,12 +875,12 @@ The development of the public chain ecology is inseparable from the active commu
 ### Applying for Ecological Nodes
 Any user account can transfer some BU to the DPOS contract as a deposit to apply for a candidate ecological node. Only after the application is passed by the committee in a valid period can it be added to ecological node list. Refer to [Committee Approved Vote](#committee-approved-vote) . Whether it can become a formal ecological node is determined by the total number of votes cast by users in a certain period.
 
-- The applicant transfers some BU to the DPOS contract as a deposit which can be recovered by the `recovery deposit` operation. See the development document [Transferring BU Assets] (#transferring-bu-assets).
+- The applicant transfers some BU to the DPOS contract as a deposit which can be recovered by the [Withdrawal of Ecological Nodes](#withdrawal-of-ecological-nodes) operation. See the development document [Transferring BU Assets](../api_http#transferring-bu-assets).
 - The input field of the `transferring BU assets` operation is filled with `{ "method" : "apply", "params":{"role":"kol", "pool":" the address to distribute voting rewards is filled in here", "ratio ":" the reward distribution ratio for voting is filled in here "}}`, and pay attention to the use of escape characters.
 
 | Parameter | Description                                                  |
 | --------- | ------------------------------------------------------------ |
-| role      | The role applied for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the consensus node role. |
+| role      | The role applied for. The parameter value must be one of the values listed in the [User Roles](#user-roles) section, and here is the ecological node role. |
 | pool      | The address to distribute voting rewards. If the parameter is not provided, the default is the applicant’s address. |
 | ratio     | The reward ratio for voting. The value is a numerator of the percentage, such as 80, which means that 80% of the block reward will be transferred to the address specified by the `pool` parameter, and then the pool address assigns the reward to the supporters of the current node. If the parameter is not provided, the default is 0. |
 
